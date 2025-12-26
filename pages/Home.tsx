@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { COMPANY_INFO, MOCK_HOMES, TESTIMONIALS } from '../constants';
 import Button from '../components/Button';
 import HomeCard from '../components/HomeCard';
@@ -39,35 +39,12 @@ const Home: React.FC = () => {
   const featuredHomes = MOCK_HOMES.filter(h => h.isFeatured).slice(0, 7);
   const heroRef = useRef<HTMLDivElement>(null);
 
-  // Intersection Observer for scroll animations
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in-up');
-          entry.target.classList.remove('opacity-0', 'translate-y-8');
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.scroll-animate').forEach(el => {
-      el.classList.add('opacity-0', 'translate-y-8');
-      observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
 
       {/* 1. Hero Banner - Gulf South Homes Branded */}
-      <section ref={heroRef} className="relative w-full h-screen sm:min-h-[90vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
+      <section ref={heroRef} className="relative w-full h-screen sm:min-h-[90vh] flex flex-col items-center justify-start pt-8 sm:pt-12 lg:pt-16 text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
         {/* Background Video */}
         <video
           autoPlay
@@ -85,42 +62,12 @@ const Home: React.FC = () => {
           <source src="/assets/video/videosworking/homepage-hero.mp4" type="video/mp4" />
         </video>
 
-        {/* Enhanced Background Overlay - Better Text Contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
-        <div className="absolute inset-0 bg-black/30"></div>
+        {/* Light Background Overlay - Crisp and Bright */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/20"></div>
+        <div className="absolute inset-0 bg-black/5"></div>
 
         {/* Content */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto">
-          {/* Gulf South Homes Logo - Prominent Branding with Animation */}
-          <div className="mb-6 sm:mb-8 flex justify-center">
-            <img 
-              src="/assets/images/logo/gsh-logo-2025.svg" 
-              alt="Gulf South Homes - 2025 Bayou's Best Choice" 
-              className="w-[300px] h-[120px] sm:w-[500px] sm:h-[200px] object-contain drop-shadow-2xl logo-entrance"
-              width="500"
-              height="200"
-              loading="eager"
-              fetchPriority="high"
-              style={{
-                animation: 'logoEntrance 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, logoGlow 3s ease-in-out 1.2s infinite',
-                willChange: 'transform, opacity, filter'
-              }}
-              onError={(e) => {
-                // Fallback if logo fails to load
-                e.currentTarget.style.display = 'none';
-              }}
-            />
-          </div>
-
-          {/* Company Name - Elegant Cursive */}
-          <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8 text-white">
-            <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
-            <span className="text-2xl sm:text-3xl lg:text-4xl font-normal tracking-wide" style={{ fontFamily: "'Dancing Script', cursive" }}>
-              Gulf South Homes Inc
-            </span>
-            <span className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></span>
-          </div>
-
+        <div className="relative z-10 w-full max-w-6xl mx-auto mt-4 sm:mt-6">
           {/* Main Headline - With Rotating Product Categories */}
           <h1 className="font-display font-black text-white leading-[1.1] text-5xl sm:text-6xl lg:text-7xl xl:text-8xl max-w-[1000px] mx-auto mb-6 sm:mb-8 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
             <span className="block hero-word">New</span>
@@ -133,27 +80,10 @@ const Home: React.FC = () => {
               </span>
             </span>
             <span className="block hero-word" style={{ animationDelay: '0.4s' }}>Homes For Sale</span>
-            <span className="block text-primary-light text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mt-2 hero-word" style={{ animationDelay: '0.6s' }}>
-              in Southeast Louisiana
-            </span>
           </h1>
 
-          {/* Subheadline - Fade in after title */}
-          <p className="hero-subtext text-white text-lg sm:text-xl lg:text-2xl max-w-[800px] mx-auto font-semibold drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
-            Fast Delivery • Full Setup • In-House Financing & Insurance
-          </p>
-
-          {/* Trust Indicators - Animated Entrance */}
-          <div className="hero-subtext flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-6 sm:mt-8 text-white/95 text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" style={{ fontFamily: "'Dancing Script', cursive", animationDelay: '1.1s' }}>
-            <span className="text-primary-light font-bold text-lg sm:text-xl">Est. 1995</span>
-            <span className="hidden sm:inline">•</span>
-            <span className="font-semibold text-lg sm:text-xl">Family-Owned</span>
-            <span className="hidden sm:inline">•</span>
-            <span className="font-semibold text-lg sm:text-xl">2025 Bayou's Best Choice</span>
-          </div>
-
           {/* CTA Button - Pop-in Animation */}
-          <div className="hero-cta-entrance flex justify-center mt-8 sm:mt-10 mb-8">
+          <div className="hero-cta-entrance flex justify-center mt-8 sm:mt-10 mb-4 sm:mb-6">
             <Button 
               variant="primary" 
               to="/catalog" 
@@ -163,6 +93,22 @@ const Home: React.FC = () => {
               View Homes For Sale
               <ArrowRight size={20} className="ml-2" />
             </Button>
+          </div>
+
+          {/* Serving Location - Below CTA */}
+          <div className="hero-subtext flex justify-center mt-3 sm:mt-4 mb-4 sm:mb-6" style={{ animationDelay: '0.6s' }}>
+            <span className="text-primary-light text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)] tracking-wide">
+              Serving Southeast Louisiana
+            </span>
+          </div>
+
+          {/* Trust Indicators - Animated Entrance - Separated White and Blue Text */}
+          <div className="hero-subtext flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-4 sm:mt-6 text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" style={{ fontFamily: "'Dancing Script', cursive", animationDelay: '1.1s' }}>
+            <span className="text-primary-light font-bold text-lg sm:text-xl">Est. 1995</span>
+            <span className="hidden sm:inline text-white/60">•</span>
+            <span className="text-white font-semibold text-lg sm:text-xl">Family-Owned</span>
+            <span className="hidden sm:inline text-white/60">•</span>
+            <span className="text-white font-semibold text-lg sm:text-xl">2025 Bayou's Best Choice</span>
           </div>
         </div>
       </section>

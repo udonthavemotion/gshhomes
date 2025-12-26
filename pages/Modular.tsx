@@ -104,8 +104,9 @@ const Modular: React.FC = () => {
           <source src="/assets/video/videosworking/modularhomes.mp4" type="video/mp4" />
         </video>
 
-        {/* Background Overlay */}
-        <div className="absolute inset-0 bg-black/40"></div>
+        {/* Light Background Overlay - Crisp and Bright */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/20"></div>
+        <div className="absolute inset-0 bg-black/5"></div>
 
         {/* Content */}
         <div className="relative z-10 w-full max-w-5xl mx-auto">
