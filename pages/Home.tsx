@@ -97,18 +97,18 @@ const Home: React.FC = () => {
 
           {/* Serving Location - Below CTA - Mobile Optimized */}
           <div className="hero-subtext flex justify-center mt-3 md:mt-3 lg:mt-4 mb-3 md:mb-3 md:mb-4 lg:mb-6 px-2" style={{ animationDelay: '0.6s' }}>
-            <span className="text-primary-light hero-subtitle-fluid font-bold drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)] tracking-wide text-center break-words leading-tight">
+            <span className="text-primary-light hero-subtitle-fluid font-bold tracking-wide text-center break-words leading-tight" style={{ textShadow: '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.5), 0 3px 10px rgba(255,255,255,0.3)' }}>
               Serving Southeast Louisiana
             </span>
           </div>
 
           {/* Trust Indicators - Animated Entrance - Mobile Optimized */}
-          <div className="hero-subtext flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 mt-3 md:mt-4 lg:mt-6 text-xs sm:text-sm lg:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] px-2 max-w-md mx-auto" style={{ fontFamily: "'Dancing Script', cursive", animationDelay: '1.1s' }}>
-            <span className="text-primary-light font-bold hero-trust-fluid">Est. 1995</span>
+          <div className="hero-subtext flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 mt-3 md:mt-4 lg:mt-6 text-xs sm:text-sm lg:text-base px-2 max-w-md mx-auto" style={{ fontFamily: "'Dancing Script', cursive", animationDelay: '1.1s' }}>
+            <span className="text-primary-light font-bold hero-trust-fluid" style={{ textShadow: '0 0 15px rgba(255,255,255,0.8), 0 0 30px rgba(255,255,255,0.5), 0 2px 8px rgba(255,255,255,0.3)' }}>Est. 1995</span>
             <span className="hidden sm:inline text-white/60 text-sm">•</span>
-            <span className="text-white font-semibold hero-trust-fluid">Family-Owned</span>
+            <span className="text-white font-semibold hero-trust-fluid" style={{ textShadow: '0 0 15px rgba(255,255,255,0.8), 0 0 30px rgba(255,255,255,0.5), 0 2px 8px rgba(255,255,255,0.3)' }}>Family-Owned</span>
             <span className="hidden sm:inline text-white/60 text-sm">•</span>
-            <span className="text-white font-semibold hero-trust-fluid text-center">2025 Bayou's Best Choice</span>
+            <span className="text-white font-semibold hero-trust-fluid text-center" style={{ textShadow: '0 0 15px rgba(255,255,255,0.8), 0 0 30px rgba(255,255,255,0.5), 0 2px 8px rgba(255,255,255,0.3)' }}>2025 Bayou's Best Choice</span>
           </div>
         </div>
       </section>
