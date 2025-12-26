@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, ChevronRight } from 'lucide-react';
+import { Menu, X, Phone, ChevronRight, ChevronDown, MapPin, Facebook, Instagram } from 'lucide-react';
 import { COMPANY_INFO } from '../constants';
 import Button from './Button';
-import SocialLinks from './SocialLinks';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { useFocusTrap } from '../hooks/useFocusTrap';
 import { useClickOutside } from '../hooks/useClickOutside';
@@ -30,7 +29,7 @@ const Navbar: React.FC = () => {
   // Close menu on Escape key
   useEscapeKey(() => setIsOpen(false), isOpen);
 
-  // Handle scroll effect
+  // Handle scroll effect - only affects shadow, not background
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -91,155 +90,130 @@ const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-500 ${
+      className={`sticky top-0 z-50 transition-shadow duration-500 ${
         scrolled
-          ? 'bg-white shadow-lg'
-          : 'bg-white shadow-md'
+          ? 'shadow-xl'
+          : 'shadow-md'
       }`}
     >
-      {/* Top Bar - Desktop Only */}
-      <div className="hidden lg:block bg-primary text-white relative">
-        {/* Professional Red Accent Stripe */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#D32F2F]"></div>
-        
-        <div className="container mx-auto px-6 xl:px-8">
-          <div className="flex justify-between items-center py-2.5 text-xs font-medium tracking-wide">
-            <span className="flex items-center gap-2 text-white">
-              <span className="w-1.5 h-1.5 bg-[#D32F2F] rounded-full"></span>
-              {COMPANY_INFO.address}
-            </span>
-            <div className="flex items-center space-x-6">
-              <span className="text-white">Mon-Fri: 8am - 5pm</span>
-              <a
-                href={`tel:${COMPANY_INFO.phone}`}
-                className="flex items-center gap-2 text-[#D32F2F] hover:text-[#E05656] transition-colors font-semibold group"
-              >
-                <Phone size={14} className="text-[#D32F2F] group-hover:scale-110 transition-transform duration-200" />
-                {COMPANY_INFO.phone}
-              </a>
-              <div className="border-l border-stone-700 pl-6 relative">
-                {/* Subtle Red Accent on Divider */}
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[1px] h-4 bg-[#D32F2F]/40"></div>
-                <SocialLinks variant="dark" size="sm" />
-              </div>
+      {/* Bottom Bar - Black Background with Navigation */}
+      <nav ref={navRef} className="bg-black text-white" style={{ backgroundColor: 'var(--color-primary-dark)' }}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16 lg:h-16">
+            {/* Mobile Logo */}
+            <Link to="/" className="flex items-center lg:hidden group" onClick={closeMenu}>
+              <img 
+                src="/assets/images/single wide homes/large logo for nav bar.png" 
+                alt="Gulf South Homes" 
+                className="h-12 w-auto object-contain"
+              />
+            </Link>
+
+            {/* Desktop Logo - Shows when scrolled */}
+            <div className={`hidden lg:block transition-all duration-300 ${scrolled ? 'opacity-100 w-auto mr-6' : 'opacity-0 w-0 mr-0 overflow-hidden'}`}>
+              <Link to="/" className="flex items-center group" onClick={closeMenu}>
+                <img 
+                  src="/assets/images/single wide homes/large logo for nav bar.png" 
+                  alt="Gulf South Homes" 
+                  className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                />
+              </Link>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <nav ref={navRef} className="container mx-auto px-4 sm:px-6 lg:px-8 border-t border-[#D32F2F]/10">
-        <div className="flex justify-between h-20 lg:h-24 items-center">
-          {/* Logo */}
-          <Link to="/" className="flex items-center group" onClick={closeMenu}>
-            <img 
-              src="/assets/images/logo/gsh-logo-2025.svg" 
-              alt="Gulf South Homes - 2025 Bayou's Best Choice" 
-              className="h-14 lg:h-[4.5rem] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-            />
-          </Link>
+            {/* Desktop Navigation Links */}
+            <div className={`hidden lg:flex items-center space-x-1 ${scrolled ? 'flex-1' : 'flex-1 justify-center'}`}>
+              {navLinks.map((link) => (
+                link.sublinks ? (
+                  // Dropdown for links with sublinks
+                  <div key={link.path} className="relative group">
+                    <Link
+                      to={link.path}
+                      className={`relative px-4 py-2 text-sm font-semibold uppercase tracking-wide flex items-center gap-1 text-white hover:text-[#D32F2F] transition-colors ${
+                        isActive(link.path) ? 'text-[#D32F2F]' : ''
+                      }`}
+                    >
+                      {link.name}
+                      <ChevronDown size={14} className="transition-transform group-hover:rotate-180" />
+                      {isActive(link.path) && (
+                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#D32F2F]"></span>
+                      )}
+                    </Link>
 
-          {/* Desktop Links */}
-          <div className="hidden lg:flex items-center space-x-1">
-            {navLinks.map((link) => (
-              link.sublinks ? (
-                // Dropdown for links with sublinks
-                <div key={link.path} className="relative group">
+                    {/* Dropdown Menu */}
+                    <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-stone-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                      <div className="py-2">
+                        {link.sublinks.map((sublink) => (
+                          <Link
+                            key={sublink.path}
+                            to={sublink.path}
+                            className={`navbar-dropdown-item block px-4 py-3 text-sm font-medium ${
+                              isActive(sublink.path)
+                                ? 'text-primary-dark font-semibold'
+                                : 'text-stone-700'
+                            }`}
+                          >
+                            {sublink.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  // Regular link without dropdown
                   <Link
+                    key={link.path}
                     to={link.path}
-                    className={`navbar-link-glow relative px-4 py-2 text-sm font-semibold rounded-lg flex items-center gap-1 ${
-                      isActive(link.path)
-                        ? 'text-primary'
-                        : 'text-stone-600'
+                    className={`relative px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:text-[#D32F2F] transition-colors ${
+                      isActive(link.path) ? 'text-[#D32F2F]' : ''
                     }`}
                   >
                     {link.name}
-                    <ChevronRight size={14} className="transform -rotate-90 transition-transform group-hover:rotate-0" />
                     {isActive(link.path) && (
-                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary"></span>
+                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#D32F2F]"></span>
                     )}
                   </Link>
+                )
+              ))}
+              
+              {/* Contact Us Link */}
+              <Link 
+                to="/contact" 
+                className={`relative px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:text-[#D32F2F] transition-colors ${
+                  isActive('/contact') ? 'text-[#D32F2F]' : ''
+                }`}
+              >
+                Contact Us
+                {isActive('/contact') && (
+                  <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#D32F2F]"></span>
+                )}
+              </Link>
+            </div>
 
-                  {/* Dropdown Menu */}
-                  <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-xl border border-stone-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="py-2">
-                      {link.sublinks.map((sublink) => (
-                        <Link
-                          key={sublink.path}
-                          to={sublink.path}
-                          className={`navbar-dropdown-item block px-4 py-3 text-sm font-medium ${
-                            isActive(sublink.path)
-                              ? 'text-primary-dark font-semibold'
-                              : 'text-stone-700'
-                          }`}
-                        >
-                          {sublink.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                // Regular link without dropdown
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={`navbar-link-glow relative px-4 py-2 text-sm font-semibold rounded-lg ${
-                    isActive(link.path)
-                      ? 'text-primary'
-                      : 'text-stone-600'
-                  }`}
-                >
-                  {link.name}
-                  {isActive(link.path) && (
-                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary"></span>
-                  )}
-                </Link>
-              )
-            ))}
-          </div>
-
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Link 
-              to="/contact" 
-              className={`navbar-link-glow text-sm font-semibold px-4 py-2 rounded-lg relative ${
-                isActive('/contact') ? 'text-primary' : 'text-stone-600'
-              }`}
-            >
-              Contact
-              {isActive('/contact') && (
-                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary"></span>
-              )}
-            </Link>
-            <Button variant="primary" to="/catalog" className="px-6 py-2.5 text-sm shadow-lg shadow-primary/20">
-              Browse Homes
-            </Button>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="flex items-center lg:hidden">
-            <button
-              ref={menuButtonRef}
-              onClick={toggleMenu}
-              className={`px-4 py-2.5 rounded-md transition-all duration-300 min-h-[44px] flex items-center gap-2 ${
-                isOpen
-                  ? 'bg-stone-900 text-white'
-                  : 'text-stone-600 hover:bg-stone-100'
-              }`}
-              aria-label={isOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isOpen}
-              aria-controls="mobile-menu"
-            >
-              {isOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
-              <span className="text-sm font-semibold">{isOpen ? 'Close' : 'Menu'}</span>
-            </button>
+            {/* Mobile Menu Button */}
+            <div className="flex items-center lg:hidden">
+              <button
+                ref={menuButtonRef}
+                onClick={toggleMenu}
+                className={`px-4 py-2.5 rounded-md transition-all duration-300 min-h-[44px] flex items-center gap-2 ${
+                  isOpen
+                    ? 'bg-stone-900 text-white'
+                    : 'text-white hover:bg-stone-900'
+                }`}
+                aria-label={isOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isOpen}
+                aria-controls="mobile-menu"
+              >
+                {isOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
+                <span className="text-sm font-semibold">{isOpen ? 'Close' : 'Menu'}</span>
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
       {/* Mobile Menu Backdrop */}
       <div 
-        className={`lg:hidden fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 ${
+        className={`lg:hidden fixed inset-0 bg-black/60 z-40 transition-opacity duration-300 ${
           isOpen 
             ? 'opacity-100' 
             : 'opacity-0 pointer-events-none'
@@ -255,7 +229,7 @@ const Navbar: React.FC = () => {
         role="dialog"
         aria-modal="true"
         aria-labelledby="mobile-menu-title"
-        className={`lg:hidden fixed inset-x-0 bg-white shadow-2xl transition-all duration-500 ease-out z-50 overflow-y-auto ${
+        className={`lg:hidden fixed inset-x-0 bg-stone-900 shadow-2xl transition-all duration-500 ease-out z-50 overflow-y-auto ${
           isOpen 
             ? 'opacity-100 translate-y-0' 
             : 'opacity-0 -translate-y-4 pointer-events-none'
@@ -271,25 +245,61 @@ const Navbar: React.FC = () => {
       >
         <div className="container mx-auto px-4 py-6 flex flex-col min-h-full">
           <h2 id="mobile-menu-title" className="sr-only">Navigation Menu</h2>
-          <div className="space-y-1">
+          
+          {/* Mobile Contact Info */}
+          <div className="lg:hidden mb-6 pb-6 border-b border-stone-700">
+            <a
+              href={`tel:${COMPANY_INFO.phone}`}
+              className="flex items-center gap-2 text-white mb-3 text-lg font-bold hover:text-[#D32F2F] transition-colors"
+            >
+              <Phone size={20} />
+              {COMPANY_INFO.phone}
+            </a>
+            <div className="flex items-center gap-1.5 text-sm text-white/80">
+              <MapPin size={14} />
+              <span>{COMPANY_INFO.address}</span>
+            </div>
+            <div className="flex items-center gap-4 mt-4">
+              <a
+                href="https://www.facebook.com/gulfsouthhomes"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-white hover:text-[#D32F2F] transition-colors"
+                aria-label="Visit Gulf South Homes on Facebook"
+              >
+                <Facebook size={20} />
+                <span className="text-sm">Facebook</span>
+              </a>
+              <a
+                href="https://www.instagram.com/gulfsouthhomes"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-white hover:text-[#D32F2F] transition-colors"
+                aria-label="Visit Gulf South Homes on Instagram"
+              >
+                <Instagram size={20} />
+                <span className="text-sm">Instagram</span>
+              </a>
+            </div>
+          </div>
+
+          <div className="space-y-1 flex-1">
             {navLinks.map((link, idx) => (
               <div key={link.path}>
                 <Link
                   to={link.path}
                   onClick={closeMenu}
-                  className={`mobile-menu-item navbar-link-glow flex items-center justify-between px-4 py-3.5 rounded-lg text-base font-semibold min-h-[44px] relative ${
-                    isActive(link.path)
-                      ? 'text-primary-dark'
-                      : 'text-stone-700'
+                  className={`mobile-menu-item flex items-center justify-between px-4 py-3.5 rounded-lg text-base font-semibold min-h-[44px] relative text-white hover:text-[#D32F2F] transition-colors ${
+                    isActive(link.path) ? 'text-[#D32F2F]' : ''
                   } ${isOpen ? 'animate-fade-in-up' : ''}`}
                   style={{
                     animationDelay: `${idx * 50}ms`
                   }}
                 >
                   {link.name}
-                  <ChevronRight size={18} className={isActive(link.path) ? 'text-primary' : 'text-stone-400'} aria-hidden="true" />
+                  <ChevronRight size={18} className={isActive(link.path) ? 'text-[#D32F2F]' : 'text-white/60'} aria-hidden="true" />
                   {isActive(link.path) && (
-                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary"></span>
+                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#D32F2F]"></span>
                   )}
                 </Link>
 
@@ -301,10 +311,10 @@ const Navbar: React.FC = () => {
                         key={sublink.path}
                         to={sublink.path}
                         onClick={closeMenu}
-                        className={`navbar-dropdown-item block px-4 py-2.5 rounded-lg text-sm font-medium min-h-[44px] ${
+                        className={`block px-4 py-2.5 rounded-lg text-sm font-medium min-h-[44px] text-white/80 hover:text-[#D32F2F] transition-colors ${
                           isActive(sublink.path)
-                            ? 'text-primary-dark font-semibold'
-                            : 'text-stone-600'
+                            ? 'text-[#D32F2F] font-semibold'
+                            : ''
                         }`}
                       >
                         {sublink.name}
@@ -318,24 +328,22 @@ const Navbar: React.FC = () => {
             <Link
               to="/contact"
               onClick={closeMenu}
-              className={`mobile-menu-item navbar-link-glow flex items-center justify-between px-4 py-3.5 rounded-lg text-base font-semibold min-h-[44px] relative ${
-                isActive('/contact')
-                  ? 'text-primary-dark'
-                  : 'text-stone-700'
+              className={`mobile-menu-item flex items-center justify-between px-4 py-3.5 rounded-lg text-base font-semibold min-h-[44px] relative text-white hover:text-[#D32F2F] transition-colors ${
+                isActive('/contact') ? 'text-[#D32F2F]' : ''
               } ${isOpen ? 'animate-fade-in-up' : ''}`}
               style={{ 
                 animationDelay: `${navLinks.length * 50}ms`
               }}
             >
               Contact Us
-              <ChevronRight size={18} className={isActive('/contact') ? 'text-primary' : 'text-stone-400'} aria-hidden="true" />
+              <ChevronRight size={18} className={isActive('/contact') ? 'text-[#D32F2F]' : 'text-white/60'} aria-hidden="true" />
               {isActive('/contact') && (
-                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary"></span>
+                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#D32F2F]"></span>
               )}
             </Link>
           </div>
 
-          <div className="mt-auto pt-6 border-t border-stone-200 space-y-4">
+          <div className="mt-auto pt-6 border-t border-stone-700 space-y-4">
             <Button 
               to="/catalog" 
               fullWidth 
@@ -344,14 +352,6 @@ const Navbar: React.FC = () => {
             >
               Browse All Homes
             </Button>
-            
-            <a
-              href={`tel:${COMPANY_INFO.phone}`}
-              className="flex items-center justify-center gap-3 py-4 bg-[#D32F2F] rounded-lg text-white font-semibold hover:bg-[#B02626] active:bg-[#9A1F1F] transition-colors min-h-[44px] shadow-lg shadow-[#D32F2F]/20"
-            >
-              <Phone size={20} aria-hidden="true" />
-              {COMPANY_INFO.phone}
-            </a>
           </div>
         </div>
       </div>

@@ -30,28 +30,28 @@ const Footer: React.FC = () => {
       <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-[150px] pointer-events-none z-0"></div>
       
       {/* Main Footer Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 pb-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-10 pb-4 sm:pb-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
           
           {/* Brand Column - Takes more space */}
           <div className="lg:col-span-4">
-            <Link to="/" className="inline-flex items-center gap-2 mb-4 sm:mb-5 group">
+            <Link to="/" className="inline-flex items-center gap-2 mb-3 sm:mb-4 lg:mb-5 group touch-manipulation min-h-[44px]">
               <img 
                 src="/assets/images/logo/gsh-logo-2025.svg" 
                 alt="Gulf South Homes - 2025 Bayou's Best Choice" 
-                className="h-8 sm:h-10 w-auto object-contain opacity-90"
+                className="h-7 sm:h-8 lg:h-10 w-auto object-contain opacity-90"
               />
               <div className="flex flex-col">
-                <span className="text-lg sm:text-xl font-bold text-white leading-none font-display tracking-tight drop-shadow-md">
+                <span className="text-base sm:text-lg lg:text-xl font-bold text-white leading-none font-display tracking-tight drop-shadow-md">
                   GULF SOUTH
                 </span>
-                <span className="text-[10px] sm:text-xs font-semibold text-red-600 leading-none tracking-[0.2em] mt-0.5 drop-shadow-sm">
+                <span className="text-[9px] sm:text-[10px] lg:text-xs font-semibold text-red-600 leading-none tracking-[0.2em] mt-0.5 drop-shadow-sm">
                   HOMES INC
                 </span>
               </div>
             </Link>
             
-            <p className="text-white/90 mb-4 sm:mb-5 text-xs sm:text-sm leading-relaxed max-w-sm font-medium drop-shadow-sm">
+            <p className="text-white/90 mb-3 sm:mb-4 lg:mb-5 text-xs sm:text-sm leading-relaxed max-w-sm font-medium drop-shadow-sm">
               Louisiana's trusted source for quality manufactured and modular homes.
               Family-owned and operated since {COMPANY_INFO.founded}.
             </p>
@@ -62,8 +62,8 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div className="lg:col-span-2">
-            <h4 className="text-white font-display font-bold text-sm sm:text-base mb-3 sm:mb-4 drop-shadow-md">Explore</h4>
-            <ul className="space-y-2 sm:space-y-2.5">
+            <h4 className="text-white font-display font-bold text-sm sm:text-base mb-2 sm:mb-3 lg:mb-4 drop-shadow-md">Explore</h4>
+            <ul className="space-y-1.5 sm:space-y-2 lg:space-y-2.5">
               {[
                 { name: 'Our Homes', path: '/catalog' },
                 { name: 'Single-Wide', path: '/single-wide' },
@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
                 <li key={link.path}>
                   <Link 
                     to={link.path} 
-                    className="text-white/90 hover:text-white transition-colors inline-flex items-center gap-1.5 group text-sm sm:text-base py-1 -my-1 font-medium drop-shadow-sm"
+                    className="text-white/90 hover:text-white active:text-white transition-colors inline-flex items-center gap-1.5 group text-sm sm:text-base py-2 -my-2 font-medium drop-shadow-sm touch-manipulation min-h-[44px] sm:min-h-[auto]"
                   >
                     {link.name}
                     <ArrowRight size={12} className="sm:w-3.5 sm:h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
@@ -86,8 +86,8 @@ const Footer: React.FC = () => {
 
           {/* Services */}
           <div className="lg:col-span-2">
-            <h4 className="text-white font-display font-bold text-sm sm:text-base mb-3 sm:mb-4 drop-shadow-md">Services</h4>
-            <ul className="space-y-2 sm:space-y-2.5">
+            <h4 className="text-white font-display font-bold text-sm sm:text-base mb-2 sm:mb-3 lg:mb-4 drop-shadow-md">Services</h4>
+            <ul className="space-y-1.5 sm:space-y-2 lg:space-y-2.5">
               {[
                 { name: 'Financing', path: '/financing' },
                 { name: 'Parts & Service', path: '/services' },
@@ -96,7 +96,7 @@ const Footer: React.FC = () => {
                 <li key={link.path}>
                   <Link 
                     to={link.path} 
-                    className="text-white/90 hover:text-white transition-colors inline-flex items-center gap-1.5 group text-sm sm:text-base py-1 -my-1 font-medium drop-shadow-sm"
+                    className="text-white/90 hover:text-white active:text-white transition-colors inline-flex items-center gap-1.5 group text-sm sm:text-base py-2 -my-2 font-medium drop-shadow-sm touch-manipulation min-h-[44px] sm:min-h-[auto]"
                   >
                     {link.name}
                     <ArrowRight size={12} className="sm:w-3.5 sm:h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
@@ -108,15 +108,15 @@ const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <div className="lg:col-span-4">
-            <h4 className="text-white font-display font-bold text-sm sm:text-base mb-3 sm:mb-4 drop-shadow-md">Get In Touch</h4>
-            <ul className="space-y-3 sm:space-y-4">
+            <h4 className="text-white font-display font-bold text-sm sm:text-base mb-2 sm:mb-3 lg:mb-4 drop-shadow-md">Get In Touch</h4>
+            <ul className="space-y-2.5 sm:space-y-3 lg:space-y-4">
               <li>
                 <a 
                   href={`tel:${COMPANY_INFO.phone}`}
-                  className="flex items-start gap-3 group touch-manipulation"
+                  className="flex items-start gap-2.5 sm:gap-3 group touch-manipulation min-h-[44px] active:opacity-80"
                 >
-                  <div className="w-9 h-9 sm:w-8 sm:h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors">
-                    <Phone size={16} className="text-primary group-hover:text-white transition-colors" />
+                  <div className="w-10 h-10 sm:w-9 sm:h-9 lg:w-8 lg:h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors">
+                    <Phone size={18} className="sm:w-4 sm:h-4 text-primary group-hover:text-white transition-colors" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <span className="text-xs sm:text-sm text-white/80 block font-medium drop-shadow-sm">Call Us</span>
@@ -125,9 +125,9 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 sm:w-8 sm:h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin size={16} className="text-primary" />
+                <div className="flex items-start gap-2.5 sm:gap-3 min-h-[44px]">
+                  <div className="w-10 h-10 sm:w-9 sm:h-9 lg:w-8 lg:h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MapPin size={18} className="sm:w-4 sm:h-4 text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <span className="text-xs sm:text-sm text-white/80 block font-medium drop-shadow-sm">Visit Us</span>
@@ -136,9 +136,9 @@ const Footer: React.FC = () => {
                 </div>
               </li>
               <li>
-                <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 sm:w-8 sm:h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Clock size={16} className="text-primary" />
+                <div className="flex items-start gap-2.5 sm:gap-3 min-h-[44px]">
+                  <div className="w-10 h-10 sm:w-9 sm:h-9 lg:w-8 lg:h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Clock size={18} className="sm:w-4 sm:h-4 text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <span className="text-xs sm:text-sm text-white/80 block font-medium drop-shadow-sm">Hours</span>
@@ -152,11 +152,11 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-stone-800 mt-6 sm:mt-8 pt-4 sm:pt-6 flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
-          <p className="text-white/80 text-xs sm:text-sm text-center md:text-left font-medium drop-shadow-sm">
+        <div className="border-t border-stone-800 mt-4 sm:mt-6 lg:mt-8 pt-3 sm:pt-4 lg:pt-6 flex flex-col md:flex-row justify-between items-center gap-2 sm:gap-3 lg:gap-4 pb-safe">
+          <p className="text-white/80 text-xs sm:text-sm text-center md:text-left font-medium drop-shadow-sm leading-relaxed">
             © {new Date().getFullYear()} {COMPANY_INFO.name}. All rights reserved.
           </p>
-          <div className="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm text-white/80 font-medium drop-shadow-sm">
+          <div className="flex items-center gap-3 sm:gap-4 lg:gap-6 text-xs sm:text-sm text-white/80 font-medium drop-shadow-sm">
             <span>BBB Accredited</span>
             <span className="hidden sm:inline">•</span>
             <span>LHMA Member</span>

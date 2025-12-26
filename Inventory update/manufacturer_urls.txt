@@ -1,0 +1,37 @@
+Manufacturer Photo/Gallery URLs for Gulf South Homes Inventory
+================================================================
+
+BG MANUFACTURING (https://www.bgmfg.homes/)
+- The Simon: https://www.bgmfg.homes/homes-for-sale/ (search for "The Simon" - model visible on main page)
+- The Matthew: https://www.bgmfg.homes/homes-for-sale/ (search for "The Matthew" - model visible on main page)
+- The King David 64: https://www.bgmfg.homes/homes-for-sale/ (search for "The King David 64" - model visible on main page)
+
+Note: BG Manufacturing has a central floor plans page. Individual model pages appear to be at:
+- Base pattern: https://www.bgmfg.homes/home/[ID]/disciple-series/[model-name]/
+
+SUNSHINE HOMES (https://www.sunshinehomes-inc.com/)
+- Need to search for: The Clover, The Sunrise, The Ivy Dream, The Milky Way, Eden, Prairie
+
+CHAMPION HOMES (https://www.championhomes.com/)
+- Need to search for: The Pearl, The Sazerac
+
+FRANKLIN HOMES (https://www.franklinhomesusa.com/)
+- Need to search for: The Robertson, The Grove, The Kyleigh
+
+PATRIOT HOMES
+- Need to search for: The Move One Up, The Baby Boujee, The Washington
+
+SOUTHERN HOMES
+- Need to search for: The Granite Ridge, The Lodge, The Bayside
+
+BUCCANEER HOMES (https://www.buccaneerhomebuilders.net/models/)
+- Need to search for: The Mill House
+
+TRU HOMES (https://owntru.com/)
+- Need to search for: The Dogwood, The Elation, The Splendor, The Pride
+
+CLAYTON EPIC (https://claytonepicadventure.com/)
+- Need to search for: Hudson, Mariner, Expedition
+
+CAVALIER (https://cavalieralabama.com/)
+- Need to search for: The Bandit, The Frenchman, The Jackson

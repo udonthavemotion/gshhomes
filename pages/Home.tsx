@@ -44,32 +44,32 @@ const Home: React.FC = () => {
     <div className="flex flex-col min-h-screen overflow-hidden">
 
       {/* 1. Hero Banner - Gulf South Homes Branded */}
-      <section ref={heroRef} className="relative w-full h-screen sm:min-h-[90vh] flex flex-col items-center justify-start pt-8 sm:pt-12 lg:pt-16 text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
+      <section ref={heroRef} className="relative w-full h-screen sm:min-h-[90vh] flex flex-col items-center justify-center sm:justify-start pt-4 sm:pt-12 lg:pt-16 text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900 safe-area-inset-top">
         {/* Background Video */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
           aria-label="Background video showcasing Gulf South Homes"
+          style={{ 
+            objectPosition: 'center center',
+            willChange: 'auto'
+          }}
           onError={(e) => {
             // Silently handle video load errors - fallback to background color
             e.currentTarget.style.display = 'none';
           }}
         >
-          <source src="/assets/video/videosworking/homepage-hero.mp4" type="video/mp4" />
+          <source src="/assets/images/single wide homes/landingpager.mp4" type="video/mp4" />
         </video>
 
-        {/* Light Background Overlay - Crisp and Bright */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/20"></div>
-        <div className="absolute inset-0 bg-black/5"></div>
-
         {/* Content */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto mt-4 sm:mt-6">
+        <div className="relative z-10 w-full max-w-6xl mx-auto mt-0 sm:mt-4 lg:mt-6 px-2 sm:px-0">
           {/* Main Headline - With Rotating Product Categories */}
-          <h1 className="font-display font-black text-white leading-[1.1] text-5xl sm:text-6xl lg:text-7xl xl:text-8xl max-w-[1000px] mx-auto mb-6 sm:mb-8 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+          <h1 className="font-display font-black text-white leading-[1.15] sm:leading-[1.1] hero-headline-fluid max-w-[1000px] mx-auto mb-3 sm:mb-4 md:mb-6 lg:mb-8 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
             <span className="block hero-word">New</span>
             <span className="block text-rotate-container hero-word" style={{ animationDelay: '0.2s' }}>
               <span className="text-rotate">
@@ -82,33 +82,33 @@ const Home: React.FC = () => {
             <span className="block hero-word" style={{ animationDelay: '0.4s' }}>Homes For Sale</span>
           </h1>
 
-          {/* CTA Button - Pop-in Animation */}
-          <div className="hero-cta-entrance flex justify-center mt-8 sm:mt-10 mb-4 sm:mb-6">
-            <Button 
-              variant="primary" 
-              to="/catalog" 
-              size="lg" 
-              className="shadow-2xl shadow-primary/50 bg-primary/95 backdrop-blur-sm hover:bg-primary hover:scale-105 transition-transform duration-300"
+          {/* CTA Button - Pop-in Animation - Mobile Optimized */}
+          <div className="hero-cta-entrance flex justify-center mt-4 sm:mt-6 md:mt-8 lg:mt-10 mb-3 sm:mb-4 lg:mb-6">
+            <Button
+              variant="primary"
+              to="/catalog"
+              size="lg"
+              className="shadow-2xl shadow-primary/50 bg-primary/95 backdrop-blur-sm hover:bg-primary hover:scale-105 active:scale-95 transition-transform duration-300 min-h-[48px] sm:min-h-[56px] px-6 sm:px-8 text-base sm:text-lg touch-manipulation"
             >
-              View Homes For Sale
-              <ArrowRight size={20} className="ml-2" />
+              <span className="whitespace-nowrap">View Homes For Sale</span>
+              <ArrowRight size={18} className="ml-2 sm:w-5 sm:h-5" />
             </Button>
           </div>
 
-          {/* Serving Location - Below CTA */}
-          <div className="hero-subtext flex justify-center mt-3 sm:mt-4 mb-4 sm:mb-6" style={{ animationDelay: '0.6s' }}>
-            <span className="text-primary-light text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)] tracking-wide">
+          {/* Serving Location - Below CTA - Mobile Optimized */}
+          <div className="hero-subtext flex justify-center mt-2 sm:mt-3 lg:mt-4 mb-2 sm:mb-3 md:mb-4 lg:mb-6 px-2" style={{ animationDelay: '0.6s' }}>
+            <span className="text-primary-light hero-subtitle-fluid font-bold drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)] tracking-wide text-center break-words leading-tight">
               Serving Southeast Louisiana
             </span>
           </div>
 
-          {/* Trust Indicators - Animated Entrance - Separated White and Blue Text */}
-          <div className="hero-subtext flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-4 sm:mt-6 text-sm sm:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]" style={{ fontFamily: "'Dancing Script', cursive", animationDelay: '1.1s' }}>
-            <span className="text-primary-light font-bold text-lg sm:text-xl">Est. 1995</span>
-            <span className="hidden sm:inline text-white/60">•</span>
-            <span className="text-white font-semibold text-lg sm:text-xl">Family-Owned</span>
-            <span className="hidden sm:inline text-white/60">•</span>
-            <span className="text-white font-semibold text-lg sm:text-xl">2025 Bayou's Best Choice</span>
+          {/* Trust Indicators - Animated Entrance - Mobile Optimized */}
+          <div className="hero-subtext flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 mt-2 sm:mt-3 md:mt-4 lg:mt-6 text-xs sm:text-sm lg:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] px-2 max-w-md mx-auto" style={{ fontFamily: "'Dancing Script', cursive", animationDelay: '1.1s' }}>
+            <span className="text-primary-light font-bold hero-trust-fluid">Est. 1995</span>
+            <span className="hidden sm:inline text-white/60 text-sm">•</span>
+            <span className="text-white font-semibold hero-trust-fluid">Family-Owned</span>
+            <span className="hidden sm:inline text-white/60 text-sm">•</span>
+            <span className="text-white font-semibold hero-trust-fluid text-center">2025 Bayou's Best Choice</span>
           </div>
         </div>
       </section>
@@ -180,7 +180,7 @@ const Home: React.FC = () => {
               className="bento-card col-span-12 md:col-span-8 row-span-2 relative min-h-[400px] md:min-h-[500px] group"
             >
               <img 
-                src="/assets/images/homes/robertson/gulf_south_homes_robertson_gallery_1-600h.jpg" 
+                src="/assets/images/single wide homes/gulf_south_homes_granite_gallery_02-1920w.webp" 
                 alt="Single Wide Homes"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
@@ -201,7 +201,7 @@ const Home: React.FC = () => {
               className="bento-card col-span-12 md:col-span-4 relative min-h-[240px] group"
             >
               <img 
-                src="/assets/images/homes/elation/gulf_south_homes_elation_gallery_01-0h.jpg" 
+                src="/assets/images/Double Wide Homes/eden_burton/gulf_south_eden_burton_gallery_21-0h.jpg" 
                 alt="Double Wide Homes"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
@@ -222,7 +222,7 @@ const Home: React.FC = () => {
               className="bento-card col-span-12 md:col-span-4 relative min-h-[240px] group"
             >
               <img 
-                src="/assets/images/homes/delight/gulf_south_homes_delight_gallery_01-600h.jpg" 
+                src="/Modular Homes Page/modular home pics/gulf-south-homes-modular-homes-content-03-1920w.jpg" 
                 alt="Modular Homes"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
@@ -242,13 +242,26 @@ const Home: React.FC = () => {
               to="/catalog"
               className="bento-card col-span-12 md:col-span-6 relative min-h-[200px] bg-gradient-to-br from-primary via-primary-dark to-stone-900 group flex items-center justify-center overflow-hidden"
             >
+              {/* Background Video */}
+              <video 
+                autoPlay 
+                muted 
+                loop 
+                playsInline
+                preload="metadata"
+                className="absolute inset-0 w-full h-full object-cover"
+              >
+                <source src="/assets/video/videosworking/hero.mp4" type="video/mp4" />
+              </video>
+              {/* Video Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary-dark/80 to-stone-900/80"></div>
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute inset-0" style={{
                   backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
                   backgroundSize: '32px 32px'
                 }}></div>
               </div>
-              <div className="relative text-center p-8">
+              <div className="relative text-center p-8 z-10">
                 <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-2">View All Homes</h3>
                 <p className="text-white/70 mb-4">Browse our complete inventory</p>
                 <div className="inline-flex items-center gap-2 px-6 py-3 bg-white text-stone-900 font-bold rounded-full group-hover:scale-105 transition-transform">

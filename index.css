@@ -513,6 +513,43 @@
    NAVBAR STYLES
    ======================================== */
 
+/* Top Bar - White background with brand colors */
+.top-bar-nav {
+  background-color: #FFFFFF !important;
+  border-bottom: 1px solid rgba(231, 229, 228, 0.8);
+}
+
+.top-bar-nav a {
+  color: var(--color-primary, #1E3A5F) !important;
+}
+
+.top-bar-nav a:hover {
+  color: var(--color-cta, #D32F2F) !important;
+}
+
+/* Seamless Social Media Icons - No cards, transparent design */
+.social-link {
+  text-decoration: none;
+}
+
+.social-icon {
+  color: var(--color-primary-dark, #142840);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social-link:hover .social-icon {
+  color: var(--color-accent, #4A90E2);
+}
+
+.social-label {
+  color: var(--color-primary-dark, #142840);
+  transition: color 0.2s ease;
+}
+
+.social-link:hover .social-label {
+  color: var(--color-accent, #4A90E2);
+}
+
 .navbar-glass {
   @apply bg-white;
   border-bottom: 1px solid rgba(231, 229, 228, 0.5);
@@ -724,6 +761,23 @@
 }
 
 /* ========================================
+   FLUID HERO TYPOGRAPHY
+   Scales smoothly across all device sizes
+   ======================================== */
+
+.hero-headline-fluid {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+}
+
+.hero-subtitle-fluid {
+  font-size: clamp(1.125rem, 4vw, 2.25rem);
+}
+
+.hero-trust-fluid {
+  font-size: clamp(0.9375rem, 2vw, 1.25rem);
+}
+
+/* ========================================
    CARD HOVER EFFECTS
    ======================================== */
 
@@ -814,9 +868,12 @@
     animation-duration: 0.3s !important;
   }
   
-  /* Optimize video playback */
+  /* Optimize video playback for mobile */
   video {
     object-fit: cover;
+    object-position: center center;
+    /* Prevent video from causing layout shifts */
+    contain: layout style paint;
   }
   
   /* Reduce shadow complexity for better performance */
@@ -828,6 +885,7 @@
   body {
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   /* Ensure touch-friendly tap targets */
@@ -835,11 +893,36 @@
     min-height: 44px;
     min-width: 44px;
   }
+  
+  /* Optimize hero section for mobile */
+  .hero-word {
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  /* Prevent text overflow on mobile */
+  h1, h2, h3 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Improve touch scrolling */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* Safe area insets for notched devices */
 @supports (padding: max(0px)) {
   .mobile-menu {
+    padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+  }
+  
+  .safe-area-inset-top {
+    padding-top: max(env(safe-area-inset-top), 1.5rem);
+  }
+  
+  .pb-safe {
     padding-bottom: max(env(safe-area-inset-bottom), 1rem);
   }
 }

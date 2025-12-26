@@ -5,14 +5,23 @@ export const COMPANY_INFO = {
   name: "Gulf South Homes Inc",
   tagline: "Delivered Fast. Built to Last.",
   founded: 1995,
-  address: "1986 Highway 182, Houma, LA 70364",
+  address: "1986 LA-182, Houma, LA 70364",
   phone: "(985) 876-0222",
   fax: "(985) 580-4024",
   email: "info@gulfsouthhomesinc.com",
   hours: {
-    weekdays: "Monday - Friday: 8:00 am – 5:00 pm",
-    saturday: "Saturday: 9:00 am – 3:00 pm",
+    monday: "Monday: 8 AM–5 PM",
+    tuesday: "Tuesday: 8 AM–5 PM",
+    wednesday: "Wednesday: 8 AM–5 PM",
+    thursday: "Thursday: 8 AM–5 PM",
+    friday: "Friday: 8 AM–5 PM",
+    saturday: "Saturday: Closed",
     sunday: "Sunday: Closed"
+  },
+  socialMedia: {
+    facebook: "https://www.facebook.com/gulfsouthhomes",
+    instagram: "https://www.instagram.com/gulfsouthhomes",
+    tiktok: "https://www.tiktok.com/@gulfsouthhomes" // Update with actual TikTok handle
   },
   locationCoords: { lat: 29.5958, lng: -90.7195 }, // Approx for Houma
   owners: {

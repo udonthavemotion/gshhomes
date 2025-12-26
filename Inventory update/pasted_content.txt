@@ -1,0 +1,74 @@
+Act like a meticulous web-research + data-entry assistant building an “Inventory / Homes On Lot” page for Gulf South Homes.
+
+Objective:
+Create a complete, accurate inventory list of every home currently available “on the lot” at Gulf South Homes, based on (1) their website and (2) the attached PDF inventory list. Then, for each home, find and link the best matching manufacturer page that contains official photos (or the closest official photo gallery/model page if an exact match page does not exist).
+
+Primary sources to use:
+1) Gulf South Homes website: https://gulfsouthhomesinc.com
+2) Attached PDF inventory list: “GulfSouth Homes inventory list” (provided by user)
+3) Manufacturer sites (allowed sources for photos/info):
+- https://www.championhomes.com/
+- https://www.franklinhomesusa.com/
+- https://www.buccaneerhomebuilders.net/models/
+- https://cavalieralabama.com/
+- https://owntru.com/
+- https://www.sunshinehomes-inc.com/
+- https://claytonepicadventure.com/
+- https://www.bgmfg.homes/
+
+Critical requirements:
+- Build the list ONLY from homes that are actually available/on-lot in the Gulf South sources.
+- EXCLUDE any models that are not on-lot / not listed as available.
+- MUST INCLUDE any home marked “In-Stock and Ready to Tour” (even if it also says “Custom-Build Available”).
+- Do not guess. If a detail (beds/baths/size/manufacturer) is missing, mark it as “Unknown” and add a note.
+- For every home, include a manufacturer link for photos:
+  - Prefer a direct model page for that exact model name.
+  - If no exact model page exists, provide the closest matching official model/gallery page and explain the match logic in a short note.
+- Provide working clickable URLs for everything.
+
+Process (step-by-step):
+1) Crawl gulfsouthhomesinc.com and identify every on-lot / available home (especially pages/sections listing inventory, models, “in stock,” “ready to tour,” “available now,” etc.).
+2) Parse the attached PDF inventory list and extract every listed available home.
+3) Merge + de-duplicate the website list and PDF list into one master inventory list.
+4) For each home, determine:
+   - Model name (exact spelling)
+   - Manufacturer
+   - Bedrooms
+   - Bathrooms
+   - Dimensions (e.g., 16' x 70')
+   - Status tags found on Gulf South (e.g., “In-Stock and Ready to Tour”, “Custom-Build Available”)
+   - Gulf South source URL (the exact page where it appears)
+5) Cross-reference each home against the manufacturer sites to find:
+   - Best official photo gallery/model page URL
+   - (Optional if available) floorplan/spec page URL
+6) Run a completeness check:
+   - Confirm every “In-Stock and Ready to Tour” item is included.
+   - Confirm excluded items are not on-lot/available.
+   - Confirm every row has a Gulf South URL and at least one manufacturer photo URL (or “Not Found” with explanation).
+
+Output format:
+Return TWO deliverables:
+
+A) Inventory Table (Markdown table)
+Columns:
+- Model Name
+- Manufacturer
+- Beds
+- Baths
+- Size
+- Gulf South Status (exact tags)
+- Gulf South Page URL
+- Manufacturer Photo/Gallery URL
+- Notes (match confidence / missing fields)
+
+B) “Missing / Needs Manual Review” List
+Bullets for any homes where:
+- Manufacturer match is unclear,
+- No manufacturer photos were found,
+- Key specs are missing,
+Include what was tried and the closest candidate links.
+
+Example row pattern (for style):
+The Sunrise | Sunshine Homes | 2 | 2 | 16' x 70' | In-Stock and Ready to Tour; Custom-Build Available | (Gulf South URL) | (Sunshine model/gallery URL) | Exact model match
+
+Take a deep breath and work on this problem step-by-step.
