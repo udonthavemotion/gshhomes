@@ -3,6 +3,7 @@ import { useEffect, RefObject } from 'react';
 /**
  * Hook to trap focus within a container (e.g., mobile menu)
  * Ensures keyboard navigation stays within the menu when open
+ * Does NOT auto-focus first element to prevent unwanted focus rings
  */
 export const useFocusTrap = (isActive: boolean, containerRef: RefObject<HTMLElement>) => {
   useEffect(() => {
@@ -34,8 +35,8 @@ export const useFocusTrap = (isActive: boolean, containerRef: RefObject<HTMLElem
       }
     };
 
-    // Focus first element when menu opens
-    firstElement?.focus();
+    // Don't auto-focus first element - let user naturally navigate
+    // This prevents unwanted focus rings on menu open
 
     container.addEventListener('keydown', handleTabKey);
 

@@ -16,6 +16,7 @@ const Navbar: React.FC = () => {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   // Lock body scroll when mobile menu is open
   useScrollLock(isOpen);
@@ -23,8 +24,10 @@ const Navbar: React.FC = () => {
   // Trap focus within mobile menu when open
   useFocusTrap(isOpen, menuRef);
 
-  // Close menu when clicking outside
-  useClickOutside(menuRef, () => setIsOpen(false), isOpen);
+  // Close menu when clicking outside - small delay to prevent conflicts
+  useClickOutside(menuRef, () => {
+    setTimeout(() => setIsOpen(false), 0);
+  }, isOpen);
 
   // Close menu on Escape key
   useEscapeKey(() => setIsOpen(false), isOpen);
@@ -50,10 +53,23 @@ const Navbar: React.FC = () => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  // Return focus to menu button when menu closes
+  // Remove focus from menu button when menu opens to prevent highlight
+  useEffect(() => {
+    if (isOpen && menuButtonRef.current) {
+      // Blur the menu button to remove any focus ring
+      menuButtonRef.current.blur();
+    }
+  }, [isOpen]);
+
+  // Remove focus from menu button when menu closes to prevent highlight
   useEffect(() => {
     if (!isOpen && menuButtonRef.current) {
-      menuButtonRef.current.focus();
+      // Use setTimeout to ensure focus is removed after any browser default behavior
+      setTimeout(() => {
+        if (menuButtonRef.current) {
+          menuButtonRef.current.blur();
+        }
+      }, 100);
     }
   }, [isOpen]);
 
@@ -63,6 +79,10 @@ const Navbar: React.FC = () => {
 
   const closeMenu = () => {
     setIsOpen(false);
+    // Ensure menu button loses focus
+    if (menuButtonRef.current) {
+      menuButtonRef.current.blur();
+    }
   };
 
   const navLinks = [
@@ -189,22 +209,28 @@ const Navbar: React.FC = () => {
               </Link>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - Only shows Menu icon when closed */}
             <div className="flex items-center lg:hidden">
               <button
                 ref={menuButtonRef}
                 onClick={toggleMenu}
-                className={`px-4 py-2.5 rounded-md transition-all duration-300 min-h-[44px] flex items-center gap-2 ${
+                className={`px-4 py-2.5 rounded-md transition-all duration-300 min-h-[44px] flex items-center gap-2 focus:outline-none focus:ring-0 ${
                   isOpen
                     ? 'bg-stone-900 text-white'
                     : 'text-white hover:bg-stone-900'
                 }`}
-                aria-label={isOpen ? 'Close menu' : 'Open menu'}
+                aria-label="Open menu"
                 aria-expanded={isOpen}
                 aria-controls="mobile-menu"
+                onFocus={(e) => {
+                  // Prevent focus ring on mobile
+                  if (window.innerWidth < 1024) {
+                    e.currentTarget.blur();
+                  }
+                }}
               >
-                {isOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
-                <span className="text-sm font-semibold">{isOpen ? 'Close' : 'Menu'}</span>
+                <Menu size={20} aria-hidden="true" />
+                <span className="text-sm font-semibold">Menu</span>
               </button>
             </div>
           </div>
@@ -245,6 +271,19 @@ const Navbar: React.FC = () => {
       >
         <div className="container mx-auto px-4 py-6 flex flex-col min-h-full">
           <h2 id="mobile-menu-title" className="sr-only">Navigation Menu</h2>
+
+          {/* Close Button - Now inside the white menu panel */}
+          <div className="flex justify-end mb-4 -mt-2">
+            <button
+              ref={closeButtonRef}
+              onClick={closeMenu}
+              className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-stone-900 text-white hover:bg-stone-800 transition-colors min-h-[44px] focus:outline-none focus:ring-2 focus:ring-stone-900 focus:ring-offset-2"
+              aria-label="Close menu"
+            >
+              <X size={20} aria-hidden="true" />
+              <span className="text-sm font-semibold">Close</span>
+            </button>
+          </div>
 
           {/* Mobile Contact Info */}
           <div className="lg:hidden mb-6 pb-6 border-b border-stone-200">
