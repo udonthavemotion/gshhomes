@@ -123,7 +123,7 @@ const Navbar: React.FC = () => {
             {/* Mobile Logo */}
             <Link to="/" className="flex items-center lg:hidden group" onClick={closeMenu}>
               <img 
-                src="/assets/images/single wide homes/large logo for nav bar.png" 
+                src="/menu nav logo.png" 
                 alt="Gulf South Homes" 
                 className="h-12 w-auto object-contain"
               />
@@ -133,7 +133,7 @@ const Navbar: React.FC = () => {
             <div className={`hidden lg:block transition-all duration-300 ${scrolled ? 'opacity-100 w-auto mr-6' : 'opacity-0 w-0 mr-0 overflow-hidden'}`}>
               <Link to="/" className="flex items-center group" onClick={closeMenu}>
                 <img 
-                  src="/assets/images/single wide homes/large logo for nav bar.png" 
+                  src="/menu nav logo.png" 
                   alt="Gulf South Homes" 
                   className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 />
@@ -269,11 +269,11 @@ const Navbar: React.FC = () => {
           paddingBottom: 'max(env(safe-area-inset-bottom), 0px)'
         }}
       >
-        <div className="container mx-auto px-4 py-6 flex flex-col min-h-full">
+        <div className="container mx-auto px-4 py-6 flex flex-col min-h-full relative">
           <h2 id="mobile-menu-title" className="sr-only">Navigation Menu</h2>
 
-          {/* Close Button - Now inside the white menu panel */}
-          <div className="flex justify-end mb-4 -mt-2">
+          {/* Close Button - Positioned absolutely at top right */}
+          <div className="absolute top-6 right-4">
             <button
               ref={closeButtonRef}
               onClick={closeMenu}
@@ -283,6 +283,17 @@ const Navbar: React.FC = () => {
               <X size={20} aria-hidden="true" />
               <span className="text-sm font-semibold">Close</span>
             </button>
+          </div>
+
+          {/* Mobile Menu Logo */}
+          <div className="flex justify-center mb-6 pt-2">
+            <Link to="/" onClick={closeMenu} className="flex items-center group">
+              <img 
+                src="/menu nav logo.png" 
+                alt="Gulf South Homes" 
+                className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </Link>
           </div>
 
           {/* Mobile Contact Info */}
