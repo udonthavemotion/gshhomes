@@ -96,8 +96,8 @@ const Navbar: React.FC = () => {
           : 'shadow-md'
       }`}
     >
-      {/* Bottom Bar - Black Background with Navigation */}
-      <nav ref={navRef} className="bg-black text-white" style={{ backgroundColor: 'var(--color-primary-dark)' }}>
+      {/* Bottom Bar - Light Blue Background with Navigation */}
+      <nav ref={navRef} className="text-white" style={{ backgroundColor: 'var(--color-primary-light)' }}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 lg:h-16">
             {/* Mobile Logo */}
@@ -223,18 +223,18 @@ const Navbar: React.FC = () => {
       />
 
       {/* Mobile Menu */}
-      <div 
+      <div
         ref={menuRef}
         id="mobile-menu"
         role="dialog"
         aria-modal="true"
         aria-labelledby="mobile-menu-title"
-        className={`lg:hidden fixed inset-x-0 bg-stone-900 shadow-2xl transition-all duration-500 ease-out z-50 overflow-y-auto ${
-          isOpen 
-            ? 'opacity-100 translate-y-0' 
+        className={`lg:hidden fixed inset-x-0 bg-white shadow-2xl transition-all duration-500 ease-out z-50 overflow-y-auto ${
+          isOpen
+            ? 'opacity-100 translate-y-0'
             : 'opacity-0 -translate-y-4 pointer-events-none'
         }`}
-        style={{ 
+        style={{
           top: `${navbarHeight}px`,
           bottom: 0,
           height: `calc(100vh - ${navbarHeight}px)`,
@@ -245,18 +245,21 @@ const Navbar: React.FC = () => {
       >
         <div className="container mx-auto px-4 py-6 flex flex-col min-h-full">
           <h2 id="mobile-menu-title" className="sr-only">Navigation Menu</h2>
-          
+
           {/* Mobile Contact Info */}
-          <div className="lg:hidden mb-6 pb-6 border-b border-stone-700">
+          <div className="lg:hidden mb-6 pb-6 border-b border-stone-200">
             <a
               href={`tel:${COMPANY_INFO.phone}`}
-              className="flex items-center gap-2 text-white mb-3 text-lg font-bold hover:text-[#D32F2F] transition-colors"
+              className="flex items-center gap-2 mb-3 text-lg font-bold transition-colors"
+              style={{ color: 'var(--color-primary, #1E3A5F)' }}
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-accent, #4A90E2)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary, #1E3A5F)'}
             >
-              <Phone size={20} />
+              <Phone size={20} style={{ color: 'var(--color-primary, #1E3A5F)' }} />
               {COMPANY_INFO.phone}
             </a>
-            <div className="flex items-center gap-1.5 text-sm text-white/80">
-              <MapPin size={14} />
+            <div className="flex items-center gap-1.5 text-sm text-stone-600">
+              <MapPin size={14} style={{ color: 'var(--color-primary, #1E3A5F)' }} />
               <span>{COMPANY_INFO.address}</span>
             </div>
             <div className="flex items-center gap-4 mt-4">
@@ -264,7 +267,10 @@ const Navbar: React.FC = () => {
                 href="https://www.facebook.com/gulfsouthhomes"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-white hover:text-[#D32F2F] transition-colors"
+                className="flex items-center gap-2 transition-colors"
+                style={{ color: 'var(--color-primary, #1E3A5F)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-accent, #4A90E2)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary, #1E3A5F)'}
                 aria-label="Visit Gulf South Homes on Facebook"
               >
                 <Facebook size={20} />
@@ -274,7 +280,10 @@ const Navbar: React.FC = () => {
                 href="https://www.instagram.com/gulfsouthhomes"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-white hover:text-[#D32F2F] transition-colors"
+                className="flex items-center gap-2 transition-colors"
+                style={{ color: 'var(--color-primary, #1E3A5F)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-accent, #4A90E2)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary, #1E3A5F)'}
                 aria-label="Visit Gulf South Homes on Instagram"
               >
                 <Instagram size={20} />
@@ -289,17 +298,20 @@ const Navbar: React.FC = () => {
                 <Link
                   to={link.path}
                   onClick={closeMenu}
-                  className={`mobile-menu-item flex items-center justify-between px-4 py-3.5 rounded-lg text-base font-semibold min-h-[44px] relative text-white hover:text-[#D32F2F] transition-colors ${
-                    isActive(link.path) ? 'text-[#D32F2F]' : ''
+                  className={`mobile-menu-item flex items-center justify-between px-4 py-3.5 rounded-lg text-base font-semibold min-h-[44px] relative transition-colors ${
+                    isActive(link.path)
+                      ? 'bg-blue-50'
+                      : 'hover:bg-stone-50'
                   } ${isOpen ? 'animate-fade-in-up' : ''}`}
                   style={{
+                    color: isActive(link.path) ? 'var(--color-accent, #4A90E2)' : 'var(--color-primary, #1E3A5F)',
                     animationDelay: `${idx * 50}ms`
                   }}
                 >
                   {link.name}
-                  <ChevronRight size={18} className={isActive(link.path) ? 'text-[#D32F2F]' : 'text-white/60'} aria-hidden="true" />
+                  <ChevronRight size={18} style={{ color: isActive(link.path) ? 'var(--color-accent, #4A90E2)' : 'var(--color-primary-light, #2D5380)' }} aria-hidden="true" />
                   {isActive(link.path) && (
-                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#D32F2F]"></span>
+                    <span className="absolute bottom-0 left-4 right-4 h-0.5" style={{ backgroundColor: 'var(--color-accent, #4A90E2)' }}></span>
                   )}
                 </Link>
 
@@ -311,11 +323,14 @@ const Navbar: React.FC = () => {
                         key={sublink.path}
                         to={sublink.path}
                         onClick={closeMenu}
-                        className={`block px-4 py-2.5 rounded-lg text-sm font-medium min-h-[44px] text-white/80 hover:text-[#D32F2F] transition-colors ${
+                        className={`block px-4 py-2.5 rounded-lg text-sm font-medium min-h-[44px] transition-colors ${
                           isActive(sublink.path)
-                            ? 'text-[#D32F2F] font-semibold'
-                            : ''
+                            ? 'bg-blue-50 font-semibold'
+                            : 'hover:bg-stone-50'
                         }`}
+                        style={{
+                          color: isActive(sublink.path) ? 'var(--color-accent, #4A90E2)' : '#57534E'
+                        }}
                       >
                         {sublink.name}
                       </Link>
@@ -324,30 +339,33 @@ const Navbar: React.FC = () => {
                 )}
               </div>
             ))}
-            
+
             <Link
               to="/contact"
               onClick={closeMenu}
-              className={`mobile-menu-item flex items-center justify-between px-4 py-3.5 rounded-lg text-base font-semibold min-h-[44px] relative text-white hover:text-[#D32F2F] transition-colors ${
-                isActive('/contact') ? 'text-[#D32F2F]' : ''
+              className={`mobile-menu-item flex items-center justify-between px-4 py-3.5 rounded-lg text-base font-semibold min-h-[44px] relative transition-colors ${
+                isActive('/contact')
+                  ? 'bg-blue-50'
+                  : 'hover:bg-stone-50'
               } ${isOpen ? 'animate-fade-in-up' : ''}`}
-              style={{ 
+              style={{
+                color: isActive('/contact') ? 'var(--color-accent, #4A90E2)' : 'var(--color-primary, #1E3A5F)',
                 animationDelay: `${navLinks.length * 50}ms`
               }}
             >
               Contact Us
-              <ChevronRight size={18} className={isActive('/contact') ? 'text-[#D32F2F]' : 'text-white/60'} aria-hidden="true" />
+              <ChevronRight size={18} style={{ color: isActive('/contact') ? 'var(--color-accent, #4A90E2)' : 'var(--color-primary-light, #2D5380)' }} aria-hidden="true" />
               {isActive('/contact') && (
-                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#D32F2F]"></span>
+                <span className="absolute bottom-0 left-4 right-4 h-0.5" style={{ backgroundColor: 'var(--color-accent, #4A90E2)' }}></span>
               )}
             </Link>
           </div>
 
-          <div className="mt-auto pt-6 border-t border-stone-700 space-y-4">
-            <Button 
-              to="/catalog" 
-              fullWidth 
-              onClick={closeMenu} 
+          <div className="mt-auto pt-6 border-t border-stone-200 space-y-4">
+            <Button
+              to="/catalog"
+              fullWidth
+              onClick={closeMenu}
               className="py-4 text-base min-h-[44px]"
             >
               Browse All Homes

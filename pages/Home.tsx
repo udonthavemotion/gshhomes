@@ -44,7 +44,7 @@ const Home: React.FC = () => {
     <div className="flex flex-col min-h-screen overflow-hidden">
 
       {/* 1. Hero Banner - Gulf South Homes Branded */}
-      <section ref={heroRef} className="relative w-full h-screen sm:min-h-[90vh] flex flex-col items-center justify-center sm:justify-start pt-4 sm:pt-12 lg:pt-16 text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900 safe-area-inset-top">
+      <section ref={heroRef} className="relative w-full h-screen sm:min-h-[90vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900 safe-area-inset-top">
         {/* Background Video */}
         <video
           autoPlay
@@ -67,9 +67,9 @@ const Home: React.FC = () => {
         </video>
 
         {/* Content */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto mt-0 sm:mt-4 lg:mt-6 px-2 sm:px-0">
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-2 sm:px-0 flex flex-col justify-center min-h-[80vh] md:min-h-0">
           {/* Main Headline - With Rotating Product Categories */}
-          <h1 className="font-display font-black text-white leading-[1.15] sm:leading-[1.1] hero-headline-fluid max-w-[1000px] mx-auto mb-3 sm:mb-4 md:mb-6 lg:mb-8 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+          <h1 className="font-display font-black text-white leading-[1.15] sm:leading-[1.1] hero-headline-fluid max-w-[1000px] mx-auto mb-4 md:mb-6 lg:mb-8 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
             <span className="block hero-word">New</span>
             <span className="block text-rotate-container hero-word" style={{ animationDelay: '0.2s' }}>
               <span className="text-rotate">
@@ -83,12 +83,12 @@ const Home: React.FC = () => {
           </h1>
 
           {/* CTA Button - Pop-in Animation - Mobile Optimized */}
-          <div className="hero-cta-entrance flex justify-center mt-4 sm:mt-6 md:mt-8 lg:mt-10 mb-3 sm:mb-4 lg:mb-6">
+          <div className="hero-cta-entrance flex justify-center mt-6 md:mt-8 lg:mt-10 mb-4 md:mb-4 lg:mb-6">
             <Button
               variant="primary"
               to="/catalog"
               size="lg"
-              className="shadow-2xl shadow-primary/50 bg-primary/95 backdrop-blur-sm hover:bg-primary hover:scale-105 active:scale-95 transition-transform duration-300 min-h-[48px] sm:min-h-[56px] px-6 sm:px-8 text-base sm:text-lg touch-manipulation"
+              className="shadow-2xl shadow-primary/50 bg-primary/95 backdrop-blur-sm hover:bg-primary hover:scale-105 active:scale-95 transition-transform duration-300 min-h-[52px] sm:min-h-[56px] px-8 sm:px-8 text-base sm:text-lg touch-manipulation"
             >
               <span className="whitespace-nowrap">View Homes For Sale</span>
               <ArrowRight size={18} className="ml-2 sm:w-5 sm:h-5" />
@@ -96,14 +96,14 @@ const Home: React.FC = () => {
           </div>
 
           {/* Serving Location - Below CTA - Mobile Optimized */}
-          <div className="hero-subtext flex justify-center mt-2 sm:mt-3 lg:mt-4 mb-2 sm:mb-3 md:mb-4 lg:mb-6 px-2" style={{ animationDelay: '0.6s' }}>
+          <div className="hero-subtext flex justify-center mt-3 md:mt-3 lg:mt-4 mb-3 md:mb-3 md:mb-4 lg:mb-6 px-2" style={{ animationDelay: '0.6s' }}>
             <span className="text-primary-light hero-subtitle-fluid font-bold drop-shadow-[0_3px_10px_rgba(0,0,0,0.7)] tracking-wide text-center break-words leading-tight">
               Serving Southeast Louisiana
             </span>
           </div>
 
           {/* Trust Indicators - Animated Entrance - Mobile Optimized */}
-          <div className="hero-subtext flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 mt-2 sm:mt-3 md:mt-4 lg:mt-6 text-xs sm:text-sm lg:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] px-2 max-w-md mx-auto" style={{ fontFamily: "'Dancing Script', cursive", animationDelay: '1.1s' }}>
+          <div className="hero-subtext flex flex-wrap items-center justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 mt-3 md:mt-4 lg:mt-6 text-xs sm:text-sm lg:text-base drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] px-2 max-w-md mx-auto" style={{ fontFamily: "'Dancing Script', cursive", animationDelay: '1.1s' }}>
             <span className="text-primary-light font-bold hero-trust-fluid">Est. 1995</span>
             <span className="hidden sm:inline text-white/60 text-sm">•</span>
             <span className="text-white font-semibold hero-trust-fluid">Family-Owned</span>
