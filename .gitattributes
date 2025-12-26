@@ -1,0 +1,7 @@
+# Git LFS DISABLED - Videos are optimized with FFmpeg to under 5MB
+# Optimized videos are committed directly to git (no LFS needed)
+# 
+# Previously tracked with Git LFS (now removed):
+# *.mp4 filter=lfs diff=lfs merge=lfs -text
+# *.mov filter=lfs diff=lfs merge=lfs -text
+# *.avi filter=lfs diff=lfs merge=lfs -text
