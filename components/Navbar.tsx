@@ -98,23 +98,28 @@ const Navbar: React.FC = () => {
       }`}
     >
       {/* Top Bar - Desktop Only */}
-      <div className="hidden lg:block bg-primary text-stone-300">
+      <div className="hidden lg:block bg-primary text-white relative">
+        {/* Professional Red Accent Stripe */}
+        <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#D32F2F]"></div>
+        
         <div className="container mx-auto px-6 xl:px-8">
           <div className="flex justify-between items-center py-2.5 text-xs font-medium tracking-wide">
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 bg-primary animate-pulse"></span>
+            <span className="flex items-center gap-2 text-white">
+              <span className="w-1.5 h-1.5 bg-[#D32F2F] rounded-full"></span>
               {COMPANY_INFO.address}
             </span>
             <div className="flex items-center space-x-6">
-              <span className="text-stone-400">Mon-Fri: 8am - 5pm</span>
+              <span className="text-white">Mon-Fri: 8am - 5pm</span>
               <a
                 href={`tel:${COMPANY_INFO.phone}`}
-                className="flex items-center gap-2 text-white hover:text-primary transition-colors font-semibold"
+                className="flex items-center gap-2 text-[#D32F2F] hover:text-[#E05656] transition-colors font-semibold group"
               >
-                <Phone size={14} className="text-primary" />
+                <Phone size={14} className="text-[#D32F2F] group-hover:scale-110 transition-transform duration-200" />
                 {COMPANY_INFO.phone}
               </a>
-              <div className="border-l border-stone-700 pl-6">
+              <div className="border-l border-stone-700 pl-6 relative">
+                {/* Subtle Red Accent on Divider */}
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[1px] h-4 bg-[#D32F2F]/40"></div>
                 <SocialLinks variant="dark" size="sm" />
               </div>
             </div>
@@ -122,7 +127,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      <nav ref={navRef} className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <nav ref={navRef} className="container mx-auto px-4 sm:px-6 lg:px-8 border-t border-[#D32F2F]/10">
         <div className="flex justify-between h-20 lg:h-24 items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center group" onClick={closeMenu}>
@@ -342,9 +347,9 @@ const Navbar: React.FC = () => {
             
             <a
               href={`tel:${COMPANY_INFO.phone}`}
-              className="flex items-center justify-center gap-3 py-4 bg-stone-100 rounded-lg text-stone-900 font-semibold hover:bg-stone-200 active:bg-stone-300 transition-colors min-h-[44px]"
+              className="flex items-center justify-center gap-3 py-4 bg-[#D32F2F] rounded-lg text-white font-semibold hover:bg-[#B02626] active:bg-[#9A1F1F] transition-colors min-h-[44px] shadow-lg shadow-[#D32F2F]/20"
             >
-              <Phone size={20} className="text-primary" aria-hidden="true" />
+              <Phone size={20} aria-hidden="true" />
               {COMPANY_INFO.phone}
             </a>
           </div>
