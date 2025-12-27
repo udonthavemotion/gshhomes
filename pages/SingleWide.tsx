@@ -13,7 +13,6 @@ const SingleWide: React.FC = () => {
   const [selectedBeds, setSelectedBeds] = useState<string>('All');
   const [selectedBaths, setSelectedBaths] = useState<string>('All');
   const [selectedManuf, setSelectedManuf] = useState<string>(manufacturerParam || 'All');
-  const [selectedSizeRange, setSelectedSizeRange] = useState<string>('All');
   const [showFilters, setShowFilters] = useState(false);
 
   // Update manufacturer filter when URL param changes
@@ -31,14 +30,6 @@ const SingleWide: React.FC = () => {
   const bathOptions = ['All', ...Array.from(new Set(singleWideHomes.map(h => h.baths))).sort()];
   const manufacturers = ['All', ...Array.from(new Set(singleWideHomes.map(h => h.manufacturer)))];
 
-  // Size range options
-  const sizeRanges = [
-    { label: 'All Sizes', value: 'All' },
-    { label: 'Under 1,000 sq ft', value: '0-1000' },
-    { label: '1,000 - 1,200 sq ft', value: '1000-1200' },
-    { label: '1,200+ sq ft', value: '1200+' },
-  ];
-
   // Filter homes
   const filteredHomes = useMemo(() => {
     return singleWideHomes.filter(home => {
@@ -46,29 +37,19 @@ const SingleWide: React.FC = () => {
       const matchBaths = selectedBaths === 'All' || home.baths === Number(selectedBaths);
       const matchManuf = selectedManuf === 'All' || home.manufacturer === selectedManuf;
 
-      // Size range filter
-      let matchSize = true;
-      if (selectedSizeRange !== 'All') {
-        if (selectedSizeRange === '0-1000') matchSize = home.sqft < 1000;
-        else if (selectedSizeRange === '1000-1200') matchSize = home.sqft >= 1000 && home.sqft <= 1200;
-        else if (selectedSizeRange === '1200+') matchSize = home.sqft > 1200;
-      }
-
-      return matchBeds && matchBaths && matchManuf && matchSize;
+      return matchBeds && matchBaths && matchManuf;
     });
-  }, [selectedBeds, selectedBaths, selectedManuf, selectedSizeRange, singleWideHomes]);
+  }, [selectedBeds, selectedBaths, selectedManuf, singleWideHomes]);
 
-  const activeFiltersCount = 
-    (selectedBeds !== 'All' ? 1 : 0) + 
-    (selectedBaths !== 'All' ? 1 : 0) + 
-    (selectedManuf !== 'All' ? 1 : 0) + 
-    (selectedSizeRange !== 'All' ? 1 : 0);
+  const activeFiltersCount =
+    (selectedBeds !== 'All' ? 1 : 0) +
+    (selectedBaths !== 'All' ? 1 : 0) +
+    (selectedManuf !== 'All' ? 1 : 0);
 
   const clearFilters = () => {
     setSelectedBeds('All');
     setSelectedBaths('All');
     setSelectedManuf('All');
-    setSelectedSizeRange('All');
   };
 
   return (
@@ -186,14 +167,6 @@ const SingleWide: React.FC = () => {
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full">
                 {selectedManuf}
                 <button onClick={() => setSelectedManuf('All')} className="hover:bg-primary/20 rounded-full p-0.5">
-                  <X size={14} />
-                </button>
-              </span>
-            )}
-            {selectedSizeRange !== 'All' && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full">
-                {sizeRanges.find(r => r.value === selectedSizeRange)?.label}
-                <button onClick={() => setSelectedSizeRange('All')} className="hover:bg-primary/20 rounded-full p-0.5">
                   <X size={14} />
                 </button>
               </span>
@@ -325,14 +298,14 @@ const SingleWide: React.FC = () => {
             </div>
 
             {/* Manufacturer Filter */}
-            <div className="mb-8">
+            <div>
               <h3 className="font-semibold text-stone-900 mb-4 text-lg">Manufacturer</h3>
               <div className="space-y-3" role="radiogroup" aria-label="Filter by manufacturer">
                 {manufacturers.map(m => (
                   <label key={m} className="flex items-center gap-3 cursor-pointer group">
-                    <input 
-                      type="radio" 
-                      name="manufacturer" 
+                    <input
+                      type="radio"
+                      name="manufacturer"
                       checked={selectedManuf === m}
                       onChange={() => setSelectedManuf(m)}
                       className="text-primary focus:ring-primary h-5 w-5 border-stone-300"
@@ -340,28 +313,6 @@ const SingleWide: React.FC = () => {
                     />
                     <span className={`${selectedManuf === m ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
                       {m === 'All' ? 'All Brands' : m}
-                    </span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* Size Range Filter */}
-            <div>
-              <h3 className="font-semibold text-stone-900 mb-4 text-lg">Square Footage</h3>
-              <div className="space-y-3" role="radiogroup" aria-label="Filter by square footage">
-                {sizeRanges.map(range => (
-                  <label key={range.value} className="flex items-center gap-3 cursor-pointer group">
-                    <input 
-                      type="radio" 
-                      name="sizeRange" 
-                      checked={selectedSizeRange === range.value}
-                      onChange={() => setSelectedSizeRange(range.value)}
-                      className="text-primary focus:ring-primary h-5 w-5 border-stone-300"
-                      aria-label={`Filter by square footage: ${range.label.toLowerCase()}`}
-                    />
-                    <span className={`${selectedSizeRange === range.value ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
-                      {range.label}
                     </span>
                   </label>
                 ))}

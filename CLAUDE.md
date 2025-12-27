@@ -49,6 +49,7 @@ npm run preview  # Preview production build
 ├── components/          # Reusable components (Button, Navbar, Footer, etc.)
 ├── data/               # Home listings, manufacturers data
 ├── hooks/              # Custom hooks (useClickOutside, useFocusTrap, etc.)
+├── inventory/          # Inventory management system (guides, templates, agent)
 ├── pages/              # Route pages (Home, Contact, SingleWide, etc.)
 ├── public/             # Static assets
 │   └── assets/
@@ -99,6 +100,62 @@ npm run preview  # Preview production build
 2. **Research** → Use `shadcn-component-researcher` agent
 3. **Build** → Use `shadcn-implementation-builder` agent
 4. **Quick Help** → Use `shadcn-quick-helper` for small questions
+
+### For Inventory Management
+
+**Natural Language Commands (Simple & Fast):**
+
+```bash
+# Add homes
+"Add The [Home Name] from [Manufacturer] folder"
+"Add all homes from the [Manufacturer] folder"
+
+# Remove homes
+"Remove The [Home1], The [Home2], and The [Home3] from inventory"
+"Archive The [Home Name] - it's sold"
+
+# Update homes
+"Update The [Home Name] price to $XX,XXX"
+"Mark The [Home Name] as featured"
+"Add 5 new photos to The [Home Name] gallery"
+```
+
+**Image Folder Structure:**
+```
+public/assets/images/single wide homes/
+├── [Manufacturer Name]/
+│   └── [Home Model Name]/
+│       ├── Info.txt           # Required: Specs and details
+│       ├── cover photo.jpg    # Optional: Main image (or first gallery image)
+│       └── gallery_*.jpg      # Gallery images
+```
+
+**Info.txt Format:**
+```txt
+[Manufacturer Name]
+[Home Model Name]
+[X] bedrooms / [X] bathrooms
+
+In-Stock and Ready to Tour
+
+Custom-Build Available
+
+[Width]' X [Length]'
+[Square Footage] sqft (optional)
+```
+
+**Workflow:**
+1. Organize photos in manufacturer/model folders
+2. Create Info.txt with specs
+3. Use natural language command to AI
+4. AI reads Info.txt, generates copy, adds to website
+5. Review preview, approve, deploy
+
+**Documentation:**
+- `inventory/README.md` - Quick start guide
+- `inventory/QUICK-COMMANDS.md` - Natural language commands
+- `inventory/ongoing-management.md` - Long-term maintenance
+- `inventory/add-home-checklist.md` - Detailed step-by-step
 
 ---
 
@@ -319,6 +376,7 @@ Before deploying to Vercel:
 ## References
 
 - [Constitution](memory/constitution.md) - Project principles
+- [Inventory System](inventory/) - Home inventory management (guides, templates, agent)
 - [shadcn Agents](shadcn%20agents/) - UI agent definitions
 - [QA Checklist](QA_CHECKLIST_GOHIGHLEVEL_FORM.md) - Form testing
 - [Video Optimization Report](VIDEO_OPTIMIZATION_REPORT.md) - Performance details

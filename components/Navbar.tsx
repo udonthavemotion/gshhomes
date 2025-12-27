@@ -285,13 +285,13 @@ const Navbar: React.FC = () => {
             </button>
           </div>
 
-          {/* Mobile Menu Logo */}
+          {/* Mobile Menu Logo - Using blue roof logo like desktop */}
           <div className="flex justify-center mb-6 pt-2">
             <Link to="/" onClick={closeMenu} className="flex items-center group">
               <img 
-                src="/menu nav logo.png" 
+                src="/assets/images/single wide homes/large logo for nav bar.png" 
                 alt="Gulf South Homes" 
-                className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
           </div>

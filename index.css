@@ -1659,3 +1659,78 @@ chat-widget[data-widget-id="6940899ff258cf30de629683"] button[class*="chat"] {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
+
+/* ========================================
+   LIGHTBOX GALLERY STYLES
+   ======================================== */
+
+/* Hide scrollbar for thumbnail strip */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Lightbox backdrop animation */
+@keyframes lightboxFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lightboxScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Apply animations to lightbox */
+[role="dialog"][aria-modal="true"] {
+  animation: lightboxFadeIn 0.2s ease-out;
+}
+
+[role="dialog"][aria-modal="true"] img {
+  animation: lightboxScaleIn 0.25s ease-out;
+}
+
+/* Ensure lightbox thumbnails have proper touch targets */
+[role="dialog"][aria-modal="true"] [role="tab"] {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Lightbox loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Focus visible for gallery buttons */
+[role="dialog"][aria-modal="true"] button:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+/* Reduce motion for lightbox */
+@media (prefers-reduced-motion: reduce) {
+  [role="dialog"][aria-modal="true"],
+  [role="dialog"][aria-modal="true"] img {
+    animation: none;
+  }
+}

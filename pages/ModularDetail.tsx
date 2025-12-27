@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { MODULAR_HOMES } from '../data/modular-homes';
 import Button from '../components/Button';
 import ImageGallery from '../components/ImageGallery';
+import ThumbnailGrid from '../components/ThumbnailGrid';
+import { useLightbox } from '../hooks/useLightbox';
 import { Bed, Bath, Maximize, CheckCircle, ArrowLeft, Sparkles, Settings } from 'lucide-react';
 import { COMPANY_INFO } from '../constants';
 
 const ModularDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const home = MODULAR_HOMES.find(h => h.id === id);
-  const [galleryOpen, setGalleryOpen] = useState(false);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  
+  // Use the new lightbox hook with URL sync
+  const galleryLength = home?.gallery?.length ?? 0;
+  const lightbox = useLightbox({
+    totalImages: galleryLength,
+    paramKey: 'photo',
+    enableDeepLink: true,
+  });
 
   if (!home) {
     return (
@@ -121,34 +129,12 @@ const ModularDetail: React.FC = () => {
                 {home.gallery && home.gallery.length > 0 && (
                   <div>
                     <h2 className="text-2xl font-bold text-stone-900 mb-4">Photo Gallery</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                      {home.gallery.map((img, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => {
-                            setSelectedImageIndex(idx);
-                            setGalleryOpen(true);
-                          }}
-                          className="relative aspect-[4/3] overflow-hidden rounded-lg group cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                          aria-label={`View ${home.name} image ${idx + 1} in gallery`}
-                        >
-                          <img
-                            src={img}
-                            alt={`${home.name} - Image ${idx + 1}`}
-                            width={600}
-                            height={450}
-                            decoding="async"
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                            loading={idx < 6 ? "eager" : "lazy"}
-                            onError={(e) => {
-                              // Hide broken images
-                              (e.target as HTMLImageElement).style.display = 'none';
-                            }}
-                          />
-                          <div className="absolute inset-0 bg-stone-900/0 group-hover:bg-stone-900/10 transition-colors"></div>
-                        </button>
-                      ))}
-                    </div>
+                    <ThumbnailGrid
+                      images={home.gallery}
+                      homeName={home.name}
+                      onImageClick={lightbox.open}
+                      eagerLoadCount={6}
+                    />
                   </div>
                 )}
 
@@ -236,9 +222,13 @@ const ModularDetail: React.FC = () => {
         <ImageGallery
           images={home.gallery}
           homeModel={home.name}
-          isOpen={galleryOpen}
-          onClose={() => setGalleryOpen(false)}
-          initialIndex={selectedImageIndex}
+          isOpen={lightbox.isOpen}
+          onClose={lightbox.close}
+          initialIndex={lightbox.initialIndex}
+          currentIndex={lightbox.currentIndex}
+          goNext={lightbox.goNext}
+          goPrev={lightbox.goPrev}
+          goTo={lightbox.goTo}
         />
       )}
     </div>

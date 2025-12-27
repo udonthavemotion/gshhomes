@@ -107,7 +107,20 @@ const DoubleWide: React.FC = () => {
           preload="metadata"
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/assets/video/videosworking/doublewide-hero.mp4" type="video/mp4" />
+          {/* Desktop/Tablet: 1080p HD (≥769px) */}
+          <source
+            src="/assets/video/responsive/desktop/doublewide-hero.mp4"
+            type="video/mp4"
+            media="(min-width: 769px)"
+          />
+          
+          {/* Mobile: 720p optimized (≤768px) */}
+          <source
+            src="/assets/video/responsive/mobile/doublewide-hero.mp4"
+            type="video/mp4"
+          />
+          
+          Your browser does not support video playback.
         </video>
 
         {/* Background Overlay */}

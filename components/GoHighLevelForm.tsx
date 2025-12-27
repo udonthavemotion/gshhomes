@@ -22,19 +22,18 @@ const GoHighLevelForm: React.FC<GoHighLevelFormProps> = ({ homeName }) => {
   }, []);
 
   return (
-    <div className="lg:sticky lg:top-24">
-      <h3 className="text-xl font-bold text-stone-900 mb-2">Interested in {homeName}?</h3>
-      <p className="text-stone-500 mb-6 text-sm">
-        Fill out the form below to get pricing, floor plans, or schedule a tour.
-      </p>
-
+    <div className="lg:sticky lg:top-24 bg-transparent">
       {/* GoHighLevel Inline Form Container */}
       <div
         ref={containerRef}
-        className="w-full"
+        className="w-full bg-transparent"
         style={{
           minHeight: '1268px',
-          height: '100%'
+          height: '100%',
+          background: 'transparent',
+          border: 'none',
+          padding: 0,
+          margin: 0
         }}
       >
         <iframe
@@ -43,7 +42,9 @@ const GoHighLevelForm: React.FC<GoHighLevelFormProps> = ({ homeName }) => {
             width: '100%',
             height: '100%',
             border: 'none',
-            minHeight: '1268px'
+            minHeight: '1268px',
+            background: 'transparent',
+            display: 'block'
           }}
           id="inline-9bhfQTzobvZQx4nLQjRc"
           data-layout='{"id":"INLINE"}'
