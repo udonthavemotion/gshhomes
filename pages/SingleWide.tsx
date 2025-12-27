@@ -66,7 +66,7 @@ const SingleWide: React.FC = () => {
           preload="metadata"
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/assets/video/videosworking/singewidehomepage.mp4" type="video/mp4" />
+          <source src="/homesweoffer.mp4" type="video/mp4" />
         </video>
 
         {/* Background Overlay */}

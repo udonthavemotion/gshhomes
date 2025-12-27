@@ -116,23 +116,46 @@ const WhatWeOffer: React.FC = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 text-white py-20 sm:py-28 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px'
-          }}></div>
-        </div>
+      <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
+        {/* Background Image */}
+        <img
+          src="/how it works.JPG"
+          alt="Gulf South Homes services"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
+        {/* Overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
 
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block px-4 py-1.5 bg-primary/20 text-primary text-sm font-semibold rounded-md mb-4">
+            {/* Gulf South Homes Logo - Prominent Branding with Animation */}
+            <div className="mb-6 sm:mb-8 flex justify-center">
+              <img 
+                src="/assets/images/logo/gsh-logo-2025.svg" 
+                alt="Gulf South Homes - 2025 Bayou's Best Choice" 
+                className="w-[300px] h-[120px] sm:w-[500px] sm:h-[200px] object-contain drop-shadow-2xl logo-entrance"
+                width="500"
+                height="200"
+                loading="eager"
+                fetchPriority="high"
+                style={{
+                  animation: 'logoEntrance 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, logoGlow 3s ease-in-out 1.2s infinite',
+                  willChange: 'transform, opacity, filter'
+                }}
+                onError={(e) => {
+                  // Fallback if logo fails to load
+                  e.currentTarget.style.display = 'none';
+                }}
+              />
+            </div>
+            <span className="inline-block px-4 py-1.5 bg-white/95 text-primary text-sm font-semibold rounded-md mb-4 backdrop-blur-sm">
               Your Partner in Homeownership
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-6 text-white">
               What We Offer
             </h1>
-            <p className="text-lg sm:text-xl text-stone-300 leading-relaxed">
+            <p className="text-lg sm:text-xl text-white/90 leading-relaxed">
               More than just homes—we provide complete support from financing to maintenance.
               Everything you need to make homeownership simple and affordable.
             </p>

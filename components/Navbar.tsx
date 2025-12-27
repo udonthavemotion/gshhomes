@@ -2,11 +2,29 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, ChevronRight, ChevronDown, MapPin, Facebook, Instagram } from 'lucide-react';
 import { COMPANY_INFO } from '../constants';
+
+// TikTok Icon Component (lucide-react doesn't have TikTok)
+const TikTokIcon: React.FC<{ size?: number; className?: string }> = ({ 
+  size = 20, 
+  className = ''
+}) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+  </svg>
+);
 import Button from './Button';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { useFocusTrap } from '../hooks/useFocusTrap';
 import { useClickOutside } from '../hooks/useClickOutside';
 import { useEscapeKey } from '../hooks/useEscapeKey';
+import { scrollToTop } from '../hooks/useScrollRestoration';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -85,6 +103,12 @@ const Navbar: React.FC = () => {
     }
   };
 
+  // Handle logo click with scroll to top
+  const handleLogoClick = () => {
+    closeMenu();
+    scrollToTop();
+  };
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Homes for Sale', path: '/catalog', sublinks: [
@@ -121,7 +145,7 @@ const Navbar: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 lg:h-16">
             {/* Mobile Logo */}
-            <Link to="/" className="flex items-center lg:hidden group" onClick={closeMenu}>
+            <Link to="/" className="flex items-center lg:hidden group" onClick={handleLogoClick}>
               <img 
                 src="/menu nav logo.png" 
                 alt="Gulf South Homes" 
@@ -131,7 +155,7 @@ const Navbar: React.FC = () => {
 
             {/* Desktop Logo - Shows when scrolled */}
             <div className={`hidden lg:block transition-all duration-300 ${scrolled ? 'opacity-100 w-auto mr-6' : 'opacity-0 w-0 mr-0 overflow-hidden'}`}>
-              <Link to="/" className="flex items-center group" onClick={closeMenu}>
+              <Link to="/" className="flex items-center group" onClick={handleLogoClick}>
                 <img 
                   src="/menu nav logo.png" 
                   alt="Gulf South Homes" 
@@ -148,6 +172,7 @@ const Navbar: React.FC = () => {
                   <div key={link.path} className="relative group">
                     <Link
                       to={link.path}
+                      onClick={scrollToTop}
                       className={`relative px-4 py-2 text-sm font-semibold uppercase tracking-wide flex items-center gap-1 text-white hover:text-[#D32F2F] transition-colors ${
                         isActive(link.path) ? 'text-[#D32F2F]' : ''
                       }`}
@@ -166,6 +191,7 @@ const Navbar: React.FC = () => {
                           <Link
                             key={sublink.path}
                             to={sublink.path}
+                            onClick={scrollToTop}
                             className={`navbar-dropdown-item block px-4 py-3 text-sm font-medium ${
                               isActive(sublink.path)
                                 ? 'text-primary-dark font-semibold'
@@ -183,6 +209,7 @@ const Navbar: React.FC = () => {
                   <Link
                     key={link.path}
                     to={link.path}
+                    onClick={scrollToTop}
                     className={`relative px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:text-[#D32F2F] transition-colors ${
                       isActive(link.path) ? 'text-[#D32F2F]' : ''
                     }`}
@@ -197,7 +224,8 @@ const Navbar: React.FC = () => {
               
               {/* Contact Us Link */}
               <Link 
-                to="/contact" 
+                to="/contact"
+                onClick={scrollToTop}
                 className={`relative px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:text-[#D32F2F] transition-colors ${
                   isActive('/contact') ? 'text-[#D32F2F]' : ''
                 }`}
@@ -286,12 +314,12 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Menu Logo - Using blue roof logo like desktop */}
-          <div className="flex justify-center mb-6 pt-2">
-            <Link to="/" onClick={closeMenu} className="flex items-center group">
+          <div className="flex justify-center mb-6 pt-16 lg:pt-2">
+            <Link to="/" onClick={handleLogoClick} className="flex items-center group">
               <img 
                 src="/assets/images/single wide homes/large logo for nav bar.png" 
                 alt="Gulf South Homes" 
-                className="h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105 lg:h-24"
               />
             </Link>
           </div>
@@ -339,6 +367,19 @@ const Navbar: React.FC = () => {
                 <Instagram size={20} />
                 <span className="text-sm">Instagram</span>
               </a>
+              <a
+                href={COMPANY_INFO.socialMedia.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 transition-colors"
+                style={{ color: 'var(--color-primary, #1E3A5F)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-accent, #4A90E2)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary, #1E3A5F)'}
+                aria-label="Visit Gulf South Homes on TikTok"
+              >
+                <TikTokIcon size={20} />
+                <span className="text-sm">TikTok</span>
+              </a>
             </div>
           </div>
 
@@ -347,7 +388,10 @@ const Navbar: React.FC = () => {
               <div key={link.path}>
                 <Link
                   to={link.path}
-                  onClick={closeMenu}
+                  onClick={() => {
+                    closeMenu();
+                    scrollToTop();
+                  }}
                   className={`mobile-menu-item flex items-center justify-between px-4 py-3.5 rounded-lg text-base font-semibold min-h-[44px] relative transition-colors ${
                     isActive(link.path)
                       ? 'bg-blue-50'
@@ -372,7 +416,10 @@ const Navbar: React.FC = () => {
                       <Link
                         key={sublink.path}
                         to={sublink.path}
-                        onClick={closeMenu}
+                        onClick={() => {
+                          closeMenu();
+                          scrollToTop();
+                        }}
                         className={`block px-4 py-2.5 rounded-lg text-sm font-medium min-h-[44px] transition-colors ${
                           isActive(sublink.path)
                             ? 'bg-blue-50 font-semibold'
@@ -392,7 +439,10 @@ const Navbar: React.FC = () => {
 
             <Link
               to="/contact"
-              onClick={closeMenu}
+              onClick={() => {
+                closeMenu();
+                scrollToTop();
+              }}
               className={`mobile-menu-item flex items-center justify-between px-4 py-3.5 rounded-lg text-base font-semibold min-h-[44px] relative transition-colors ${
                 isActive('/contact')
                   ? 'bg-blue-50'
@@ -415,7 +465,10 @@ const Navbar: React.FC = () => {
             <Button
               to="/catalog"
               fullWidth
-              onClick={closeMenu}
+              onClick={() => {
+                closeMenu();
+                scrollToTop();
+              }}
               className="py-4 text-base min-h-[44px]"
             >
               Browse All Homes

@@ -3,12 +3,44 @@ import { Link } from 'react-router-dom';
 import { COMPANY_INFO } from '../constants';
 import { MapPin, Phone, Clock, ArrowRight } from 'lucide-react';
 import SocialLinks from './SocialLinks';
+import { scrollToTop } from '../hooks/useScrollRestoration';
 
 const Footer: React.FC = () => {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  // Enhanced video autoplay for iOS Safari and Android Chrome
+  React.useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Attempt to play video (required for iOS Safari)
+    const playVideo = async () => {
+      try {
+        await video.play();
+      } catch (error) {
+        // Autoplay blocked - video will play when user interacts with page
+        console.log('Video autoplay blocked, will play on user interaction');
+      }
+    };
+
+    playVideo();
+
+    // Ensure video plays on visibility change (tab switching)
+    const handleVisibilityChange = () => {
+      if (!document.hidden && video.paused) {
+        playVideo();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
+
   return (
     <footer className="bg-primary text-stone-300 relative overflow-hidden">
-      {/* Video Background */}
+      {/* Video Background - Mobile Optimized */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
@@ -16,12 +48,15 @@ const Footer: React.FC = () => {
         preload="metadata"
         className="absolute inset-0 w-full h-full object-cover"
         aria-hidden="true"
+        // iOS Safari specific attributes for reliable playback
+        webkit-playsinline="true"
+        x5-playsinline="true"
       >
         <source src="/assets/images/awards/footer.mp4" type="video/mp4" />
       </video>
-      
-      {/* Light Overlay - Crisp and Bright with Better Text Contrast */}
-      <div className="absolute inset-0 bg-primary/30"></div>
+
+      {/* Enhanced Overlay - Better text contrast on mobile */}
+      <div className="absolute inset-0 bg-primary/40 sm:bg-primary/30"></div>
       
       {/* Top accent line */}
       <div className="h-1 bg-gradient-to-r from-primary via-primary-light to-primary relative z-10"></div>
@@ -30,28 +65,28 @@ const Footer: React.FC = () => {
       <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-[150px] pointer-events-none z-0"></div>
       
       {/* Main Footer Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-10 pb-4 sm:pb-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-10 lg:pt-12 pb-6 sm:pb-8 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10">
           
           {/* Brand Column - Takes more space */}
           <div className="lg:col-span-4">
-            <Link to="/" className="inline-flex items-center gap-2 mb-3 sm:mb-4 lg:mb-5 group touch-manipulation min-h-[44px]">
-              <img 
-                src="/assets/images/logo/gsh-logo-2025.svg" 
-                alt="Gulf South Homes - 2025 Bayou's Best Choice" 
-                className="h-7 sm:h-8 lg:h-10 w-auto object-contain opacity-90"
+            <Link to="/" onClick={scrollToTop} className="inline-flex items-center gap-2.5 mb-4 sm:mb-5 lg:mb-6 group touch-manipulation min-h-[44px]">
+              <img
+                src="/assets/images/logo/gsh-logo-2025.svg"
+                alt="Gulf South Homes - 2025 Bayou's Best Choice"
+                className="h-9 sm:h-10 lg:h-12 w-auto object-contain opacity-90"
               />
               <div className="flex flex-col">
-                <span className="text-base sm:text-lg lg:text-xl font-bold text-white leading-none font-display tracking-tight drop-shadow-md">
+                <span className="text-lg sm:text-xl lg:text-2xl font-bold text-white leading-none font-display tracking-tight drop-shadow-lg">
                   GULF SOUTH
                 </span>
-                <span className="text-[9px] sm:text-[10px] lg:text-xs font-semibold text-red-600 leading-none tracking-[0.2em] mt-0.5 drop-shadow-sm">
+                <span className="text-[10px] sm:text-[11px] lg:text-xs font-semibold text-red-600 leading-none tracking-[0.2em] mt-1 drop-shadow-md">
                   HOMES INC
                 </span>
               </div>
             </Link>
-            
-            <p className="text-white/90 mb-3 sm:mb-4 lg:mb-5 text-xs sm:text-sm leading-relaxed max-w-sm font-medium drop-shadow-sm">
+
+            <p className="text-white/95 mb-4 sm:mb-5 lg:mb-6 text-sm sm:text-base leading-relaxed max-w-sm font-medium drop-shadow-md">
               Louisiana's trusted source for quality manufactured and modular homes.
               Family-owned and operated since {COMPANY_INFO.founded}.
             </p>
@@ -62,8 +97,8 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div className="lg:col-span-2">
-            <h4 className="text-white font-display font-bold text-sm sm:text-base mb-2 sm:mb-3 lg:mb-4 drop-shadow-md">Explore</h4>
-            <ul className="space-y-1.5 sm:space-y-2 lg:space-y-2.5">
+            <h4 className="text-white font-display font-bold text-base sm:text-lg mb-3 sm:mb-4 drop-shadow-lg">Explore</h4>
+            <ul className="space-y-2 sm:space-y-2.5 lg:space-y-3">
               {[
                 { name: 'Our Homes', path: '/catalog' },
                 { name: 'Single-Wide', path: '/single-wide' },
@@ -72,12 +107,13 @@ const Footer: React.FC = () => {
                 { name: 'About Us', path: '/about' },
               ].map((link) => (
                 <li key={link.path}>
-                  <Link 
-                    to={link.path} 
-                    className="text-white/90 hover:text-white active:text-white transition-colors inline-flex items-center gap-1.5 group text-sm sm:text-base py-2 -my-2 font-medium drop-shadow-sm touch-manipulation min-h-[44px] sm:min-h-[auto]"
+                  <Link
+                    to={link.path}
+                    onClick={scrollToTop}
+                    className="text-white/95 hover:text-white active:text-white transition-colors inline-flex items-center gap-2 group text-base sm:text-lg py-2 -my-2 font-medium drop-shadow-md touch-manipulation min-h-[48px] sm:min-h-[auto]"
                   >
                     {link.name}
-                    <ArrowRight size={12} className="sm:w-3.5 sm:h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                    <ArrowRight size={14} className="sm:w-4 sm:h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                   </Link>
                 </li>
               ))}
@@ -86,20 +122,21 @@ const Footer: React.FC = () => {
 
           {/* Services */}
           <div className="lg:col-span-2">
-            <h4 className="text-white font-display font-bold text-sm sm:text-base mb-2 sm:mb-3 lg:mb-4 drop-shadow-md">Services</h4>
-            <ul className="space-y-1.5 sm:space-y-2 lg:space-y-2.5">
+            <h4 className="text-white font-display font-bold text-base sm:text-lg mb-3 sm:mb-4 drop-shadow-lg">Services</h4>
+            <ul className="space-y-2 sm:space-y-2.5 lg:space-y-3">
               {[
                 { name: 'Financing', path: '/financing' },
                 { name: 'Parts & Service', path: '/services' },
                 { name: 'Contact Us', path: '/contact' },
               ].map((link) => (
                 <li key={link.path}>
-                  <Link 
-                    to={link.path} 
-                    className="text-white/90 hover:text-white active:text-white transition-colors inline-flex items-center gap-1.5 group text-sm sm:text-base py-2 -my-2 font-medium drop-shadow-sm touch-manipulation min-h-[44px] sm:min-h-[auto]"
+                  <Link
+                    to={link.path}
+                    onClick={scrollToTop}
+                    className="text-white/95 hover:text-white active:text-white transition-colors inline-flex items-center gap-2 group text-base sm:text-lg py-2 -my-2 font-medium drop-shadow-md touch-manipulation min-h-[48px] sm:min-h-[auto]"
                   >
                     {link.name}
-                    <ArrowRight size={12} className="sm:w-3.5 sm:h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                    <ArrowRight size={14} className="sm:w-4 sm:h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
                   </Link>
                 </li>
               ))}
@@ -108,42 +145,42 @@ const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <div className="lg:col-span-4">
-            <h4 className="text-white font-display font-bold text-sm sm:text-base mb-2 sm:mb-3 lg:mb-4 drop-shadow-md">Get In Touch</h4>
-            <ul className="space-y-2.5 sm:space-y-3 lg:space-y-4">
+            <h4 className="text-white font-display font-bold text-base sm:text-lg mb-3 sm:mb-4 drop-shadow-lg">Get In Touch</h4>
+            <ul className="space-y-3 sm:space-y-4 lg:space-y-5">
               <li>
-                <a 
+                <a
                   href={`tel:${COMPANY_INFO.phone}`}
-                  className="flex items-start gap-2.5 sm:gap-3 group touch-manipulation min-h-[44px] active:opacity-80"
+                  className="flex items-start gap-3 sm:gap-3.5 group touch-manipulation min-h-[52px] active:opacity-80"
                 >
-                  <div className="w-10 h-10 sm:w-9 sm:h-9 lg:w-8 lg:h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors">
-                    <Phone size={18} className="sm:w-4 sm:h-4 text-primary group-hover:text-white transition-colors" />
+                  <div className="w-12 h-12 sm:w-11 sm:h-11 lg:w-10 lg:h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors">
+                    <Phone size={20} className="sm:w-5 sm:h-5 text-primary group-hover:text-white transition-colors" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <span className="text-xs sm:text-sm text-white/80 block font-medium drop-shadow-sm">Call Us</span>
-                    <p className="text-white font-bold text-sm sm:text-base group-hover:text-primary transition-colors break-words drop-shadow-md">{COMPANY_INFO.phone}</p>
+                    <span className="text-sm sm:text-base text-white/90 block font-medium drop-shadow-md">Call Us</span>
+                    <p className="text-white font-bold text-base sm:text-lg group-hover:text-primary transition-colors break-words drop-shadow-lg">{COMPANY_INFO.phone}</p>
                   </div>
                 </a>
               </li>
               <li>
-                <div className="flex items-start gap-2.5 sm:gap-3 min-h-[44px]">
-                  <div className="w-10 h-10 sm:w-9 sm:h-9 lg:w-8 lg:h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin size={18} className="sm:w-4 sm:h-4 text-primary" />
+                <div className="flex items-start gap-3 sm:gap-3.5 min-h-[52px]">
+                  <div className="w-12 h-12 sm:w-11 sm:h-11 lg:w-10 lg:h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MapPin size={20} className="sm:w-5 sm:h-5 text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <span className="text-xs sm:text-sm text-white/80 block font-medium drop-shadow-sm">Visit Us</span>
-                    <p className="text-white text-sm sm:text-base break-words font-medium drop-shadow-sm">{COMPANY_INFO.address}</p>
+                    <span className="text-sm sm:text-base text-white/90 block font-medium drop-shadow-md">Visit Us</span>
+                    <p className="text-white text-base sm:text-lg break-words font-medium drop-shadow-md">{COMPANY_INFO.address}</p>
                   </div>
                 </div>
               </li>
               <li>
-                <div className="flex items-start gap-2.5 sm:gap-3 min-h-[44px]">
-                  <div className="w-10 h-10 sm:w-9 sm:h-9 lg:w-8 lg:h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Clock size={18} className="sm:w-4 sm:h-4 text-primary" />
+                <div className="flex items-start gap-3 sm:gap-3.5 min-h-[52px]">
+                  <div className="w-12 h-12 sm:w-11 sm:h-11 lg:w-10 lg:h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Clock size={20} className="sm:w-5 sm:h-5 text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <span className="text-xs sm:text-sm text-white/80 block font-medium drop-shadow-sm">Hours</span>
-                    <p className="text-white text-sm sm:text-base font-medium drop-shadow-sm">Mon-Fri: 8am - 5pm</p>
-                    <p className="text-white/90 text-xs sm:text-sm font-medium drop-shadow-sm">Sat: 9am - 3pm</p>
+                    <span className="text-sm sm:text-base text-white/90 block font-medium drop-shadow-md">Hours</span>
+                    <p className="text-white text-base sm:text-lg font-medium drop-shadow-md">Mon-Fri: 8am - 5pm</p>
+                    <p className="text-white/95 text-sm sm:text-base font-medium drop-shadow-md">Sat: 9am - 3pm</p>
                   </div>
                 </div>
               </li>
@@ -152,13 +189,13 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-stone-800 mt-4 sm:mt-6 lg:mt-8 pt-3 sm:pt-4 lg:pt-6 flex flex-col md:flex-row justify-between items-center gap-2 sm:gap-3 lg:gap-4 pb-safe">
-          <p className="text-white/80 text-xs sm:text-sm text-center md:text-left font-medium drop-shadow-sm leading-relaxed">
+        <div className="border-t border-stone-800/50 mt-6 sm:mt-8 lg:mt-10 pt-4 sm:pt-5 lg:pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 pb-safe">
+          <p className="text-white/90 text-sm sm:text-base text-center sm:text-left font-medium drop-shadow-md leading-relaxed">
             © {new Date().getFullYear()} {COMPANY_INFO.name}. All rights reserved.
           </p>
-          <div className="flex items-center gap-3 sm:gap-4 lg:gap-6 text-xs sm:text-sm text-white/80 font-medium drop-shadow-sm">
+          <div className="flex items-center gap-4 sm:gap-5 lg:gap-6 text-sm sm:text-base text-white/90 font-medium drop-shadow-md">
             <span>BBB Accredited</span>
-            <span className="hidden sm:inline">•</span>
+            <span className="hidden sm:inline text-white/50">•</span>
             <span>LHMA Member</span>
           </div>
         </div>

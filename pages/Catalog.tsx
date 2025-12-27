@@ -31,17 +31,14 @@ const Catalog: React.FC = () => {
     <div className="bg-stone-50 min-h-screen">
       {/* Hero Section - Universal Responsive Pattern */}
       <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
-        {/* Background Video */}
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          preload="metadata"
+        {/* Background Image */}
+        <img 
+          src="/assets/images/single wide homes/homesforsalepage.JPG" 
+          alt="Gulf South Homes - Homes for Sale"
           className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/assets/video/videosworking/hero.mp4" type="video/mp4" />
-        </video>
+          loading="eager"
+          fetchPriority="high"
+        />
 
         {/* Light Background Overlay - Crisp and Bright */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/20"></div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { scrollToTop } from '../hooks/useScrollRestoration';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -20,6 +21,15 @@ const Button: React.FC<ButtonProps> = ({
   fullWidth = false,
   size = 'md'
 }) => {
+  // Handle navigation with scroll restoration
+  const handleLinkClick = () => {
+    if (onClick) {
+      onClick();
+    }
+    // Scroll restoration is handled by useScrollRestoration hook
+    // But we ensure it happens immediately for button clicks
+    scrollToTop();
+  };
   const baseStyles = `
     inline-flex items-center justify-center font-semibold rounded-xl
     transition-all duration-300 ease-out
@@ -93,7 +103,12 @@ const Button: React.FC<ButtonProps> = ({
 
   if (to) {
     return (
-      <Link to={to} className={`${combinedClasses} ${hoverStyle}`} style={inlineStyle}>
+      <Link 
+        to={to} 
+        onClick={handleLinkClick}
+        className={`${combinedClasses} ${hoverStyle}`} 
+        style={inlineStyle}
+      >
         {children}
       </Link>
     );

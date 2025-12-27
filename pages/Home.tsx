@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { COMPANY_INFO, MOCK_HOMES, TESTIMONIALS } from '../constants';
 import Button from '../components/Button';
 import HomeCard from '../components/HomeCard';
@@ -30,7 +30,8 @@ import {
   Sparkles,
   Heart,
   Trophy,
-  TrendingUp
+  TrendingUp,
+  Crown
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import FeaturedCarousel from '../components/FeaturedCarousel';
@@ -38,6 +39,50 @@ import FeaturedCarousel from '../components/FeaturedCarousel';
 const Home: React.FC = () => {
   const featuredHomes = MOCK_HOMES.filter(h => h.isFeatured).slice(0, 7);
   const heroRef = useRef<HTMLDivElement>(null);
+  const marqueeContainerRef = useRef<HTMLDivElement>(null);
+  const marqueeTrackRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const animationRef = useRef<number | null>(null);
+  const currentSpeedRef = useRef(50);
+
+  // Smooth speed interpolation on hover
+  useEffect(() => {
+    const container = marqueeContainerRef.current;
+    const track = marqueeTrackRef.current;
+    if (!container || !track) return;
+
+    const targetSpeed = isHovered ? 80 : 50;
+    const startSpeed = currentSpeedRef.current;
+    const startTime = performance.now();
+    const duration = 600; // 600ms transition
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing function for smooth transition
+      const ease = progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+      
+      const currentSpeed = startSpeed + (targetSpeed - startSpeed) * ease;
+      currentSpeedRef.current = currentSpeed;
+      
+      track.style.animationDuration = `${currentSpeed}s`;
+      
+      if (progress < 1) {
+        animationRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isHovered]);
 
 
   return (
@@ -82,8 +127,8 @@ const Home: React.FC = () => {
             <span className="block hero-word" style={{ animationDelay: '0.4s' }}>Homes For Sale</span>
           </h1>
 
-          {/* CTA Button - Pop-in Animation - Mobile Optimized */}
-          <div className="hero-cta-entrance flex justify-center mt-6 md:mt-8 lg:mt-10 mb-4 md:mb-4 lg:mb-6">
+          {/* CTA Buttons - Pop-in Animation - Mobile Optimized */}
+          <div className="hero-cta-entrance flex flex-col sm:flex-row gap-4 justify-center mt-6 md:mt-8 lg:mt-10 mb-4 md:mb-4 lg:mb-6 px-4">
             <Button
               variant="primary"
               to="/catalog"
@@ -92,6 +137,15 @@ const Home: React.FC = () => {
             >
               <span className="whitespace-nowrap">View Homes For Sale</span>
               <ArrowRight size={18} className="ml-2 sm:w-5 sm:h-5" />
+            </Button>
+
+            <Button
+              to="/contact"
+              size="lg"
+              className="shadow-2xl shadow-blue-600/50 bg-blue-600 hover:bg-blue-700 hover:scale-105 active:scale-95 transition-transform duration-300 min-h-[52px] sm:min-h-[56px] px-8 sm:px-8 text-base sm:text-lg touch-manipulation"
+            >
+              <Phone size={18} className="mr-2 sm:w-5 sm:h-5" />
+              <span className="whitespace-nowrap">Request a Call Back</span>
             </Button>
           </div>
 
@@ -113,39 +167,80 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* MARQUEE TRUST BANNER - Fast scrolling credibility */}
-      <section className="relative py-4 bg-primary overflow-hidden border-y border-primary-dark">
-        <div className="marquee-container">
-          <div className="marquee-track">
+      {/* MARQUEE TRUST BANNER - Premium Scrolling Credibility + Contact Info */}
+      <section className="relative py-4 bg-primary overflow-hidden border-y border-primary-dark shadow-lg">
+        <div 
+          className="marquee-container"
+          ref={marqueeContainerRef}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div className="marquee-track" ref={marqueeTrackRef}>
             {[...Array(2)].map((_, setIndex) => (
               <div key={setIndex} className="marquee-content">
                 <span className="marquee-item">
-                  <Trophy size={16} className="text-white/80" />
+                  <img
+                    src="/assets/images/logo/gsh-logo-2025.svg"
+                    alt="Gulf South Homes"
+                    className="h-10 w-auto object-contain"
+                    style={{ display: 'inline-block', verticalAlign: 'middle' }}
+                  />
+                </span>
+                <span className="marquee-divider">✦</span>
+                <span className="marquee-item">
+                  <Trophy size={18} className="text-amber-300" />
                   2025 BAYOU'S BEST CHOICE WINNER
                 </span>
                 <span className="marquee-divider">✦</span>
                 <span className="marquee-item">
-                  <Heart size={16} className="text-white/80" />
-                  FAMILY OWNED SINCE 1995
+                  <MapPin size={18} className="text-blue-200" />
+                  1986 LA-182, Houma, LA 70364
                 </span>
                 <span className="marquee-divider">✦</span>
                 <span className="marquee-item">
-                  <TrendingUp size={16} className="text-white/80" />
+                  <Heart size={18} className="text-rose-300" />
+                  FAMILY OWNED SINCE 1995
+                </span>
+                <span className="marquee-divider">✦</span>
+                <a
+                  href="tel:9858760222"
+                  className="marquee-item hover:text-white/90 transition-colors"
+                >
+                  <Phone size={18} className="text-green-300" />
+                  (985) 876-0222
+                </a>
+                <span className="marquee-divider">✦</span>
+                <span className="marquee-item">
+                  <TrendingUp size={18} className="text-emerald-300" />
                   10,000+ HOMES DELIVERED
                 </span>
                 <span className="marquee-divider">✦</span>
                 <span className="marquee-item">
-                  <Sparkles size={16} className="text-white/80" />
+                  <Clock size={18} className="text-orange-300" />
+                  Mon-Fri 8 AM–5 PM
+                </span>
+                <span className="marquee-divider">✦</span>
+                <span className="marquee-item">
+                  <Crown size={18} className="text-yellow-300" />
                   #1 IN SOUTHEAST LOUISIANA
                 </span>
                 <span className="marquee-divider">✦</span>
                 <span className="marquee-item">
-                  <ShieldCheck size={16} className="text-white/80" />
+                  <img
+                    src="/assets/images/logo/gsh-logo-2025.svg"
+                    alt="Gulf South Homes"
+                    className="h-10 w-auto object-contain"
+                    style={{ display: 'inline-block', verticalAlign: 'middle' }}
+                  />
+                </span>
+                <span className="marquee-divider">✦</span>
+                <span className="marquee-item">
+                  <ShieldCheck size={18} className="text-blue-300" />
                   BBB ACCREDITED
                 </span>
                 <span className="marquee-divider">✦</span>
                 <span className="marquee-item">
-                  <Users size={16} className="text-white/80" />
+                  <Users size={18} className="text-purple-300" />
                   30+ YEARS OF TRUST
                 </span>
                 <span className="marquee-divider">✦</span>
@@ -431,10 +526,12 @@ const Home: React.FC = () => {
               </div>
             </div>
             
-            {/* Manufacturer Logos */}
+            {/* Manufacturer Logos - Enhanced Premium Carousel */}
             <div className="mt-12 sm:mt-16 pt-10 sm:pt-12 border-t border-stone-200">
-              <p className="text-center text-stone-400 text-sm font-medium tracking-wider uppercase mb-8">
-                Featuring Top Manufacturers
+              <p className="text-center text-stone-500 text-sm font-bold tracking-wider uppercase mb-10 flex items-center justify-center gap-3">
+                <span className="h-px w-12 bg-gradient-to-r from-transparent to-stone-300"></span>
+                <span>Featuring Top Manufacturers</span>
+                <span className="h-px w-12 bg-gradient-to-l from-transparent to-stone-300"></span>
               </p>
               <ManufacturerLogoScroller />
             </div>
@@ -478,7 +575,154 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. Current Deals & Programs */}
+      {/* 4. RESTORE LOUISIANA FEATURE SECTION - Hero Treatment */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231E3A5F' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }}></div>
+
+        <div className="container relative z-10">
+          <div className="max-w-7xl mx-auto">
+            {/* Mobile Layout: Stacked */}
+            <div className="lg:hidden">
+              {/* Badge */}
+              <div className="scroll-animate text-center mb-6">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-xs font-bold tracking-wider rounded-full uppercase shadow-md">
+                  <ShieldCheck size={16} />
+                  Experienced Grant Partner
+                </div>
+              </div>
+
+              {/* Image */}
+              <div className="scroll-animate mb-8 px-4">
+                <Link to="/la-restore" className="block group">
+                  <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                    <img
+                      src="/assets/images/restore louisiana page/Restore Louisiana Funding (1).jpg"
+                      alt="Restore Louisiana Hurricane Francine Grants - Funding is Ready, Homes are Available, Act Now"
+                      className="w-full h-auto transition-transform duration-700 group-hover:scale-102"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Content */}
+              <div className="scroll-animate text-center px-4">
+                <h2 className="text-3xl sm:text-4xl font-display font-black text-stone-900 leading-[1.1] mb-4 tracking-tight">
+                  Restore Louisiana<br />
+                  <span className="text-blue-600">Hurricane Francine Grants</span>
+                </h2>
+                <p className="text-lg sm:text-xl font-bold text-red-600 mb-4">
+                  Funding is Ready. Homes are Available. Act Now!
+                </p>
+                <p className="text-stone-700 text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto">
+                  Use your Restore Louisiana grant to purchase a brand new manufactured home with Gulf South Homes. We handle the entire process from application to move-in.
+                </p>
+
+                {/* CTAs */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button
+                    to="/la-restore"
+                    variant="primary"
+                    size="lg"
+                    className="shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 bg-primary text-white"
+                  >
+                    Check Your Eligibility
+                    <ArrowRight size={20} className="ml-2" />
+                  </Button>
+                  <a
+                    href="tel:985-876-0222"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 bg-white text-stone-900 border-2 border-stone-300 rounded-xl font-bold text-base hover:border-primary hover:text-primary hover:shadow-md transition-all duration-300"
+                  >
+                    <Phone size={20} />
+                    Call Now: (985) 876-0222
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop Layout: Split Screen */}
+            <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
+              {/* Left: Image */}
+              <div className="scroll-animate">
+                <Link to="/la-restore" className="block group">
+                  <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                    <img
+                      src="/assets/images/restore louisiana page/Restore Louisiana Funding (1).jpg"
+                      alt="Restore Louisiana Hurricane Francine Grants - Funding is Ready, Homes are Available, Act Now"
+                      className="w-full h-auto transition-transform duration-700 group-hover:scale-102"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+                </Link>
+              </div>
+
+              {/* Right: Content */}
+              <div className="scroll-animate">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-xs font-bold tracking-wider rounded-full mb-6 uppercase shadow-md">
+                  <ShieldCheck size={16} />
+                  Experienced Grant Partner
+                </div>
+
+                <h2 className="text-4xl xl:text-5xl font-display font-black text-stone-900 leading-[1.05] mb-4 tracking-tight">
+                  Restore Louisiana<br />
+                  <span className="text-blue-600">Hurricane Francine Grants</span>
+                </h2>
+
+                <p className="text-xl xl:text-2xl font-bold text-red-600 mb-6">
+                  Funding is Ready. Homes are Available. Act Now!
+                </p>
+
+                <p className="text-stone-700 text-lg leading-relaxed mb-8">
+                  Use your Restore Louisiana grant to purchase a brand new manufactured home with Gulf South Homes. We handle the entire process from application to move-in.
+                </p>
+
+                {/* Trust Signals */}
+                <div className="flex flex-col gap-3 mb-8">
+                  <div className="flex items-center gap-3 text-stone-600">
+                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
+                    <span className="text-base">We accept all Hurricane Francine grants</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-stone-600">
+                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
+                    <span className="text-base">Expert guidance through the entire application process</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-stone-600">
+                    <CheckCircle size={20} className="text-primary flex-shrink-0" />
+                    <span className="text-base">Large in-stock inventory ready for immediate delivery</span>
+                  </div>
+                </div>
+
+                {/* CTAs */}
+                <div className="flex flex-col xl:flex-row gap-4">
+                  <Button
+                    to="/la-restore"
+                    variant="primary"
+                    size="lg"
+                    className="shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 bg-primary text-white"
+                  >
+                    Check Your Eligibility
+                    <ArrowRight size={20} className="ml-2" />
+                  </Button>
+                  <a
+                    href="tel:985-876-0222"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-stone-900 border-2 border-stone-300 rounded-xl font-bold text-base hover:border-primary hover:text-primary hover:shadow-md transition-all duration-300"
+                  >
+                    <Phone size={20} />
+                    Call Now: (985) 876-0222
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Current Deals & Programs */}
       <section className="py-20 sm:py-28 bg-white">
         <div className="container">
           <div className="text-center mb-12 scroll-animate">
@@ -519,11 +763,11 @@ const Home: React.FC = () => {
             {/* Deal 3 */}
             <div className="scroll-animate group p-8 bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl border-2 border-amber-200 hover:border-amber-300 hover:shadow-xl transition-all duration-300" style={{ transitionDelay: '200ms' }}>
               <div className="w-14 h-14 bg-amber-600 rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
-                <ShieldCheck size={28} />
+                <DollarSign size={28} />
               </div>
-              <h3 className="text-xl font-bold text-stone-900 mb-3">Restore Louisiana Grants Accepted</h3>
+              <h3 className="text-xl font-bold text-stone-900 mb-3">$5,000 Off Select Models</h3>
               <p className="text-stone-600">
-                We accept all Restore Louisiana grants and help you through the entire application process.
+                Save big on select in-stock homes. Limited time offer on premium floor plans.
               </p>
             </div>
           </div>
@@ -537,7 +781,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. Why Choose Us - EXACT 6 items from spec */}
+      {/* 6. Why Choose Us - EXACT 6 items from spec */}
       <section className="py-20 sm:py-28 bg-stone-50">
         <div className="container">
           <div className="text-center mb-16 scroll-animate">
@@ -577,14 +821,14 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 6. How It Works - 4 Steps */}
-      <section className="py-20 sm:py-28 bg-white">
+      {/* 7. How It Works - 4 Steps - Professional Corporate Design */}
+      <section className="py-20 sm:py-28 bg-white relative">
         <div className="container">
           <div className="text-center mb-16 scroll-animate">
-            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-semibold rounded-md mb-4">
+            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-xs font-bold tracking-widest rounded-md mb-4 uppercase">
               The Process
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-stone-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-stone-900 mb-4 tracking-tight">
               How It Works
             </h2>
             <p className="text-stone-600 max-w-2xl mx-auto text-lg">
@@ -592,30 +836,78 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-12">
             {[
-              { num: "01", icon: <HomeIcon size={32} />, title: "Choose Your Home", desc: "Browse our inventory and select the perfect floor plan" },
-              { num: "02", icon: <DollarSign size={32} />, title: "Purchase Options", desc: "Get pre-approved with our financing partners" },
-              { num: "03", icon: <LandPlot size={32} />, title: "Land & Permits", desc: "We handle site prep, permits, and all paperwork" },
-              { num: "04", icon: <Truck size={32} />, title: "Delivery & Setup", desc: "Professional delivery and complete installation" },
+              { 
+                num: "01", 
+                icon: <HomeIcon size={28} />, 
+                title: "Choose Your Home", 
+                desc: "Browse our inventory and select the perfect floor plan"
+              },
+              { 
+                num: "02", 
+                icon: <DollarSign size={28} />, 
+                title: "Purchase Options", 
+                desc: "Get pre-approved with our financing partners"
+              },
+              { 
+                num: "03", 
+                icon: <LandPlot size={28} />, 
+                title: "Land & Permits", 
+                desc: "We handle site prep, permits, and all paperwork"
+              },
+              { 
+                num: "04", 
+                icon: <Truck size={28} />, 
+                title: "Delivery & Setup", 
+                desc: "Professional delivery and complete installation"
+              },
             ].map((step, idx) => (
-              <div key={idx} className="scroll-animate text-center" style={{ transitionDelay: `${idx * 100}ms` }}>
-                <div className="relative mb-6">
-                  <div className="w-20 h-20 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                    {step.icon}
-                  </div>
-                  <div className="absolute -top-3 -right-3 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg">
+              <div 
+                key={idx} 
+                className="scroll-animate group relative"
+                style={{ transitionDelay: `${idx * 100}ms` }}
+              >
+                {/* Professional Card */}
+                <div className="relative h-full bg-white border border-stone-200 rounded-xl p-8 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1">
+                  {/* Top Accent Line */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary-light to-primary rounded-t-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  {/* Number Badge - Professional Style */}
+                  <div className="absolute -top-4 left-8 w-10 h-10 bg-primary text-white rounded-lg flex items-center justify-center font-bold text-sm shadow-md">
                     {step.num}
                   </div>
+                  
+                  {/* Icon Container - Refined */}
+                  <div className="mb-6 pt-4">
+                    <div className="w-16 h-16 mx-auto bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-gradient-to-br group-hover:from-primary/10 group-hover:to-primary/15 transition-all duration-300">
+                      {step.icon}
+                    </div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="text-center">
+                    <h3 className="font-display font-bold text-xl text-stone-900 mb-3 group-hover:text-primary transition-colors duration-300">
+                      {step.title}
+                    </h3>
+                    <p className="text-stone-600 leading-relaxed text-sm">
+                      {step.desc}
+                    </p>
+                  </div>
+                  
+                  {/* Connecting Line (Desktop Only) */}
+                  {idx < 3 && (
+                    <div className="hidden lg:block absolute top-12 -right-4 w-8 h-0.5 bg-stone-200 z-0">
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-stone-300 rounded-full"></div>
+                    </div>
+                  )}
                 </div>
-                <h3 className="font-bold text-xl text-stone-900 mb-2">{step.title}</h3>
-                <p className="text-stone-600">{step.desc}</p>
               </div>
             ))}
           </div>
 
           <div className="text-center scroll-animate">
-            <Button to="/services" size="lg">
+            <Button to="/services" size="lg" className="shadow-md hover:shadow-lg transition-all duration-300">
               See Full Buying Process
               <ArrowRight size={18} className="ml-2" />
             </Button>
@@ -623,7 +915,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 7. Reviews Preview */}
+      {/* 8. Reviews Preview */}
       <section className="py-20 sm:py-28 bg-stone-900 relative overflow-hidden">
         <div className="container relative z-10">
           <div className="text-center mb-16 scroll-animate">
@@ -673,7 +965,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 8. About Preview */}
+      {/* 9. About Preview */}
       <section className="py-20 sm:py-28 bg-white">
         <div className="container">
           <div className="max-w-4xl mx-auto text-center scroll-animate">
@@ -704,7 +996,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 9. Parts Store Preview */}
+      {/* 10. Parts Store Preview */}
       <section className="py-20 sm:py-28 bg-stone-50">
         <div className="container">
           <div className="text-center mb-12 scroll-animate">
@@ -750,7 +1042,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 10. Contact Form - Moved above footer */}
+      {/* 11. Contact Form - Moved above footer */}
       <section className="py-20 sm:py-28 bg-white">
         <div className="container">
           <div className="max-w-3xl mx-auto">

@@ -92,23 +92,29 @@ const HowItWorks: React.FC = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 text-white py-20 sm:py-28 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px'
-          }}></div>
-        </div>
+      <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
+        {/* Background Image */}
+        <img 
+          src="/how it works.JPG" 
+          alt="Gulf South Homes - How It Works"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+        />
+
+        {/* Light Background Overlay - Crisp and Bright */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/20"></div>
+        <div className="absolute inset-0 bg-black/5"></div>
 
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <span className="inline-block px-4 py-1.5 bg-primary/20 text-primary text-sm font-semibold rounded-md mb-4">
               The Process
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-6 text-white">
               How It Works
             </h1>
-            <p className="text-lg sm:text-xl text-stone-300 leading-relaxed">
+            <p className="text-lg sm:text-xl text-white/90 leading-relaxed">
               From choosing your home to moving in, we guide you through every step.
               Our streamlined process makes homeownership simple and stress-free.
             </p>

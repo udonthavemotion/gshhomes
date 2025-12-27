@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
-import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import React from 'react';
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ThemeProvider } from './hooks/useTheme.tsx';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { COMPANY_INFO } from './constants';
 import { MapPin, Facebook, Instagram, Clock, Phone } from 'lucide-react';
+import { useScrollRestoration, scrollToTop } from './hooks/useScrollRestoration';
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import HomeDetails from './pages/HomeDetails';
@@ -24,6 +25,7 @@ import Insurance from './pages/Insurance';
 import Manufacturers from './pages/Manufacturers';
 import HowItWorks from './pages/HowItWorks';
 import WhatWeOffer from './pages/WhatWeOffer';
+import Financing from './pages/Financing';
 
 // TikTok Icon Component (lucide-react doesn't have TikTok)
 const TikTokIcon: React.FC<{ size?: number; className?: string; style?: React.CSSProperties }> = ({ 
@@ -44,12 +46,9 @@ const TikTokIcon: React.FC<{ size?: number; className?: string; style?: React.CS
   </svg>
 );
 
-// Scroll to top helper
+// Professional scroll restoration component
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  useScrollRestoration();
   return null;
 };
 
@@ -70,12 +69,18 @@ const App: React.FC = () => {
             <div className="flex items-center justify-between h-full gap-8">
               {/* Left: Logo */}
               <div className="flex-shrink-0">
-                <img 
-                  src="/assets/images/single wide homes/large logo for nav bar.png" 
-                  alt="Gulf South Homes" 
-                  className="object-contain transition-transform duration-300 hover:scale-105"
-                  style={{ width: '200px', height: '200px' }}
-                />
+                <Link 
+                  to="/" 
+                  onClick={scrollToTop}
+                  className="block"
+                >
+                  <img 
+                    src="/assets/images/single wide homes/large logo for nav bar.png" 
+                    alt="Gulf South Homes" 
+                    className="object-contain transition-transform duration-300 hover:scale-105"
+                    style={{ width: '200px', height: '200px' }}
+                  />
+                </Link>
               </div>
 
               {/* Center: Contact Info and Hours */}
@@ -177,7 +182,7 @@ const App: React.FC = () => {
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
               <Route path="/parts" element={<Parts />} />
-              <Route path="/financing" element={<Services />} />
+              <Route path="/financing" element={<Financing />} />
               <Route path="/land-home" element={<LandHome />} />
               <Route path="/deals" element={<Deals />} />
               <Route path="/la-restore" element={<LARestore />} />

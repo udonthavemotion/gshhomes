@@ -21,7 +21,7 @@ export const COMPANY_INFO = {
   socialMedia: {
     facebook: "https://www.facebook.com/gulfsouthhomes",
     instagram: "https://www.instagram.com/gulfsouthhomes",
-    tiktok: "https://www.tiktok.com/@gulfsouthhomes" // Update with actual TikTok handle
+    tiktok: "https://www.tiktok.com/@gulfsouthhomesinc"
   },
   locationCoords: { lat: 29.5958, lng: -90.7195 }, // Approx for Houma
   owners: {
