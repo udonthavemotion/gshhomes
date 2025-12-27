@@ -1,60 +1,35 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { MODULAR_HOMES } from '../data/modular-homes';
+import { UNIFIED_INVENTORY } from '../data/unified-inventory';
+import { useHomeFilters } from '../hooks/useHomeFilters';
 import HomeCard from '../components/HomeCard';
 import Button from '../components/Button';
 import { COMPANY_INFO } from '../constants';
 import { SlidersHorizontal, X, ArrowRight, MapPin, Phone, Clock } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 
 const Modular: React.FC = () => {
-  const [selectedManufacturer, setSelectedManufacturer] = useState<string>('All');
-  const [selectedBeds, setSelectedBeds] = useState<string>('All');
-  const [selectedBaths, setSelectedBaths] = useState<string>('All');
-  const [selectedSqft, setSelectedSqft] = useState<string>('All');
   const [showFilters, setShowFilters] = useState(false);
 
-  // Extract unique values for filters
-  const manufacturers = ['All', ...Array.from(new Set(MODULAR_HOMES.map(h => h.manufacturer === 'BG' ? 'BG Manufacturing' : h.manufacturer)))];
-  const bedOptions = ['All', '2', '3', '4'];
-  const bathOptions = ['All', '2', '2.5', '3'];
-  const sqftOptions = ['All', 'Under 1,500', '1,500-2,000', '2,000-2,500', 'Over 2,500'];
+  // Use unified filtering with default type='Modular'
+  const { filteredHomes, filters, setFilter, clearFilters, activeFilterCount } = useHomeFilters(
+    UNIFIED_INVENTORY,
+    { type: 'Modular' }
+  );
 
-  // Filter homes based on selections
-  const filteredHomes = useMemo(() => {
-    return MODULAR_HOMES.filter(home => {
-      const displayManuf = home.manufacturer === 'BG' ? 'BG Manufacturing' : home.manufacturer;
-      const matchManuf = selectedManufacturer === 'All' || displayManuf === selectedManufacturer;
-      const matchBeds = selectedBeds === 'All' || home.beds === parseInt(selectedBeds);
-      const matchBaths = selectedBaths === 'All' || home.baths === parseFloat(selectedBaths);
+  // Get all modular homes for filter options
+  const modularHomes = useMemo(
+    () => UNIFIED_INVENTORY.filter(h => h.type === 'Modular'),
+    []
+  );
 
-      let matchSqft = true;
-      if (selectedSqft === 'Under 1,500') {
-        matchSqft = home.sqft < 1500;
-      } else if (selectedSqft === '1,500-2,000') {
-        matchSqft = home.sqft >= 1500 && home.sqft <= 2000;
-      } else if (selectedSqft === '2,000-2,500') {
-        matchSqft = home.sqft >= 2000 && home.sqft <= 2500;
-      } else if (selectedSqft === 'Over 2,500') {
-        matchSqft = home.sqft > 2500;
-      }
-
-      return matchManuf && matchBeds && matchBaths && matchSqft;
-    });
-  }, [selectedManufacturer, selectedBeds, selectedBaths, selectedSqft]);
-
-  // Count active filters
-  const activeFiltersCount =
-    (selectedManufacturer !== 'All' ? 1 : 0) +
-    (selectedBeds !== 'All' ? 1 : 0) +
-    (selectedBaths !== 'All' ? 1 : 0) +
-    (selectedSqft !== 'All' ? 1 : 0);
-
-  // Clear all filters
-  const clearFilters = () => {
-    setSelectedManufacturer('All');
-    setSelectedBeds('All');
-    setSelectedBaths('All');
-    setSelectedSqft('All');
-  };
+  // Extract unique values for filters (normalize BG to BG Manufacturing for display)
+  const manufacturers = useMemo(
+    () => ['all', ...Array.from(new Set(modularHomes.map(h => h.manufacturer === 'BG' ? 'BG Manufacturing' : h.manufacturer)))],
+    [modularHomes]
+  );
+  const bedOptions = useMemo(() => ['all', '2', '3', '4'], []);
+  const bathOptions = useMemo(() => ['all', '2', '2.5', '3'], []);
 
   // Scroll animations
   useEffect(() => {
@@ -89,7 +64,14 @@ const Modular: React.FC = () => {
   };
 
   return (
-    <div className="bg-stone-50 min-h-screen">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.modular.title}
+        description={SEO_CONFIG.modular.description}
+        canonical={SEO_CONFIG.modular.canonical}
+        ogImage={SEO_CONFIG.modular.ogImage}
+      />
+      <div className="bg-stone-50 min-h-screen">
       {/* Hero Section - Universal Responsive Pattern */}
       <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
         {/* Background Video */}
@@ -135,7 +117,7 @@ const Modular: React.FC = () => {
           <h1 className="font-bold text-white leading-tight text-4xl sm:text-5xl lg:text-6xl max-w-[900px] mx-auto break-words mb-6">
             <span className="block">Modular Homes.</span>
             <span className="block mt-2">Fully Customizable.</span>
-            <span className="block mt-2 bg-gradient-to-r from-emerald-300 via-primary to-emerald-400 bg-clip-text text-transparent">
+            <span className="block mt-2 text-white">
               Built to Last.
             </span>
           </h1>
@@ -189,9 +171,9 @@ const Modular: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            {activeFiltersCount > 0 && (
+            {activeFilterCount > 0 && (
               <button
-                onClick={clearFilters}
+                onClick={() => clearFilters({ type: 'Modular' })}
                 className="text-sm text-stone-500 hover:text-stone-700 underline transition-colors"
                 aria-label="Clear all active filters"
               >
@@ -201,13 +183,13 @@ const Modular: React.FC = () => {
             <button
               className="flex items-center gap-2 px-5 py-3 bg-white border-2 border-stone-300 rounded-xl text-stone-700 hover:bg-stone-50 hover:border-primary/50 transition-all shadow-sm hover:shadow-md font-semibold"
               onClick={() => setShowFilters(true)}
-              aria-label={`Open filters${activeFiltersCount > 0 ? ` (${activeFiltersCount} active)` : ''}`}
+              aria-label={`Open filters${activeFilterCount > 0 ? ` (${activeFilterCount} active)` : ''}`}
             >
               <SlidersHorizontal size={20} aria-hidden="true" />
               <span>Filters</span>
-              {activeFiltersCount > 0 && (
-                <span className="bg-primary text-white text-xs font-bold px-2.5 py-1 rounded-full min-w-[24px] text-center" aria-label={`${activeFiltersCount} active filter${activeFiltersCount !== 1 ? 's' : ''}`}>
-                  {activeFiltersCount}
+              {activeFilterCount > 0 && (
+                <span className="bg-primary text-white text-xs font-bold px-2.5 py-1 rounded-full min-w-[24px] text-center" aria-label={`${activeFilterCount} active filter${activeFilterCount !== 1 ? 's' : ''}`}>
+                  {activeFilterCount}
                 </span>
               )}
             </button>
@@ -215,36 +197,28 @@ const Modular: React.FC = () => {
         </div>
 
         {/* Active Filter Pills */}
-        {activeFiltersCount > 0 && (
+        {activeFilterCount > 0 && (
           <div className="flex flex-wrap gap-2 mb-8">
-            {selectedManufacturer !== 'All' && (
+            {filters.manufacturer && filters.manufacturer !== 'all' && (
               <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full border border-primary/20">
-                {selectedManufacturer}
-                <button onClick={() => setSelectedManufacturer('All')} className="hover:bg-primary/20 rounded-full p-0.5 transition-colors">
+                {filters.manufacturer}
+                <button onClick={() => setFilter('manufacturer', 'all')} className="hover:bg-primary/20 rounded-full p-0.5 transition-colors">
                   <X size={14} />
                 </button>
               </span>
             )}
-            {selectedBeds !== 'All' && (
+            {filters.beds && filters.beds !== 'all' && (
               <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full border border-primary/20">
-                {selectedBeds} Beds
-                <button onClick={() => setSelectedBeds('All')} className="hover:bg-primary/20 rounded-full p-0.5 transition-colors">
+                {filters.beds} Beds
+                <button onClick={() => setFilter('beds', 'all')} className="hover:bg-primary/20 rounded-full p-0.5 transition-colors">
                   <X size={14} />
                 </button>
               </span>
             )}
-            {selectedBaths !== 'All' && (
+            {filters.baths && filters.baths !== 'all' && (
               <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full border border-primary/20">
-                {selectedBaths} Baths
-                <button onClick={() => setSelectedBaths('All')} className="hover:bg-primary/20 rounded-full p-0.5 transition-colors">
-                  <X size={14} />
-                </button>
-              </span>
-            )}
-            {selectedSqft !== 'All' && (
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full border border-primary/20">
-                {selectedSqft} sq ft
-                <button onClick={() => setSelectedSqft('All')} className="hover:bg-primary/20 rounded-full p-0.5 transition-colors">
+                {filters.baths} Baths
+                <button onClick={() => setFilter('baths', 'all')} className="hover:bg-primary/20 rounded-full p-0.5 transition-colors">
                   <X size={14} />
                 </button>
               </span>
@@ -274,7 +248,7 @@ const Modular: React.FC = () => {
               <h3 className="text-xl font-bold text-stone-900 mb-2">No homes match your filters</h3>
               <p className="text-stone-600 mb-6">Try adjusting your filter selections to see more results.</p>
               <button
-                onClick={clearFilters}
+                onClick={() => clearFilters({ type: 'Modular' })}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors"
                 aria-label="Clear all filters"
               >
@@ -321,7 +295,7 @@ const Modular: React.FC = () => {
             </div>
 
             <div className="text-center scroll-animate">
-              <Button to="/contact" variant="white" size="lg">
+              <Button to="/contact-gulf-south-homes" variant="white" size="lg">
                 Contact Us
                 <ArrowRight size={18} className="ml-2" />
               </Button>
@@ -368,13 +342,13 @@ const Modular: React.FC = () => {
                     <input
                       type="radio"
                       name="manufacturer"
-                      checked={selectedManufacturer === manuf}
-                      onChange={() => setSelectedManufacturer(manuf)}
+                      checked={filters.manufacturer === manuf}
+                      onChange={() => setFilter('manufacturer', manuf)}
                       className="text-primary focus:ring-primary h-5 w-5 border-stone-300"
-                      aria-label={`Filter by ${manuf === 'All' ? 'all brands' : manuf} manufacturer`}
+                      aria-label={`Filter by ${manuf === 'all' ? 'all brands' : manuf} manufacturer`}
                     />
-                    <span className={`${selectedManufacturer === manuf ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
-                      {manuf === 'All' ? 'All Brands' : manuf}
+                    <span className={`${filters.manufacturer === manuf ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
+                      {manuf === 'all' ? 'All Brands' : manuf}
                     </span>
                   </label>
                 ))}
@@ -390,13 +364,13 @@ const Modular: React.FC = () => {
                     <input
                       type="radio"
                       name="beds"
-                      checked={selectedBeds === beds}
-                      onChange={() => setSelectedBeds(beds)}
+                      checked={filters.beds === (beds === 'all' ? 'all' : parseInt(beds))}
+                      onChange={() => setFilter('beds', beds === 'all' ? 'all' : parseInt(beds))}
                       className="text-primary focus:ring-primary h-5 w-5 border-stone-300"
-                      aria-label={`Filter by ${beds === 'All' ? 'any number of' : beds} bedroom${beds !== '1' && beds !== 'All' ? 's' : ''}`}
+                      aria-label={`Filter by ${beds === 'all' ? 'any number of' : beds} bedroom${beds !== '1' && beds !== 'all' ? 's' : ''}`}
                     />
-                    <span className={`${selectedBeds === beds ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
-                      {beds === 'All' ? 'Any' : `${beds} Bed${beds !== '1' ? 's' : ''}`}
+                    <span className={`${filters.beds === (beds === 'all' ? 'all' : parseInt(beds)) ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
+                      {beds === 'all' ? 'Any' : `${beds} Bed${beds !== '1' ? 's' : ''}`}
                     </span>
                   </label>
                 ))}
@@ -412,35 +386,13 @@ const Modular: React.FC = () => {
                     <input
                       type="radio"
                       name="baths"
-                      checked={selectedBaths === baths}
-                      onChange={() => setSelectedBaths(baths)}
+                      checked={filters.baths === (baths === 'all' ? 'all' : parseFloat(baths))}
+                      onChange={() => setFilter('baths', baths === 'all' ? 'all' : parseFloat(baths))}
                       className="text-primary focus:ring-primary h-5 w-5 border-stone-300"
-                      aria-label={`Filter by ${baths === 'All' ? 'any number of' : baths} bathroom${baths !== '1' && baths !== 'All' ? 's' : ''}`}
+                      aria-label={`Filter by ${baths === 'all' ? 'any number of' : baths} bathroom${baths !== '1' && baths !== 'all' ? 's' : ''}`}
                     />
-                    <span className={`${selectedBaths === baths ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
-                      {baths === 'All' ? 'Any' : `${baths} Bath${baths !== '1' ? 's' : ''}`}
-                    </span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* Square Footage Filter */}
-            <div className="mb-8">
-              <h3 className="font-semibold text-stone-900 mb-4 text-lg">Square Footage</h3>
-              <div className="space-y-3" role="radiogroup" aria-label="Filter by square footage">
-                {sqftOptions.map(sqft => (
-                  <label key={sqft} className="flex items-center gap-3 cursor-pointer group">
-                    <input
-                      type="radio"
-                      name="sqft"
-                      checked={selectedSqft === sqft}
-                      onChange={() => setSelectedSqft(sqft)}
-                      className="text-primary focus:ring-primary h-5 w-5 border-stone-300"
-                      aria-label={`Filter by square footage: ${sqft === 'All' ? 'all sizes' : sqft}`}
-                    />
-                    <span className={`${selectedSqft === sqft ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
-                      {sqft === 'All' ? 'All Sizes' : `${sqft} sq ft`}
+                    <span className={`${filters.baths === (baths === 'all' ? 'all' : parseFloat(baths)) ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
+                      {baths === 'all' ? 'Any' : `${baths} Bath${baths !== '1' ? 's' : ''}`}
                     </span>
                   </label>
                 ))}
@@ -457,9 +409,9 @@ const Modular: React.FC = () => {
             >
               View {filteredHomes.length} Homes
             </button>
-            {activeFiltersCount > 0 && (
+            {activeFilterCount > 0 && (
               <button
-                onClick={clearFilters}
+                onClick={() => clearFilters({ type: 'Modular' })}
                 className="w-full py-3 text-stone-600 font-medium hover:text-stone-900 transition-colors"
                 aria-label="Clear all filters"
               >
@@ -470,6 +422,7 @@ const Modular: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

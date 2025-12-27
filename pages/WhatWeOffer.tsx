@@ -13,6 +13,8 @@ import {
   Phone
 } from 'lucide-react';
 import { COMPANY_INFO } from '../constants';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 
 const WhatWeOffer: React.FC = () => {
   const offerings = [
@@ -114,7 +116,14 @@ const WhatWeOffer: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white min-h-screen">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.whatWeOffer.title}
+        description={SEO_CONFIG.whatWeOffer.description}
+        canonical={SEO_CONFIG.whatWeOffer.canonical}
+        ogImage={SEO_CONFIG.whatWeOffer.ogImage}
+      />
+      <div className="bg-white min-h-screen">
       {/* Hero Section */}
       <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
         {/* Background Image */}
@@ -279,7 +288,7 @@ const WhatWeOffer: React.FC = () => {
               </a>
               <span className="text-white/80">or</span>
               <Link
-                to="/catalog"
+                to="/homes-for-sale"
                 className="flex items-center gap-3 px-8 py-4 bg-stone-900 text-white rounded-lg font-bold text-lg hover:bg-stone-800 transition-colors shadow-lg"
               >
                 Browse Homes
@@ -290,6 +299,7 @@ const WhatWeOffer: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

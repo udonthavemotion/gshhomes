@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Shield, CheckCircle, Phone, FileText, DollarSign, Home as HomeIcon } from 'lucide-react';
 import Button from '../components/Button';
 import { COMPANY_INFO } from '../constants';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 
 const Insurance: React.FC = () => {
   // Intersection Observer for scroll animations
@@ -29,7 +31,14 @@ const Insurance: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.insurance.title}
+        description={SEO_CONFIG.insurance.description}
+        canonical={SEO_CONFIG.insurance.canonical}
+        ogImage={SEO_CONFIG.insurance.ogImage}
+      />
+      <div className="flex flex-col min-h-screen overflow-hidden">
       {/* Hero Section - Universal Responsive Pattern */}
       <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
         {/* Background Video */}
@@ -262,7 +271,7 @@ const Insurance: React.FC = () => {
                   Call {COMPANY_INFO.phone}
                 </a>
                 <Button
-                  to="/contact"
+                  to="/contact-gulf-south-homes"
                   variant="outline"
                   size="lg"
                 >
@@ -289,6 +298,7 @@ const Insurance: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

@@ -111,23 +111,23 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Homes for Sale', path: '/catalog', sublinks: [
-      { name: 'Single Wide Homes', path: '/single-wide' },
-      { name: 'Double Wide Homes', path: '/double-wide' },
-      { name: 'Modular Homes', path: '/modular-homes' },
-      { name: 'Manufacturers', path: '/manufacturers' },
+    { name: 'Homes for Sale', path: '/homes-for-sale', sublinks: [
+      { name: 'Single Wide Homes', path: '/single-wide-mobile-homes' },
+      { name: 'Double Wide Homes', path: '/double-wide-mobile-homes' },
+      { name: 'Modular Homes', path: '/modular-homes-for-sale' },
+      { name: 'Manufacturers', path: '/manufactured-home-manufacturers' },
     ]},
     { name: 'What We Offer', path: '/what-we-offer', sublinks: [
-      { name: 'Current Deals & Specials', path: '/deals' },
-      { name: 'Financing Options', path: '/financing' },
-      { name: 'Land & Home Packages', path: '/land-home' },
-      { name: 'LA Restore Program', path: '/la-restore' },
-      { name: 'Insurance Assistance', path: '/insurance' },
-      { name: 'Service Department', path: '/services' },
+      { name: 'Current Deals & Specials', path: '/mobile-home-deals' },
+      { name: 'Financing Options', path: '/mobile-home-financing' },
+      { name: 'Land & Home Packages', path: '/land-and-home-packages' },
+      { name: 'LA Restore Program', path: '/la-restore-grants' },
+      { name: 'Insurance Assistance', path: '/mobile-home-insurance' },
+      { name: 'Service Department', path: '/warranty-service-department' },
     ]},
-    { name: 'How It Works', path: '/how-it-works' },
-    { name: 'Parts Store', path: '/parts' },
-    { name: 'About', path: '/about' },
+    { name: 'Buying Process', path: '/buying-process' },
+    { name: 'Parts Store', path: '/mobile-home-parts-store' },
+    { name: 'About', path: '/about-gulf-south-homes' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -223,15 +223,15 @@ const Navbar: React.FC = () => {
               ))}
               
               {/* Contact Us Link */}
-              <Link 
-                to="/contact"
+              <Link
+                to="/contact-gulf-south-homes"
                 onClick={scrollToTop}
                 className={`relative px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:text-[#D32F2F] transition-colors ${
-                  isActive('/contact') ? 'text-[#D32F2F]' : ''
+                  isActive('/contact-gulf-south-homes') ? 'text-[#D32F2F]' : ''
                 }`}
               >
                 Contact Us
-                {isActive('/contact') && (
+                {isActive('/contact-gulf-south-homes') && (
                   <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#D32F2F]"></span>
                 )}
               </Link>
@@ -438,24 +438,24 @@ const Navbar: React.FC = () => {
             ))}
 
             <Link
-              to="/contact"
+              to="/contact-gulf-south-homes"
               onClick={() => {
                 closeMenu();
                 scrollToTop();
               }}
               className={`mobile-menu-item flex items-center justify-between px-4 py-3.5 rounded-lg text-base font-semibold min-h-[44px] relative transition-colors ${
-                isActive('/contact')
+                isActive('/contact-gulf-south-homes')
                   ? 'bg-blue-50'
                   : 'hover:bg-stone-50'
               } ${isOpen ? 'animate-fade-in-up' : ''}`}
               style={{
-                color: isActive('/contact') ? 'var(--color-accent, #4A90E2)' : 'var(--color-primary, #1E3A5F)',
+                color: isActive('/contact-gulf-south-homes') ? 'var(--color-accent, #4A90E2)' : 'var(--color-primary, #1E3A5F)',
                 animationDelay: `${navLinks.length * 50}ms`
               }}
             >
               Contact Us
-              <ChevronRight size={18} style={{ color: isActive('/contact') ? 'var(--color-accent, #4A90E2)' : 'var(--color-primary-light, #2D5380)' }} aria-hidden="true" />
-              {isActive('/contact') && (
+              <ChevronRight size={18} style={{ color: isActive('/contact-gulf-south-homes') ? 'var(--color-accent, #4A90E2)' : 'var(--color-primary-light, #2D5380)' }} aria-hidden="true" />
+              {isActive('/contact-gulf-south-homes') && (
                 <span className="absolute bottom-0 left-4 right-4 h-0.5" style={{ backgroundColor: 'var(--color-accent, #4A90E2)' }}></span>
               )}
             </Link>
@@ -463,7 +463,7 @@ const Navbar: React.FC = () => {
 
           <div className="mt-auto pt-6 border-t border-stone-200 space-y-4">
             <Button
-              to="/catalog"
+              to="/homes-for-sale"
               fullWidth
               onClick={() => {
                 closeMenu();

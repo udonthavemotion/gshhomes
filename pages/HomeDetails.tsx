@@ -7,6 +7,8 @@ import ThumbnailGrid from '../components/ThumbnailGrid';
 import GoHighLevelForm from '../components/GoHighLevelForm';
 import { useLightbox } from '../hooks/useLightbox';
 import { Bed, Bath, Maximize, CheckCircle, ArrowLeft } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
+import { getHomeDetailSEO } from '../seo-config';
 
 const HomeDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -24,17 +26,26 @@ const HomeDetails: React.FC = () => {
     return (
       <div className="min-h-[50vh] flex flex-col items-center justify-center">
         <h2 className="text-2xl font-bold text-stone-900 mb-4">Home Not Found</h2>
-        <Button to="/catalog">Back to Catalog</Button>
+        <Button to="/homes-for-sale">Back to Catalog</Button>
       </div>
     );
   }
 
+  const seoData = getHomeDetailSEO(home.name, home.type, home.manufacturer);
+
   return (
-    <div className="bg-white min-h-screen pb-20">
+    <>
+      <SEOHead
+        title={seoData.title}
+        description={seoData.description}
+        canonical={seoData.canonical}
+        ogImage={seoData.ogImage}
+      />
+      <div className="bg-white min-h-screen pb-20">
       {/* Breadcrumb / Back */}
       <div className="bg-stone-100 py-4 border-b border-stone-200">
         <div className="container mx-auto px-4">
-           <Link to="/catalog" className="text-stone-500 hover:text-stone-900 flex items-center text-sm">
+           <Link to="/homes-for-sale" className="text-stone-500 hover:text-stone-900 flex items-center text-sm">
              <ArrowLeft size={16} className="mr-1" /> Back to Catalog
            </Link>
         </div>
@@ -159,6 +170,7 @@ const HomeDetails: React.FC = () => {
         />
       )}
     </div>
+    </>
   );
 };
 

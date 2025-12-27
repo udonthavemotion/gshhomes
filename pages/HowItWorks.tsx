@@ -15,6 +15,8 @@ import {
   MapPin
 } from 'lucide-react';
 import { COMPANY_INFO } from '../constants';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 
 const HowItWorks: React.FC = () => {
   const steps = [
@@ -90,7 +92,14 @@ const HowItWorks: React.FC = () => {
   ];
 
   return (
-    <div className="bg-white min-h-screen">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.buyingProcess.title}
+        description={SEO_CONFIG.buyingProcess.description}
+        canonical={SEO_CONFIG.buyingProcess.canonical}
+        ogImage={SEO_CONFIG.buyingProcess.ogImage}
+      />
+      <div className="bg-white min-h-screen">
       {/* Hero Section */}
       <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
         {/* Background Image */}
@@ -258,11 +267,11 @@ const HowItWorks: React.FC = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button to="/catalog" size="lg">
+              <Button to="/homes-for-sale" size="lg">
                 Browse Homes
                 <ArrowRight size={18} className="ml-2" />
               </Button>
-              <Button to="/contact" variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-stone-900">
+              <Button to="/contact-gulf-south-homes" variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-stone-900">
                 Schedule a Visit
               </Button>
             </div>
@@ -290,7 +299,7 @@ const HowItWorks: React.FC = () => {
               </a>
               <span className="text-white/80">or</span>
               <Link
-                to="/contact"
+                to="/contact-gulf-south-homes"
                 className="flex items-center gap-3 px-8 py-4 bg-stone-900 text-white rounded-lg font-bold text-lg hover:bg-stone-800 transition-colors shadow-lg"
               >
                 <MapPin size={20} />
@@ -301,6 +310,7 @@ const HowItWorks: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

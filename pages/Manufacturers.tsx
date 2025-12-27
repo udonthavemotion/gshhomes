@@ -4,6 +4,8 @@ import { MANUFACTURERS } from '../data/manufacturers';
 import { COMPANY_INFO } from '../constants';
 import Button from '../components/Button';
 import { ArrowRight, MapPin, Phone, Clock, Building, ExternalLink } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 
 const Manufacturers: React.FC = () => {
   // Scroll animations
@@ -31,7 +33,14 @@ const Manufacturers: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-stone-50 min-h-screen">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.manufacturers.title}
+        description={SEO_CONFIG.manufacturers.description}
+        canonical={SEO_CONFIG.manufacturers.canonical}
+        ogImage={SEO_CONFIG.manufacturers.ogImage}
+      />
+      <div className="bg-stone-50 min-h-screen">
       {/* Hero Section - Universal Responsive Pattern */}
       <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
         {/* Background Video */}
@@ -259,7 +268,7 @@ const Manufacturers: React.FC = () => {
 
               {/* CTA */}
               <div className="mt-10 text-center">
-                <Button variant="primary" to="/contact" size="lg">
+                <Button variant="primary" to="/contact-gulf-south-homes" size="lg">
                   Get In Touch
                   <ArrowRight size={18} className="ml-2" />
                 </Button>
@@ -322,6 +331,7 @@ const Manufacturers: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

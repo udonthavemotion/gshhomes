@@ -105,15 +105,15 @@ const HomeCard: React.FC<HomeCardProps> = ({ home }) => {
           {/* CTA Button */}
           <Link
             to={
-              home.type === 'Double Wide' 
-                ? `/double-wide/${home.id}` 
+              home.type === 'Double Wide'
+                ? `/double-wide-mobile-homes/${home.id}`
                 : home.type === 'Modular'
-                ? `/modular-homes/${home.id}`
-                : `/catalog/${home.id}`
+                ? `/modular-homes-for-sale/${home.id}`
+                : `/homes-for-sale/${home.id}`
             }
             className="flex items-center justify-center gap-2 w-full py-3 bg-stone-900 text-white rounded-md text-sm font-semibold transition-all duration-300 hover:bg-primary group/btn"
           >
-            View Details 
+            View Details
             <ArrowRight size={16} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
           </Link>
         </div>

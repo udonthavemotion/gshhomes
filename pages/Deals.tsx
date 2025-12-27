@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { DollarSign, Truck, ShieldCheck, Gift, MapPin, Phone, Award } from 'lucide-react';
 import Button from '../components/Button';
 import { COMPANY_INFO } from '../constants';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 
 const Deals: React.FC = () => {
 
@@ -30,7 +32,14 @@ const Deals: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.deals.title}
+        description={SEO_CONFIG.deals.description}
+        canonical={SEO_CONFIG.deals.canonical}
+        ogImage={SEO_CONFIG.deals.ogImage}
+      />
+      <div className="flex flex-col min-h-screen overflow-hidden">
       {/* Hero Section - Universal Responsive Pattern */}
       <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
         {/* Background Video */}
@@ -118,7 +127,7 @@ const Deals: React.FC = () => {
                   <span>Limited time offer</span>
                 </li>
               </ul>
-              <Button to="/contact" fullWidth>
+              <Button to="/contact-gulf-south-homes" fullWidth>
                 Inquire Now
               </Button>
             </div>
@@ -147,7 +156,7 @@ const Deals: React.FC = () => {
                   <span>In-stock Franklin models only</span>
                 </li>
               </ul>
-              <Button to="/contact" fullWidth>
+              <Button to="/contact-gulf-south-homes" fullWidth>
                 View Franklin Homes
               </Button>
             </div>
@@ -176,7 +185,7 @@ const Deals: React.FC = () => {
                   <span>Experienced grant team</span>
                 </li>
               </ul>
-              <Button to="/contact" fullWidth>
+              <Button to="/contact-gulf-south-homes" fullWidth>
                 Learn More
               </Button>
             </div>
@@ -249,10 +258,10 @@ const Deals: React.FC = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button to="/land-home" size="lg">
+                <Button to="/land-and-home-packages" size="lg">
                   View Land & Home Options
                 </Button>
-                <Button to="/contact" variant="outline" size="lg">
+                <Button to="/contact-gulf-south-homes" variant="outline" size="lg">
                   Schedule Consultation
                 </Button>
               </div>
@@ -282,7 +291,7 @@ const Deals: React.FC = () => {
               </a>
               <Button
                 variant="outline"
-                to="/contact"
+                to="/contact-gulf-south-homes"
                 size="lg"
                 className="border-white text-white hover:bg-white hover:text-stone-900"
               >
@@ -297,6 +306,7 @@ const Deals: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

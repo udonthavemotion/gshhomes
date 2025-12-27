@@ -7,6 +7,103 @@
       "destination": "/index.html"
     }
   ],
+  "redirects": [
+    {
+      "source": "/catalog/:id",
+      "destination": "/homes-for-sale/:id",
+      "permanent": true
+    },
+    {
+      "source": "/catalog",
+      "destination": "/homes-for-sale",
+      "permanent": true
+    },
+    {
+      "source": "/single-wide",
+      "destination": "/single-wide-mobile-homes",
+      "permanent": true
+    },
+    {
+      "source": "/double-wide/:id",
+      "destination": "/double-wide-mobile-homes/:id",
+      "permanent": true
+    },
+    {
+      "source": "/double-wide",
+      "destination": "/double-wide-mobile-homes",
+      "permanent": true
+    },
+    {
+      "source": "/modular-homes/:id",
+      "destination": "/modular-homes-for-sale/:id",
+      "permanent": true
+    },
+    {
+      "source": "/modular-homes",
+      "destination": "/modular-homes-for-sale",
+      "permanent": true
+    },
+    {
+      "source": "/manufacturers",
+      "destination": "/manufactured-home-manufacturers",
+      "permanent": true
+    },
+    {
+      "source": "/deals",
+      "destination": "/mobile-home-deals",
+      "permanent": true
+    },
+    {
+      "source": "/financing",
+      "destination": "/mobile-home-financing",
+      "permanent": true
+    },
+    {
+      "source": "/land-home",
+      "destination": "/land-and-home-packages",
+      "permanent": true
+    },
+    {
+      "source": "/la-restore",
+      "destination": "/la-restore-grants",
+      "permanent": true
+    },
+    {
+      "source": "/insurance",
+      "destination": "/mobile-home-insurance",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/warranty-service-department",
+      "permanent": true
+    },
+    {
+      "source": "/how-it-works",
+      "destination": "/buying-process",
+      "permanent": true
+    },
+    {
+      "source": "/parts",
+      "destination": "/mobile-home-parts-store",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/about-gulf-south-homes",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact-gulf-south-homes",
+      "permanent": true
+    },
+    {
+      "source": "/:path*/",
+      "destination": "/:path*",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

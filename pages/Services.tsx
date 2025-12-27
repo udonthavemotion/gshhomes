@@ -1,10 +1,19 @@
 import React from 'react';
 import { Wrench, TreePine, Banknote, Check } from 'lucide-react';
 import Button from '../components/Button';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 
 const Services: React.FC = () => {
   return (
-    <div className="bg-stone-50 min-h-screen">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.services.title}
+        description={SEO_CONFIG.services.description}
+        canonical={SEO_CONFIG.services.canonical}
+        ogImage={SEO_CONFIG.services.ogImage}
+      />
+      <div className="bg-stone-50 min-h-screen">
       
       {/* Header */}
       <div className="bg-white border-b border-stone-200 py-16">
@@ -37,7 +46,7 @@ const Services: React.FC = () => {
                         </li>
                     ))}
                 </ul>
-                <Button variant="primary" to="/contact">Inquire About Land</Button>
+                <Button variant="primary" to="/contact-gulf-south-homes">Inquire About Land</Button>
             </div>
             <div className="order-1 md:order-2 h-80 bg-stone-200 rounded-2xl overflow-hidden shadow-lg">
                 <img src="/Modular Homes Page/Land and home packages/gulf-south-homes-LA-BELLE-MAISON-subdivision-map.jpg" alt="La Belle Maison Subdivision Map" className="w-full h-full object-cover" />
@@ -67,7 +76,7 @@ const Services: React.FC = () => {
                         <li>• Down Payment Sourcing</li>
                     </ul>
                 </div>
-                <Button variant="secondary" to="/contact">Get Pre-Approved</Button>
+                <Button variant="secondary" to="/contact-gulf-south-homes">Get Pre-Approved</Button>
             </div>
         </div>
 
@@ -89,7 +98,7 @@ const Services: React.FC = () => {
                         </li>
                     ))}
                 </ul>
-                <Button variant="outline" to="/contact">Schedule Service</Button>
+                <Button variant="outline" to="/contact-gulf-south-homes">Schedule Service</Button>
             </div>
             <div className="order-1 md:order-2 h-80 bg-stone-200 rounded-2xl overflow-hidden shadow-lg">
                 <img src="/Modular Homes Page/Financing made simple/gulf-south-homes-gallery-08-1920w.webp" alt="Parts & Service Department" className="w-full h-full object-cover" />
@@ -98,6 +107,7 @@ const Services: React.FC = () => {
 
       </div>
     </div>
+    </>
   );
 };
 

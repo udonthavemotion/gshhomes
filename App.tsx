@@ -1,5 +1,6 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './hooks/useTheme.tsx';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -26,6 +27,7 @@ import Manufacturers from './pages/Manufacturers';
 import HowItWorks from './pages/HowItWorks';
 import WhatWeOffer from './pages/WhatWeOffer';
 import Financing from './pages/Financing';
+import Privacy from './pages/Privacy';
 
 // TikTok Icon Component (lucide-react doesn't have TikTok)
 const TikTokIcon: React.FC<{ size?: number; className?: string; style?: React.CSSProperties }> = ({ 
@@ -54,8 +56,9 @@ const ScrollToTop = () => {
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider>
-      <Router>
+    <HelmetProvider>
+      <ThemeProvider>
+        <Router>
         <ScrollToTop />
         {/* Top Bar - White Background with Brand Colors */}
         <div 
@@ -172,31 +175,33 @@ const App: React.FC = () => {
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/catalog" element={<Catalog />} />
-              <Route path="/catalog/:id" element={<HomeDetails />} />
-              <Route path="/single-wide" element={<SingleWide />} />
-              <Route path="/double-wide" element={<DoubleWide />} />
-              <Route path="/double-wide/:id" element={<DoubleWideDetail />} />
-              <Route path="/modular-homes" element={<Modular />} />
-              <Route path="/modular-homes/:id" element={<ModularDetail />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/parts" element={<Parts />} />
-              <Route path="/financing" element={<Financing />} />
-              <Route path="/land-home" element={<LandHome />} />
-              <Route path="/deals" element={<Deals />} />
-              <Route path="/la-restore" element={<LARestore />} />
-              <Route path="/insurance" element={<Insurance />} />
-              <Route path="/manufacturers" element={<Manufacturers />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/how-it-works" element={<HowItWorks />} />
+              <Route path="/homes-for-sale" element={<Catalog />} />
+              <Route path="/homes-for-sale/:id" element={<HomeDetails />} />
+              <Route path="/single-wide-mobile-homes" element={<SingleWide />} />
+              <Route path="/double-wide-mobile-homes" element={<DoubleWide />} />
+              <Route path="/double-wide-mobile-homes/:id" element={<DoubleWideDetail />} />
+              <Route path="/modular-homes-for-sale" element={<Modular />} />
+              <Route path="/modular-homes-for-sale/:id" element={<ModularDetail />} />
+              <Route path="/about-gulf-south-homes" element={<About />} />
+              <Route path="/warranty-service-department" element={<Services />} />
+              <Route path="/mobile-home-parts-store" element={<Parts />} />
+              <Route path="/mobile-home-financing" element={<Financing />} />
+              <Route path="/land-and-home-packages" element={<LandHome />} />
+              <Route path="/mobile-home-deals" element={<Deals />} />
+              <Route path="/la-restore-grants" element={<LARestore />} />
+              <Route path="/mobile-home-insurance" element={<Insurance />} />
+              <Route path="/manufactured-home-manufacturers" element={<Manufacturers />} />
+              <Route path="/contact-gulf-south-homes" element={<Contact />} />
+              <Route path="/buying-process" element={<HowItWorks />} />
               <Route path="/what-we-offer" element={<WhatWeOffer />} />
+              <Route path="/privacy-policy" element={<Privacy />} />
             </Routes>
           </main>
           <Footer />
         </div>
       </Router>
-    </ThemeProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   );
 };
 

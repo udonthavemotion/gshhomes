@@ -3,6 +3,8 @@ import { COMPANY_INFO, MOCK_HOMES, TESTIMONIALS } from '../constants';
 import Button from '../components/Button';
 import HomeCard from '../components/HomeCard';
 import ManufacturerLogoScroller from '../components/ManufacturerLogoScroller';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 import {
   Award,
   Truck,
@@ -86,7 +88,14 @@ const Home: React.FC = () => {
 
 
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.home.title}
+        description={SEO_CONFIG.home.description}
+        canonical={SEO_CONFIG.home.canonical}
+        ogImage={SEO_CONFIG.home.ogImage}
+      />
+      <div className="flex flex-col min-h-screen overflow-hidden">
 
       {/* 1. Hero Banner - Gulf South Homes Branded */}
       <section ref={heroRef} className="relative w-full h-screen sm:min-h-[90vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900 safe-area-inset-top">
@@ -131,7 +140,7 @@ const Home: React.FC = () => {
           <div className="hero-cta-entrance flex flex-col sm:flex-row gap-4 justify-center mt-6 md:mt-8 lg:mt-10 mb-4 md:mb-4 lg:mb-6 px-4">
             <Button
               variant="primary"
-              to="/catalog"
+              to="/homes-for-sale"
               size="lg"
               className="shadow-2xl shadow-primary/50 bg-primary/95 backdrop-blur-sm hover:bg-primary hover:scale-105 active:scale-95 transition-transform duration-300 min-h-[52px] sm:min-h-[56px] px-8 sm:px-8 text-base sm:text-lg touch-manipulation"
             >
@@ -140,7 +149,7 @@ const Home: React.FC = () => {
             </Button>
 
             <Button
-              to="/contact"
+              to="/contact-gulf-south-homes"
               size="lg"
               className="shadow-2xl shadow-blue-600/50 bg-blue-600 hover:bg-blue-700 hover:scale-105 active:scale-95 transition-transform duration-300 min-h-[52px] sm:min-h-[56px] px-8 sm:px-8 text-base sm:text-lg touch-manipulation"
             >
@@ -271,7 +280,7 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-12 gap-4 lg:gap-6 max-w-6xl mx-auto">
             {/* Large Feature Card - Single Wide */}
             <Link
-              to="/single-wide"
+              to="/single-wide-mobile-homes"
               className="bento-card col-span-12 md:col-span-8 row-span-2 relative min-h-[400px] md:min-h-[500px] group"
             >
               <img 
@@ -292,7 +301,7 @@ const Home: React.FC = () => {
 
             {/* Double Wide */}
             <Link
-              to="/double-wide"
+              to="/double-wide-mobile-homes"
               className="bento-card col-span-12 md:col-span-4 relative min-h-[240px] group"
             >
               <img 
@@ -313,7 +322,7 @@ const Home: React.FC = () => {
 
             {/* Modular */}
             <Link
-              to="/modular-homes"
+              to="/modular-homes-for-sale"
               className="bento-card col-span-12 md:col-span-4 relative min-h-[240px] group"
             >
               <img 
@@ -334,7 +343,7 @@ const Home: React.FC = () => {
 
             {/* CTA Card */}
             <Link
-              to="/catalog"
+              to="/homes-for-sale"
               className="bento-card col-span-12 md:col-span-6 relative min-h-[200px] bg-gradient-to-br from-primary via-primary-dark to-stone-900 group flex items-center justify-center overflow-hidden"
             >
               {/* Background Video */}
@@ -367,7 +376,7 @@ const Home: React.FC = () => {
 
             {/* Manufacturers */}
             <Link
-              to="/manufacturers"
+              to="/manufactured-home-manufacturers"
               className="bento-card col-span-12 md:col-span-6 relative min-h-[200px] bg-stone-100 group flex items-center overflow-hidden"
             >
               <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-20">
@@ -567,7 +576,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="mt-10 text-center scroll-animate">
-            <Button to="/catalog" size="lg">
+            <Button to="/homes-for-sale" size="lg">
               View All Homes
               <ArrowRight size={18} className="ml-2" />
             </Button>
@@ -596,7 +605,7 @@ const Home: React.FC = () => {
 
               {/* Image */}
               <div className="scroll-animate mb-8 px-4">
-                <Link to="/la-restore" className="block group">
+                <Link to="/la-restore-grants" className="block group">
                   <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                     <img
                       src="/assets/images/restore louisiana page/Restore Louisiana Funding (1).jpg"
@@ -625,7 +634,7 @@ const Home: React.FC = () => {
                 {/* CTAs */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button
-                    to="/la-restore"
+                    to="/la-restore-grants"
                     variant="primary"
                     size="lg"
                     className="shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 bg-primary text-white"
@@ -648,7 +657,7 @@ const Home: React.FC = () => {
             <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
               {/* Left: Image */}
               <div className="scroll-animate">
-                <Link to="/la-restore" className="block group">
+                <Link to="/la-restore-grants" className="block group">
                   <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                     <img
                       src="/assets/images/restore louisiana page/Restore Louisiana Funding (1).jpg"
@@ -700,7 +709,7 @@ const Home: React.FC = () => {
                 {/* CTAs */}
                 <div className="flex flex-col xl:flex-row gap-4">
                   <Button
-                    to="/la-restore"
+                    to="/la-restore-grants"
                     variant="primary"
                     size="lg"
                     className="shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 bg-primary text-white"
@@ -773,7 +782,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="text-center scroll-animate">
-            <Button to="/services" variant="outline" size="lg">
+            <Button to="/mobile-home-deals" variant="outline" size="lg">
               View All Deals
               <ChevronRight size={18} className="ml-2" />
             </Button>
@@ -907,7 +916,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="text-center scroll-animate">
-            <Button to="/services" size="lg" className="shadow-md hover:shadow-lg transition-all duration-300">
+            <Button to="/buying-process" size="lg" className="shadow-md hover:shadow-lg transition-all duration-300">
               See Full Buying Process
               <ArrowRight size={18} className="ml-2" />
             </Button>
@@ -983,11 +992,11 @@ const Home: React.FC = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button to="/about" size="lg">
+              <Button to="/about-gulf-south-homes" size="lg">
                 About Us
                 <ArrowRight size={18} className="ml-2" />
               </Button>
-              <Button to="/about#team" variant="outline" size="lg">
+              <Button to="/about-gulf-south-homes#team" variant="outline" size="lg">
                 Meet the Team
                 <Users size={18} className="ml-2" />
               </Button>
@@ -1034,7 +1043,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="text-center scroll-animate">
-            <Button to="/parts" size="lg">
+            <Button to="/mobile-home-parts-store" size="lg">
               Visit Parts Store
               <ArrowRight size={18} className="ml-2" />
             </Button>
@@ -1096,6 +1105,7 @@ const Home: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

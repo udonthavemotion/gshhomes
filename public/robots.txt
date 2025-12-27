@@ -1,0 +1,20 @@
+# robots.txt for Gulf South Homes Inc.
+# Production: https://gulfsouthhomesinc.com
+
+User-agent: *
+Allow: /
+
+# Disallow admin/staging URLs (if applicable)
+Disallow: /admin
+Disallow: /_next/
+Disallow: /api/
+
+# Sitemaps
+Sitemap: https://gulfsouthhomesinc.com/sitemap.xml
+
+# Crawl-delay for specific bots (optional - prevents aggressive crawling)
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10

@@ -6,6 +6,8 @@ import ImageGallery from '../components/ImageGallery';
 import ThumbnailGrid from '../components/ThumbnailGrid';
 import { useLightbox } from '../hooks/useLightbox';
 import { Bed, Bath, Maximize, CheckCircle, ArrowLeft } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
+import { getDoubleWideDetailSEO } from '../seo-config';
 
 const DoubleWideDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -24,17 +26,26 @@ const DoubleWideDetail: React.FC = () => {
       <div className="min-h-[50vh] flex flex-col items-center justify-center">
         <h2 className="text-2xl font-bold text-stone-900 mb-4">Home Not Found</h2>
         <p className="text-stone-600 mb-4">The home model you're looking for doesn't exist.</p>
-        <Button to="/double-wide">Back to Double-Wide Homes</Button>
+        <Button to="/double-wide-mobile-homes">Back to Double-Wide Homes</Button>
       </div>
     );
   }
 
+  const seoData = getDoubleWideDetailSEO(home.name, home.manufacturer);
+
   return (
-    <div className="bg-white min-h-screen pb-20">
+    <>
+      <SEOHead
+        title={seoData.title}
+        description={seoData.description}
+        canonical={seoData.canonical}
+        ogImage={seoData.ogImage}
+      />
+      <div className="bg-white min-h-screen pb-20">
       {/* Breadcrumb / Back */}
       <div className="bg-stone-100 py-4 border-b border-stone-200">
         <div className="container mx-auto px-4">
-           <Link to="/double-wide" className="text-stone-500 hover:text-stone-900 flex items-center text-sm">
+           <Link to="/double-wide-mobile-homes" className="text-stone-500 hover:text-stone-900 flex items-center text-sm">
              <ArrowLeft size={16} className="mr-1" /> Back to Double-Wide Homes
            </Link>
         </div>
@@ -185,6 +196,7 @@ const DoubleWideDetail: React.FC = () => {
         />
       )}
     </div>
+    </>
   );
 };
 

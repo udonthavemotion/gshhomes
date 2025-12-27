@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { COMPANY_INFO } from '../constants';
 import { Shield, Users, Clock, Award, ChevronDown, Heart, MapPin, Phone, Star, Home as HomeIcon, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
 import Button from '../components/Button';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 
 interface TeamMember {
   name: string;
@@ -185,7 +187,14 @@ const About: React.FC = () => {
   };
 
   return (
-    <div className="bg-stone-50 min-h-screen">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.about.title}
+        description={SEO_CONFIG.about.description}
+        canonical={SEO_CONFIG.about.canonical}
+        ogImage={SEO_CONFIG.about.ogImage}
+      />
+      <div className="bg-stone-50 min-h-screen">
 
       {/* Hero Section - Universal Responsive Pattern */}
       <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
@@ -241,11 +250,11 @@ const About: React.FC = () => {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 mt-6 mb-8 justify-center">
-            <Button variant="primary" to="/catalog" className="px-8 py-4">
+            <Button variant="primary" to="/homes-for-sale" className="px-8 py-4">
               Browse Our Homes
               <ArrowRight size={20} className="ml-2" />
             </Button>
-            <Button variant="outline" to="/contact" className="px-8 py-4 border-white text-white hover:bg-white/10 hover:border-white">
+            <Button variant="outline" to="/contact-gulf-south-homes" className="px-8 py-4 border-white text-white hover:bg-white/10 hover:border-white">
               Schedule a Visit
             </Button>
           </div>
@@ -335,7 +344,7 @@ const About: React.FC = () => {
                 </div>
               </div>
 
-              <Button variant="primary" to="/contact" className="group shadow-lg hover:shadow-xl">
+              <Button variant="primary" to="/contact-gulf-south-homes" className="group shadow-lg hover:shadow-xl">
                 Visit Our Showroom
                 <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -656,7 +665,7 @@ const About: React.FC = () => {
           <div className="mt-16 text-center p-10 bg-gradient-to-br from-stone-50 to-white rounded-3xl border-2 border-stone-200">
             <p className="text-lg text-stone-700 mb-6 font-medium">Still have questions? We'd love to hear from you.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="primary" to="/contact" className="shadow-lg hover:shadow-xl">
+              <Button variant="primary" to="/contact-gulf-south-homes" className="shadow-lg hover:shadow-xl">
                 Get in Touch
                 <ArrowRight size={18} className="ml-2" />
               </Button>
@@ -684,13 +693,13 @@ const About: React.FC = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-5 justify-center">
-            <Button variant="white" to="/catalog" className="px-10 py-5 text-lg shadow-2xl hover:shadow-white/20">
+            <Button variant="white" to="/homes-for-sale" className="px-10 py-5 text-lg shadow-2xl hover:shadow-white/20">
               View Available Homes
               <ArrowRight size={20} className="ml-2" />
             </Button>
             <Button
               variant="outline"
-              to="/contact"
+              to="/contact-gulf-south-homes"
               className="px-10 py-5 text-lg border-2 border-white text-white hover:bg-white hover:text-primary shadow-xl"
             >
               Schedule a Visit
@@ -700,6 +709,7 @@ const About: React.FC = () => {
       </section>
 
     </div>
+    </>
   );
 };
 

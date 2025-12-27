@@ -2,10 +2,20 @@ import React from 'react';
 import { COMPANY_INFO } from '../constants';
 import Button from '../components/Button';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 
 const Contact: React.FC = () => {
+
   return (
-    <div className="bg-stone-50 min-h-screen">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.contact.title}
+        description={SEO_CONFIG.contact.description}
+        canonical={SEO_CONFIG.contact.canonical}
+        ogImage={SEO_CONFIG.contact.ogImage}
+      />
+      <div className="bg-stone-50 min-h-screen">
       {/* Hero Section - Universal Responsive Pattern */}
       <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
         {/* Background Video */}
@@ -142,6 +152,7 @@ const Contact: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

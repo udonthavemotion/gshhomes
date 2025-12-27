@@ -100,11 +100,11 @@ const Footer: React.FC = () => {
             <h4 className="text-white font-display font-bold text-base sm:text-lg mb-3 sm:mb-4 drop-shadow-lg">Explore</h4>
             <ul className="space-y-2 sm:space-y-2.5 lg:space-y-3">
               {[
-                { name: 'Our Homes', path: '/catalog' },
-                { name: 'Single-Wide', path: '/single-wide' },
-                { name: 'Double-Wide', path: '/double-wide' },
-                { name: 'Land & Home', path: '/land-home' },
-                { name: 'About Us', path: '/about' },
+                { name: 'Our Homes', path: '/homes-for-sale' },
+                { name: 'Single-Wide', path: '/single-wide-mobile-homes' },
+                { name: 'Double-Wide', path: '/double-wide-mobile-homes' },
+                { name: 'Land & Home', path: '/land-and-home-packages' },
+                { name: 'About Us', path: '/about-gulf-south-homes' },
               ].map((link) => (
                 <li key={link.path}>
                   <Link
@@ -125,9 +125,9 @@ const Footer: React.FC = () => {
             <h4 className="text-white font-display font-bold text-base sm:text-lg mb-3 sm:mb-4 drop-shadow-lg">Services</h4>
             <ul className="space-y-2 sm:space-y-2.5 lg:space-y-3">
               {[
-                { name: 'Financing', path: '/financing' },
-                { name: 'Parts & Service', path: '/services' },
-                { name: 'Contact Us', path: '/contact' },
+                { name: 'Financing', path: '/mobile-home-financing' },
+                { name: 'Parts & Service', path: '/warranty-service-department' },
+                { name: 'Contact Us', path: '/contact-gulf-south-homes' },
               ].map((link) => (
                 <li key={link.path}>
                   <Link
@@ -194,6 +194,14 @@ const Footer: React.FC = () => {
             © {new Date().getFullYear()} {COMPANY_INFO.name}. All rights reserved.
           </p>
           <div className="flex items-center gap-4 sm:gap-5 lg:gap-6 text-sm sm:text-base text-white/90 font-medium drop-shadow-md">
+            <Link
+              to="/privacy-policy"
+              onClick={scrollToTop}
+              className="hover:text-white transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <span className="text-white/50">•</span>
             <span>BBB Accredited</span>
             <span className="hidden sm:inline text-white/50">•</span>
             <span>LHMA Member</span>

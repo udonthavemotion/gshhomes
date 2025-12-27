@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Phone, MapPin, CheckCircle, Home, Map, FileText, Hammer, DollarSign } from 'lucide-react';
 import Button from '../components/Button';
 import { COMPANY_INFO } from '../constants';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 
 const LandHome: React.FC = () => {
   // Intersection Observer for scroll animations
@@ -71,7 +73,14 @@ const LandHome: React.FC = () => {
   ];
 
   return (
-    <div className="bg-stone-50 min-h-screen">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.landHome.title}
+        description={SEO_CONFIG.landHome.description}
+        canonical={SEO_CONFIG.landHome.canonical}
+        ogImage={SEO_CONFIG.landHome.ogImage}
+      />
+      <div className="bg-stone-50 min-h-screen">
       {/* Hero Section - Universal Responsive Pattern */}
       <section className="relative w-full min-h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
         {/* Background Video */}
@@ -115,7 +124,7 @@ const LandHome: React.FC = () => {
 
           {/* Heading - Gradient Text Effect - Mobile Optimized */}
           <h1 className="font-bold text-white leading-tight text-3xl sm:text-5xl md:text-6xl lg:text-7xl max-w-[900px] mx-auto break-words mb-4 sm:mb-6 px-2">
-            <span className="bg-gradient-to-r from-emerald-400 via-primary to-teal-400 bg-clip-text text-transparent drop-shadow-[0_2px_8px_rgba(16,185,129,0.5)]">
+            <span className="text-white">
               Land & Home Packages
             </span>
           </h1>
@@ -127,7 +136,7 @@ const LandHome: React.FC = () => {
 
           {/* Button Row - Enhanced Touch Targets */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 mb-8 justify-center px-2">
-            <Button variant="primary" to="/contact" className="px-8 py-4 min-h-[48px] text-base sm:text-lg">
+            <Button variant="primary" to="/contact-gulf-south-homes" className="px-8 py-4 min-h-[48px] text-base sm:text-lg">
               Start Your Project
             </Button>
             <a
@@ -248,7 +257,7 @@ const LandHome: React.FC = () => {
                 ))}
               </ul>
               <div className="px-2">
-                <Button variant="primary" to="/contact" size="lg" className="shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto min-h-[48px]">
+                <Button variant="primary" to="/contact-gulf-south-homes" size="lg" className="shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto min-h-[48px]">
                   Schedule a Site Visit
                 </Button>
               </div>
@@ -298,7 +307,7 @@ const LandHome: React.FC = () => {
               >
                 <Phone size={20} className="flex-shrink-0" /> <span>{COMPANY_INFO.phone}</span>
               </a>
-              <Button variant="secondary" to="/contact" size="lg" className="px-6 sm:px-8 py-4 min-h-[48px] shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 w-full sm:w-auto">
+              <Button variant="secondary" to="/contact-gulf-south-homes" size="lg" className="px-6 sm:px-8 py-4 min-h-[48px] shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 w-full sm:w-auto">
                 Request a Consultation
               </Button>
             </div>
@@ -311,6 +320,7 @@ const LandHome: React.FC = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

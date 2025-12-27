@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { Phone, CheckCircle, FileText, Home, AlertCircle, ExternalLink, ShieldCheck, MapPin } from 'lucide-react';
 import Button from '../components/Button';
 import { COMPANY_INFO } from '../constants';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 
 const LARestore: React.FC = () => {
   // Intersection Observer for scroll animations
@@ -29,7 +31,14 @@ const LARestore: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.laRestore.title}
+        description={SEO_CONFIG.laRestore.description}
+        canonical={SEO_CONFIG.laRestore.canonical}
+        ogImage={SEO_CONFIG.laRestore.ogImage}
+      />
+      <div className="flex flex-col min-h-screen overflow-hidden">
       {/* Hero Section with Video Background */}
       <section className="relative w-full min-h-[85vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900 pt-[calc(80px+env(safe-area-inset-top))] sm:pt-[calc(96px+env(safe-area-inset-top))]">
         {/* Background Video */}
@@ -59,7 +68,7 @@ const LARestore: React.FC = () => {
           {/* Headline */}
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6">
             Restore Louisiana Grant<br />
-            <span className="text-blue-300">Recipients Welcome</span>
+            <span className="text-white">Recipients Welcome</span>
           </h1>
 
           {/* Subheadline */}
@@ -77,7 +86,7 @@ const LARestore: React.FC = () => {
               Call {COMPANY_INFO.phone}
             </a>
             <Button
-              to="/contact"
+              to="/contact-gulf-south-homes"
               variant="outline"
               size="lg"
               className="bg-white/95 text-stone-900 hover:bg-white border-2 border-white"
@@ -104,7 +113,7 @@ const LARestore: React.FC = () => {
             Call Now
           </a>
           <Button
-            to="/contact"
+            to="/contact-gulf-south-homes"
             variant="outline"
             className="flex-1 border-2 border-primary text-primary font-bold py-3"
           >
@@ -356,7 +365,7 @@ const LARestore: React.FC = () => {
                   Call {COMPANY_INFO.phone}
                 </a>
                 <Button
-                  to="/contact"
+                  to="/contact-gulf-south-homes"
                   variant="outline"
                   size="lg"
                 >
@@ -371,6 +380,7 @@ const LARestore: React.FC = () => {
       {/* Add padding at bottom for mobile sticky CTA */}
       <div className="lg:hidden h-20"></div>
     </div>
+    </>
   );
 };
 

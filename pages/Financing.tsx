@@ -18,6 +18,8 @@ import Button from '../components/Button';
 import LogoScroller from '../components/LogoScroller';
 import { LENDERS } from '../data/lenders';
 import { COMPANY_INFO } from '../constants';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 
 interface FinancingOption {
   id: string;
@@ -89,7 +91,14 @@ const Financing: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-white min-h-screen">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.financing.title}
+        description={SEO_CONFIG.financing.description}
+        canonical={SEO_CONFIG.financing.canonical}
+        ogImage={SEO_CONFIG.financing.ogImage}
+      />
+      <div className="bg-white min-h-screen">
       {/* Hero Section with Video Background */}
       <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
         {/* Background Video */}
@@ -114,7 +123,7 @@ const Financing: React.FC = () => {
             Flexible Payment Solutions
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight">
-            Financing Made <span className="text-primary">Simple</span>
+            Financing Made <span className="text-white">Simple</span>
           </h1>
           <p className="text-lg sm:text-xl text-white/90 leading-relaxed mb-8 max-w-2xl mx-auto">
             We work with a wide network of trusted lenders to help make homeownership possible for more families, even if you've been turned down elsewhere.
@@ -423,12 +432,13 @@ const Financing: React.FC = () => {
               </a>
             </div>
             <p className="mt-8 text-white/70 text-sm">
-              Have questions? <Link to="/contact" className="underline hover:text-white">Contact our team</Link> for personalized assistance.
+              Have questions? <Link to="/contact-gulf-south-homes" className="underline hover:text-white">Contact our team</Link> for personalized assistance.
             </p>
           </div>
         </div>
       </section>
     </div>
+    </>
   );
 };
 

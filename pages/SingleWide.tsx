@@ -1,59 +1,50 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { HOMES } from '../data/homes';
+import React, { useState, useMemo } from 'react';
+import { UNIFIED_INVENTORY } from '../data/unified-inventory';
+import { useHomeFilters } from '../hooks/useHomeFilters';
 import { SlidersHorizontal, X, Phone, MapPin } from 'lucide-react';
 import Button from '../components/Button';
 import HomeCard from '../components/HomeCard';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 
 const SingleWide: React.FC = () => {
-  const [searchParams] = useSearchParams();
-  const manufacturerParam = searchParams.get('manufacturer');
-
-  // Filter state
-  const [selectedBeds, setSelectedBeds] = useState<string>('All');
-  const [selectedBaths, setSelectedBaths] = useState<string>('All');
-  const [selectedManuf, setSelectedManuf] = useState<string>(manufacturerParam || 'All');
   const [showFilters, setShowFilters] = useState(false);
 
-  // Update manufacturer filter when URL param changes
-  useEffect(() => {
-    if (manufacturerParam) {
-      setSelectedManuf(manufacturerParam);
-    }
-  }, [manufacturerParam]);
+  // Use unified filtering with default type='Single Wide'
+  const { filteredHomes, filters, setFilter, clearFilters, activeFilterCount } = useHomeFilters(
+    UNIFIED_INVENTORY,
+    { type: 'Single Wide' }
+  );
 
-  // Get only single-wide homes
-  const singleWideHomes = HOMES.filter(h => h.type === 'Single Wide');
+  // Get all single-wide homes for filter options
+  const singleWideHomes = useMemo(
+    () => UNIFIED_INVENTORY.filter(h => h.type === 'Single Wide'),
+    []
+  );
 
-  // Extract unique filter values
-  const bedOptions = ['All', ...Array.from(new Set(singleWideHomes.map(h => h.beds))).sort()];
-  const bathOptions = ['All', ...Array.from(new Set(singleWideHomes.map(h => h.baths))).sort()];
-  const manufacturers = ['All', ...Array.from(new Set(singleWideHomes.map(h => h.manufacturer)))];
-
-  // Filter homes
-  const filteredHomes = useMemo(() => {
-    return singleWideHomes.filter(home => {
-      const matchBeds = selectedBeds === 'All' || home.beds === Number(selectedBeds);
-      const matchBaths = selectedBaths === 'All' || home.baths === Number(selectedBaths);
-      const matchManuf = selectedManuf === 'All' || home.manufacturer === selectedManuf;
-
-      return matchBeds && matchBaths && matchManuf;
-    });
-  }, [selectedBeds, selectedBaths, selectedManuf, singleWideHomes]);
-
-  const activeFiltersCount =
-    (selectedBeds !== 'All' ? 1 : 0) +
-    (selectedBaths !== 'All' ? 1 : 0) +
-    (selectedManuf !== 'All' ? 1 : 0);
-
-  const clearFilters = () => {
-    setSelectedBeds('All');
-    setSelectedBaths('All');
-    setSelectedManuf('All');
-  };
+  // Extract unique filter values from single-wide homes only
+  const bedOptions = useMemo(
+    () => ['all', ...Array.from(new Set(singleWideHomes.map(h => h.beds))).sort()],
+    [singleWideHomes]
+  );
+  const bathOptions = useMemo(
+    () => ['all', ...Array.from(new Set(singleWideHomes.map(h => h.baths))).sort()],
+    [singleWideHomes]
+  );
+  const manufacturers = useMemo(
+    () => ['all', ...Array.from(new Set(singleWideHomes.map(h => h.manufacturer)))],
+    [singleWideHomes]
+  );
 
   return (
-    <div className="bg-stone-50 min-h-screen">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.singleWide.title}
+        description={SEO_CONFIG.singleWide.description}
+        canonical={SEO_CONFIG.singleWide.canonical}
+        ogImage={SEO_CONFIG.singleWide.ogImage}
+      />
+      <div className="bg-stone-50 min-h-screen">
 
       {/* Hero Section - Universal Responsive Pattern */}
       <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
@@ -117,27 +108,27 @@ const SingleWide: React.FC = () => {
             <h2 className="text-2xl font-bold text-stone-900">Available Models</h2>
             <p className="text-stone-600 mt-1">Browsing {filteredHomes.length} of {singleWideHomes.length} homes</p>
           </div>
-          
+
           <div className="flex items-center gap-3">
-            {activeFiltersCount > 0 && (
-              <button 
-                onClick={clearFilters}
+            {activeFilterCount > 0 && (
+              <button
+                onClick={() => clearFilters({ type: 'Single Wide' })}
                 className="text-sm text-stone-500 hover:text-stone-700 underline"
                 aria-label="Clear all active filters"
               >
                 Clear filters
               </button>
             )}
-            <button 
+            <button
               className="flex items-center gap-2 px-4 py-2.5 bg-white border border-stone-300 rounded-lg text-stone-700 hover:bg-stone-50 hover:border-stone-400 transition-colors shadow-sm"
               onClick={() => setShowFilters(true)}
-              aria-label={`Open filters${activeFiltersCount > 0 ? ` (${activeFiltersCount} active)` : ''}`}
+              aria-label={`Open filters${activeFilterCount > 0 ? ` (${activeFilterCount} active)` : ''}`}
             >
               <SlidersHorizontal size={18} aria-hidden="true" />
               <span>Filters</span>
-              {activeFiltersCount > 0 && (
-                <span className="bg-primary text-white text-xs font-bold px-2 py-0.5 rounded-full" aria-label={`${activeFiltersCount} active filter${activeFiltersCount !== 1 ? 's' : ''}`}>
-                  {activeFiltersCount}
+              {activeFilterCount > 0 && (
+                <span className="bg-primary text-white text-xs font-bold px-2 py-0.5 rounded-full" aria-label={`${activeFilterCount} active filter${activeFilterCount !== 1 ? 's' : ''}`}>
+                  {activeFilterCount}
                 </span>
               )}
             </button>
@@ -145,28 +136,28 @@ const SingleWide: React.FC = () => {
         </div>
 
         {/* Active Filter Pills */}
-        {activeFiltersCount > 0 && (
+        {activeFilterCount > 0 && (
           <div className="flex flex-wrap gap-2 mb-6">
-            {selectedBeds !== 'All' && (
+            {filters.beds && filters.beds !== 'all' && (
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full">
-                {selectedBeds} Bed{selectedBeds !== '1' ? 's' : ''}
-                <button onClick={() => setSelectedBeds('All')} className="hover:bg-primary/20 rounded-full p-0.5">
+                {filters.beds} Bed{filters.beds !== 1 ? 's' : ''}
+                <button onClick={() => setFilter('beds', 'all')} className="hover:bg-primary/20 rounded-full p-0.5">
                   <X size={14} />
                 </button>
               </span>
             )}
-            {selectedBaths !== 'All' && (
+            {filters.baths && filters.baths !== 'all' && (
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full">
-                {selectedBaths} Bath{selectedBaths !== '1' ? 's' : ''}
-                <button onClick={() => setSelectedBaths('All')} className="hover:bg-primary/20 rounded-full p-0.5">
+                {filters.baths} Bath{filters.baths !== 1 ? 's' : ''}
+                <button onClick={() => setFilter('baths', 'all')} className="hover:bg-primary/20 rounded-full p-0.5">
                   <X size={14} />
                 </button>
               </span>
             )}
-            {selectedManuf !== 'All' && (
+            {filters.manufacturer && filters.manufacturer !== 'all' && (
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full">
-                {selectedManuf}
-                <button onClick={() => setSelectedManuf('All')} className="hover:bg-primary/20 rounded-full p-0.5">
+                {filters.manufacturer}
+                <button onClick={() => setFilter('manufacturer', 'all')} className="hover:bg-primary/20 rounded-full p-0.5">
                   <X size={14} />
                 </button>
               </span>
@@ -184,9 +175,10 @@ const SingleWide: React.FC = () => {
         ) : (
           <div className="text-center py-20 bg-white rounded-xl border border-stone-200 border-dashed">
             <p className="text-stone-500 text-lg">No homes found matching your criteria.</p>
-            <button 
-              onClick={clearFilters}
+            <button
+              onClick={() => clearFilters({ type: 'Single Wide' })}
               className="mt-4 text-primary font-medium hover:underline"
+              aria-label="Clear all filters"
             >
               Clear Filters
             </button>
@@ -211,7 +203,7 @@ const SingleWide: React.FC = () => {
             >
               <Phone size={20} /> (985) 876-0222
             </a>
-            <Button variant="secondary" to="/contact">
+            <Button variant="secondary" to="/contact-gulf-south-homes">
               Schedule a Visit
             </Button>
           </div>
@@ -259,16 +251,16 @@ const SingleWide: React.FC = () => {
               <div className="space-y-3" role="radiogroup" aria-label="Filter by number of bedrooms">
                 {bedOptions.map(beds => (
                   <label key={beds} className="flex items-center gap-3 cursor-pointer group">
-                    <input 
-                      type="radio" 
-                      name="beds" 
-                      checked={selectedBeds === String(beds)}
-                      onChange={() => setSelectedBeds(String(beds))}
+                    <input
+                      type="radio"
+                      name="beds"
+                      checked={filters.beds === beds}
+                      onChange={() => setFilter('beds', beds)}
                       className="text-primary focus:ring-primary h-5 w-5 border-stone-300"
-                      aria-label={`Filter by ${beds === 'All' ? 'any number of' : beds} bedroom${beds !== '1' && beds !== 'All' ? 's' : ''}`}
+                      aria-label={`Filter by ${beds === 'all' ? 'any number of' : beds} bedroom${beds !== 1 && beds !== 'all' ? 's' : ''}`}
                     />
-                    <span className={`${selectedBeds === String(beds) ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
-                      {beds === 'All' ? 'Any' : `${beds} Bed${beds !== '1' ? 's' : ''}`}
+                    <span className={`${filters.beds === beds ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
+                      {beds === 'all' ? 'Any' : `${beds} Bed${beds !== 1 ? 's' : ''}`}
                     </span>
                   </label>
                 ))}
@@ -281,16 +273,16 @@ const SingleWide: React.FC = () => {
               <div className="space-y-3" role="radiogroup" aria-label="Filter by number of bathrooms">
                 {bathOptions.map(baths => (
                   <label key={baths} className="flex items-center gap-3 cursor-pointer group">
-                    <input 
-                      type="radio" 
-                      name="baths" 
-                      checked={selectedBaths === String(baths)}
-                      onChange={() => setSelectedBaths(String(baths))}
+                    <input
+                      type="radio"
+                      name="baths"
+                      checked={filters.baths === baths}
+                      onChange={() => setFilter('baths', baths)}
                       className="text-primary focus:ring-primary h-5 w-5 border-stone-300"
-                      aria-label={`Filter by ${baths === 'All' ? 'any number of' : baths} bathroom${baths !== '1' && baths !== 'All' ? 's' : ''}`}
+                      aria-label={`Filter by ${baths === 'all' ? 'any number of' : baths} bathroom${baths !== 1 && baths !== 'all' ? 's' : ''}`}
                     />
-                    <span className={`${selectedBaths === String(baths) ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
-                      {baths === 'All' ? 'Any' : `${baths} Bath${baths !== '1' ? 's' : ''}`}
+                    <span className={`${filters.baths === baths ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
+                      {baths === 'all' ? 'Any' : `${baths} Bath${baths !== 1 ? 's' : ''}`}
                     </span>
                   </label>
                 ))}
@@ -306,13 +298,13 @@ const SingleWide: React.FC = () => {
                     <input
                       type="radio"
                       name="manufacturer"
-                      checked={selectedManuf === m}
-                      onChange={() => setSelectedManuf(m)}
+                      checked={filters.manufacturer === m}
+                      onChange={() => setFilter('manufacturer', m)}
                       className="text-primary focus:ring-primary h-5 w-5 border-stone-300"
-                      aria-label={`Filter by ${m === 'All' ? 'all brands' : m} manufacturer`}
+                      aria-label={`Filter by ${m === 'all' ? 'all brands' : m} manufacturer`}
                     />
-                    <span className={`${selectedManuf === m ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
-                      {m === 'All' ? 'All Brands' : m}
+                    <span className={`${filters.manufacturer === m ? 'text-primary font-medium' : 'text-stone-600 group-hover:text-stone-900'}`}>
+                      {m === 'all' ? 'All Brands' : m}
                     </span>
                   </label>
                 ))}
@@ -322,16 +314,16 @@ const SingleWide: React.FC = () => {
 
           {/* Drawer Footer */}
           <div className="p-5 border-t border-stone-200 space-y-3">
-            <button 
+            <button
               onClick={() => setShowFilters(false)}
               className="w-full py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors"
               aria-label={`View ${filteredHomes.length} filtered homes`}
             >
               View {filteredHomes.length} Homes
             </button>
-            {activeFiltersCount > 0 && (
-              <button 
-                onClick={clearFilters}
+            {activeFilterCount > 0 && (
+              <button
+                onClick={() => clearFilters({ type: 'Single Wide' })}
                 className="w-full py-3 text-stone-600 font-medium hover:text-stone-900 transition-colors"
                 aria-label="Clear all filters"
               >
@@ -342,6 +334,7 @@ const SingleWide: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

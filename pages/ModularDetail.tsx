@@ -7,6 +7,8 @@ import ThumbnailGrid from '../components/ThumbnailGrid';
 import { useLightbox } from '../hooks/useLightbox';
 import { Bed, Bath, Maximize, CheckCircle, ArrowLeft, Sparkles, Settings } from 'lucide-react';
 import { COMPANY_INFO } from '../constants';
+import SEOHead from '../components/SEOHead';
+import { getModularDetailSEO } from '../seo-config';
 
 const ModularDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -25,17 +27,26 @@ const ModularDetail: React.FC = () => {
       <div className="min-h-[50vh] flex flex-col items-center justify-center">
         <h2 className="text-2xl font-bold text-stone-900 mb-4">Home Not Found</h2>
         <p className="text-stone-600 mb-4">The modular home model you're looking for doesn't exist.</p>
-        <Button to="/modular-homes">Back to Modular Homes</Button>
+        <Button to="/modular-homes-for-sale">Back to Modular Homes</Button>
       </div>
     );
   }
 
+  const seoData = getModularDetailSEO(home.name, home.manufacturer === 'BG' ? 'BG Manufacturing' : home.manufacturer);
+
   return (
-    <div className="bg-white min-h-screen pb-20">
+    <>
+      <SEOHead
+        title={seoData.title}
+        description={seoData.description}
+        canonical={seoData.canonical}
+        ogImage={seoData.ogImage}
+      />
+      <div className="bg-white min-h-screen pb-20">
       {/* Breadcrumb / Back */}
       <div className="bg-stone-100 py-4 border-b border-stone-200">
         <div className="container mx-auto px-4">
-           <Link to="/modular-homes" className="text-stone-500 hover:text-stone-900 flex items-center text-sm">
+           <Link to="/modular-homes-for-sale" className="text-stone-500 hover:text-stone-900 flex items-center text-sm">
              <ArrowLeft size={16} className="mr-1" /> Back to Modular Homes
            </Link>
         </div>
@@ -232,6 +243,7 @@ const ModularDetail: React.FC = () => {
         />
       )}
     </div>
+    </>
   );
 };
 

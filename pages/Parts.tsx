@@ -17,6 +17,8 @@ import {
 } from 'lucide-react';
 import Button from '../components/Button';
 import { COMPANY_INFO } from '../constants';
+import SEOHead from '../components/SEOHead';
+import { SEO_CONFIG } from '../seo-config';
 
 const Parts: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -114,7 +116,14 @@ const Parts: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <>
+      <SEOHead
+        title={SEO_CONFIG.parts.title}
+        description={SEO_CONFIG.parts.description}
+        canonical={SEO_CONFIG.parts.canonical}
+        ogImage={SEO_CONFIG.parts.ogImage}
+      />
+      <div className="flex flex-col min-h-screen overflow-hidden">
 
       {/* Hero Section - Universal Responsive Pattern */}
       <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
@@ -167,7 +176,7 @@ const Parts: React.FC = () => {
           {/* Main Headline */}
           <h1 className="font-bold text-white leading-tight text-4xl sm:text-5xl lg:text-6xl max-w-[900px] mx-auto break-words mb-6">
             Everything You Need to
-            <span className="block mt-2 bg-gradient-to-r from-emerald-300 via-primary to-emerald-400 bg-clip-text text-transparent">
+            <span className="block mt-2 text-white">
               Repair, Upgrade & Maintain
             </span>
           </h1>
@@ -557,6 +566,7 @@ const Parts: React.FC = () => {
         <span>Call Now</span>
       </a>
     </div>
+    </>
   );
 };
 
