@@ -107,7 +107,7 @@ export const HOMES: HomeModel[] = [
       "/assets/images/single wide homes/Patriot Home MOVE ONE UP/thebabyboujee/gulf_south_homes_babyboujee_gallery_8-1920w.webp",
       "/assets/images/single wide homes/Patriot Home MOVE ONE UP/thebabyboujee/gulf_south_homes_babyboujee_gallery_9-1920w.webp"
     ],
-    isFeatured: false
+    isFeatured: true
   },
   {
     id: 'move-one-up',
@@ -213,7 +213,7 @@ export const HOMES: HomeModel[] = [
       "/assets/images/single wide homes/TRU HOMES/The Dog Wood/gulf_south_homes_delight_gallery_18-1920w.webp",
       "/assets/images/single wide homes/TRU HOMES/The Dog Wood/gulf_south_homes_delight_gallery_19-1920w.webp"
     ],
-    isFeatured: false
+    isFeatured: true
   },
   {
     id: 'the-clover',
@@ -236,7 +236,7 @@ export const HOMES: HomeModel[] = [
       "/assets/images/single wide homes/Sunshine Homes/the clover/gulf-south-homes-gallery-017-1920w.webp",
       "/assets/images/single wide homes/Sunshine Homes/the clover/gulf-south-homes-gallery-018-1920w.webp"
     ],
-    isFeatured: false
+    isFeatured: true
   },
   {
     id: 'the-milky-way',
@@ -259,7 +259,7 @@ export const HOMES: HomeModel[] = [
       "/assets/images/single wide homes/Sunshine Homes/The Milky Way/gulf-south-homes-gallery-038-1920w.webp",
       "/assets/images/single wide homes/Sunshine Homes/The Milky Way/gulf-south-homes-gallery-039-1920w.webp"
     ],
-    isFeatured: false
+    isFeatured: true
   },
   {
     id: 'the-rainbow',
@@ -340,7 +340,7 @@ export const HOMES: HomeModel[] = [
     description: "Our premium modular model offering unparalleled construction quality and high-end finishes throughout. Fully customizable.",
     features: ["Granite Countertops", "Farmhouse Sink", "Walk-in Pantry", "Bonus Room", "Premium Appliances", "Custom Options"],
     imageUrl: "/assets/images/homepage/gulf_south_homes_testimonials-1920w.jpg",
-    isFeatured: true
+    isFeatured: false
   },
 ];
 
