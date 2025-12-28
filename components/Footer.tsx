@@ -178,9 +178,10 @@ const Footer: React.FC = () => {
                     <Clock size={20} className="sm:w-5 sm:h-5 text-primary" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <span className="text-sm sm:text-base text-white/90 block font-medium drop-shadow-md">Hours</span>
-                    <p className="text-white text-base sm:text-lg font-medium drop-shadow-md">Mon-Fri: 8am - 5pm</p>
-                    <p className="text-white/95 text-sm sm:text-base font-medium drop-shadow-md">Sat: 9am - 3pm</p>
+                    <span className="text-sm sm:text-base text-white/90 block font-medium drop-shadow-md">Business Hours</span>
+                    <p className="text-white text-base sm:text-lg font-medium drop-shadow-md">Sales: Mon-Sat 8am - 5pm</p>
+                    <p className="text-white/85 text-sm sm:text-base font-medium drop-shadow-md">Parts: Mon-Fri 8am - 5pm</p>
+                    <p className="text-white/75 text-xs sm:text-sm font-medium drop-shadow-md italic">Sun: Closed</p>
                   </div>
                 </div>
               </li>

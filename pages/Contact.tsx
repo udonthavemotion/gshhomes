@@ -4,6 +4,7 @@ import Button from '../components/Button';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
+import GlassmorphicMapCard from '../components/GlassmorphicMapCard';
 
 const Contact: React.FC = () => {
 
@@ -67,88 +68,44 @@ const Contact: React.FC = () => {
         </div>
       </section>
 
+      {/* Glassmorphic Map Section */}
+      <div className="py-16 px-4 md:px-6 lg:px-8">
+        <GlassmorphicMapCard containerHeight="min-h-[600px] md:min-h-[700px]" />
+      </div>
+
+      {/* Contact Form Section */}
       <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          
-          {/* Contact Info & Map */}
-          <div className="space-y-8">
-             <div className="bg-white p-8 rounded-xl shadow-sm border border-stone-200">
-                <h2 className="text-2xl font-bold text-stone-900 mb-6">Visit Our Sales Center</h2>
-                
-                <div className="space-y-6">
-                    <div className="flex items-start gap-4">
-                        <MapPin className="text-primary mt-1" />
-                        <div>
-                            <h4 className="font-bold text-stone-900">Address</h4>
-                            <p className="text-stone-600">{COMPANY_INFO.address}</p>
-                        </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                        <Phone className="text-primary mt-1" />
-                        <div>
-                            <h4 className="font-bold text-stone-900">Phone</h4>
-                            <p className="text-stone-600">{COMPANY_INFO.phone}</p>
-                        </div>
-                    </div>
-                     <div className="flex items-start gap-4">
-                        <Clock className="text-primary mt-1" />
-                        <div>
-                            <h4 className="font-bold text-stone-900">Hours</h4>
-                            <p className="text-stone-600">Mon-Fri: {COMPANY_INFO.hours.weekdays}</p>
-                            <p className="text-stone-600">Sat: {COMPANY_INFO.hours.saturday}</p>
-                            <p className="text-stone-600">Sun: {COMPANY_INFO.hours.sunday}</p>
-                        </div>
-                    </div>
-                </div>
-             </div>
-
-             {/* Mock Map */}
-             <div className="bg-stone-200 h-64 rounded-xl w-full flex items-center justify-center text-stone-500 font-medium">
-                <iframe 
-                  width="100%" 
-                  height="100%" 
-                  frameBorder="0" 
-                  scrolling="no" 
-                  marginHeight={0} 
-                  marginWidth={0} 
-                  src="https://maps.google.com/maps?q=1986%20Highway%20182%2C%20Houma%2C%20LA%2070364&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                  className="rounded-xl grayscale opacity-80"
-                ></iframe>
-             </div>
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-4">Send us a Message</h2>
+            <p className="text-stone-600 text-lg">Fill out the form below and we will get back to you within 24 hours.</p>
           </div>
 
-          {/* Contact Form */}
-          <div>
-            <h2 className="text-2xl font-bold text-stone-900 mb-2">Send us a Message</h2>
-            <p className="text-stone-600 mb-6">Fill out the form below and we will get back to you within 24 hours.</p>
-
-            {/* GoHighLevel Contact Form Embed */}
-            <div className="w-full">
-              <iframe
-                src="https://crm.gshforms.com/widget/form/ZRYIIk3TWJ6OI96TkkBg"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  border: 'none',
-                  minHeight: '825px'
-                }}
-                id="inline-ZRYIIk3TWJ6OI96TkkBg"
-                data-layout='{"id":"INLINE"}'
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="Contact Us"
-                data-height="825"
-                data-layout-iframe-id="inline-ZRYIIk3TWJ6OI96TkkBg"
-                data-form-id="ZRYIIk3TWJ6OI96TkkBg"
-                title="Contact Us"
-              />
-            </div>
+          {/* GoHighLevel Contact Form Embed */}
+          <div className="w-full">
+            <iframe
+              src="https://crm.gshforms.com/widget/form/ZRYIIk3TWJ6OI96TkkBg"
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 'none',
+                minHeight: '825px'
+              }}
+              id="inline-ZRYIIk3TWJ6OI96TkkBg"
+              data-layout='{"id":"INLINE"}'
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Contact Us"
+              data-height="825"
+              data-layout-iframe-id="inline-ZRYIIk3TWJ6OI96TkkBg"
+              data-form-id="ZRYIIk3TWJ6OI96TkkBg"
+              title="Contact Us"
+            />
           </div>
-
         </div>
       </div>
     </div>

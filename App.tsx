@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './hooks/useTheme.tsx';
@@ -7,27 +7,39 @@ import Footer from './components/Footer';
 import { COMPANY_INFO } from './constants';
 import { MapPin, Facebook, Instagram, Clock, Phone } from 'lucide-react';
 import { useScrollRestoration, scrollToTop } from './hooks/useScrollRestoration';
-import Home from './pages/Home';
-import Catalog from './pages/Catalog';
-import HomeDetails from './pages/HomeDetails';
-import About from './pages/About';
-import Services from './pages/Services';
-import Contact from './pages/Contact';
-import SingleWide from './pages/SingleWide';
-import LandHome from './pages/LandHome';
-import Parts from './pages/Parts';
-import DoubleWide from './pages/DoubleWide';
-import DoubleWideDetail from './pages/DoubleWideDetail';
-import Modular from './pages/Modular';
-import ModularDetail from './pages/ModularDetail';
-import Deals from './pages/Deals';
-import LARestore from './pages/LARestore';
-import Insurance from './pages/Insurance';
-import Manufacturers from './pages/Manufacturers';
-import HowItWorks from './pages/HowItWorks';
-import WhatWeOffer from './pages/WhatWeOffer';
-import Financing from './pages/Financing';
-import Privacy from './pages/Privacy';
+
+// Lazy load all page components (code splitting)
+const Home = lazy(() => import('./pages/Home'));
+const Catalog = lazy(() => import('./pages/Catalog'));
+const HomeDetails = lazy(() => import('./pages/HomeDetails'));
+const About = lazy(() => import('./pages/About'));
+const Services = lazy(() => import('./pages/Services'));
+const Contact = lazy(() => import('./pages/Contact'));
+const SingleWide = lazy(() => import('./pages/SingleWide'));
+const LandHome = lazy(() => import('./pages/LandHome'));
+const Parts = lazy(() => import('./pages/Parts'));
+const DoubleWide = lazy(() => import('./pages/DoubleWide'));
+const DoubleWideDetail = lazy(() => import('./pages/DoubleWideDetail'));
+const Modular = lazy(() => import('./pages/Modular'));
+const ModularDetail = lazy(() => import('./pages/ModularDetail'));
+const Deals = lazy(() => import('./pages/Deals'));
+const LARestore = lazy(() => import('./pages/LARestore'));
+const Insurance = lazy(() => import('./pages/Insurance'));
+const Manufacturers = lazy(() => import('./pages/Manufacturers'));
+const HowItWorks = lazy(() => import('./pages/HowItWorks'));
+const WhatWeOffer = lazy(() => import('./pages/WhatWeOffer'));
+const Financing = lazy(() => import('./pages/Financing'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+
+// Loading placeholder component
+const PageLoader = () => (
+  <div className="w-full h-screen flex items-center justify-center bg-stone-50">
+    <div className="text-center">
+      <div className="w-12 h-12 border-4 border-stone-200 border-t-primary rounded-full animate-spin mx-auto mb-4"></div>
+      <p className="text-stone-600 font-medium">Loading...</p>
+    </div>
+  </div>
+);
 
 // TikTok Icon Component (lucide-react doesn't have TikTok)
 const TikTokIcon: React.FC<{ size?: number; className?: string; style?: React.CSSProperties }> = ({ 
@@ -173,29 +185,31 @@ const App: React.FC = () => {
         <div className="flex flex-col min-h-screen font-sans text-stone-800 bg-stone-50">
           <Navbar />
           <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/homes-for-sale" element={<Catalog />} />
-              <Route path="/homes-for-sale/:id" element={<HomeDetails />} />
-              <Route path="/single-wide-mobile-homes" element={<SingleWide />} />
-              <Route path="/double-wide-mobile-homes" element={<DoubleWide />} />
-              <Route path="/double-wide-mobile-homes/:id" element={<DoubleWideDetail />} />
-              <Route path="/modular-homes-for-sale" element={<Modular />} />
-              <Route path="/modular-homes-for-sale/:id" element={<ModularDetail />} />
-              <Route path="/about-gulf-south-homes" element={<About />} />
-              <Route path="/warranty-service-department" element={<Services />} />
-              <Route path="/mobile-home-parts-store" element={<Parts />} />
-              <Route path="/mobile-home-financing" element={<Financing />} />
-              <Route path="/land-and-home-packages" element={<LandHome />} />
-              <Route path="/mobile-home-deals" element={<Deals />} />
-              <Route path="/la-restore-grants" element={<LARestore />} />
-              <Route path="/mobile-home-insurance" element={<Insurance />} />
-              <Route path="/manufactured-home-manufacturers" element={<Manufacturers />} />
-              <Route path="/contact-gulf-south-homes" element={<Contact />} />
-              <Route path="/buying-process" element={<HowItWorks />} />
-              <Route path="/what-we-offer" element={<WhatWeOffer />} />
-              <Route path="/privacy-policy" element={<Privacy />} />
-            </Routes>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/homes-for-sale" element={<Catalog />} />
+                <Route path="/homes-for-sale/:id" element={<HomeDetails />} />
+                <Route path="/single-wide-mobile-homes" element={<SingleWide />} />
+                <Route path="/double-wide-mobile-homes" element={<DoubleWide />} />
+                <Route path="/double-wide-mobile-homes/:id" element={<DoubleWideDetail />} />
+                <Route path="/modular-homes-for-sale" element={<Modular />} />
+                <Route path="/modular-homes-for-sale/:id" element={<ModularDetail />} />
+                <Route path="/about-gulf-south-homes" element={<About />} />
+                <Route path="/warranty-service-department" element={<Services />} />
+                <Route path="/mobile-home-parts-store" element={<Parts />} />
+                <Route path="/mobile-home-financing" element={<Financing />} />
+                <Route path="/land-and-home-packages" element={<LandHome />} />
+                <Route path="/mobile-home-deals" element={<Deals />} />
+                <Route path="/la-restore-grants" element={<LARestore />} />
+                <Route path="/mobile-home-insurance" element={<Insurance />} />
+                <Route path="/manufactured-home-manufacturers" element={<Manufacturers />} />
+                <Route path="/contact-gulf-south-homes" element={<Contact />} />
+                <Route path="/buying-process" element={<HowItWorks />} />
+                <Route path="/what-we-offer" element={<WhatWeOffer />} />
+                <Route path="/privacy-policy" element={<Privacy />} />
+              </Routes>
+            </Suspense>
           </main>
           <Footer />
         </div>

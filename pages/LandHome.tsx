@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Phone, MapPin, CheckCircle, Home, Map, FileText, Hammer, DollarSign } from 'lucide-react';
+import { Phone, MapPin, CheckCircle, Home, Map, FileText, Hammer, DollarSign, ArrowRight } from 'lucide-react';
 import Button from '../components/Button';
 import { COMPANY_INFO } from '../constants';
 import SEOHead from '../components/SEOHead';

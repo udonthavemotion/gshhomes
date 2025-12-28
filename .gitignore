@@ -42,6 +42,9 @@ lerna-debug.log*
 ehthumbs.db
 Thumbs.db
 
+# Private developer artifacts (never ship)
+/_private/
+
 # Large video source files (originals in root - NOT in public folder)
 /13*.mp4
 /14*.mp4
@@ -58,7 +61,7 @@ IMPLEMENTATION_STATUS.md
 # Photo source folder (already processed into public)
 Gulf South Photos/
 
-# Claude/Cursor folders
+# Claude/Cursor folders (legacy - now in _private/)
 .claude
 .cursor
 

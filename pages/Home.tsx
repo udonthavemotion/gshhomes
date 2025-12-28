@@ -117,7 +117,7 @@ const Home: React.FC = () => {
             e.currentTarget.style.display = 'none';
           }}
         >
-          <source src="/assets/images/single wide homes/landingpager.mp4" type="video/mp4" />
+          <source src="/assets/images/homepage/landingpageheroheader.mp4" type="video/mp4" />
         </video>
 
         {/* Content */}
@@ -924,22 +924,18 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 8. Reviews Preview */}
-      <section className="py-20 sm:py-28 relative overflow-hidden">
-        {/* Background Video */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/assets/video/videosworking/homepage-hero.mp4" type="video/mp4" />
-        </video>
-
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-primary/40"></div>
+      {/* 8. Reviews Preview - What Our Neighbors Say */}
+      <section
+        className="py-20 sm:py-28 relative overflow-hidden"
+        style={{
+          backgroundImage: 'url(/assets/images/homepage/WhatourneighborsSay.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        {/* Subtle overlay for text readability - only if needed */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/30"></div>
 
         <div className="container relative z-10">
           <div className="text-center mb-16 scroll-animate">
@@ -954,37 +950,21 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {TESTIMONIALS.map((t, i) => (
-              <div
-                key={i}
-                className="scroll-animate bg-white/10 backdrop-blur-md p-8 rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-500"
-                style={{ transitionDelay: `${i * 100}ms` }}
-              >
-                {/* Stars */}
-                <div className="flex gap-1 mb-6">
-                  {[...Array(t.rating)].map((_, r) => (
-                    <Star key={r} size={18} className="text-amber-400 fill-amber-400" />
-                  ))}
-                </div>
-
-                {/* Quote */}
-                <p className="text-white/95 text-lg leading-relaxed mb-8 font-light drop-shadow-md">
-                  "{t.text}"
-                </p>
-
-                {/* Author */}
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center text-white font-bold text-lg">
-                    {t.name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-white drop-shadow-md">{t.name}</p>
-                    <p className="text-sm text-white/70">{t.location}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
+          {/* Reviews Widget Embed */}
+          <div className="scroll-animate max-w-6xl mx-auto">
+            <iframe
+              className='lc_reviews_widget'
+              src='https://crm.zeromotionmarketing.com/reputation/widgets/review_widget/9Ax53jRuv9z4JsRTJ60V?widgetId=6950a4721d475e5e12657795'
+              frameBorder='0'
+              scrolling='no'
+              style={{
+                minWidth: '100%',
+                width: '100%',
+                minHeight: '400px',
+                border: 'none'
+              }}
+              title="Customer Reviews"
+            />
           </div>
         </div>
       </section>

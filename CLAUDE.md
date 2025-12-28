@@ -193,9 +193,15 @@ Use full path syntax:
 
 ### Design System
 
-- Primary color: `emerald-600` / `primary`
-- Fonts: Outfit (headlines), Plus Jakarta Sans (body)
-- Use existing Tailwind tokens; don't add new colors
+- **Primary color:** `#1E3A5F` (Gulf Navy Blue) - NOT emerald
+- **Secondary color:** `#D32F2F` (CTA Red)
+- **Accent color:** `#4A90E2` (Bright Blue)
+- **Fonts:** Outfit (headlines, bold 700/semibold 600), Plus Jakarta Sans (body, regular 400/medium 500)
+- **Use CSS variables** for all colors - no hardcoded HEX values in components
+- All colors defined in `index.css` lines 13-46 and tailwind config
+- **Important:** Replace hardcoded HEX with Tailwind tokens:
+  - ❌ `text-[#D32F2F]`
+  - ✅ `text-red-600` or `hover:text-red-600`
 
 ### Performance
 
@@ -213,6 +219,12 @@ Use full path syntax:
 - Scroll animations via Intersection Observer
 - Keep video files under 5 MB per 30-second clip
 - Use descriptive, URL-safe filenames (e.g., `homepage-hero.mp4`)
+
+**Video Overlay Styling (Dec 27, 2024):**
+- Video hero overlays use `.hero-overlay` CSS class (index.css lines 441-449)
+- Current overlay darkness: **30%** (0.2-0.3 at top, 0.7-0.9 at bottom)
+- Gradient: `from-black/20 via-black/30 to-black/90` for balanced readability
+- Ensures text is readable while maintaining visual impact of video backgrounds
 
 ---
 
@@ -319,21 +331,40 @@ When adding hero videos to pages:
 
 ---
 
-## Project State (Dec 2024)
+## Project State (Dec 27, 2024)
 
 ### Current Status
 - ✅ All routes functional and tested
-- ✅ GoHighLevel forms integrated
+- ✅ GoHighLevel forms integrated with tabbed hours display
 - ✅ Video assets optimized (93% size reduction)
 - ✅ Build passing without errors
 - ✅ Mobile-responsive design complete
-- ⚠️ JavaScript bundle: 700 KB (consider code splitting for future optimization)
+- ✅ **JavaScript bundle optimized: 308 KB (63% reduction via code splitting)**
+- ✅ Color system enforced (CSS variables only, no hardcoded HEX)
+- ✅ Video overlay contrast balanced (30% darkness for readability)
 
 ### Known Issues
 - None critical
-- Bundle size warning (>500 KB) - consider lazy loading routes in future
+- All issues from compliance audit have been resolved
 
 ### Recent Changes
+- **Dec 27, 2024:** Critical brand compliance fixes
+  - ✅ **Code Splitting:** Converted 21 eager page imports to lazy loading
+    - Main bundle: 826 KB → 308 KB (63% smaller)
+    - Pages load on-demand: 6-150 KB each
+    - Mobile load time significantly improved
+  - ✅ **Color System:** Replaced 12+ hardcoded HEX values with Tailwind tokens
+    - Navbar.tsx: Updated all red color references to use Tailwind classes
+    - GlassmorphicMapCard.tsx: Updated gradient and text colors to use design tokens
+  - ✅ **Video Overlay:** Adjusted darkness to 30% (balanced readability + visual impact)
+    - Updated `.hero-overlay` CSS gradient in index.css
+    - Ensures white text readable on all video background frames
+  - ✅ **Business Hours:** Updated constants.ts with separate salesHours and partsHours
+    - Parts store: Closed Saturday, 8am-5pm Mon-Fri
+    - Sales team: Open Saturday, 8am-5pm Mon-Sat
+    - Updated GlassmorphicMapCard with tabbed interface (Sales | Parts tabs)
+    - Updated Footer to display clear distinction between departments
+
 - **Dec 24, 2024:** Video optimization completed
   - Removed 138 MB of duplicate videos
   - Optimized all 11 active videos
@@ -380,6 +411,8 @@ Before deploying to Vercel:
 - [shadcn Agents](shadcn%20agents/) - UI agent definitions
 - [QA Checklist](QA_CHECKLIST_GOHIGHLEVEL_FORM.md) - Form testing
 - [Video Optimization Report](VIDEO_OPTIMIZATION_REPORT.md) - Performance details
+- [Brand Identity Guide](BRAND_IDENTITY_GUIDE.md) - Complete brand system documentation
+- [Brand Compliance Audit](BRAND_COMPLIANCE_AUDIT.md) - Detailed compliance assessment (78/100)
 
 ---
 

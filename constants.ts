@@ -10,13 +10,19 @@ export const COMPANY_INFO = {
   fax: "(985) 580-4024",
   email: "info@gulfsouthhomesinc.com",
   hours: {
-    monday: "Monday: 8 AM–5 PM",
-    tuesday: "Tuesday: 8 AM–5 PM",
-    wednesday: "Wednesday: 8 AM–5 PM",
-    thursday: "Thursday: 8 AM–5 PM",
-    friday: "Friday: 8 AM–5 PM",
-    saturday: "Saturday: Closed",
-    sunday: "Sunday: Closed"
+    weekdays: "8:00 AM - 5:00 PM",
+    saturday: "8:00 AM - 5:00 PM",
+    sunday: "Closed"
+  },
+  salesHours: {
+    weekdays: "8:00 AM - 5:00 PM",
+    saturday: "8:00 AM - 5:00 PM",
+    sunday: "Closed"
+  },
+  partsHours: {
+    weekdays: "8:00 AM - 5:00 PM",
+    saturday: "Closed",
+    sunday: "Closed"
   },
   socialMedia: {
     facebook: "https://www.facebook.com/gulfsouthhomes",

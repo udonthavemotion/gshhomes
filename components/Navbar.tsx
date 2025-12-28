@@ -173,14 +173,14 @@ const Navbar: React.FC = () => {
                     <Link
                       to={link.path}
                       onClick={scrollToTop}
-                      className={`relative px-4 py-2 text-sm font-semibold uppercase tracking-wide flex items-center gap-1 text-white hover:text-[#D32F2F] transition-colors ${
-                        isActive(link.path) ? 'text-[#D32F2F]' : ''
+                      className={`relative px-4 py-2 text-sm font-semibold uppercase tracking-wide flex items-center gap-1 text-white hover:text-red-600 transition-colors ${
+                        isActive(link.path) ? 'text-red-600' : ''
                       }`}
                     >
                       {link.name}
                       <ChevronDown size={14} className="transition-transform group-hover:rotate-180" />
                       {isActive(link.path) && (
-                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#D32F2F]"></span>
+                        <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-red-600"></span>
                       )}
                     </Link>
 
@@ -210,13 +210,13 @@ const Navbar: React.FC = () => {
                     key={link.path}
                     to={link.path}
                     onClick={scrollToTop}
-                    className={`relative px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:text-[#D32F2F] transition-colors ${
-                      isActive(link.path) ? 'text-[#D32F2F]' : ''
+                    className={`relative px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:text-red-600 transition-colors ${
+                      isActive(link.path) ? 'text-red-600' : ''
                     }`}
                   >
                     {link.name}
                     {isActive(link.path) && (
-                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#D32F2F]"></span>
+                      <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-red-600"></span>
                     )}
                   </Link>
                 )
@@ -226,13 +226,13 @@ const Navbar: React.FC = () => {
               <Link
                 to="/contact-gulf-south-homes"
                 onClick={scrollToTop}
-                className={`relative px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:text-[#D32F2F] transition-colors ${
-                  isActive('/contact-gulf-south-homes') ? 'text-[#D32F2F]' : ''
+                className={`relative px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white hover:text-red-600 transition-colors ${
+                  isActive('/contact-gulf-south-homes') ? 'text-red-600' : ''
                 }`}
               >
                 Contact Us
                 {isActive('/contact-gulf-south-homes') && (
-                  <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#D32F2F]"></span>
+                  <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-red-600"></span>
                 )}
               </Link>
             </div>
