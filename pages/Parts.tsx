@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Wrench,
   Phone,
@@ -21,13 +21,6 @@ import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
 
 const Parts: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
-
   // Intersection Observer for scroll animations
   useEffect(() => {
     const observerOptions = {
@@ -51,12 +44,6 @@ const Parts: React.FC = () => {
 
     return () => observer.disconnect();
   }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
-  };
 
   const partsCategories = [
     {
@@ -198,7 +185,7 @@ const Parts: React.FC = () => {
             <Button
               variant="white"
               size="lg"
-              onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+              to="/contact-gulf-south-homes"
             >
               Request Part Info
             </Button>
@@ -367,7 +354,7 @@ const Parts: React.FC = () => {
             {/* Content */}
             <div className="relative z-10">
               <Wrench size={48} className="mx-auto mb-4 opacity-90" />
-              <h3 className="text-2xl md:text-3xl font-display font-bold mb-4 drop-shadow-lg">Professional Installation Available</h3>
+              <h3 className="text-2xl md:text-3xl font-display font-bold mb-4 drop-shadow-lg text-white">Professional Installation Available</h3>
               <p className="text-emerald-100 text-lg mb-6 max-w-2xl mx-auto drop-shadow-md">
                 Not comfortable installing parts yourself? Our licensed technicians can handle everything from simple repairs to complete system installations.
               </p>
@@ -378,197 +365,6 @@ const Parts: React.FC = () => {
                 <Phone size={20} />
                 Schedule Service Call
               </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Banner - Stats Row */}
-      <section className="py-16 bg-stone-900 relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/30 rounded-full blur-[150px]"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-500/30 rounded-full blur-[150px]"></div>
-        </div>
-
-        <div className="container relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-            {trustBadges.map((badge, idx) => (
-              <div
-                key={idx}
-                className="scroll-animate flex flex-col items-center text-center p-6"
-                style={{ transitionDelay: `${idx * 100}ms` }}
-              >
-                <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-4">
-                  {badge.icon}
-                </div>
-                <div className="text-3xl md:text-4xl font-display font-bold text-white mb-2">
-                  {badge.label}
-                </div>
-                <div className="text-stone-400 text-lg">
-                  {badge.sublabel}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Quote */}
-          <div className="mt-12 text-center max-w-3xl mx-auto scroll-animate">
-            <div className="inline-block p-6 md:p-8 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10">
-              <Star size={32} className="text-amber-400 fill-amber-400 mx-auto mb-4" />
-              <blockquote className="text-xl md:text-2xl text-white/90 font-light leading-relaxed mb-4">
-                "Gulf South Homes has been our go-to for parts and repairs for over a decade. Their team knows manufactured homes inside and out."
-              </blockquote>
-              <cite className="text-stone-400 not-italic">
-                — Michael B., Contractor, Thibodaux LA
-              </cite>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact CTA Form */}
-      <section id="contact-form" className="py-20 sm:py-28 bg-white">
-        <div className="container">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-
-              {/* Left: Contact Info */}
-              <div className="scroll-animate">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-stone-900 mb-6">
-                  Get in Touch
-                </h2>
-                <p className="text-stone-600 text-lg mb-8 leading-relaxed">
-                  Have questions about a specific part? Need help identifying what you need?
-                  Fill out the form or give us a call. Our parts team is ready to help.
-                </p>
-
-                {/* Contact Details */}
-                <div className="space-y-6 mb-8">
-                  <a
-                    href={`tel:${COMPANY_INFO.phone}`}
-                    className="flex items-start gap-4 p-4 rounded-xl hover:bg-stone-50 transition-colors group"
-                  >
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                      <Phone size={20} className="text-primary" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-stone-900 mb-1">Phone</div>
-                      <div className="text-stone-600">{COMPANY_INFO.phone}</div>
-                    </div>
-                  </a>
-
-                  <div className="flex items-start gap-4 p-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Clock size={20} className="text-primary" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-stone-900 mb-1">Hours</div>
-                      <div className="text-stone-600 text-sm space-y-1">
-                        <div>{COMPANY_INFO.hours.weekdays}</div>
-                        <div>{COMPANY_INFO.hours.saturday}</div>
-                        <div>{COMPANY_INFO.hours.sunday}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(COMPANY_INFO.address)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-start gap-4 p-4 rounded-xl hover:bg-stone-50 transition-colors group"
-                  >
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
-                      <MapPin size={20} className="text-primary" />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-stone-900 mb-1">Location</div>
-                      <div className="text-stone-600">{COMPANY_INFO.address}</div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-
-              {/* Right: Form */}
-              <div className="scroll-animate">
-                <form onSubmit={handleSubmit} className="bg-stone-50 rounded-2xl p-8 border border-stone-200">
-                  <div className="space-y-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-semibold text-stone-900 mb-2">
-                        Your Name <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-stone-300 bg-white text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                        placeholder="John Doe"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-stone-900 mb-2">
-                        Phone Number <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        required
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-stone-300 bg-white text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                        placeholder="(985) 123-4567"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-stone-900 mb-2">
-                        Email Address
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-stone-300 bg-white text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                        placeholder="john@example.com"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-semibold text-stone-900 mb-2">
-                        What part are you looking for? <span className="text-red-500">*</span>
-                      </label>
-                      <textarea
-                        id="message"
-                        required
-                        rows={5}
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-stone-300 bg-white text-stone-900 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
-                        placeholder="Tell us about the part you need, your home model, or describe the issue you're experiencing..."
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="w-full px-6 py-4 bg-primary text-white rounded-xl font-bold text-lg shadow-lg hover:bg-primary-dark hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                    >
-                      Send Inquiry
-                    </button>
-
-                    <p className="text-stone-500 text-sm text-center">
-                      Or call us directly at{' '}
-                      <a href={`tel:${COMPANY_INFO.phone}`} className="text-primary font-semibold hover:underline">
-                        {COMPANY_INFO.phone}
-                      </a>
-                    </p>
-                  </div>
-                </form>
-              </div>
-
             </div>
           </div>
         </div>

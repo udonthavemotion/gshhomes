@@ -12,7 +12,8 @@ import {
   Phone,
   FileText,
   Hammer,
-  MapPin
+  MapPin,
+  Clock
 } from 'lucide-react';
 import { COMPANY_INFO } from '../constants';
 import SEOHead from '../components/SEOHead';
@@ -53,7 +54,7 @@ const HowItWorks: React.FC = () => {
         'Schedule a personalized tour with our team',
         'Ask questions about features and customization'
       ],
-      cta: { text: 'Browse Homes', link: '/catalog' }
+      cta: { text: 'Browse Homes', link: '/homes-for-sale' }
     },
     {
       number: 2,
@@ -238,12 +239,12 @@ const HowItWorks: React.FC = () => {
         </div>
       </section>
 
-      {/* Timeline Overview - Modern Viral Design */}
+      {/* Timeline Overview - Enhanced Design */}
       <section className="py-24 sm:py-32 bg-gradient-to-br from-white via-stone-50 to-white scroll-animate">
         <div className="container">
           {/* Section Header */}
-          <div className="text-center mb-16 max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-wider mb-6">
+          <div className="text-center mb-20 max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-wider mb-6 px-4 py-1.5 bg-primary/5 rounded-full">
               <Clock size={14} />
               <span>Your Timeline</span>
             </div>
@@ -253,94 +254,160 @@ const HowItWorks: React.FC = () => {
                 Move-In Ready
               </span>
             </h2>
-            <p className="text-xl text-stone-600 leading-relaxed">
+            <p className="text-lg sm:text-xl text-stone-600 leading-relaxed max-w-2xl mx-auto">
               Most customers move into their new home within 4-8 weeks from the day they choose their model.
             </p>
           </div>
 
-          {/* Modern Timeline - Vertical with Gradient Accents */}
+          {/* Enhanced Timeline - Vertical with Better Visual Hierarchy */}
           <div className="max-w-5xl mx-auto">
             <div className="relative">
-              {/* Animated Timeline Line - Gradient */}
-              <div className="absolute left-8 sm:left-12 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-blue-600 to-red-600 hidden sm:block rounded-full shadow-lg"></div>
+              {/* Timeline Line - Better positioned and styled */}
+              <div className="absolute left-[28px] sm:left-[36px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-blue-500 via-blue-400 via-red-500 to-red-600 hidden sm:block opacity-60"></div>
+              
+              {/* Subtle glow around timeline */}
+              <div className="absolute left-[26px] sm:left-[34px] top-0 bottom-0 w-1 bg-gradient-to-b from-primary/20 via-blue-500/20 to-red-600/20 hidden sm:block blur-sm"></div>
 
               {/* Timeline Items */}
-              <div className="space-y-12">
+              <div className="space-y-16 sm:space-y-20">
                 {[
                   {
                     week: 'Week 1',
+                    weekShort: '1',
                     task: 'Choose home & get pre-approved',
                     description: 'Browse our inventory, tour models, and secure financing with our expert team.',
-                    gradient: 'from-primary to-blue-600'
+                    gradient: 'from-primary to-blue-600',
+                    icon: Home
                   },
                   {
                     week: 'Week 2-3',
+                    weekShort: '2-3',
                     task: 'Site prep, permits, foundation',
                     description: 'We handle all paperwork, coordinate permits, and prepare your land for delivery.',
-                    gradient: 'from-blue-600 to-blue-500'
+                    gradient: 'from-blue-600 to-blue-500',
+                    icon: LandPlot
                   },
                   {
                     week: 'Week 4-6',
+                    weekShort: '4-6',
                     task: 'Manufacturing & delivery',
                     description: 'Your home is built to order and professionally transported to your property.',
-                    gradient: 'from-blue-500 to-accent'
+                    gradient: 'from-blue-500 to-blue-400',
+                    icon: Truck
                   },
                   {
                     week: 'Week 7-8',
+                    weekShort: '7-8',
                     task: 'Setup, hookup, final inspection',
                     description: 'Complete installation, utility connections, and final walkthrough inspection.',
-                    gradient: 'from-accent to-red-600'
+                    gradient: 'from-blue-400 to-red-500',
+                    icon: Hammer
                   },
                   {
                     week: 'Week 8+',
+                    weekShort: '8+',
                     task: 'Move-in ready!',
                     description: 'Congratulations! Your new home is ready. Welcome home.',
-                    gradient: 'from-red-600 to-red-700'
+                    gradient: 'from-red-500 to-red-600',
+                    icon: KeyRound
                   }
-                ].map((item, idx) => (
-                  <div
-                    key={idx}
-                    className="group relative flex items-start gap-6 sm:gap-10"
-                  >
-                    {/* Timeline Dot with Gradient */}
-                    <div className="relative flex-shrink-0">
-                      <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br ${item.gradient} shadow-xl flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform duration-300`}>
-                        <span className="text-white font-bold text-sm sm:text-base text-center leading-tight px-2">
-                          {item.week}
-                        </span>
+                ].map((item, idx) => {
+                  const IconComponent = item.icon;
+                  return (
+                    <div
+                      key={idx}
+                      className="group relative flex flex-col sm:flex-row items-start gap-6 sm:gap-8"
+                    >
+                      {/* Enhanced Timeline Badge */}
+                      <div className="relative flex-shrink-0 w-full sm:w-auto">
+                        {/* Mobile: Full width badge */}
+                        <div className="sm:hidden w-full">
+                          <div className={`relative bg-gradient-to-br ${item.gradient} rounded-xl p-4 shadow-lg group-hover:shadow-xl transition-all duration-300`}>
+                            <div className="flex items-center gap-3">
+                              <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
+                                <IconComponent className="text-white" size={20} />
+                              </div>
+                              <div className="flex-1">
+                                <div className="text-white/80 text-xs font-semibold uppercase tracking-wide mb-0.5">
+                                  {item.week}
+                                </div>
+                                <h3 className="text-white font-bold text-lg leading-tight">
+                                  {item.task}
+                                </h3>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Desktop: Compact badge */}
+                        <div className="hidden sm:block relative">
+                          {/* Badge Container */}
+                          <div className={`relative w-16 h-16 rounded-xl bg-gradient-to-br ${item.gradient} shadow-lg flex flex-col items-center justify-center group-hover:scale-110 group-hover:shadow-xl transition-all duration-300 z-10`}>
+                            {/* Icon */}
+                            <IconComponent className="text-white mb-1" size={18} />
+                            {/* Week Number */}
+                            <span className="text-white font-bold text-xs leading-none">
+                              {item.weekShort}
+                            </span>
+                          </div>
+                          
+                          {/* Connecting line to card */}
+                          <div className="absolute left-full top-1/2 -translate-y-1/2 w-8 h-0.5 bg-stone-200 group-hover:bg-primary/30 transition-colors duration-300 z-0"></div>
+                          
+                          {/* Glow effect on hover */}
+                          <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${item.gradient} blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-500 -z-10`}></div>
+                        </div>
                       </div>
-                      {/* Glow effect on hover */}
-                      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${item.gradient} blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300`}></div>
-                    </div>
 
-                    {/* Content Card */}
-                    <div className="flex-1 bg-white rounded-2xl p-6 sm:p-8 border-2 border-stone-200 group-hover:border-primary/30 group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
-                      {/* Subtle gradient overlay on hover */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+                      {/* Enhanced Content Card */}
+                      <div className="flex-1 w-full sm:w-auto">
+                        {/* Mobile: Content below badge */}
+                        <div className="sm:hidden mt-2">
+                          <p className="text-stone-600 leading-relaxed text-base">
+                            {item.description}
+                          </p>
+                        </div>
 
-                      <div className="relative z-10">
-                        <h3 className="text-2xl sm:text-3xl font-bold text-stone-900 mb-3 group-hover:text-primary transition-colors duration-300">
-                          {item.task}
-                        </h3>
-                        <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
-                          {item.description}
-                        </p>
+                        {/* Desktop: Full card */}
+                        <div className="hidden sm:block bg-white rounded-xl p-6 sm:p-8 border border-stone-200/80 group-hover:border-primary/20 group-hover:shadow-lg transition-all duration-300 relative overflow-hidden">
+                          {/* Subtle gradient overlay on hover */}
+                          <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-[0.02] transition-opacity duration-300`}></div>
+
+                          <div className="relative z-10">
+                            {/* Week label */}
+                            <div className="inline-flex items-center gap-2 mb-3">
+                              <span className={`text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md bg-gradient-to-br ${item.gradient} text-white`}>
+                                {item.week}
+                              </span>
+                            </div>
+                            
+                            {/* Task title */}
+                            <h3 className="text-2xl sm:text-3xl font-bold text-stone-900 mb-3 group-hover:text-primary transition-colors duration-300 leading-tight">
+                              {item.task}
+                            </h3>
+                            
+                            {/* Description */}
+                            <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
+                              {item.description}
+                            </p>
+                          </div>
+
+                          {/* Subtle corner accent */}
+                          <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${item.gradient} opacity-[0.03] rounded-bl-3xl`}></div>
+                        </div>
                       </div>
-
-                      {/* Decorative corner accent */}
-                      <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${item.gradient} opacity-5 rounded-bl-full`}></div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
 
-          {/* Timeline Summary CTA */}
-          <div className="mt-16 text-center">
-            <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-blue-600 text-white rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer">
-              <CheckCircle size={24} />
-              <span className="font-bold text-lg">Average Timeline: 4-8 Weeks</span>
+          {/* Enhanced Timeline Summary CTA */}
+          <div className="mt-20 text-center">
+            <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-blue-600 text-white rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
+              <CheckCircle size={22} className="flex-shrink-0" />
+              <span className="font-semibold text-lg">Average Timeline: 4-8 Weeks</span>
             </div>
           </div>
         </div>
