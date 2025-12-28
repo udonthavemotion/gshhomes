@@ -259,13 +259,53 @@ const Modular: React.FC = () => {
         )}
       </div>
 
-      {/* Contact CTA Section */}
+      {/* Why Visit In Person - Context Section */}
+      <section className="py-16 sm:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 scroll-animate">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-stone-900 mb-4">
+              Why Visit In Person?
+            </h2>
+            <p className="text-stone-600 text-lg max-w-2xl mx-auto">
+              Seeing our homes in person is the best way to understand what we offer
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="scroll-animate text-center p-6">
+              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Home size={32} className="text-primary" />
+              </div>
+              <h3 className="font-bold text-stone-900 text-lg mb-2">See Multiple Homes</h3>
+              <p className="text-stone-600">Browse our full inventory of modular homes in one convenient location</p>
+            </div>
+
+            <div className="scroll-animate text-center p-6" style={{ transitionDelay: '100ms' }}>
+              <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Hammer size={32} className="text-emerald-600" />
+              </div>
+              <h3 className="font-bold text-stone-900 text-lg mb-2">Test the Layout</h3>
+              <p className="text-stone-600">Walk through homes and experience the space, finishes, and customization options firsthand</p>
+            </div>
+
+            <div className="scroll-animate text-center p-6" style={{ transitionDelay: '200ms' }}>
+              <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Users size={32} className="text-blue-600" />
+              </div>
+              <h3 className="font-bold text-stone-900 text-lg mb-2">Talk to Experts</h3>
+              <p className="text-stone-600">Get personalized guidance from our knowledgeable team about options and financing</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Visit Us Section - RELOCATED */}
       <section className="py-20 sm:py-28 bg-stone-900 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12 scroll-animate">
-              <span className="inline-block px-4 py-1.5 bg-white/10 text-white text-sm font-semibold rounded-md mb-4">
-                Visit Us
+              <span className="inline-block px-4 py-1.5 bg-primary/20 text-white text-sm font-semibold rounded-md mb-4">
+                Visit Our Showroom
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4">
                 Proudly Serving Southeast Louisiana

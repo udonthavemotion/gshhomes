@@ -186,6 +186,71 @@ const SingleWide: React.FC = () => {
         )}
       </div>
 
+      {/* NEW: Single-Wide Living in Action - Context Section */}
+      <section className="py-16 sm:py-24 relative overflow-hidden">
+        {/* Background Video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/assets/video/videosworking/singewidehomepage.mp4" type="video/mp4" />
+        </video>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-stone-900/60"></div>
+
+        {/* Content */}
+        <div className="container relative z-10 px-4 sm:px-6">
+          <div className="max-w-2xl mx-auto text-center mb-12 scroll-animate">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-4 drop-shadow-lg">
+              Single-Wide Living Made Simple
+            </h2>
+            <p className="text-lg sm:text-xl text-white/90 drop-shadow-md">
+              Affordable, efficient, and beautifully designed for modern families
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {/* Benefit Card 1 */}
+            <div className="scroll-animate text-center">
+              <div className="w-16 h-16 bg-primary rounded-xl flex items-center justify-center mx-auto mb-4 drop-shadow-lg">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2 drop-shadow-md">Affordable</h3>
+              <p className="text-white/80 drop-shadow-md">Lower price point without sacrificing quality or comfort</p>
+            </div>
+
+            {/* Benefit Card 2 */}
+            <div className="scroll-animate text-center" style={{ transitionDelay: '100ms' }}>
+              <div className="w-16 h-16 bg-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-4 drop-shadow-lg">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2 drop-shadow-md">Efficient</h3>
+              <p className="text-white/80 drop-shadow-md">Optimized layouts that make the most of your space</p>
+            </div>
+
+            {/* Benefit Card 3 */}
+            <div className="scroll-animate text-center" style={{ transitionDelay: '200ms' }}>
+              <div className="w-16 h-16 bg-teal-500 rounded-xl flex items-center justify-center mx-auto mb-4 drop-shadow-lg">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2 drop-shadow-md">Modern</h3>
+              <p className="text-white/80 drop-shadow-md">Updated designs and premium finishes included</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <div className="bg-gradient-to-r from-primary to-emerald-700 text-white py-12">
         <div className="container text-center">

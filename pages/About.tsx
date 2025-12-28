@@ -502,7 +502,21 @@ const About: React.FC = () => {
       </section>
 
       {/* Project Gallery Section - 2025 Redesign with Clear Hierarchy */}
-      <section className="py-24 md:py-32 bg-gradient-to-br from-stone-900 via-stone-800 to-stone-900 text-white scroll-animate relative overflow-hidden">
+      <section className="py-24 md:py-32 text-white scroll-animate relative overflow-hidden">
+        {/* Background Video - SUBTLE */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
+        >
+          <source src="/assets/video/videosworking/1204.mp4" type="video/mp4" />
+        </video>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-stone-900/80"></div>
         <div className="container mx-auto px-4 relative z-10">
           {/* Content Panel - No background, transparent text */}
           <div className="max-w-4xl mx-auto mb-20 text-center">

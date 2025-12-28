@@ -925,16 +925,31 @@ const Home: React.FC = () => {
       </section>
 
       {/* 8. Reviews Preview */}
-      <section className="py-20 sm:py-28 bg-stone-900 relative overflow-hidden">
+      <section className="py-20 sm:py-28 relative overflow-hidden">
+        {/* Background Video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/assets/video/videosworking/homepage-hero.mp4" type="video/mp4" />
+        </video>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-primary/40"></div>
+
         <div className="container relative z-10">
           <div className="text-center mb-16 scroll-animate">
-            <span className="inline-block px-4 py-1.5 bg-stone-800 text-white text-sm font-semibold rounded-md mb-4">
+            <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-sm text-white text-sm font-semibold rounded-md mb-4">
               Customer Stories
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white mb-4 drop-shadow-lg">
               What Our Neighbors Say
             </h2>
-            <p className="text-stone-400 text-lg max-w-xl mx-auto">
+            <p className="text-white/90 text-lg max-w-xl mx-auto drop-shadow-md">
               Trusted by families across South Louisiana for over 30 years.
             </p>
           </div>
@@ -943,7 +958,7 @@ const Home: React.FC = () => {
             {TESTIMONIALS.map((t, i) => (
               <div
                 key={i}
-                className="scroll-animate bg-stone-800 p-8 rounded-lg border border-stone-700 hover:bg-stone-750 transition-all duration-500"
+                className="scroll-animate bg-white/10 backdrop-blur-md p-8 rounded-lg border border-white/20 hover:bg-white/20 transition-all duration-500"
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
                 {/* Stars */}
@@ -954,18 +969,18 @@ const Home: React.FC = () => {
                 </div>
 
                 {/* Quote */}
-                <p className="text-white/90 text-lg leading-relaxed mb-8 font-light">
+                <p className="text-white/95 text-lg leading-relaxed mb-8 font-light drop-shadow-md">
                   "{t.text}"
                 </p>
 
                 {/* Author */}
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-lg">
+                  <div className="w-12 h-12 rounded-lg bg-white/20 flex items-center justify-center text-white font-bold text-lg">
                     {t.name.charAt(0)}
                   </div>
                   <div>
-                    <p className="font-semibold text-white">{t.name}</p>
-                    <p className="text-sm text-stone-400">{t.location}</p>
+                    <p className="font-semibold text-white drop-shadow-md">{t.name}</p>
+                    <p className="text-sm text-white/70">{t.location}</p>
                   </div>
                 </div>
               </div>

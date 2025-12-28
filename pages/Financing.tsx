@@ -114,8 +114,8 @@ const Financing: React.FC = () => {
           <source src="/assets/video/videosworking/finance.mp4" type="video/mp4" />
         </video>
 
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/70 via-stone-900/60 to-stone-900/70"></div>
+        {/* Gradient Overlay - Indigo for Insurance/Finance Context */}
+        <div className="absolute inset-0 bg-gradient-to-b from-indigo-600/60 via-indigo-600/50 to-indigo-600/60"></div>
 
         {/* Content */}
         <div className="relative z-10 w-full max-w-4xl mx-auto">

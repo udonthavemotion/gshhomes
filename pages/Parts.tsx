@@ -348,19 +348,37 @@ const Parts: React.FC = () => {
           </div>
 
           {/* Additional Services Notice */}
-          <div className="scroll-animate max-w-4xl mx-auto bg-gradient-to-br from-primary to-emerald-700 rounded-2xl p-8 md:p-10 text-white text-center shadow-xl">
-            <Wrench size={48} className="mx-auto mb-4 opacity-90" />
-            <h3 className="text-2xl md:text-3xl font-display font-bold mb-4">Professional Installation Available</h3>
-            <p className="text-emerald-100 text-lg mb-6 max-w-2xl mx-auto">
-              Not comfortable installing parts yourself? Our licensed technicians can handle everything from simple repairs to complete system installations.
-            </p>
-            <a
-              href={`tel:${COMPANY_INFO.phone}`}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary rounded-xl font-bold text-lg hover:bg-stone-50 hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300"
+          <div className="scroll-animate max-w-4xl mx-auto relative overflow-hidden rounded-2xl p-8 md:p-10 text-white text-center shadow-xl">
+            {/* Background Video */}
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="absolute inset-0 w-full h-full object-cover"
             >
-              <Phone size={20} />
-              Schedule Service Call
-            </a>
+              <source src="/assets/video/videosworking/manufactures.mp4" type="video/mp4" />
+            </video>
+
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark opacity-85"></div>
+
+            {/* Content */}
+            <div className="relative z-10">
+              <Wrench size={48} className="mx-auto mb-4 opacity-90" />
+              <h3 className="text-2xl md:text-3xl font-display font-bold mb-4 drop-shadow-lg">Professional Installation Available</h3>
+              <p className="text-emerald-100 text-lg mb-6 max-w-2xl mx-auto drop-shadow-md">
+                Not comfortable installing parts yourself? Our licensed technicians can handle everything from simple repairs to complete system installations.
+              </p>
+              <a
+                href={`tel:${COMPANY_INFO.phone}`}
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary rounded-xl font-bold text-lg hover:bg-stone-50 hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-300"
+              >
+                <Phone size={20} />
+                Schedule Service Call
+              </a>
+            </div>
           </div>
         </div>
       </section>

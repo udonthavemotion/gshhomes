@@ -134,9 +134,24 @@ const HowItWorks: React.FC = () => {
         </div>
       </section>
 
-      {/* Steps Section */}
-      <section className="py-20 sm:py-28 bg-stone-50">
-        <div className="container">
+      {/* Steps Section - With Subtle Video Context */}
+      <section className="py-20 sm:py-28 relative overflow-hidden">
+        {/* Background Video - VERY SUBTLE */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover opacity-15"
+        >
+          <source src="/assets/video/videosworking/land.mp4" type="video/mp4" />
+        </video>
+
+        {/* White Overlay - Maintains Readability */}
+        <div className="absolute inset-0 bg-white/90"></div>
+
+        <div className="container relative z-10">
           <div className="space-y-16 lg:space-y-24">
             {steps.map((step, idx) => (
               <div

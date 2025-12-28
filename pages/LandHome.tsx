@@ -233,8 +233,47 @@ const LandHome: React.FC = () => {
         </div>
       </section>
 
+      {/* NEW: See a Land Package in Action - Context Video Section */}
+      <section className="py-16 sm:py-24 lg:py-28 relative overflow-hidden">
+        {/* Background Video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/assets/video/videosworking/land.mp4" type="video/mp4" />
+        </video>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-stone-900/70"></div>
+
+        {/* Content */}
+        <div className="container relative z-10 px-4 sm:px-6">
+          <div className="max-w-3xl mx-auto text-center scroll-animate">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-6 drop-shadow-lg">
+              See a Land Package in Action
+            </h2>
+
+            <p className="text-lg sm:text-xl text-white/90 mb-8 drop-shadow-md leading-relaxed">
+              Watch how we transform your land into your dream home. From site evaluation to final setup, our team handles every detail.
+            </p>
+
+            <button
+              onClick={() => document.getElementById('already-have-land')?.scrollIntoView({ behavior: 'smooth' })}
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group text-base md:text-lg"
+            >
+              <span>Continue to Process</span>
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Already Have Land? Section */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-white">
+      <section id="already-have-land" className="py-16 sm:py-20 lg:py-28 bg-white">
         <div className="container px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
             <div className="scroll-animate">
