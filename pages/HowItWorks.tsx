@@ -101,22 +101,14 @@ const HowItWorks: React.FC = () => {
       />
       <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
-        {/* Background Video */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/assets/video/videosworking/land.mp4" type="video/mp4" />
-        </video>
-
-        {/* Light Background Overlay - Crisp and Bright */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/20"></div>
-        <div className="absolute inset-0 bg-black/5"></div>
+      <section 
+        className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/assets/images/howitworks/IMG_3500 (1).JPG')`
+        }}
+      >
+        {/* Overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
 
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
