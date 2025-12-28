@@ -321,28 +321,20 @@ const LandHome: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="relative bg-gradient-to-r from-primary via-emerald-600 to-emerald-700 text-white py-16 sm:py-20 lg:py-24 overflow-hidden">
-        {/* Subtle pattern overlay */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-            backgroundSize: '32px 32px'
-          }}></div>
-        </div>
-
+      <section className="relative bg-stone-50 text-stone-900 py-16 sm:py-20 lg:py-24 overflow-hidden">
         <div className="container relative z-10 px-4 sm:px-6">
           <div className="text-center scroll-animate">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 sm:mb-6 px-2">
               Ready to Build on Your Land?
             </h2>
-            <p className="text-emerald-50 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed px-2">
+            <p className="text-stone-600 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed px-2">
               Let's talk about your property and find the perfect home to put on it. Free consultations, no pressure.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 sm:mb-10 px-2">
               <a
                 href={`tel:${COMPANY_INFO.phone}`}
-                className="inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-primary px-6 sm:px-8 py-4 min-h-[48px] rounded-xl font-bold text-base sm:text-lg hover:bg-stone-50 hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 sm:gap-3 bg-primary text-white px-6 sm:px-8 py-4 min-h-[48px] rounded-xl font-bold text-base sm:text-lg hover:bg-primary-dark hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl w-full sm:w-auto"
               >
                 <Phone size={20} className="flex-shrink-0" /> <span>{COMPANY_INFO.phone}</span>
               </a>
@@ -351,7 +343,7 @@ const LandHome: React.FC = () => {
               </Button>
             </div>
 
-            <div className="flex items-center justify-center gap-2 text-emerald-100 text-sm sm:text-base px-2">
+            <div className="flex items-center justify-center gap-2 text-stone-600 text-sm sm:text-base px-2">
               <MapPin size={18} className="flex-shrink-0" />
               <span className="text-center">{COMPANY_INFO.address}</span>
             </div>

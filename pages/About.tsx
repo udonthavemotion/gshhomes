@@ -502,45 +502,31 @@ const About: React.FC = () => {
       </section>
 
       {/* Project Gallery Section - 2025 Redesign with Clear Hierarchy */}
-      <section className="py-24 md:py-32 text-white scroll-animate relative overflow-hidden">
-        {/* Background Video - SUBTLE */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover opacity-20"
-        >
-          <source src="/assets/video/videosworking/1204.mp4" type="video/mp4" />
-        </video>
-
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-stone-900/80"></div>
+      <section className="py-24 md:py-32 bg-white scroll-animate relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
-          {/* Content Panel - No background, transparent text */}
+          {/* Content Panel - Modern & Refined */}
           <div className="max-w-4xl mx-auto mb-20 text-center">
-            {/* Overline Label - Small, grounded, non-pill */}
+            {/* Overline Label - Modern accent */}
             <div className="inline-block mb-6">
-              <span className="text-primary text-xs md:text-sm font-bold uppercase tracking-[0.2em] border-b-2 border-primary/40 pb-1">
+              <span className="text-primary text-xs md:text-sm font-bold uppercase tracking-[0.2em] border-b-2 border-primary/50 pb-2">
                 Project Gallery
               </span>
             </div>
 
-            {/* Headline - Unified, no competing gradients */}
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.15] text-white">
+            {/* Headline - Enhanced */}
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.15] text-stone-900">
               See Our Work{' '}
-              <span className="font-extrabold text-white">
+              <span className="font-extrabold text-stone-900">
                 in Action
               </span>
             </h2>
 
-            {/* Supporting Copy - Optimal line length */}
-            <p className="text-lg md:text-xl text-stone-200 leading-relaxed max-w-2xl mx-auto mb-8">
+            {/* Supporting Copy - Refined typography */}
+            <p className="text-lg md:text-xl text-stone-600 leading-relaxed max-w-2xl mx-auto mb-10">
               From delivery to final setup, we handle every detail of bringing your home to life. Explore real projects and see the Gulf South difference.
             </p>
 
-            {/* Primary CTA Button - Structural, not pill */}
+            {/* Primary CTA Button - Modern style */}
             <button
               onClick={() => {
                 const galleryGrid = document.querySelector('.gallery-grid');
@@ -548,19 +534,19 @@ const About: React.FC = () => {
                   galleryGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-primary hover:bg-emerald-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 group text-base md:text-lg"
+              className="inline-flex items-center gap-3 px-10 py-5 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group text-base md:text-lg"
             >
               <span>View Gallery</span>
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
             </button>
           </div>
 
-          {/* Enhanced Gallery Grid with varied heights */}
-          <div className="gallery-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+          {/* Enhanced Gallery Grid - Modern Masonry Layout */}
+          <div className="gallery-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {galleryImages.map((image, idx) => (
               <div
                 key={idx}
-                className={`relative rounded-2xl overflow-hidden cursor-pointer group ${
+                className={`relative rounded-2xl overflow-hidden cursor-pointer group shadow-2xl hover:shadow-primary/30 transition-all duration-500 ${
                   idx === 0 || idx === 5 ? 'row-span-2 h-[500px]' : 'h-60'
                 }`}
                 onClick={() => setSelectedGalleryImage(idx)}
@@ -574,17 +560,19 @@ const About: React.FC = () => {
                   decoding="async"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                {/* Enhanced overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
+                {/* Modern gradient overlay - optimized for white background */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <div className="w-14 h-14 bg-white/20 flex items-center justify-center mb-3 transform scale-0 group-hover:scale-100 transition-transform duration-500">
-                      <ArrowRight size={24} className="text-white" />
+                    <div className="w-16 h-16 bg-white/95 backdrop-blur-sm border-2 border-white rounded-full flex items-center justify-center mb-4 transform scale-0 group-hover:scale-100 transition-transform duration-500 shadow-xl">
+                      <ArrowRight size={24} className="text-primary" />
                     </div>
-                    <span className="text-white font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    <span className="text-white font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 drop-shadow-lg">
                       View Project
                     </span>
                   </div>
                 </div>
+                {/* Subtle border glow on hover */}
+                <div className="absolute inset-0 rounded-2xl border-2 border-primary/0 group-hover:border-primary transition-all duration-500 pointer-events-none"></div>
               </div>
             ))}
           </div>
@@ -612,6 +600,40 @@ const About: React.FC = () => {
               </div>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Final CTA Section - Enhanced */}
+      <section 
+        className="py-24 text-white scroll-animate relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/assets/images/Meet the team/aboutpagerdytostartjrny.png')`
+        }}
+      >
+        {/* Overlay for text readability */}
+        <div className="absolute inset-0 bg-black/40"></div>
+
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1] text-white">
+            Ready to Start Your Journey?
+          </h2>
+          <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-12 leading-relaxed">
+            Let's find the perfect home for you and your family. Visit our showroom or give us a call today.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-5 justify-center">
+            <Button variant="primary" to="/homes-for-sale" className="px-10 py-5 text-lg shadow-2xl hover:shadow-xl">
+              View Available Homes
+              <ArrowRight size={20} className="ml-2" />
+            </Button>
+            <Button
+              variant="white"
+              to="/contact-gulf-south-homes"
+              className="px-10 py-5 text-lg border-2 border-white text-white hover:bg-white hover:text-primary shadow-xl"
+            >
+              Schedule a Visit
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -691,33 +713,6 @@ const About: React.FC = () => {
                 {COMPANY_INFO.phone}
               </a>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA Section - Enhanced */}
-      <section className="py-24 bg-gradient-to-br from-primary via-emerald-600 to-teal-700 text-white scroll-animate relative overflow-hidden">
-
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.1]">
-            Ready to Start Your Journey?
-          </h2>
-          <p className="text-xl md:text-2xl text-emerald-50 max-w-2xl mx-auto mb-12 leading-relaxed">
-            Let's find the perfect home for you and your family. Visit our showroom or give us a call today.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-5 justify-center">
-            <Button variant="white" to="/homes-for-sale" className="px-10 py-5 text-lg shadow-2xl hover:shadow-white/20">
-              View Available Homes
-              <ArrowRight size={20} className="ml-2" />
-            </Button>
-            <Button
-              variant="outline"
-              to="/contact-gulf-south-homes"
-              className="px-10 py-5 text-lg border-2 border-white text-white hover:bg-white hover:text-primary shadow-xl"
-            >
-              Schedule a Visit
-            </Button>
           </div>
         </div>
       </section>

@@ -252,19 +252,19 @@ const SingleWide: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-r from-primary to-emerald-700 text-white py-12">
+      <div className="bg-stone-50 text-stone-900 py-12">
         <div className="container text-center">
           <h3 className="text-2xl lg:text-3xl font-bold mb-3">
             Found the Perfect Home?
           </h3>
-          <p className="text-emerald-50 text-lg mb-6 max-w-2xl mx-auto">
+          <p className="text-stone-600 text-lg mb-6 max-w-2xl mx-auto">
             Let's schedule a visit or answer any questions about our single-wide homes.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
               href="tel:+19858760222"
-              className="flex items-center gap-2 bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-stone-50 transition-all shadow-lg"
+              className="flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-all shadow-lg"
             >
               <Phone size={20} /> (985) 876-0222
             </a>
@@ -273,7 +273,7 @@ const SingleWide: React.FC = () => {
             </Button>
           </div>
 
-          <div className="mt-6 flex items-center justify-center gap-2 text-emerald-100">
+          <div className="mt-6 flex items-center justify-center gap-2 text-stone-600">
             <MapPin size={16} />
             <span className="text-sm">1986 Highway 182, Houma, LA 70364</span>
           </div>
