@@ -404,6 +404,904 @@ Before deploying to Vercel:
 
 ---
 
+## Environment Setup
+
+### Required Variables (Create `.env.local`)
+
+```bash
+# Required for Gemini AI integration (vite.config.ts)
+VITE_GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+### Build-Time vs Runtime Variables
+
+- **VITE_ prefix** → Exposed to browser (Vite convention)
+  - Use for: Public API keys, feature flags
+  - Example: `VITE_GEMINI_API_KEY`
+
+- **No prefix** → Server-only (Node.js scripts, private)
+  - Use for: Database credentials, private tokens
+  - Never commits to git
+
+### Hard-Coded Configuration
+
+The following values are intentionally hard-coded in `index.html` and `constants.ts`:
+
+| Value | Location | Purpose |
+|-------|----------|---------|
+| GoHighLevel Chat Widget ID | `index.html` | `6940899ff258cf30de629683` |
+| Contact Form ID | `constants.ts` | `ZRYIIk3TWJ6OI96TkkBg` |
+| Home Inquiry Form ID | `constants.ts` | `9bhfQTzobvZQx4nLQjRc` |
+| CRM Domain | `constants.ts` | `crm.gshforms.com` |
+
+**Note:** These are safe to hard-code since they're CRM identifiers (not secrets). However, consider moving to environment variables for easier configuration across environments.
+
+### Setup Instructions
+
+1. Create `.env.local` in project root
+2. Add your Gemini API key
+3. Never commit `.env.local` to git (already in .gitignore)
+4. Verify in dev: `npm run dev` should load without errors
+
+---
+
+## Custom Hooks Reference
+
+All custom hooks are in the `hooks/` directory. Here's what each does:
+
+### Core UI Hooks
+
+**useClickOutside** - `hooks/useClickOutside.ts`
+- Close modals/dropdowns when user clicks outside
+- Usage: `const ref = useClickOutside(() => setOpen(false))`
+- Dependencies: None
+- Return type: React.RefObject<HTMLElement>
+
+**useFocusTrap** - `hooks/useFocusTrap.ts`
+- Trap keyboard focus inside modals (accessibility)
+- Usage: `useFocusTrap(containerRef)`
+- Prevents tab key from leaving modal
+- Return type: void
+
+**useEscapeKey** - `hooks/useEscapeKey.ts`
+- Handle Escape key events (close modals, cancel forms)
+- Usage: `useEscapeKey(() => setOpen(false))`
+- Only triggers when Escape is pressed
+- Return type: void
+
+### Filter & Data Hooks
+
+**useHomeFilters** - `hooks/useHomeFilters.ts`
+- Manage home catalog filtering state (price range, bedrooms, features)
+- Usage: `const [filters, setFilters] = useHomeFilters()`
+- Syncs with localStorage for persistence
+- Returns: `[filters: HomeFilter, setFilters: (filters) => void]`
+
+**useScrollRestoration** - `hooks/useScrollRestoration.ts`
+- Restore scroll position when navigating back/forward
+- Automatically triggered on route change
+- Usage: Call in page layout once
+- Return type: void
+
+### Visual Interaction Hooks
+
+**useSwipeGesture** - `hooks/useSwipeGesture.ts`
+- Detect touch swipes on mobile (left/right/up/down)
+- Usage: `const direction = useSwipeGesture(containerRef)`
+- Used in carousels and galleries
+- Returns: `'left' | 'right' | 'up' | 'down' | null`
+
+**useLightbox** - `hooks/useLightbox.ts`
+- Control image gallery lightbox (open/close/navigate)
+- Usage: `const lightbox = useLightbox(imageArray)`
+- Methods: `open(index)`, `close()`, `next()`, `prev()`
+- Return type: LightboxInstance
+
+**useScrollLock** - `hooks/useScrollLock.ts`
+- Prevent body scroll when mobile menu is open
+- Usage: `useScrollLock(isMenuOpen)`
+- Prevents scroll-behind-modal effect on mobile
+- Return type: void
+
+### Theme Hook
+
+**useTheme** - `hooks/useTheme.ts`
+- Light/dark mode theme switching (future feature)
+- Usage: `const [theme, setTheme] = useTheme()`
+- Currently configured but not actively used
+- Returns: `[theme: 'light' | 'dark', setTheme: (theme) => void]`
+
+---
+
+## Testing Strategy
+
+### Current State (Dec 27, 2024)
+
+❌ **No automated tests exist**
+- Manual testing via `npm run preview`
+- QA checklist in `QA_CHECKLIST_GOHIGHLEVEL_FORM.md`
+- No CI/CD pipeline
+
+### Recommended Testing Setup
+
+#### 1. Unit Tests (Vitest + React Testing Library)
+
+Install dependencies:
+```bash
+npm install --save-dev vitest @testing-library/react @testing-library/jest-dom jsdom
+```
+
+Create `vitest.config.ts`:
+```typescript
+import { defineConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./vitest.setup.ts'],
+  },
+})
+```
+
+Example test (`components/Button.test.tsx`):
+```tsx
+import { render, screen } from '@testing-library/react'
+import { Button } from './Button'
+
+describe('Button', () => {
+  it('renders with text', () => {
+    render(<Button>Click me</Button>)
+    expect(screen.getByText('Click me')).toBeInTheDocument()
+  })
+})
+```
+
+#### 2. End-to-End Tests (Playwright)
+
+Install:
+```bash
+npm install --save-dev @playwright/test
+```
+
+Example test (`e2e/contact-form.spec.ts`):
+```typescript
+import { test, expect } from '@playwright/test'
+
+test('contact form submits to GoHighLevel', async ({ page }) => {
+  await page.goto('http://localhost:3000/contact')
+  await page.fill('input[name="name"]', 'John Doe')
+  await page.fill('input[name="email"]', 'john@example.com')
+  await page.click('button[type="submit"]')
+
+  // Wait for GoHighLevel success confirmation
+  await expect(page.locator('.success-message')).toBeVisible()
+})
+```
+
+#### 3. Add to package.json Scripts
+
+```json
+{
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:coverage": "vitest --coverage"
+  }
+}
+```
+
+#### 4. CI/CD Pipeline (GitHub Actions)
+
+Create `.github/workflows/test.yml`:
+```yaml
+name: Tests
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm install
+      - run: npm run test
+      - run: npm run build
+      - run: npm run test:e2e
+```
+
+### Priority Testing
+
+**High Priority (Test First):**
+1. Form submissions to GoHighLevel
+2. Home filters (price, bedrooms, features)
+3. Image carousel/swipes
+4. Mobile menu open/close
+5. Video loading
+
+**Medium Priority:**
+1. Route navigation
+2. Cookie consent flow
+3. Search functionality
+
+**Low Priority:**
+1. Static content rendering
+2. CSS animations
+
+---
+
+## Error Handling & Logging
+
+### Current State
+
+⚠️ **Minimal error handling**
+- No global Error Boundary
+- No 404 page (falls through to index.html)
+- No error logging service
+- Forms rely on GoHighLevel (no React-side error handling)
+
+### Implementation Roadmap
+
+#### 1. Error Boundary Component
+
+Create `components/ErrorBoundary.tsx`:
+```tsx
+import React from 'react'
+
+interface Props {
+  children: React.ReactNode
+}
+
+interface State {
+  hasError: boolean
+  error?: Error
+}
+
+export class ErrorBoundary extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props)
+    this.state = { hasError: false }
+  }
+
+  static getDerivedStateFromError(error: Error): State {
+    return { hasError: true, error }
+  }
+
+  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    console.error('Error caught:', error, errorInfo)
+    // Send to error logging service (Sentry, LogRocket, etc.)
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-3xl font-bold mb-4">Oops, Something Went Wrong</h1>
+            <p className="text-gray-600 mb-6">{this.state.error?.message}</p>
+            <button
+              onClick={() => window.location.href = '/'}
+              className="bg-blue-600 text-white px-6 py-2 rounded-lg"
+            >
+              Go Home
+            </button>
+          </div>
+        </div>
+      )
+    }
+
+    return this.props.children
+  }
+}
+```
+
+Use in `App.tsx`:
+```tsx
+<ErrorBoundary>
+  <Routes>
+    {/* routes */}
+  </Routes>
+</ErrorBoundary>
+```
+
+#### 2. 404 Page
+
+Create `pages/NotFound.tsx`:
+```tsx
+export function NotFound() {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center px-4">
+      <h1 className="text-5xl font-bold mb-4">404</h1>
+      <p className="text-xl text-gray-600 mb-8">Page not found</p>
+      <a href="/" className="bg-blue-600 text-white px-6 py-2 rounded-lg">
+        Go Home
+      </a>
+    </div>
+  )
+}
+```
+
+Add route in `App.tsx`:
+```tsx
+<Route path="*" element={<NotFound />} />
+```
+
+#### 3. Error Logging Service
+
+**Option 1: Sentry (Recommended)**
+```bash
+npm install @sentry/react
+```
+
+Setup in `main.tsx`:
+```tsx
+import * as Sentry from "@sentry/react"
+
+Sentry.init({
+  dsn: import.meta.env.VITE_SENTRY_DSN,
+  environment: import.meta.env.MODE,
+})
+```
+
+**Option 2: LogRocket**
+```bash
+npm install logrocket
+```
+
+**Option 3: Custom Logger**
+```tsx
+const logError = (error: Error, context: string) => {
+  console.error(`[${context}]`, error)
+
+  // Send to server endpoint
+  fetch('/api/logs', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      error: error.message,
+      stack: error.stack,
+      context,
+      timestamp: new Date().toISOString(),
+    }),
+  })
+}
+```
+
+---
+
+## Analytics & Tracking
+
+### Current State (Dec 27, 2024)
+
+✅ **Implemented:**
+- Cookie consent banner (CookieConsentBanner.tsx)
+- User preference storage (localStorage: `cookieConsent`)
+- SMS consent tracking (SMSConsentCheckbox.tsx)
+
+❌ **Missing:**
+- Google Analytics 4 integration
+- Conversion event tracking
+- Form submission tracking
+- CTA click tracking
+- Heatmap/session replay
+
+### Google Analytics 4 Implementation
+
+#### 1. Create `.env.local`
+
+```bash
+VITE_GA4_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+#### 2. Install gtag
+
+```bash
+npm install @react-ga/core
+```
+
+#### 3. Initialize in `main.tsx`
+
+```tsx
+import ReactGA from 'react-ga4'
+
+if (import.meta.env.VITE_GA4_MEASUREMENT_ID) {
+  ReactGA.initialize(import.meta.env.VITE_GA4_MEASUREMENT_ID)
+}
+```
+
+#### 4. Track Page Views
+
+Create `hooks/useGoogleAnalytics.ts`:
+```tsx
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import ReactGA from 'react-ga4'
+
+export function useGoogleAnalytics() {
+  const location = useLocation()
+
+  useEffect(() => {
+    ReactGA.send({ hitType: 'pageview', page: location.pathname })
+  }, [location])
+}
+```
+
+Use in `App.tsx`:
+```tsx
+export function App() {
+  useGoogleAnalytics()
+  // ... rest of component
+}
+```
+
+#### 5. Track Events
+
+```tsx
+import ReactGA from 'react-ga4'
+
+// When user clicks "View Home"
+const handleViewHome = (homeId: string) => {
+  ReactGA.event({
+    category: 'engagement',
+    action: 'view_home_details',
+    label: homeId,
+  })
+}
+
+// When user submits contact form
+const handleFormSubmit = () => {
+  ReactGA.event({
+    category: 'conversion',
+    action: 'contact_form_submit',
+    label: 'contact_page',
+  })
+}
+
+// When user clicks CTA button
+const handleCTAClick = (buttonName: string) => {
+  ReactGA.event({
+    category: 'cta',
+    action: 'click',
+    label: buttonName,
+  })
+}
+```
+
+#### 6. Track Conversions (GoHighLevel Submissions)
+
+Update `components/GoHighLevelForm.tsx`:
+```tsx
+const handleFormSubmit = async () => {
+  // ... existing code
+
+  // Track successful submission
+  ReactGA.event({
+    category: 'conversion',
+    action: 'form_submit',
+    label: formType, // 'contact' or 'home_inquiry'
+    value: 1,
+  })
+}
+```
+
+### Analytics Roadmap
+
+| Feature | Status | Impact |
+|---------|--------|--------|
+| Page view tracking | ❌ Not started | HIGH - See which pages convert |
+| Form submissions | ❌ Not started | HIGH - Track lead generation |
+| CTA clicks | ❌ Not started | HIGH - Measure engagement |
+| Home detail views | ❌ Not started | MEDIUM - See which homes interest users |
+| Filter usage | ❌ Not started | MEDIUM - Understand user behavior |
+| Scroll depth | ❌ Not started | LOW - See content engagement |
+| Session replay | ❌ Not started | MEDIUM - Understand user struggles (use Hotjar or Clarity) |
+
+---
+
+## Development Standards
+
+### Code Quality Tools (Recommended Setup)
+
+#### 1. ESLint (Code Quality)
+
+```bash
+npm install --save-dev eslint @eslint/js typescript-eslint
+```
+
+Create `eslint.config.js`:
+```javascript
+import js from '@eslint/js'
+import ts from 'typescript-eslint'
+
+export default [
+  js.configs.recommended,
+  ...ts.configs.recommended,
+  {
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'warn',
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
+    },
+  },
+]
+```
+
+#### 2. Prettier (Code Formatting)
+
+```bash
+npm install --save-dev prettier
+```
+
+Create `.prettierrc`:
+```json
+{
+  "semi": false,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "printWidth": 100
+}
+```
+
+#### 3. Husky (Pre-Commit Hooks)
+
+```bash
+npm install --save-dev husky lint-staged
+npx husky install
+```
+
+Create `.husky/pre-commit`:
+```bash
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx lint-staged
+```
+
+Create `.lintstagedrc`:
+```json
+{
+  "*.{ts,tsx}": "eslint --fix",
+  "*.{ts,tsx,json,md}": "prettier --write"
+}
+```
+
+#### 4. Update package.json Scripts
+
+```json
+{
+  "scripts": {
+    "lint": "eslint src/ --fix",
+    "format": "prettier --write src/",
+    "type-check": "tsc --noEmit"
+  }
+}
+```
+
+### Commit Message Convention
+
+Follow conventional commits for clear history:
+
+```
+feat: Add home price filter to catalog
+fix: Correct video loading on mobile Safari
+docs: Update API documentation
+style: Format code with Prettier
+refactor: Extract carousel logic to custom hook
+test: Add unit tests for useHomeFilters
+chore: Upgrade React to v19.1
+```
+
+Pattern: `<type>: <description>`
+
+**Types:**
+- `feat` - New feature
+- `fix` - Bug fix
+- `docs` - Documentation
+- `style` - Formatting (no logic change)
+- `refactor` - Code restructuring (no behavior change)
+- `test` - Test additions/modifications
+- `chore` - Dependencies, build config
+
+---
+
+## Git Workflow
+
+### Branch Naming Convention
+
+```
+feature/brief-description       # New feature
+fix/brief-description           # Bug fix
+docs/brief-description          # Documentation
+refactor/brief-description      # Code refactoring
+```
+
+**Examples:**
+- `feature/home-price-filter`
+- `fix/carousel-mobile-crash`
+- `docs/update-claude-md`
+- `refactor/extract-carousel-hook`
+
+### Pull Request Process
+
+1. Create branch from `main`:
+   ```bash
+   git checkout -b feature/home-price-filter
+   ```
+
+2. Make changes and commit:
+   ```bash
+   git add .
+   git commit -m "feat: Add home price filter to catalog"
+   ```
+
+3. Run pre-flight checks locally:
+   ```bash
+   npm run lint
+   npm run build
+   npm run test
+   ```
+
+4. Push to remote:
+   ```bash
+   git push -u origin feature/home-price-filter
+   ```
+
+5. Create PR on GitHub
+   - Title: `feat: Add home price filter to catalog`
+   - Description: Explain what and why
+   - Link related issues
+
+6. Wait for approval and CI/CD to pass
+
+7. Merge with "Squash and merge" (keeps history clean)
+
+### Reverting Changes
+
+If a PR needs to be reverted:
+```bash
+git revert <commit-hash>  # Creates new commit that undoes changes
+```
+
+---
+
+## SEO & Dynamic Sitemap
+
+### Current State (Dec 28, 2024)
+
+✅ **Implemented:**
+- Dynamic sitemap generation (`scripts/generate-sitemap.mjs`)
+- Automatic generation on every build (`npm run build`)
+- Includes all 14+ home detail pages (single-wide, double-wide, modular)
+- Includes all 4 manufacturer pages (Franklin, Sunshine, Champion, Other)
+- 36 total URLs indexed (18 main pages + 14 homes + 4 manufacturers)
+- Open Graph meta tags in `index.html`
+- Structured data in `seo-config.ts` with helper functions for dynamic pages
+- Robots.txt with crawl rules
+
+### How It Works
+
+**File:** `scripts/generate-sitemap.mjs`
+
+Automatically:
+1. Reads `data/homes.ts` and extracts all homes
+2. Groups homes by type (Single Wide, Double Wide, Modular)
+3. Creates detail page URLs: `/single-wide-mobile-homes/{home-id}`
+4. Generates manufacturer pages from home data
+5. Combines with 18 static pages
+6. Writes `public/sitemap.xml` with all URLs
+
+**Build Process:**
+```bash
+npm run build  # Runs: generate-sitemap → vite build
+```
+
+The sitemap is regenerated automatically before every production build.
+
+### Add New Homes to Sitemap
+
+Simply add homes to `data/homes.ts` with proper `id`, `name`, `manufacturer`, and `type` fields. The next build will automatically:
+- Extract the new home
+- Assign the correct category (single-wide, double-wide, or modular)
+- Add it to the sitemap
+- Make it crawlable by Google
+
+**Example:**
+```typescript
+{
+  id: 'my-new-home',
+  name: "The New Home",
+  manufacturer: "Franklin",
+  type: "Single Wide",
+  // ... rest of fields
+}
+```
+
+Next `npm run build` → automatically in sitemap ✅
+
+### SEO Impact
+
+**Before dynamic sitemap (Dec 27):**
+- Google could only crawl 18 main pages
+- 14+ homes invisible to search engines
+- Missed opportunity for long-tail keywords
+
+**After dynamic sitemap (Dec 28):**
+- Google crawls all 36 pages (18 main + 14 homes + 4 manufacturers)
+- Each home detail page optimized for: `[home name] [manufacturer] [type] Louisiana`
+- Example: "Robertson by Franklin single wide home Louisiana"
+- Manufacturer pages for: `Franklin homes Louisiana`, `Champion homes Louisiana`, etc.
+
+### Next Steps
+
+1. Submit updated sitemap to Google Search Console:
+   - Go to: https://search.google.com/search-console
+   - Select Gulf South Homes property
+   - Sitemaps → Add new sitemap → `https://gulfsouthhomesinc.com/sitemap.xml`
+
+2. Monitor crawl stats:
+   - Google Search Console → Coverage report
+   - Verify all 36 URLs are indexed (takes 1-2 weeks)
+
+3. Monitor rankings:
+   - Performance tab → Track keyword rankings
+   - Target long-tail: "Sunshine Ivy Dream single wide Louisiana"
+   - Current estimate: 20-50 additional keyword rankings possible
+
+### Technical Details
+
+**Sitemap Configuration:**
+- 18 static pages: priority 0.5-1.0, daily-yearly changefreq
+- Home detail pages: priority 0.6, monthly changefreq
+- Manufacturer pages: priority 0.5, monthly changefreq
+
+**Dynamic Functions (seo-config.ts):**
+- `getHomeDetailSEO(homeName, type, manufacturer)` - Creates dynamic titles/descriptions
+- `getDoubleWideDetailSEO(homeName, manufacturer)` - Double-wide specific SEO
+- `getModularDetailSEO(homeName, manufacturer)` - Modular home specific SEO
+- `createBreadcrumbSchema(breadcrumbs)` - Structured navigation data
+
+---
+
+## Secrets Management
+
+### Current State
+
+- GoHighLevel IDs hard-coded in HTML (acceptable for now)
+- Gemini API key in `vite.config.ts` (visible in browser)
+
+### Security Considerations
+
+⚠️ **API Keys in Frontend:**
+- Frontend API keys (like Gemini) have minimal security
+- Use browser-safe API keys with rate limiting
+- Never put backend secrets in Vite
+
+✅ **Safe Hard-Coded Values:**
+- GoHighLevel form IDs (not secrets, just identifiers)
+- CRM domain (public information)
+- Widget IDs (not sensitive)
+
+### Future Improvements
+
+#### 1. Move to Backend API
+
+Create `server/api/ai.ts` (Node.js backend):
+```typescript
+// Private Gemini key stored on server
+const GEMINI_KEY = process.env.GEMINI_API_KEY
+
+export async function generateHomeDescription(specs: HomeSpecs) {
+  const response = await fetch('https://generativelanguage.googleapis.com/...', {
+    headers: {
+      'Authorization': `Bearer ${GEMINI_KEY}`,
+    },
+  })
+  return response.json()
+}
+```
+
+Frontend calls server instead of Gemini directly:
+```tsx
+const description = await fetch('/api/generate-description', {
+  method: 'POST',
+  body: JSON.stringify(specs),
+})
+```
+
+#### 2. Rotate GoHighLevel Credentials
+
+Process for rotating credentials:
+1. Create new form in GoHighLevel
+2. Update `.env` with new IDs
+3. Deploy to production
+4. Monitor old form for bounces
+5. Archive old form after 30 days
+
+#### 3. Environment-Specific Secrets
+
+Use Vercel secrets for production:
+```bash
+vercel env add VITE_GEMINI_API_KEY
+vercel secrets add GEMINI_API_KEY  # Server-side
+```
+
+---
+
+## PWA Features (Future)
+
+### Current State
+
+✅ **Manifest** - `public/site.webmanifest`
+✅ **Icons** - 16x16, 32x32, 192x192, 512x512
+❌ **Service Worker** - Not implemented
+❌ **Offline Support** - Not available
+❌ **Install Prompt** - Not shown
+
+### Implementation Roadmap
+
+#### 1. Service Worker
+
+Create `public/sw.js`:
+```javascript
+const CACHE_NAME = 'gshhomes-v1'
+const urlsToCache = ['/', '/index.html', '/offline.html']
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
+  )
+})
+
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET') return
+
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request)
+    })
+  )
+})
+```
+
+Register in `main.tsx`:
+```tsx
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+}
+```
+
+#### 2. Offline Page
+
+Create `public/offline.html` with offline message
+
+#### 3. Install Prompt
+
+```tsx
+const [deferredPrompt, setDeferredPrompt] = useState<any>(null)
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault()
+  setDeferredPrompt(e)
+})
+
+const handleInstall = () => {
+  if (deferredPrompt) {
+    deferredPrompt.prompt()
+    deferredPrompt.userChoice.then((choiceResult: any) => {
+      setDeferredPrompt(null)
+    })
+  }
+}
+```
+
+---
+
 ## References
 
 - [Constitution](memory/constitution.md) - Project principles
