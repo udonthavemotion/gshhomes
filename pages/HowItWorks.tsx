@@ -191,15 +191,22 @@ const HowItWorks: React.FC = () => {
 
                 {/* Visual Side */}
                 <div className="flex-1 lg:sticky lg:top-24">
-                  <div className="bg-white rounded-2xl shadow-xl border border-stone-200 p-8 lg:p-10">
-                    <div className="aspect-[4/3] bg-gradient-to-br from-stone-100 to-stone-200 rounded-xl flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-24 h-24 mx-auto mb-4 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
-                          {step.icon}
-                        </div>
-                        <p className="text-2xl font-bold text-stone-900">Step {step.number}</p>
-                        <p className="text-stone-600 mt-2">{step.title}</p>
-                      </div>
+                  <div className="bg-white rounded-2xl shadow-xl border border-stone-200 overflow-hidden">
+                    <div className="aspect-[4/3] relative">
+                      <img
+                        src={`/assets/images/buyingprocess/step_${step.number}_${
+                          step.number === 1 ? 'choose_your_home' :
+                          step.number === 2 ? 'financing_and_budget' :
+                          step.number === 3 ? 'land_and_permits' :
+                          step.number === 4 ? 'delivery_and_setup' :
+                          'move_in'
+                        }.jpg`}
+                        alt={`${step.title} - Gulf South Homes buying process`}
+                        loading="lazy"
+                        className="w-full h-full object-cover"
+                      />
+                      {/* Subtle overlay for visual consistency */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
                     </div>
                   </div>
                 </div>
