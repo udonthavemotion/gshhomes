@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { UNIFIED_INVENTORY } from '../data/unified-inventory';
 import { useHomeFilters } from '../hooks/useHomeFilters';
 import HomeCard from '../components/HomeCard';
-import { SlidersHorizontal, X } from 'lucide-react';
+import { SlidersHorizontal, X, Home as HomeIcon } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
 
@@ -73,6 +73,12 @@ const Catalog: React.FC = () => {
                 e.currentTarget.style.display = 'none';
               }}
             />
+          </div>
+
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium mb-6">
+            <HomeIcon size={16} />
+            Browse Our Inventory
           </div>
 
           {/* Heading */}

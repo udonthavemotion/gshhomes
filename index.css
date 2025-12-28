@@ -1441,6 +1441,146 @@
 /* Speed controlled by JavaScript for smooth transitions without resets */
 
 /* ========================================
+   LENDER RIBBON - Premium Text Ticker
+   Overlays hero video with glassmorphic background
+   Modern viral animations for 2025 aesthetic
+   ======================================== */
+
+/* Lender Ribbon Animation - Smooth infinite scroll */
+@keyframes lender-ribbon-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Entrance Animation - Slide up + fade in */
+@keyframes lender-ribbon-entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Shimmer/Shine Sweep Effect - Viral Apple-style */
+@keyframes lender-ribbon-shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
+/* Pulse Glow Animation - Subtle background pulse */
+@keyframes lender-ribbon-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(74, 144, 226, 0.1), inset 0 0 20px rgba(74, 144, 226, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.2), inset 0 0 30px rgba(74, 144, 226, 0.1);
+  }
+}
+
+/* Text Glow Pulse - Makes text "pop" */
+@keyframes lender-ribbon-text-glow {
+  0%, 100% {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.2), 0 0 30px rgba(74, 144, 226, 0.3);
+  }
+}
+
+/* Container Animations */
+.lender-ribbon-entrance {
+  animation: lender-ribbon-entrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.lender-ribbon-container {
+  animation: lender-ribbon-pulse 4s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer Effect - Premium shine sweep */
+.lender-ribbon-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  animation: lender-ribbon-shimmer 3s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+/* Track Animation */
+.lender-ribbon-track {
+  animation: lender-ribbon-scroll 35s linear infinite;
+  will-change: transform;
+  transition: transform 0.3s ease;
+}
+
+.lender-ribbon-track:hover {
+  animation-play-state: paused;
+  transform: scale(1.02);
+}
+
+/* Text Animations - Subtle glow pulse */
+.lender-ribbon-text {
+  animation: lender-ribbon-text-glow 3s ease-in-out infinite;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-block;
+}
+
+.lender-ribbon-text:hover {
+  animation: lender-ribbon-text-glow 1s ease-in-out infinite;
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
+
+/* Enhanced hover effects for clickable items */
+a.lender-ribbon-text:hover {
+  transform: scale(1.08) translateY(-2px);
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.3), 0 0 40px rgba(74, 144, 226, 0.4);
+}
+
+/* Reduced Motion Support - Show static layout instead of animation */
+@media (prefers-reduced-motion: reduce) {
+  .lender-ribbon-track {
+    animation: none !important;
+    display: none;
+  }
+  
+  .lender-ribbon-entrance {
+    animation: none !important;
+    opacity: 1;
+  }
+  
+  .lender-ribbon-container {
+    animation: none !important;
+  }
+  
+  .lender-ribbon-shimmer {
+    animation: none !important;
+    display: none;
+  }
+  
+  .lender-ribbon-text {
+    animation: none !important;
+  }
+  
+  .lender-ribbon-static {
+    display: block !important;
+  }
+}
+
+/* ========================================
    LENDERS HERO CAROUSEL - Minimal Scrollbar Style
    Positioned at bottom of hero video, ultra-transparent
    ======================================== */

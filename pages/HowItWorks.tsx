@@ -135,9 +135,11 @@ const HowItWorks: React.FC = () => {
 
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="inline-block px-4 py-1.5 bg-primary/20 text-primary text-sm font-semibold rounded-md mb-4">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium mb-6">
+              <CheckCircle size={16} />
               The Process
-            </span>
+            </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-6 text-white">
               How It Works
             </h1>

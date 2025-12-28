@@ -16,8 +16,9 @@ import {
 } from 'lucide-react';
 import Button from '../components/Button';
 import LogoScroller from '../components/LogoScroller';
+import LenderRibbon from '../components/LenderRibbon';
 import { LENDERS } from '../data/lenders';
-import { COMPANY_INFO } from '../constants';
+import { COMPANY_INFO, LENDING_PARTNERS } from '../constants';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
 
@@ -114,11 +115,18 @@ const Financing: React.FC = () => {
           <source src="/assets/video/videosworking/finance.mp4" type="video/mp4" />
         </video>
 
+        {/* Background Overlay */}
+        {/* Light Background Overlay - Crisp and Bright */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/10 to-black/20"></div>
+        <div className="absolute inset-0 bg-black/5"></div>
+
         {/* Content */}
         <div className="relative z-10 w-full max-w-4xl mx-auto">
-          <span className="inline-block px-4 py-1.5 bg-white/95 text-primary text-sm font-semibold rounded-md mb-6 backdrop-blur-sm">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium mb-6">
+            <DollarSign size={16} />
             Flexible Payment Solutions
-          </span>
+          </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight">
             Financing Made <span className="text-white">Simple</span>
           </h1>
@@ -134,6 +142,11 @@ const Financing: React.FC = () => {
             Start Your Application
             <ArrowRight size={20} className="ml-2" />
           </Button>
+        </div>
+
+        {/* Lending Partners Ribbon - Overlay at bottom of hero */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 pointer-events-none">
+          <LenderRibbon partners={LENDING_PARTNERS} className="pointer-events-auto" />
         </div>
       </section>
 

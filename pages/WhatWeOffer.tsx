@@ -4,6 +4,7 @@ import Button from '../components/Button';
 import {
   DollarSign,
   Home,
+  Home as HomeIcon,
   LandPlot,
   ShieldCheck,
   Wrench,
@@ -156,9 +157,11 @@ const WhatWeOffer: React.FC = () => {
                 }}
               />
             </div>
-            <span className="inline-block px-4 py-1.5 bg-white/95 text-primary text-sm font-semibold rounded-md mb-4 backdrop-blur-sm">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium mb-6">
+              <HomeIcon size={16} />
               Your Partner in Homeownership
-            </span>
+            </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-6 text-white">
               What We Offer
             </h1>

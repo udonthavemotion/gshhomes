@@ -81,8 +81,8 @@ const Insurance: React.FC = () => {
           </div>
 
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-semibold rounded-full mb-6">
-            <Shield size={18} />
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium mb-6">
+            <Shield size={16} />
             Protect Your Investment
           </div>
 

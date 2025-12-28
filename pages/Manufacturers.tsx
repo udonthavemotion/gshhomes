@@ -84,6 +84,12 @@ const Manufacturers: React.FC = () => {
             />
           </div>
 
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium mb-6">
+            <Building size={16} />
+            Trusted Partners
+          </div>
+
           {/* Heading */}
           <h1 className="font-bold text-white leading-tight text-4xl sm:text-5xl lg:text-6xl max-w-[900px] mx-auto break-words mb-6">
             Our Manufacturers

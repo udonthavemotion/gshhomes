@@ -142,3 +142,11 @@ export const TESTIMONIALS: Testimonial[] = [
     rating: 5
   }
 ];
+
+export const LENDING_PARTNERS = [
+  { name: '21st Mortgage Corporation', href: undefined },
+  { name: 'Assurance Financial', href: undefined },
+  { name: 'Canopy Mortgage', href: undefined },
+  { name: 'Credit Human', href: undefined },
+  { name: 'Triad Financial Services', href: undefined },
+];

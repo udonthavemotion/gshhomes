@@ -4,7 +4,7 @@ import { useHomeFilters } from '../hooks/useHomeFilters';
 import HomeCard from '../components/HomeCard';
 import Button from '../components/Button';
 import { COMPANY_INFO } from '../constants';
-import { SlidersHorizontal, X, ArrowRight, MapPin, Phone, Clock } from 'lucide-react';
+import { SlidersHorizontal, X, ArrowRight, MapPin, Phone, Clock, Home, Hammer, Users } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
 
@@ -111,6 +111,12 @@ const Modular: React.FC = () => {
                 e.currentTarget.style.display = 'none';
               }}
             />
+          </div>
+
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium mb-6">
+            <SlidersHorizontal size={16} />
+            Fully Customizable
           </div>
 
           {/* Main Headline */}

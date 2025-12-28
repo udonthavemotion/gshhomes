@@ -60,8 +60,8 @@ const LARestore: React.FC = () => {
         {/* Content */}
         <div className="relative z-10 w-full max-w-4xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-xs font-bold tracking-wider rounded-full mb-6 uppercase shadow-md">
-            <ShieldCheck size={18} />
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium mb-6">
+            <ShieldCheck size={16} />
             Restore Louisiana • Manufactured Home Replacement Help
           </div>
 

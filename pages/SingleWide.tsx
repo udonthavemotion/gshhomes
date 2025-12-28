@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { UNIFIED_INVENTORY } from '../data/unified-inventory';
 import { useHomeFilters } from '../hooks/useHomeFilters';
-import { SlidersHorizontal, X, Phone, MapPin } from 'lucide-react';
+import { SlidersHorizontal, X, Phone, MapPin, Home as HomeIcon } from 'lucide-react';
 import Button from '../components/Button';
 import HomeCard from '../components/HomeCard';
 import SEOHead from '../components/SEOHead';
@@ -86,6 +86,12 @@ const SingleWide: React.FC = () => {
                 e.currentTarget.style.display = 'none';
               }}
             />
+          </div>
+
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium mb-6">
+            <HomeIcon size={16} />
+            Affordable & Efficient
           </div>
 
           {/* Heading */}
