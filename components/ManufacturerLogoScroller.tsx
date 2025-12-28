@@ -4,11 +4,13 @@ import { MANUFACTURERS, Manufacturer } from '../data/manufacturers';
 interface ManufacturerLogoScrollerProps {
   manufacturers?: Manufacturer[];
   className?: string;
+  onManufacturerClick?: (slug: string) => void;
 }
 
 const ManufacturerLogoScroller: React.FC<ManufacturerLogoScrollerProps> = ({
   manufacturers = MANUFACTURERS,
   className = '',
+  onManufacturerClick,
 }) => {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const scrollerInnerRef = useRef<HTMLDivElement>(null);
@@ -32,25 +34,56 @@ const ManufacturerLogoScroller: React.FC<ManufacturerLogoScrollerProps> = ({
     });
   }, [manufacturers]);
 
+  const handleClick = (slug: string) => {
+    if (onManufacturerClick) {
+      onManufacturerClick(slug);
+    } else {
+      // Default behavior: scroll to manufacturer section
+      const element = document.getElementById(`manufacturer-${slug}`);
+      if (element) {
+        const offset = 100; // Offset for fixed headers if any
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+      }
+    }
+  };
+
   return (
-    <div className={`scroller ${className}`} ref={scrollerRef}>
-      <div className="scroller__inner" ref={scrollerInnerRef}>
-        {manufacturers.map((manufacturer) => (
-          <img
-            key={manufacturer.slug}
-            className="scroller__img"
-            src={manufacturer.logoPath}
-            alt={manufacturer.logoAlt}
-            loading="lazy"
-            decoding="async"
-            onError={(e) => {
-              // Fallback to placeholder if image doesn't exist
-              const target = e.target as HTMLImageElement;
-              target.src = '/assets/images/logo/logo.png';
-              target.alt = `${manufacturer.displayName} logo placeholder`;
-            }}
-          />
-        ))}
+    <div className={`manufacturer-carousel-wrapper ${className}`} ref={scrollerRef}>
+      <div className="scroller scroller--manufacturers">
+        <div className="scroller__inner scroller__inner--manufacturers" ref={scrollerInnerRef}>
+          {manufacturers.map((manufacturer) => (
+            <img
+              key={manufacturer.slug}
+              onClick={() => handleClick(manufacturer.slug)}
+              className="scroller__img scroller__img--manufacturers"
+              src={manufacturer.logoPath}
+              alt={manufacturer.logoAlt}
+              loading="lazy"
+              decoding="async"
+              role="button"
+              tabIndex={0}
+              aria-label={`Scroll to ${manufacturer.displayName}`}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleClick(manufacturer.slug);
+                }
+              }}
+              onError={(e) => {
+                // Fallback to placeholder if image doesn't exist
+                const target = e.target as HTMLImageElement;
+                target.src = '/assets/images/logo/logo.png';
+                target.alt = `${manufacturer.displayName} logo placeholder`;
+              }}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

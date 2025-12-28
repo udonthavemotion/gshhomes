@@ -1,0 +1,56 @@
+role:@ui engineer.md (1-304)  Task: Duplicate the existing “Manufacturers” carousel from the homepage, then redesign ONLY the duplicated version to be dramatically more premium, modern, and visually impressive. Place this redesigned carousel directly under the hero header on the Manufacturers page. Do NOT change the original homepage carousel in any way—leave it pixel-perfect as-is.
+
+Non-negotiables:
+- The homepage carousel must remain untouched (no style, markup, logic, spacing, or asset changes).
+- The Manufacturers page will use a duplicated component as the starting point (copy code, then rename).
+- The redesigned carousel must be built to match Gulf South Homes’ brand system:
+  - Primary Navy: #1E3A5F (dominant)
+  - Navy Dark: #142840, Navy Light: #2D5380
+  - CTA Red: #D32F2F (sparingly, only for emphasis)
+  - Accent Blue: #4A90E2 (interactive only; avoid for body text on white)
+  - Neutrals: Stone 50–900
+  - Type: Outfit (headings 600–700), Plus Jakarta Sans (body 400–600)
+- Maintain accessibility (hover/focus states, keyboard nav, contrast).
+- Keep content/data source the same (manufacturers list, logos, links, tracking).
+- Responsive: mobile/tablet/desktop, no layout breakage.
+
+Deliverables:
+1) Duplicate component:
+   - Create a new component (e.g., ManufacturersCarouselPremium) by copying the homepage carousel component.
+   - Ensure imports/exports and routes only point the Manufacturers page to the new component.
+   - Confirm homepage still renders the original component unchanged.
+2) Redesign the duplicated carousel (Manufacturers page only):
+   - Upgrade visual design “100x”: cleaner spacing, stronger hierarchy, premium motion, more modern layout, more delightful interactions.
+   - Add a section header module above it on the Manufacturers page (if not present): title + short supportive line, styled in brand typography.
+   - Improve card design: consistent logo placement, subtle depth, refined borders, hover lift, and polished focus ring.
+   - Improve carousel controls: modern arrows, progress indicator (dots or bar), draggable/touch-friendly.
+   - Add micro-interactions: hover reveal for manufacturer name + “View Homes” / “Explore” link, but keep it tasteful.
+   - Use Navy + Stone surfaces as the base; use Red only as a small accent for CTAs or active states.
+3) Acceptance checks (must verify before finishing):
+   - Homepage carousel is identical before vs after (diff test or visual check).
+   - Manufacturers page shows the redesigned carousel directly under the hero header.
+   - Works on mobile (1 card), tablet (2–3), desktop (4–6), with smooth swipe/scroll.
+   - All logos are crisp, centered, and consistent in size.
+   - No CLS/jank; animations use transform/opacity only.
+   - Keyboard: Tab reaches arrows/dots/cards; visible focus; Enter activates links.
+
+Implementation guidance (follow best practice, don’t over-engineer):
+- Prefer composition over invasive refactors: copy → rename → redesign in the new component.
+- Keep logic the same unless a change is required for the new UI (then isolate changes to the new component).
+- Use a design token approach for spacing, radius, and shadows; keep values consistent across the component.
+- Provide code changes as a clean patch: list files edited/added and what changed.
+
+Output format:
+- Start with a short plan (bullet list).
+- Then provide the exact file operations (new file path, renamed components, where it’s used).
+- Then provide the redesigned component code + any required CSS/Tailwind changes.
+- End with the acceptance checklist results.
+
+Take a deep breath and work on this problem step-by-step. 
+ DOM Path: div#root > div.flex flex-col min-h-.creen font-.an. text-.tone-800 bg-.tone-50 > main.flex-grow > div.flex flex-col min-h-.creen overflow-hidden > section.relative py-16 .m:py-24 lg:py-32 bg-gradient-to-b from-white via-.tone-50 to-white overflow-hidden > div.container relative z-10 > div.max-w-6xl mx-auto > div.mt-12 .m:mt-16 pt-10 .m:pt-12 border-t border-.tone-200
+Position: top=300px, left=79px, width=928px, height=200px
+React Component: Home
+HTML Element: <div class="mt-12 sm:mt-16 pt-10 sm:pt-12 border-t border-stone-200" data-cursor-element-id="cursor-el-910">FEATURING TOP MANUFACTURERS</div> DOM Path: div#root > div.flex flex-col min-h-.creen font-.an. text-.tone-800 bg-.tone-50 > main.flex-grow > div.bg-.tone-50 min-h-.creen > section.py-20 .m:py-28 bg-white[0]
+Position: top=148px, left=0px, width=1085px, height=6916px
+React Component: Manufacturers
+HTML Element: <section class="py-20 sm:py-28 bg-white" data-cursor-element-id="cursor-el-2038">BG Manufacturing Quality Built for Louisiana BG Manufacturing specializes in durable, storm-ready homes designed specifically for the Gulf Coast region. Their homes feature Wind Zone III constructio</section> 

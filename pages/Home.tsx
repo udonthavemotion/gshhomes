@@ -951,20 +951,22 @@ const Home: React.FC = () => {
           </div>
 
           {/* Reviews Widget Embed */}
-          <div className="scroll-animate max-w-6xl mx-auto">
-            <iframe
-              className='lc_reviews_widget'
-              src='https://crm.zeromotionmarketing.com/reputation/widgets/review_widget/9Ax53jRuv9z4JsRTJ60V?widgetId=6950a4721d475e5e12657795'
-              frameBorder='0'
-              scrolling='no'
-              style={{
-                minWidth: '100%',
-                width: '100%',
-                minHeight: '400px',
-                border: 'none'
-              }}
-              title="Customer Reviews"
-            />
+          <div className="scroll-animate max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="reviews-widget-container">
+              <iframe
+                className='lc_reviews_widget'
+                src='https://crm.zeromotionmarketing.com/reputation/widgets/review_widget/9Ax53jRuv9z4JsRTJ60V?widgetId=6950a4721d475e5e12657795'
+                frameBorder='0'
+                scrolling='no'
+                style={{
+                  minWidth: '100%',
+                  width: '100%',
+                  minHeight: '400px',
+                  border: 'none'
+                }}
+                title="Customer Reviews"
+              />
+            </div>
           </div>
         </div>
       </section>

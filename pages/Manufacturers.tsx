@@ -6,6 +6,7 @@ import Button from '../components/Button';
 import { ArrowRight, MapPin, Phone, Clock, Building, ExternalLink } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
+import ManufacturerLogoScroller from '../components/ManufacturerLogoScroller';
 
 const Manufacturers: React.FC = () => {
   // Scroll animations
@@ -96,6 +97,21 @@ const Manufacturers: React.FC = () => {
         </div>
       </section>
 
+      {/* Manufacturers Carousel */}
+      <section className="py-8 sm:py-12 bg-white border-b border-stone-200">
+        <div className="container">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-stone-900 mb-2">
+              Browse Our Manufacturers
+            </h2>
+            <p className="text-stone-600 text-sm sm:text-base">
+              Click any logo to jump to that manufacturer's section
+            </p>
+          </div>
+        </div>
+        <ManufacturerLogoScroller />
+      </section>
+
       {/* Manufacturers Grid */}
       <section className="py-20 sm:py-28 bg-white">
         <div className="container">
@@ -103,10 +119,11 @@ const Manufacturers: React.FC = () => {
             {MANUFACTURERS.map((manufacturer, idx) => (
               <div
                 key={manufacturer.slug}
+                id={`manufacturer-${manufacturer.slug}`}
                 className={`scroll-animate grid lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
                   idx % 2 === 1 ? 'lg:grid-flow-dense' : ''
                 }`}
-                style={{ transitionDelay: `${idx * 100}ms` }}
+                style={{ transitionDelay: `${idx * 100}ms`, scrollMarginTop: '100px' }}
               >
                 {/* Logo Section */}
                 <div className={`${idx % 2 === 1 ? 'lg:col-start-2' : ''}`}>
