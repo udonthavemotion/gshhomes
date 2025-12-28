@@ -143,9 +143,10 @@ const Navbar: React.FC = () => {
       {/* Bottom Bar - Light Blue Background with Navigation */}
       <nav ref={navRef} className="text-white" style={{ backgroundColor: 'var(--color-primary-light)' }}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 lg:h-16">
+          {/* Mobile: Flex layout with justify-between */}
+          <div className="flex justify-between items-center h-16 lg:hidden">
             {/* Mobile Logo */}
-            <Link to="/" className="flex items-center lg:hidden group" onClick={handleLogoClick}>
+            <Link to="/" className="flex items-center group" onClick={handleLogoClick}>
               <img 
                 src="/menu nav logo.png" 
                 alt="Gulf South Homes" 
@@ -153,8 +154,36 @@ const Navbar: React.FC = () => {
               />
             </Link>
 
+            {/* Mobile Menu Button - Only shows Menu icon when closed */}
+            <div className="flex items-center">
+              <button
+                ref={menuButtonRef}
+                onClick={toggleMenu}
+                className={`px-4 py-2.5 rounded-md transition-all duration-300 min-h-[44px] flex items-center gap-2 focus:outline-none focus:ring-0 ${
+                  isOpen
+                    ? 'bg-stone-900 text-white'
+                    : 'text-white hover:bg-stone-900'
+                }`}
+                aria-label="Open menu"
+                aria-expanded={isOpen}
+                aria-controls="mobile-menu"
+                onFocus={(e) => {
+                  // Prevent focus ring on mobile
+                  if (window.innerWidth < 1024) {
+                    e.currentTarget.blur();
+                  }
+                }}
+              >
+                <Menu size={20} aria-hidden="true" />
+                <span className="text-sm font-semibold">Menu</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Desktop: Grid layout for stable centering */}
+          <div className="hidden lg:grid lg:grid-cols-[auto_1fr_auto] items-center h-16">
             {/* Desktop Logo - Shows when scrolled */}
-            <div className={`hidden lg:block transition-all duration-300 ${scrolled ? 'opacity-100 w-auto mr-6' : 'opacity-0 w-0 mr-0 overflow-hidden'}`}>
+            <div className={`transition-all duration-300 ${scrolled ? 'opacity-100 w-auto mr-6' : 'opacity-0 w-0 mr-0 overflow-hidden'}`}>
               <Link to="/" className="flex items-center group" onClick={handleLogoClick}>
                 <img 
                   src="/menu nav logo.png" 
@@ -164,8 +193,8 @@ const Navbar: React.FC = () => {
               </Link>
             </div>
 
-            {/* Desktop Navigation Links */}
-            <div className={`hidden lg:flex items-center space-x-1 ${scrolled ? 'flex-1' : 'flex-1 justify-center'}`}>
+            {/* Desktop Navigation Links - Centered in middle column */}
+            <div className="flex items-center space-x-1 justify-self-center">
               {navLinks.map((link) => (
                 link.sublinks ? (
                   // Dropdown for links with sublinks
@@ -236,31 +265,9 @@ const Navbar: React.FC = () => {
                 )}
               </Link>
             </div>
-
-            {/* Mobile Menu Button - Only shows Menu icon when closed */}
-            <div className="flex items-center lg:hidden">
-              <button
-                ref={menuButtonRef}
-                onClick={toggleMenu}
-                className={`px-4 py-2.5 rounded-md transition-all duration-300 min-h-[44px] flex items-center gap-2 focus:outline-none focus:ring-0 ${
-                  isOpen
-                    ? 'bg-stone-900 text-white'
-                    : 'text-white hover:bg-stone-900'
-                }`}
-                aria-label="Open menu"
-                aria-expanded={isOpen}
-                aria-controls="mobile-menu"
-                onFocus={(e) => {
-                  // Prevent focus ring on mobile
-                  if (window.innerWidth < 1024) {
-                    e.currentTarget.blur();
-                  }
-                }}
-              >
-                <Menu size={20} aria-hidden="true" />
-                <span className="text-sm font-semibold">Menu</span>
-              </button>
-            </div>
+            
+            {/* Empty third column for grid symmetry */}
+            <div></div>
           </div>
         </div>
       </nav>

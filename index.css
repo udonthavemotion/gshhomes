@@ -1244,7 +1244,7 @@
   gap: 4rem;
   align-items: center;
   width: max-content;
-  animation: scroll-manufacturers 25s linear infinite;
+  animation: scroll-manufacturers 45s linear infinite;
   will-change: transform;
 }
 
@@ -1439,6 +1439,185 @@
 }
 
 /* Speed controlled by JavaScript for smooth transitions without resets */
+
+/* ========================================
+   LENDERS HERO CAROUSEL - Minimal Scrollbar Style
+   Positioned at bottom of hero video, ultra-transparent
+   ======================================== */
+
+/* Wrapper - absolute positioning for hero overlay */
+.lenders-hero-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  padding: 0;
+}
+
+/* Label - subtle indicator */
+.lenders-hero-label {
+  position: absolute;
+  top: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.lenders-hero-label-text {
+  display: inline-block;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Container - glassmorphic background */
+.lenders-hero-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 1rem 0;
+}
+
+/* Fade masks for smooth entry/exit */
+.lenders-hero-fade-left,
+.lenders-hero-fade-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 8rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.lenders-hero-fade-left {
+  left: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
+}
+
+.lenders-hero-fade-right {
+  right: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.4) 0%, transparent 100%);
+}
+
+/* Scrolling track - infinite animation */
+.lenders-hero-track {
+  display: flex;
+  width: max-content;
+  animation: lenders-hero-scroll 40s linear infinite;
+  will-change: transform;
+}
+
+/* Content wrapper */
+.lenders-hero-content {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding: 0 4rem;
+}
+
+/* Individual logo item */
+.lenders-hero-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Logo image styling */
+.lenders-hero-logo {
+  height: 2rem;
+  width: auto;
+  max-width: 10rem;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.lenders-hero-item:hover .lenders-hero-logo {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Animation keyframes */
+@keyframes lenders-hero-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .lenders-hero-container {
+    padding: 0.75rem 0;
+  }
+
+  .lenders-hero-track {
+    animation: lenders-hero-scroll 60s linear infinite;
+  }
+
+  .lenders-hero-content {
+    gap: 2.5rem;
+    padding: 0 2.5rem;
+  }
+
+  .lenders-hero-logo {
+    height: 1.5rem;
+    max-width: 8rem;
+  }
+
+  .lenders-hero-fade-left,
+  .lenders-hero-fade-right {
+    width: 4rem;
+  }
+
+  .lenders-hero-label-text {
+    font-size: 0.5625rem;
+    padding: 0.1875rem 0.625rem;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .lenders-hero-track {
+    animation: lenders-hero-scroll 50s linear infinite;
+  }
+
+  .lenders-hero-content {
+    gap: 3rem;
+  }
+
+  .lenders-hero-logo {
+    height: 1.75rem;
+  }
+}
+
+/* Reduce motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .lenders-hero-track {
+    animation: none;
+    justify-content: center;
+  }
+
+  .lenders-hero-content {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+}
 
 /* STATS SECTION GRADIENT TEXT */
 .text-gradient-stats {
@@ -1790,6 +1969,139 @@ chat-widget[data-widget-id="6940899ff258cf30de629683"] button[class*="chat"] {
   min-height: 62px !important;
   width: auto !important;
   height: auto !important;
+}
+
+/* ========================================
+   LENDERS HERO CAROUSEL - MINIMAL SCROLLBAR STYLE
+   Ultra-transparent, positioned at bottom of video hero
+   ======================================== */
+
+.lenders-hero-carousel-wrapper {
+  width: 100%;
+  padding: 0.75rem 0;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  position: relative;
+  /* Fade edges with gradient mask */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.lenders-hero-carousel-track {
+  display: flex;
+  width: max-content;
+  animation: lenders-hero-scroll 25s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.lenders-hero-carousel-content {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  padding: 0 3rem;
+}
+
+.lenders-hero-logo-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lenders-hero-logo-img {
+  height: 50px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  opacity: 0.85;
+  filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  will-change: opacity, transform;
+}
+
+/* Pause on hover to read lender names */
+.lenders-hero-carousel-wrapper:hover .lenders-hero-carousel-track {
+  animation-play-state: paused;
+}
+
+.lenders-hero-carousel-wrapper:hover .lenders-hero-logo-img {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Smooth infinite scroll animation */
+@keyframes lenders-hero-scroll {
+  0% {
+    transform: translateX(0) translateZ(0);
+  }
+  100% {
+    transform: translateX(-50%) translateZ(0);
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .lenders-hero-carousel-wrapper {
+    padding: 0.5rem 0;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .lenders-hero-carousel-track {
+    animation: lenders-hero-scroll 20s linear infinite;
+  }
+
+  .lenders-hero-carousel-content {
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+
+  .lenders-hero-logo-img {
+    height: 40px;
+    max-width: 120px;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .lenders-hero-logo-img {
+    height: 45px;
+    max-width: 140px;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .lenders-hero-carousel-track {
+    animation: none;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .lenders-hero-carousel-wrapper {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .lenders-hero-carousel-wrapper:hover .lenders-hero-carousel-track {
+    animation-play-state: running;
+  }
 }
 
 /* ========================================
