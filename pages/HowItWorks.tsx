@@ -19,6 +19,28 @@ import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
 
 const HowItWorks: React.FC = () => {
+  // Scroll animation observer
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in-up');
+            entry.target.classList.remove('opacity-0', 'translate-y-8');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
+
+    document.querySelectorAll('.scroll-animate').forEach((el) => {
+      el.classList.add('opacity-0', 'translate-y-8');
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const steps = [
     {
       number: 1,
@@ -216,112 +238,136 @@ const HowItWorks: React.FC = () => {
         </div>
       </section>
 
-      {/* Timeline Overview */}
-      <section className="py-20 sm:py-28 bg-white">
+      {/* Timeline Overview - Modern Viral Design */}
+      <section className="py-24 sm:py-32 bg-gradient-to-br from-white via-stone-50 to-white scroll-animate">
         <div className="container">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 mb-4">
-              Typical Timeline
+          {/* Section Header */}
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-wider mb-6">
+              <Clock size={14} />
+              <span>Your Timeline</span>
+            </div>
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-stone-900 mb-6 leading-tight">
+              From Dream to
+              <span className="block mt-2 bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+                Move-In Ready
+              </span>
             </h2>
-            <p className="text-lg text-stone-600 max-w-2xl mx-auto">
+            <p className="text-xl text-stone-600 leading-relaxed">
               Most customers move into their new home within 4-8 weeks from the day they choose their model.
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          {/* Modern Timeline - Vertical with Gradient Accents */}
+          <div className="max-w-5xl mx-auto">
             <div className="relative">
-              {/* Timeline Line */}
-              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-stone-200 hidden sm:block"></div>
+              {/* Animated Timeline Line - Gradient */}
+              <div className="absolute left-8 sm:left-12 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-blue-600 to-red-600 hidden sm:block rounded-full shadow-lg"></div>
 
-              <div className="space-y-8">
+              {/* Timeline Items */}
+              <div className="space-y-12">
                 {[
-                  { week: 'Week 1', task: 'Choose home & get pre-approved' },
-                  { week: 'Week 2-3', task: 'Site prep, permits, foundation' },
-                  { week: 'Week 4-6', task: 'Manufacturing & delivery' },
-                  { week: 'Week 7-8', task: 'Setup, hookup, final inspection' },
-                  { week: 'Week 8+', task: 'Move-in ready!' }
+                  {
+                    week: 'Week 1',
+                    task: 'Choose home & get pre-approved',
+                    description: 'Browse our inventory, tour models, and secure financing with our expert team.',
+                    gradient: 'from-primary to-blue-600'
+                  },
+                  {
+                    week: 'Week 2-3',
+                    task: 'Site prep, permits, foundation',
+                    description: 'We handle all paperwork, coordinate permits, and prepare your land for delivery.',
+                    gradient: 'from-blue-600 to-blue-500'
+                  },
+                  {
+                    week: 'Week 4-6',
+                    task: 'Manufacturing & delivery',
+                    description: 'Your home is built to order and professionally transported to your property.',
+                    gradient: 'from-blue-500 to-accent'
+                  },
+                  {
+                    week: 'Week 7-8',
+                    task: 'Setup, hookup, final inspection',
+                    description: 'Complete installation, utility connections, and final walkthrough inspection.',
+                    gradient: 'from-accent to-red-600'
+                  },
+                  {
+                    week: 'Week 8+',
+                    task: 'Move-in ready!',
+                    description: 'Congratulations! Your new home is ready. Welcome home.',
+                    gradient: 'from-red-600 to-red-700'
+                  }
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-4 sm:gap-6 relative">
-                    <div className="flex-shrink-0 w-16 h-16 bg-primary text-white rounded-xl flex items-center justify-center font-bold text-sm shadow-lg relative z-10">
-                      {item.week}
+                  <div
+                    key={idx}
+                    className="group relative flex items-start gap-6 sm:gap-10"
+                  >
+                    {/* Timeline Dot with Gradient */}
+                    <div className="relative flex-shrink-0">
+                      <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br ${item.gradient} shadow-xl flex items-center justify-center relative z-10 group-hover:scale-110 transition-transform duration-300`}>
+                        <span className="text-white font-bold text-sm sm:text-base text-center leading-tight px-2">
+                          {item.week}
+                        </span>
+                      </div>
+                      {/* Glow effect on hover */}
+                      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${item.gradient} blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300`}></div>
                     </div>
-                    <div className="flex-1 bg-stone-50 rounded-xl p-6 border border-stone-200">
-                      <p className="text-lg font-semibold text-stone-900">{item.task}</p>
+
+                    {/* Content Card */}
+                    <div className="flex-1 bg-white rounded-2xl p-6 sm:p-8 border-2 border-stone-200 group-hover:border-primary/30 group-hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+                      {/* Subtle gradient overlay on hover */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+
+                      <div className="relative z-10">
+                        <h3 className="text-2xl sm:text-3xl font-bold text-stone-900 mb-3 group-hover:text-primary transition-colors duration-300">
+                          {item.task}
+                        </h3>
+                        <p className="text-base sm:text-lg text-stone-600 leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+
+                      {/* Decorative corner accent */}
+                      <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${item.gradient} opacity-5 rounded-bl-full`}></div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 sm:py-28 bg-stone-900 text-white">
-        <div className="container">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-6">
-              Why Choose Gulf South Homes?
-            </h2>
-            <p className="text-lg text-stone-300 mb-12">
-              We've been helping Louisiana families find their perfect home for over 30 years.
-              From start to finish, we're with you every step of the way.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-              {[
-                { icon: <Home size={24} />, label: 'Largest Inventory', value: '100+' },
-                { icon: <FileText size={24} />, label: 'Permits Handled', value: '1000+' },
-                { icon: <Truck size={24} />, label: 'Homes Delivered', value: '3000+' },
-                { icon: <Hammer size={24} />, label: 'Years in Business', value: '30+' }
-              ].map((stat, idx) => (
-                <div key={idx} className="bg-stone-800 rounded-xl p-6 border border-stone-700">
-                  <div className="text-primary mb-2">{stat.icon}</div>
-                  <p className="text-3xl font-bold mb-1">{stat.value}</p>
-                  <p className="text-sm text-stone-400">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button to="/homes-for-sale" size="lg">
-                Browse Homes
-                <ArrowRight size={18} className="ml-2" />
-              </Button>
-              <Button to="/contact-gulf-south-homes" variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-stone-900">
-                Schedule a Visit
-              </Button>
+          {/* Timeline Summary CTA */}
+          <div className="mt-16 text-center">
+            <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-blue-600 text-white rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer">
+              <CheckCircle size={24} />
+              <span className="font-bold text-lg">Average Timeline: 4-8 Weeks</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Contact CTA */}
-      <section className="py-20 bg-primary">
+      {/* Contact CTA - Elegant About.tsx Style */}
+      <section className="py-24 bg-gradient-to-br from-stone-50 to-white scroll-animate">
         <div className="container">
-          <div className="max-w-3xl mx-auto text-center text-white">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Ready to Get Started?
+          <div className="max-w-3xl mx-auto text-center p-10 bg-white rounded-3xl border-2 border-stone-200 shadow-xl">
+            <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 mb-4">
+              Still have questions?
             </h2>
-            <p className="text-lg mb-8 text-white/90">
-              Our team is here to answer your questions and guide you through the process.
+            <p className="text-lg text-stone-700 mb-8 font-medium">
+              We'd love to hear from you.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button variant="primary" to="/contact-gulf-south-homes" className="shadow-lg hover:shadow-xl">
+                Get in Touch
+                <ArrowRight size={18} className="ml-2" />
+              </Button>
               <a
                 href={`tel:${COMPANY_INFO.phone}`}
-                className="flex items-center gap-3 px-8 py-4 bg-white text-primary rounded-lg font-bold text-lg hover:bg-stone-100 transition-colors shadow-lg"
+                className="inline-flex items-center justify-center gap-3 px-7 py-4 bg-white hover:bg-stone-50 text-stone-900 font-semibold rounded-xl border-2 border-stone-300 hover:border-primary transition-all duration-200 shadow-md hover:shadow-lg"
               >
-                <Phone size={20} />
+                <Phone size={20} className="text-primary" />
                 {COMPANY_INFO.phone}
               </a>
-              <span className="text-white/80">or</span>
-              <Link
-                to="/contact-gulf-south-homes"
-                className="flex items-center gap-3 px-8 py-4 bg-stone-900 text-white rounded-lg font-bold text-lg hover:bg-stone-800 transition-colors shadow-lg"
-              >
-                <MapPin size={20} />
-                Visit Our Showroom
-              </Link>
             </div>
           </div>
         </div>
