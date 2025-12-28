@@ -333,6 +333,79 @@ Need more info? Read the full **BRAND_PACKAGE.md** file:
 
 ---
 
+## Design References & Inspiration (Copy These URLs)
+
+### Viral/Professional Designers to Learn From
+```
+Dribbble.com — Modern design inspiration
+Awwwards.com — Award-winning websites
+Behance.net — Complete brand systems
+It's Nice That — Design trends
+```
+
+### Real Estate Brands to Analyze
+```
+Better.com — Clean, modern real estate
+Zillow.com — Trust-building layout
+Redfin.com — Professional photography
+Opendoor.com — Minimalist design
+```
+
+### Color Inspiration
+```
+Coolors.co — Navy + Red color palettes
+Brandcolors.net — Real brand colors (Wells Fargo, Home Depot, Lowe's)
+Adobe Color Trends — 2025-2026 trending colors
+Color Hunt — Professional business palettes
+```
+
+### Typography Reference
+```
+Google Fonts — Search: Outfit + Plus Jakarta Sans combinations
+Typewolf.com — Modern font trends
+Font Pair — Font pairing inspiration
+```
+
+### Logo Design Ideas
+```
+LogoLounge.com — Search: home, real estate, geometric
+Underconsideration.com/brandnew — New brand launches
+Logo Design Love — Minimalist icon logos
+Dribbble.com/tags/logo — Real estate logo designs
+```
+
+### Photography Style
+```
+Unsplash.com — Search: modern homes, families, interiors
+Pexels.com — Search: home interiors, families
+Houzz.com — Home photography inspiration
+Pinterest — Modern home design mood boards
+```
+
+### Website Layout Ideas
+```
+Webflow.com/sites — Design-forward real estate sites
+Dribbble.com — Search: real estate branding, home services
+Product Hunt — New product design patterns
+CSS Awards — Cutting-edge web design
+```
+
+### CTA & Conversion Design
+```
+ConvertKit.com — Button design, form patterns
+Unbounce.com — Landing page best practices
+HubSpot Blog — CTA design psychology (red = action!)
+```
+
+### Complete Brand Systems (Study These)
+```
+Mailchimp.com/about/brand-assets — Conversational brand tone
+Airbnb Design System — Component library structure
+Google Material Design — Systematic design approach
+```
+
+---
+
 ## Quick Links in M_DEEZ
 
 **In this folder (2_BRAND_GUIDES):**

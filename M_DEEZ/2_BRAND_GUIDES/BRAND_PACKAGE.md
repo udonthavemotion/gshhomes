@@ -591,6 +591,380 @@ GSH_Photography_Library/ (folder)
 
 ---
 
+## Design Inspiration & Professional References
+
+### Designers & Studios to Reference
+
+#### **Viral/Modern Design** (2025-2026 Aesthetic)
+
+**1. Dribbble Design Community**
+- URL: https://dribbble.com
+- Search: "modern real estate branding", "home services design", "family business brand"
+- What to look for: Clean layouts, modern color palettes, warm photography
+- **Best for:** Visual inspiration, component design ideas
+
+**2. Awwwards — Website Design Awards**
+- URL: https://www.awwwards.com
+- Search: "real estate", "home services", "modern business"
+- What to look for: Award-winning site structure, motion design, user experience
+- **Best for:** Website layout inspiration, interaction patterns
+
+**3. Behance — Adobe Portfolio**
+- URL: https://www.behance.net
+- Search: "real estate branding", "home builder design", "family business identity"
+- What to look for: Complete brand systems, color theory, typography choices
+- **Best for:** Full brand system inspiration, logo variations
+
+**4. It's Nice That — Design Magazine**
+- URL: https://www.itsnicethat.com
+- Articles on: Modern branding, design trends, family business design
+- What to look for: Trendy color combinations, contemporary aesthetics
+- **Best for:** Current design trends, color inspiration
+
+---
+
+#### **Real Estate & Home Services Brands** (Direct Competitors to Learn From)
+
+**Better.com** (Mortgage/Real Estate)
+- URL: https://www.better.com
+- What to analyze:
+  - Hero section with clear value prop
+  - Modern typography (similar to our Outfit/Plus Jakarta)
+  - Clean, approachable imagery
+  - Strong CTA buttons
+
+**Zillow.com** (Real Estate Platform)
+- URL: https://www.zillow.com
+- What to analyze:
+  - Search-first design approach
+  - Clear information hierarchy
+  - Trust-building elements
+  - Filter and sorting UI
+
+**Redfin** (Modern Real Estate)
+- URL: https://www.redfin.com
+- What to analyze:
+  - Professional photography standards
+  - Map integration
+  - Clean typography (sans-serif heavy)
+  - Mobile-first design approach
+
+**Opendoor** (Home Buying)
+- URL: https://www.opendoor.com
+- What to analyze:
+  - Minimalist design
+  - Strong primary colors
+  - Simple CTAs
+  - Customer testimonials prominently featured
+
+**Tiny Home Builders/Manufacturers**
+- Search: "modern tiny home brands", "manufactured home design"
+- What to analyze:
+  - How they make manufactured homes look premium
+  - Photography of actual homes (not stock)
+  - Pricing transparency display
+  - Family-focused messaging
+
+---
+
+#### **Professional Services & Family Businesses** (Brand Tone Reference)
+
+**LocalFitness/PersonalBrand Style**
+- Local, family-owned businesses doing it right
+- What to analyze:
+  - How they convey "trusted" without being corporate
+  - Community focus in messaging
+  - Team member visibility (faces, stories)
+  - Local expertise messaging
+
+**Trusted Service Brands**
+- Examples: CCHM (Custom Homes), local builders, boutique services
+- What to analyze:
+  - Trust-building visual hierarchy
+  - Customer testimonial placement
+  - "30 years in business" type messaging
+  - BBB/certification badges
+  - Local location emphasis
+
+---
+
+### Color Palette Inspiration Sources
+
+**Coolors.co** — Color Palette Generator
+- URL: https://coolors.co
+- Search similar palettes to: Navy + Red + Blue combinations
+- What to do: Export palettes as reference, explore variations
+
+**Color Hunt** — Trending Color Palettes
+- URL: https://colorhunt.co
+- Search: "professional", "business", "trust"
+- What to find: Pre-made palettes with Navy/Blue/Red combinations
+
+**Adobe Color Trends** — Industry Color Trends
+- URL: https://color.adobe.com/trends
+- What to analyze: 2025-2026 trending color combinations
+- Compare to our palette (still valid, slightly ahead of curve)
+
+**Brandcolors.net** — Real Brand Colors
+- URL: https://brandcolors.net
+- Brands to analyze:
+  - Wells Fargo (trust-focused bank, navy blues)
+  - Home Depot (orange + navy, home services)
+  - Lowe's (navy + red, home services)
+
+---
+
+### Typography Inspiration
+
+**Google Fonts Pairings** — Font Combinations
+- URL: https://fonts.google.com
+- Search: "Outfit" + "Plus Jakarta Sans" combinations
+- What to analyze: How these fonts pair with real content
+
+**Typewolf** — Typography Trends
+- URL: https://www.typewolf.com
+- What to analyze: Current font trends, professional pairings
+- Search: "sans serif + sans serif combinations"
+
+**Font Pair** — Font Combinations
+- URL: https://www.fontpair.co
+- Search fonts similar to: Outfit (geometric, modern) + Plus Jakarta Sans (friendly, readable)
+- What to do: See how they recommend pairings work
+
+**Fontsgeek** — Professional Font Usage
+- URL: https://www.fontsgeek.com
+- What to analyze: How pro brands use Outfit and similar fonts
+
+---
+
+### Logo Design Inspiration
+
+**LogoLounge** — Professional Logo Database
+- URL: https://www.logolounge.com
+- Search: "home", "real estate", "modern geometric"
+- What to analyze:
+  - Geometric logo trends
+  - Water/waves imagery (relates to "Gulf")
+  - House/roof integration (relates to "Homes")
+  - Navy + Red color usage in logos
+
+**Underconsideration — Brand New**
+- URL: https://www.underconsideration.com/brandnew
+- What to analyze: New brand launches, logo evolution, design thinking
+- Search: Real estate, home services, family businesses
+
+**Logo Design Love**
+- URL: https://www.logodesignlove.com
+- What to look at:
+  - Icon-based logos (like our logo mark)
+  - Minimalist design approach
+  - Versatility (works at small sizes)
+
+**Dribbble Logo Designs**
+- URL: https://dribbble.com/tags/logo
+- Search: "home logo", "real estate logo", "blue red logo"
+- What to analyze:
+  - How to make homes look premium
+  - Water/wave integration
+  - Geometric clarity
+
+---
+
+### Photography & Image Style References
+
+**Unsplash — Professional Stock Photos**
+- URL: https://unsplash.com
+- Search: "modern homes", "families in homes", "happy families", "interior design"
+- What to analyze: Lighting, color tone, authenticity
+
+**Pexels — High-Quality Stock Images**
+- URL: https://www.pexels.com
+- Search: "home interiors", "families", "real estate"
+- What to note: Warm lighting, natural colors, authentic feel
+
+**Interior Design Inspiration** (For home showcasing)
+- Pinterest "modern home design" boards
+- Houzz.com home inspiration galleries
+- What to analyze: How professionals photograph homes
+- Focus on: Warm lighting, clean spaces, lifestyle context
+
+**Real Estate Photography**
+- Best practices: Golden hour lighting, wide angles, lifestyle shots
+- Reference: Professional real estate photography blogs
+- What to note: How to make manufactured homes look premium
+
+---
+
+### Website Layout & UX Inspiration
+
+**Webflow** — Design-Forward Websites
+- URL: https://webflow.com/sites
+- Browse: Real estate, home services, family businesses
+- What to analyze: Layout patterns, scroll behavior, mobile responsiveness
+
+**Framer** — Modern Web Design
+- URL: https://www.framer.com
+- What to look at: Smooth animations, modern layouts, component design
+
+**Product Hunt** — New Digital Products
+- URL: https://www.producthunt.com
+- Search: "real estate", "home services", "saas"
+- What to analyze: How successful products design their websites
+
+**CSS Awards** — Best Web Design
+- URL: https://www.cssawards.com
+- What to look at: Cutting-edge web design, animations, layouts
+
+---
+
+### CTA & Conversion Design References
+
+**ConvertKit** — Conversion-Focused Design
+- URL: https://convertkit.com
+- What to analyze:
+  - Clear CTAs placement
+  - Button design and hierarchy
+  - Form design best practices
+  - Email signup patterns
+
+**Unbounce** — Landing Page Best Practices**
+- URL: https://unbounce.com/landing-pages
+- What to analyze:
+  - CTA placement (top, middle, bottom)
+  - Form length vs. conversion
+  - Button color psychology (red = urgency, our use is perfect)
+
+**HubSpot — Design Best Practices**
+- URL: https://blog.hubspot.com/marketing/cta-button-best-practices
+- What to analyze: CTA button sizes, colors, placement, copywriting
+
+---
+
+### Brand System & Design System References
+
+**Figma Design Systems**
+- URL: https://www.figma.com
+- Browse community: Real estate, home services, family business design systems
+- What to analyze: Component libraries, color systems, typography scales
+
+**Storybook** — Component Documentation
+- URL: https://storybook.js.org
+- What to analyze: How to document brand components
+- Real example: Design system documentation structure
+
+**Brand Style Guides** (Great Examples)
+- Mailchimp Brand Guideline (https://mailchimp.com/about/brand-assets/) — Conversational tone + playful
+- Uber Brand Guideline — Modern, clean, replicable
+- Airbnb Design Language System — Component-focused
+- Google Material Design — Systematic approach
+- What to note: How they balance rules with flexibility
+
+---
+
+### 2025-2026 Design Trends to Reference
+
+**TubikStudio Blog** — Design Trends
+- URL: https://tubikstudio.com/blog
+- Articles on: 2025 design trends, color psychology, modern branding
+
+**Nielsen Norman Group** — UX Research
+- URL: https://www.nngroup.com
+- What to read: Modern design patterns, user behavior, mobile-first design
+
+**Webdesigner Depot** — Design Inspiration
+- URL: https://www.webdesignerdepot.com
+- Articles on: Current design trends, professional practices
+
+**Awwwards Blog** — Design Innovation
+- URL: https://www.awwwards.com/blog
+- What to read: Latest design trends, award-winning work analysis
+
+---
+
+### How to Use These References Effectively
+
+#### Step 1: Research (2-3 hours)
+1. Visit 5-7 competitor real estate sites
+2. Save screenshots of elements you like
+3. Note color combinations, layouts, typography
+4. Document messaging patterns
+
+#### Step 2: Analyze (1-2 hours)
+1. Look for common patterns across sites
+2. Note what makes designs feel "trustworthy"
+3. Identify what makes them feel "modern"
+4. See how they show homes beautifully
+
+#### Step 3: Inspiration Boards (1 hour)
+1. Create mood board in Figma/Adobe XD
+2. Screenshot inspiring hero sections
+3. Screenshot inspiring CTAs
+4. Screenshot inspiring testimonial layouts
+5. Screenshot inspiring typography combos
+
+#### Step 4: Apply to Gulf South Homes (Ongoing)
+1. Use best-practice layout structures
+2. Adapt color combinations to our palette
+3. Use proven typography patterns
+4. Apply trust-building elements
+
+---
+
+### Specific Design References by Element
+
+#### **For Logo Design:**
+- Reference: LogoLounge + Underconsideration
+- Look for: Geometric homes, water integration, modern simplicity
+- Analyze: How they make service brands feel premium
+
+#### **For Color Palette:**
+- Reference: Brandcolors.net + Adobe Color Trends
+- Look for: Navy + Red combinations in financial/service brands
+- Analyze: Trust-building vs. urgent action color psychology
+
+#### **For Typography:**
+- Reference: Typewolf + Google Fonts Pairings
+- Look for: Outfit usage (not common yet = ahead of curve)
+- Analyze: Plus Jakarta Sans in body copy (warm, readable)
+
+#### **For Photography:**
+- Reference: Unsplash + Professional real estate sites
+- Look for: Golden hour lighting, family lifestyle context
+- Analyze: How to make manufactured homes look premium
+
+#### **For Homepage Layout:**
+- Reference: Dribbble + Webflow + Better.com
+- Look for: Hero + value props + featured items + testimonials + CTA
+- Analyze: Scroll flow, information hierarchy
+
+#### **For CTAs:**
+- Reference: ConvertKit + Unbounce + HubSpot
+- Look for: Button colors, placement, copywriting
+- Analyze: Red buttons for action (our choice is validated)
+
+#### **For Trust Building:**
+- Reference: Local business sites + BBB-accredited services
+- Look for: Team photos, credentials, testimonials, local focus
+- Analyze: How family-owned businesses convey expertise
+
+---
+
+### Pro Tip: Reference Collection
+
+Create a Figma file with:
+- Inspiring hero sections (5-10)
+- Inspiring CTAs (10-15 screenshots)
+- Inspiring cards/components (10-15)
+- Inspiring testimonials (5-10)
+- Inspiring typography samples (5-10)
+- Inspiring color palettes (5-10)
+
+Label each with: "What I like: [specific elements]"
+
+This becomes your visual reference library for all deliverables.
+
+---
+
 ## Brand Checklist for Deliverables
 
 Use this to ensure every deliverable stays on-brand:
