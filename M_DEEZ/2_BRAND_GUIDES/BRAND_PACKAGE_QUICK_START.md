@@ -264,9 +264,7 @@ Before sending any deliverable:
 
 ---
 
-## Files You'll Need
-
-Create these deliverables from this package:
+## Files You'll Need to Create
 
 ### Essentials
 - [ ] Logo files (PDF, PNG, SVG)
@@ -332,6 +330,20 @@ Need more info? Read the full **BRAND_PACKAGE.md** file:
 - Voice tone examples
 - Design inspiration ideas
 - Complete templates
+
+---
+
+## Quick Links in M_DEEZ
+
+**In this folder (2_BRAND_GUIDES):**
+- `BRAND_PACKAGE.md` — Full comprehensive reference
+- `BRAND_PACKAGE_QUICK_START.md` — This file (quick reference)
+- `BRAND_IDENTITY_GUIDE.md` — Official brand identity
+- `BRAND_COMPLIANCE_AUDIT.md` — Brand audit results
+
+**For other resources:**
+- `M_DEEZ/INDEX.md` — Master navigation
+- `M_DEEZ/1_CORE_PROJECT_DOCS/CLAUDE.md` — Developer reference
 
 ---
 
