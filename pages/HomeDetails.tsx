@@ -1,10 +1,10 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { MOCK_HOMES } from '../constants';
 import Button from '../components/Button';
 import ImageGallery from '../components/ImageGallery';
 import ThumbnailGrid from '../components/ThumbnailGrid';
-import GoHighLevelForm from '../components/GoHighLevelForm';
+import InquireFormEmbed from '../components/InquireFormEmbed';
 import { useLightbox } from '../hooks/useLightbox';
 import { Bed, Bath, Maximize, CheckCircle, ArrowLeft } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
@@ -12,6 +12,7 @@ import { getHomeDetailSEO } from '../seo-config';
 
 const HomeDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const location = useLocation();
   const home = MOCK_HOMES.find(h => h.id === id);
   
   // Use the new lightbox hook with URL sync
@@ -149,7 +150,11 @@ const HomeDetails: React.FC = () => {
 
             {/* Sidebar CTA */}
             <div className="lg:col-span-1">
-                <GoHighLevelForm homeName={home.name} />
+                <InquireFormEmbed
+                  homeSlug={home.id}
+                  homeTitle={home.name}
+                  currentPath={location.pathname}
+                />
             </div>
 
         </div>

@@ -93,6 +93,8 @@ All GoHighLevel forms depend on two global scripts loaded in `index.html`:
 - **Form Type:** Specific home inquiry / sales lead
 - **CRM Domain:** `crm.gshforms.com`
 
+**📘 Important:** See [`FORM_URL_PARAMETERS.md`](./FORM_URL_PARAMETERS.md) for how URL parameters (`home` and `home_url`) are passed to forms. This is critical for tracking which homes generate inquiries.
+
 ### Locations:
 1. **GoHighLevel Form Component** (`components/GoHighLevelForm.tsx`)
    - Reusable component for individual home inquiry forms

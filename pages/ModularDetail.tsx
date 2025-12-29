@@ -1,9 +1,10 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { MODULAR_HOMES } from '../data/modular-homes';
 import Button from '../components/Button';
 import ImageGallery from '../components/ImageGallery';
 import ThumbnailGrid from '../components/ThumbnailGrid';
+import InquireFormEmbed from '../components/InquireFormEmbed';
 import { useLightbox } from '../hooks/useLightbox';
 import { Bed, Bath, Maximize, CheckCircle, ArrowLeft, Sparkles, Settings } from 'lucide-react';
 import { COMPANY_INFO } from '../constants';
@@ -12,6 +13,7 @@ import { getModularDetailSEO } from '../seo-config';
 
 const ModularDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const location = useLocation();
   const home = MODULAR_HOMES.find(h => h.id === id);
   
   // Use the new lightbox hook with URL sync
@@ -181,48 +183,11 @@ const ModularDetail: React.FC = () => {
 
             {/* Sidebar CTA */}
             <div className="lg:col-span-1">
-                <div className="bg-white rounded-xl shadow-lg border border-stone-200 p-6 sticky top-24">
-                    <h3 className="text-xl font-bold text-stone-900 mb-2">Customize {home.name}</h3>
-                    <p className="text-stone-500 mb-6 text-sm">
-                      Ready to customize this modular home to your exact preferences? Get pricing, floor plans, 
-                      customization options, or schedule a consultation with our team.
-                    </p>
-                    
-                    <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                        <div>
-                            <label className="block text-sm font-medium text-stone-700 mb-1">Full Name</label>
-                            <input type="text" className="w-full px-4 py-2 border border-stone-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="John Doe" />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-stone-700 mb-1">Phone Number</label>
-                            <input type="tel" className="w-full px-4 py-2 border border-stone-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="(555) 555-5555" />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-stone-700 mb-1">Email</label>
-                            <input type="email" className="w-full px-4 py-2 border border-stone-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="john@example.com" />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-stone-700 mb-1">Customization Interests (Optional)</label>
-                            <textarea className="w-full px-4 py-2 border border-stone-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none" rows={3} placeholder="I'm interested in customizing the kitchen layout, flooring options, and exterior finishes..."></textarea>
-                        </div>
-                        <Button fullWidth onClick={() => alert("Request sent! One of our modular home specialists will contact you shortly to discuss customization options.")}>
-                          Request Customization Consultation
-                        </Button>
-                    </form>
-                    
-                    <div className="mt-6 pt-6 border-t border-stone-100 space-y-3">
-                        <div className="text-center">
-                            <p className="text-sm text-stone-500 mb-2">Prefer to call?</p>
-                            <a href={`tel:${COMPANY_INFO.phone.replace(/[^\d]/g, '')}`} className="text-lg font-bold text-primary hover:text-primary-dark transition-colors">
-                                {COMPANY_INFO.phone}
-                            </a>
-                        </div>
-                        <div className="text-center pt-3 border-t border-stone-100">
-                            <p className="text-xs text-stone-500 mb-2">Visit our showroom</p>
-                            <p className="text-sm text-stone-700 font-medium">{COMPANY_INFO.address}</p>
-                        </div>
-                    </div>
-                </div>
+                <InquireFormEmbed
+                  homeSlug={home.id}
+                  homeTitle={home.name}
+                  currentPath={location.pathname}
+                />
             </div>
 
         </div>

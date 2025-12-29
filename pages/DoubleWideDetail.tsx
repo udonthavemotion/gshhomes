@@ -1,9 +1,10 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { DOUBLE_WIDE_HOMES } from '../data/double-wide-homes';
 import Button from '../components/Button';
 import ImageGallery from '../components/ImageGallery';
 import ThumbnailGrid from '../components/ThumbnailGrid';
+import InquireFormEmbed from '../components/InquireFormEmbed';
 import { useLightbox } from '../hooks/useLightbox';
 import { Bed, Bath, Maximize, CheckCircle, ArrowLeft } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
@@ -11,6 +12,7 @@ import { getDoubleWideDetailSEO } from '../seo-config';
 
 const DoubleWideDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const location = useLocation();
   const home = DOUBLE_WIDE_HOMES.find(h => h.id === id);
   
   // Use the new lightbox hook with URL sync
@@ -149,33 +151,11 @@ const DoubleWideDetail: React.FC = () => {
 
             {/* Sidebar CTA */}
             <div className="lg:col-span-1">
-                <div className="bg-white rounded-xl shadow-lg border border-stone-200 p-6 sticky top-24">
-                    <h3 className="text-xl font-bold text-stone-900 mb-2">Interested in {home.name}?</h3>
-                    <p className="text-stone-500 mb-6 text-sm">Fill out the form below to get pricing, floor plans, or schedule a tour.</p>
-                    
-                    <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                        <div>
-                            <label className="block text-sm font-medium text-stone-700 mb-1">Full Name</label>
-                            <input type="text" className="w-full px-4 py-2 border border-stone-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="John Doe" />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-stone-700 mb-1">Phone Number</label>
-                            <input type="tel" className="w-full px-4 py-2 border border-stone-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="(555) 555-5555" />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-stone-700 mb-1">Message (Optional)</label>
-                            <textarea className="w-full px-4 py-2 border border-stone-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none" rows={3} placeholder="I'd like to see a floor plan..."></textarea>
-                        </div>
-                        <Button fullWidth onClick={() => alert("Request sent! One of our agents will contact you shortly.")}>Request Information</Button>
-                    </form>
-                    
-                    <div className="mt-6 pt-6 border-t border-stone-100 text-center">
-                        <p className="text-sm text-stone-500 mb-2">Prefer to call?</p>
-                        <a href="tel:9858760222" className="text-lg font-bold text-primary hover:text-primary-dark transition-colors">
-                            (985) 876-0222
-                        </a>
-                    </div>
-                </div>
+                <InquireFormEmbed
+                  homeSlug={home.id}
+                  homeTitle={home.name}
+                  currentPath={location.pathname}
+                />
             </div>
 
         </div>
