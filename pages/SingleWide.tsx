@@ -4,7 +4,6 @@ import { useHomeFilters } from '../hooks/useHomeFilters';
 import { SlidersHorizontal, X, Phone, MapPin, Home as HomeIcon } from 'lucide-react';
 import Button from '../components/Button';
 import HomeCard from '../components/HomeCard';
-import TrustRibbon from '../components/TrustRibbon';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
 
@@ -105,9 +104,6 @@ const SingleWide: React.FC = () => {
             Compact, efficient, and fully customizable — designed for your lifestyle.
           </p>
         </div>
-
-        {/* Trust Ribbon Carousel - Floats at bottom of hero */}
-        <TrustRibbon variant="compact" />
       </section>
 
       {/* Catalog Content */}

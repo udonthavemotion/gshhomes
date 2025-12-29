@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { COMPANY_INFO } from '../constants';
 import { Shield, Users, Clock, Award, ChevronDown, Heart, MapPin, Phone, Star, Home as HomeIcon, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
 import Button from '../components/Button';
-import TrustRibbon from '../components/TrustRibbon';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
 

@@ -17,7 +17,6 @@ import {
 import Button from '../components/Button';
 import LogoScroller from '../components/LogoScroller';
 import LenderRibbon from '../components/LenderRibbon';
-import TrustRibbon from '../components/TrustRibbon';
 import { LENDERS } from '../data/lenders';
 import { COMPANY_INFO, LENDING_PARTNERS } from '../constants';
 import SEOHead from '../components/SEOHead';

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { UNIFIED_INVENTORY } from '../data/unified-inventory';
 import { useHomeFilters } from '../hooks/useHomeFilters';
 import HomeCard from '../components/HomeCard';
-import TrustRibbon from '../components/TrustRibbon';
 import { SlidersHorizontal, X, Home as HomeIcon } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';

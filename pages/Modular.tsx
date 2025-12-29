@@ -3,7 +3,6 @@ import { UNIFIED_INVENTORY } from '../data/unified-inventory';
 import { useHomeFilters } from '../hooks/useHomeFilters';
 import HomeCard from '../components/HomeCard';
 import Button from '../components/Button';
-import TrustRibbon from '../components/TrustRibbon';
 import { COMPANY_INFO } from '../constants';
 import { SlidersHorizontal, X, ArrowRight, MapPin, Phone, Clock, Home, Hammer, Users } from 'lucide-react';
 import SEOHead from '../components/SEOHead';

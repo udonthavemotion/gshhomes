@@ -16,7 +16,6 @@ import {
   Home as HomeIcon
 } from 'lucide-react';
 import Button from '../components/Button';
-import TrustRibbon from '../components/TrustRibbon';
 import { COMPANY_INFO } from '../constants';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
