@@ -1,5 +1,5 @@
-import React from 'react';
-import { Award, MapPin, Star, Clock } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Award, MapPin, Star, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface TrustRibbonProps {
   showMap?: boolean;
@@ -9,9 +9,9 @@ interface TrustRibbonProps {
 }
 
 /**
- * Compact Trust Ribbon Component
- * Single-line, ultra-compact trust signals that don't take additional scroll space
- * Seamlessly integrated inline after hero sections
+ * Trust Ribbon Carousel Component
+ * Slides at the bottom of hero sections as a ribbon overlay
+ * No background, no cards - just text that floats over video
  */
 const TrustRibbon: React.FC<TrustRibbonProps> = ({
   showMap = true,
@@ -19,35 +19,121 @@ const TrustRibbon: React.FC<TrustRibbonProps> = ({
   showRating = true,
   variant = 'compact'
 }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [autoScroll, setAutoScroll] = useState(true);
+
+  const credentials = [
+    {
+      icon: Award,
+      text: 'Est. 1995',
+      color: 'text-yellow-400',
+      show: showYear
+    },
+    {
+      icon: MapPin,
+      text: 'Houma, LA',
+      color: 'text-red-400',
+      show: showMap
+    },
+    {
+      icon: Star,
+      text: 'BBB Accredited',
+      color: 'text-blue-400',
+      show: showRating
+    },
+    {
+      icon: Clock,
+      text: '30+ Years',
+      color: 'text-white',
+      show: true
+    }
+  ].filter(c => c.show);
+
+  // Auto-scroll carousel
+  useEffect(() => {
+    if (!autoScroll || credentials.length === 0) return;
+
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % credentials.length);
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, [autoScroll, credentials.length]);
+
+  const handlePrev = () => {
+    setAutoScroll(false);
+    setCurrentIndex((prev) => (prev - 1 + credentials.length) % credentials.length);
+    setTimeout(() => setAutoScroll(true), 5000);
+  };
+
+  const handleNext = () => {
+    setAutoScroll(false);
+    setCurrentIndex((prev) => (prev + 1) % credentials.length);
+    setTimeout(() => setAutoScroll(true), 5000);
+  };
+
   if (variant === 'compact') {
+    const current = credentials[currentIndex];
+    const IconComponent = current.icon;
+
     return (
-      <div className="py-3 px-4 bg-gradient-to-r from-stone-50 via-white to-stone-50 border-y border-stone-200/30">
-        <div className="max-w-5xl mx-auto flex items-center justify-center flex-wrap gap-3 sm:gap-4 md:gap-6 lg:gap-8">
-          {showYear && (
-            <div className="flex items-center gap-1.5 text-xs sm:text-sm">
-              <Award size={14} className="text-yellow-700 flex-shrink-0" />
-              <span className="font-semibold text-[var(--color-primary)]">Est. 1995</span>
-            </div>
-          )}
+      <div className="absolute bottom-0 left-0 right-0 z-20">
+        {/* Ribbon container - no background, just text overlay at bottom of hero */}
+        <div className="relative h-16 flex items-center justify-center px-4">
+          {/* Gradient fade (subtle, dark) for text readability on video */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-transparent pointer-events-none"></div>
 
-          {showMap && (
-            <div className="flex items-center gap-1.5 text-xs sm:text-sm">
-              <MapPin size={14} className="text-[var(--color-cta)] flex-shrink-0" />
-              <span className="font-semibold text-[var(--color-primary)]">Houma, LA</span>
-            </div>
-          )}
-
-          {showRating && (
-            <div className="flex items-center gap-1.5 text-xs sm:text-sm">
-              <Star size={14} className="text-[var(--color-accent)] fill-[var(--color-accent)] flex-shrink-0" />
-              <span className="font-semibold text-[var(--color-primary)]">BBB Accredited</span>
-            </div>
-          )}
-
-          <div className="flex items-center gap-1.5 text-xs sm:text-sm">
-            <Clock size={14} className="text-[var(--color-primary)] flex-shrink-0" />
-            <span className="font-semibold text-[var(--color-primary)]">30+ Years</span>
+          {/* Center carousel item */}
+          <div className="relative z-10 flex items-center justify-center gap-3 text-center">
+            <IconComponent size={24} className={`${current.color} flex-shrink-0 drop-shadow-lg`} />
+            <span className="text-lg sm:text-xl font-bold text-white drop-shadow-lg whitespace-nowrap">
+              {current.text}
+            </span>
           </div>
+
+          {/* Left arrow */}
+          {credentials.length > 1 && (
+            <button
+              onClick={handlePrev}
+              className="absolute left-2 z-20 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-200 hover:scale-110 backdrop-blur-sm"
+              aria-label="Previous credential"
+            >
+              <ChevronLeft size={18} />
+            </button>
+          )}
+
+          {/* Right arrow */}
+          {credentials.length > 1 && (
+            <button
+              onClick={handleNext}
+              className="absolute right-2 z-20 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-all duration-200 hover:scale-110 backdrop-blur-sm"
+              aria-label="Next credential"
+            >
+              <ChevronRight size={18} />
+            </button>
+          )}
+
+          {/* Dot indicators */}
+          {credentials.length > 1 && (
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+              {credentials.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setAutoScroll(false);
+                    setCurrentIndex(idx);
+                    setTimeout(() => setAutoScroll(true), 5000);
+                  }}
+                  className={`transition-all duration-300 ${
+                    idx === currentIndex
+                      ? 'bg-white w-6 h-1.5 rounded-full'
+                      : 'bg-white/50 w-1.5 h-1.5 rounded-full hover:bg-white/70'
+                  }`}
+                  aria-label={`Go to credential ${idx + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     );

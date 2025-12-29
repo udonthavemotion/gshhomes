@@ -200,9 +200,6 @@ const Parts: React.FC = () => {
         </div>
       </section>
 
-      {/* Trust Ribbon - Builds confidence early */}
-      <TrustRibbon variant="compact" />
-
       {/* Store Overview - 2 Column */}
       <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-stone-50 to-transparent pointer-events-none"></div>

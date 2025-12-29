@@ -412,9 +412,6 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Trust Ribbon - Builds confidence early */}
-      <TrustRibbon variant="full" />
-
       {/* Trust Badges Section - Enhanced */}
       <section className="py-20 bg-gradient-to-br from-white via-stone-50 to-white scroll-animate">
         <div className="container mx-auto px-4">

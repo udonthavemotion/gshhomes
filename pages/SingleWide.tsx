@@ -105,10 +105,10 @@ const SingleWide: React.FC = () => {
             Compact, efficient, and fully customizable — designed for your lifestyle.
           </p>
         </div>
-      </section>
 
-      {/* Trust Ribbon - Builds confidence early */}
-      <TrustRibbon variant="compact" />
+        {/* Trust Ribbon Carousel - Floats at bottom of hero */}
+        <TrustRibbon variant="compact" />
+      </section>
 
       {/* Catalog Content */}
       <div className="container py-12">

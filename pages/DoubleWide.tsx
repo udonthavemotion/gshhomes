@@ -157,10 +157,10 @@ const DoubleWide: React.FC = () => {
             </button>
           </div>
         </div>
-      </section>
 
-      {/* Trust Ribbon - Builds confidence early */}
-      <TrustRibbon variant="compact" />
+        {/* Trust Ribbon Carousel - Floats at bottom of hero */}
+        <TrustRibbon variant="compact" />
+      </section>
 
       {/* Homes Grid Section */}
       <div id="homes-grid" className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 scroll-animate">

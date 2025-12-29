@@ -164,9 +164,6 @@ const Modular: React.FC = () => {
         </div>
       </section>
 
-      {/* Trust Ribbon - Builds confidence early */}
-      <TrustRibbon variant="compact" />
-
       {/* Homes Grid Section */}
       <div id="homes-grid" className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 scroll-animate">
         {/* Header with Filters Button */}

@@ -94,9 +94,6 @@ const Catalog: React.FC = () => {
         </div>
       </section>
 
-      {/* Trust Ribbon - Builds confidence early */}
-      <TrustRibbon variant="compact" />
-
       {/* Catalog Content */}
       <div className="container py-12">
         {/* Header */}

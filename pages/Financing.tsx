@@ -233,9 +233,6 @@ const Financing: React.FC = () => {
         </div>
       </section>
 
-      {/* Trust Ribbon - Builds confidence early */}
-      <TrustRibbon variant="compact" />
-
       {/* Financing Options Cards */}
       <section className="py-20 sm:py-28 bg-stone-50">
         <div className="container">
