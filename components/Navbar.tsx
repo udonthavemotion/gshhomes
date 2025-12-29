@@ -159,7 +159,7 @@ const Navbar: React.FC = () => {
               <button
                 ref={menuButtonRef}
                 onClick={toggleMenu}
-                className={`px-4 py-2.5 rounded-md transition-all duration-300 min-h-[44px] flex items-center gap-2 focus:outline-none focus:ring-0 ${
+                className={`px-4 py-3 rounded-md transition-all duration-300 min-h-[52px] sm:min-h-[56px] flex items-center gap-2 focus:outline-none focus:ring-0 ${
                   isOpen
                     ? 'bg-stone-900 text-white'
                     : 'text-white hover:bg-stone-900'

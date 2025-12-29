@@ -105,7 +105,7 @@ const Home: React.FC = () => {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover"
           aria-label="Background video showcasing Gulf South Homes"
           style={{ 
@@ -277,7 +277,7 @@ const Home: React.FC = () => {
           </div>
 
           {/* BENTO GRID LAYOUT */}
-          <div className="grid grid-cols-12 gap-4 lg:gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-12 gap-5 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
             {/* Large Feature Card - Single Wide */}
             <Link
               to="/single-wide-mobile-homes"

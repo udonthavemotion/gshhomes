@@ -802,9 +802,13 @@
 
 /* Mobile-only typography scaling (≤768px) - SIGNIFICANTLY LARGER */
 @media (max-width: 768px) {
+  body {
+    line-height: 1.7;
+  }
+
   .hero-headline-fluid {
     /* Mobile: Much larger, fills video naturally */
-    font-size: clamp(3rem, 12vw, 4.5rem) !important;
+    font-size: clamp(3.25rem, 13vw, 5rem) !important;
     line-height: 1.1 !important;
   }
 
@@ -1159,7 +1163,7 @@
   .scroller__inner {
     gap: 3.5rem;
     /* Faster on mobile for better engagement */
-    animation: scroll 20s linear infinite !important;
+    animation: scroll 30s linear infinite !important;
   }
 }
 
@@ -2251,13 +2255,13 @@ chat-widget[data-widget-id="6940899ff258cf30de629683"] button[class*="chat"] {
 /* Smooth scrolling and touch optimization */
 [data-embla-carousel-viewport] {
   overflow: hidden;
-  touch-action: pan-y pinch-zoom;
+  touch-action: pan-x pinch-zoom;
   -webkit-overflow-scrolling: touch;
 }
 
 [data-embla-carousel-container] {
   display: flex;
-  touch-action: pan-y;
+  touch-action: pan-x;
   will-change: transform;
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
