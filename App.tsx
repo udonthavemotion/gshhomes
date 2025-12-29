@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './hooks/useTheme.tsx';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import StickyMobileCTA from './components/StickyMobileCTA';
 import { COMPANY_INFO } from './constants';
 import { MapPin, Facebook, Instagram, Clock, Phone } from 'lucide-react';
 import { useScrollRestoration, scrollToTop } from './hooks/useScrollRestoration';
@@ -211,6 +212,7 @@ const App: React.FC = () => {
               </Routes>
             </Suspense>
           </main>
+          <StickyMobileCTA variant="both" />
           <Footer />
         </div>
       </Router>

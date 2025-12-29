@@ -3,6 +3,7 @@ import { UNIFIED_INVENTORY } from '../data/unified-inventory';
 import { useHomeFilters } from '../hooks/useHomeFilters';
 import HomeCard from '../components/HomeCard';
 import Button from '../components/Button';
+import TrustRibbon from '../components/TrustRibbon';
 import { COMPANY_INFO } from '../constants';
 import { SlidersHorizontal, X, ArrowRight, MapPin, Phone, Clock, Home, Hammer, Users } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
@@ -162,6 +163,9 @@ const Modular: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Trust Ribbon - Builds confidence early */}
+      <TrustRibbon variant="compact" />
 
       {/* Homes Grid Section */}
       <div id="homes-grid" className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 scroll-animate">

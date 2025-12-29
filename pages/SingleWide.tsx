@@ -4,6 +4,7 @@ import { useHomeFilters } from '../hooks/useHomeFilters';
 import { SlidersHorizontal, X, Phone, MapPin, Home as HomeIcon } from 'lucide-react';
 import Button from '../components/Button';
 import HomeCard from '../components/HomeCard';
+import TrustRibbon from '../components/TrustRibbon';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
 
@@ -105,6 +106,9 @@ const SingleWide: React.FC = () => {
           </p>
         </div>
       </section>
+
+      {/* Trust Ribbon - Builds confidence early */}
+      <TrustRibbon variant="compact" />
 
       {/* Catalog Content */}
       <div className="container py-12">

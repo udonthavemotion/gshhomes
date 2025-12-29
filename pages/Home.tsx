@@ -585,11 +585,22 @@ const Home: React.FC = () => {
       </section>
 
       {/* 4. RESTORE LOUISIANA FEATURE SECTION - Hero Treatment */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
-        {/* Subtle background pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231E3A5F' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+      <section className="py-16 sm:py-20 lg:py-24 relative overflow-hidden bg-stone-900">
+        {/* Background Video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-label="Background video showcasing Restore Louisiana program"
+        >
+          <source src="/assets/images/restore louisiana page/restorelouisiana.mp4" type="video/mp4" />
+        </video>
+
+        {/* Gradient Overlay - Same as Restore Louisiana page */}
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-900/80 via-blue-900/70 to-stone-900/80"></div>
 
         <div className="container relative z-10">
           <div className="max-w-7xl mx-auto">
@@ -597,7 +608,7 @@ const Home: React.FC = () => {
             <div className="lg:hidden">
               {/* Badge */}
               <div className="scroll-animate text-center mb-6">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-xs font-bold tracking-wider rounded-full uppercase shadow-md">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium">
                   <ShieldCheck size={16} />
                   Experienced Grant Partner
                 </div>
@@ -620,14 +631,14 @@ const Home: React.FC = () => {
 
               {/* Content */}
               <div className="scroll-animate text-center px-4">
-                <h2 className="text-3xl sm:text-4xl font-display font-black text-stone-900 leading-[1.1] mb-4 tracking-tight">
+                <h2 className="text-3xl sm:text-4xl font-display font-black text-white leading-[1.1] mb-4 tracking-tight">
                   Restore Louisiana<br />
-                  <span className="text-blue-600">Hurricane Francine Grants</span>
+                  <span className="text-white">Hurricane Francine Grants</span>
                 </h2>
-                <p className="text-lg sm:text-xl font-bold text-red-600 mb-4">
+                <p className="text-lg sm:text-xl font-bold text-red-400 mb-4">
                   Funding is Ready. Homes are Available. Act Now!
                 </p>
-                <p className="text-stone-700 text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto">
+                <p className="text-white/95 text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto">
                   Use your Restore Louisiana grant to purchase a brand new manufactured home with Gulf South Homes. We handle the entire process from application to move-in.
                 </p>
 
@@ -672,35 +683,35 @@ const Home: React.FC = () => {
 
               {/* Right: Content */}
               <div className="scroll-animate">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-xs font-bold tracking-wider rounded-full mb-6 uppercase shadow-md">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium mb-6">
                   <ShieldCheck size={16} />
                   Experienced Grant Partner
                 </div>
 
-                <h2 className="text-4xl xl:text-5xl font-display font-black text-stone-900 leading-[1.05] mb-4 tracking-tight">
+                <h2 className="text-4xl xl:text-5xl font-display font-black text-white leading-[1.05] mb-4 tracking-tight">
                   Restore Louisiana<br />
-                  <span className="text-blue-600">Hurricane Francine Grants</span>
+                  <span className="text-white">Hurricane Francine Grants</span>
                 </h2>
 
-                <p className="text-xl xl:text-2xl font-bold text-red-600 mb-6">
+                <p className="text-xl xl:text-2xl font-bold text-red-400 mb-6">
                   Funding is Ready. Homes are Available. Act Now!
                 </p>
 
-                <p className="text-stone-700 text-lg leading-relaxed mb-8">
+                <p className="text-white/95 text-lg leading-relaxed mb-8">
                   Use your Restore Louisiana grant to purchase a brand new manufactured home with Gulf South Homes. We handle the entire process from application to move-in.
                 </p>
 
                 {/* Trust Signals */}
                 <div className="flex flex-col gap-3 mb-8">
-                  <div className="flex items-center gap-3 text-stone-600">
+                  <div className="flex items-center gap-3 text-white/90">
                     <CheckCircle size={20} className="text-primary flex-shrink-0" />
                     <span className="text-base">We accept all Hurricane Francine grants</span>
                   </div>
-                  <div className="flex items-center gap-3 text-stone-600">
+                  <div className="flex items-center gap-3 text-white/90">
                     <CheckCircle size={20} className="text-primary flex-shrink-0" />
                     <span className="text-base">Expert guidance through the entire application process</span>
                   </div>
-                  <div className="flex items-center gap-3 text-stone-600">
+                  <div className="flex items-center gap-3 text-white/90">
                     <CheckCircle size={20} className="text-primary flex-shrink-0" />
                     <span className="text-base">Large in-stock inventory ready for immediate delivery</span>
                   </div>

@@ -17,6 +17,7 @@ import {
 import Button from '../components/Button';
 import LogoScroller from '../components/LogoScroller';
 import LenderRibbon from '../components/LenderRibbon';
+import TrustRibbon from '../components/TrustRibbon';
 import { LENDERS } from '../data/lenders';
 import { COMPANY_INFO, LENDING_PARTNERS } from '../constants';
 import SEOHead from '../components/SEOHead';
@@ -231,6 +232,9 @@ const Financing: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Trust Ribbon - Builds confidence early */}
+      <TrustRibbon variant="compact" />
 
       {/* Financing Options Cards */}
       <section className="py-20 sm:py-28 bg-stone-50">

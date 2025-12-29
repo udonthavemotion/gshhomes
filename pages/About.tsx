@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { COMPANY_INFO } from '../constants';
 import { Shield, Users, Clock, Award, ChevronDown, Heart, MapPin, Phone, Star, Home as HomeIcon, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
 import Button from '../components/Button';
+import TrustRibbon from '../components/TrustRibbon';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
 
@@ -410,6 +411,9 @@ const About: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Trust Ribbon - Builds confidence early */}
+      <TrustRibbon variant="full" />
 
       {/* Trust Badges Section - Enhanced */}
       <section className="py-20 bg-gradient-to-br from-white via-stone-50 to-white scroll-animate">

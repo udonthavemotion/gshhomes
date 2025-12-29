@@ -16,6 +16,7 @@ import {
   Home as HomeIcon
 } from 'lucide-react';
 import Button from '../components/Button';
+import TrustRibbon from '../components/TrustRibbon';
 import { COMPANY_INFO } from '../constants';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
@@ -198,6 +199,9 @@ const Parts: React.FC = () => {
           </p>
         </div>
       </section>
+
+      {/* Trust Ribbon - Builds confidence early */}
+      <TrustRibbon variant="compact" />
 
       {/* Store Overview - 2 Column */}
       <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
