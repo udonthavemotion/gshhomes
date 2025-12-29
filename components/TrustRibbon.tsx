@@ -9,10 +9,9 @@ interface TrustRibbonProps {
 }
 
 /**
- * Premium Trust Ribbon Component
- * Transforms credentials into visually stunning trust signals
- * Uses glassmorphism, layered gradients, and micro-interactions
- * Seamlessly bridges hero sections with page content
+ * Compact Trust Ribbon Component
+ * Single-line, ultra-compact trust signals that don't take additional scroll space
+ * Seamlessly integrated inline after hero sections
  */
 const TrustRibbon: React.FC<TrustRibbonProps> = ({
   showMap = true,
@@ -22,60 +21,32 @@ const TrustRibbon: React.FC<TrustRibbonProps> = ({
 }) => {
   if (variant === 'compact') {
     return (
-      <div className="relative py-6 px-4 overflow-hidden">
-        {/* Subtle gradient background that extends hero visual language */}
-        <div className="absolute inset-0 bg-gradient-to-b from-stone-50/80 via-white to-white"></div>
-
-        {/* Ambient glow effect */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[100px] bg-[var(--color-primary)] opacity-[0.03] blur-3xl rounded-full"></div>
-
-        <div className="relative max-w-4xl mx-auto">
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-            {showYear && (
-              <div className="group flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-white/80 backdrop-blur-sm border border-stone-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(30,58,95,0.12)] transition-all duration-300 hover:scale-[1.02]">
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-yellow-50 to-amber-50 group-hover:from-yellow-100 group-hover:to-amber-100 transition-colors duration-300">
-                  <Award size={16} className="text-yellow-700" strokeWidth={2.5} />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[13px] font-semibold text-[var(--color-primary)] leading-tight tracking-tight">Est. 1995</span>
-                  <span className="text-[10px] font-medium text-stone-500 leading-tight">Louisiana Born</span>
-                </div>
-              </div>
-            )}
-
-            {showMap && (
-              <div className="group flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-white/80 backdrop-blur-sm border border-stone-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(211,47,47,0.12)] transition-all duration-300 hover:scale-[1.02]">
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-red-50 to-rose-50 group-hover:from-red-100 group-hover:to-rose-100 transition-colors duration-300">
-                  <MapPin size={16} className="text-[var(--color-cta)]" strokeWidth={2.5} />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[13px] font-semibold text-[var(--color-primary)] leading-tight tracking-tight">Houma, LA</span>
-                  <span className="text-[10px] font-medium text-stone-500 leading-tight">Local Experts</span>
-                </div>
-              </div>
-            )}
-
-            {showRating && (
-              <div className="group flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-white/80 backdrop-blur-sm border border-stone-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(30,58,95,0.12)] transition-all duration-300 hover:scale-[1.02]">
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-blue-50 to-sky-50 group-hover:from-blue-100 group-hover:to-sky-100 transition-colors duration-300">
-                  <Star size={16} className="text-[var(--color-accent)] fill-[var(--color-accent)]" strokeWidth={2.5} />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[13px] font-semibold text-[var(--color-primary)] leading-tight tracking-tight">BBB Accredited</span>
-                  <span className="text-[10px] font-medium text-stone-500 leading-tight">Trusted Business</span>
-                </div>
-              </div>
-            )}
-
-            <div className="group flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-white/80 backdrop-blur-sm border border-stone-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(30,58,95,0.12)] transition-all duration-300 hover:scale-[1.02]">
-              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-stone-100 to-stone-200 group-hover:from-stone-200 group-hover:to-stone-300 transition-colors duration-300">
-                <Clock size={16} className="text-[var(--color-primary)]" strokeWidth={2.5} />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-[13px] font-semibold text-[var(--color-primary)] leading-tight tracking-tight">30+ Years</span>
-                <span className="text-[10px] font-medium text-stone-500 leading-tight">Family Expertise</span>
-              </div>
+      <div className="py-3 px-4 bg-gradient-to-r from-stone-50 via-white to-stone-50 border-y border-stone-200/30">
+        <div className="max-w-5xl mx-auto flex items-center justify-center flex-wrap gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+          {showYear && (
+            <div className="flex items-center gap-1.5 text-xs sm:text-sm">
+              <Award size={14} className="text-yellow-700 flex-shrink-0" />
+              <span className="font-semibold text-[var(--color-primary)]">Est. 1995</span>
             </div>
+          )}
+
+          {showMap && (
+            <div className="flex items-center gap-1.5 text-xs sm:text-sm">
+              <MapPin size={14} className="text-[var(--color-cta)] flex-shrink-0" />
+              <span className="font-semibold text-[var(--color-primary)]">Houma, LA</span>
+            </div>
+          )}
+
+          {showRating && (
+            <div className="flex items-center gap-1.5 text-xs sm:text-sm">
+              <Star size={14} className="text-[var(--color-accent)] fill-[var(--color-accent)] flex-shrink-0" />
+              <span className="font-semibold text-[var(--color-primary)]">BBB Accredited</span>
+            </div>
+          )}
+
+          <div className="flex items-center gap-1.5 text-xs sm:text-sm">
+            <Clock size={14} className="text-[var(--color-primary)] flex-shrink-0" />
+            <span className="font-semibold text-[var(--color-primary)]">30+ Years</span>
           </div>
         </div>
       </div>
