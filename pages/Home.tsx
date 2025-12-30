@@ -1,8 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, lazy, Suspense } from 'react';
 import { COMPANY_INFO, MOCK_HOMES, TESTIMONIALS } from '../constants';
 import Button from '../components/Button';
 import HomeCard from '../components/HomeCard';
-import ManufacturerLogoScroller from '../components/ManufacturerLogoScroller';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
 import {
@@ -36,7 +35,10 @@ import {
   Crown
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import FeaturedCarousel from '../components/FeaturedCarousel';
+
+// Lazy load heavy components to reduce initial bundle
+const FeaturedCarousel = lazy(() => import('../components/FeaturedCarousel'));
+const ManufacturerLogoScroller = lazy(() => import('../components/ManufacturerLogoScroller'));
 
 const Home: React.FC = () => {
   const featuredHomes = MOCK_HOMES.filter(h => h.isFeatured).slice(0, 7);
@@ -106,6 +108,7 @@ const Home: React.FC = () => {
           loop
           playsInline
           preload="metadata"
+          poster="/assets/images/homepage/landingpageheroheader-poster.jpg"
           className="absolute inset-0 w-full h-full object-cover"
           aria-label="Background video showcasing Gulf South Homes"
           style={{ 
@@ -353,6 +356,7 @@ const Home: React.FC = () => {
                 loop 
                 playsInline
                 preload="metadata"
+                poster="/assets/video/videosworking/hero-poster.jpg"
                 className="absolute inset-0 w-full h-full object-cover"
               >
                 <source src="/assets/video/videosworking/hero.mp4" type="video/mp4" />
@@ -542,7 +546,9 @@ const Home: React.FC = () => {
                 <span>Featuring Top Manufacturers</span>
                 <span className="h-px w-12 bg-gradient-to-l from-transparent to-stone-300"></span>
               </p>
-              <ManufacturerLogoScroller />
+              <Suspense fallback={<div className="h-32 animate-pulse bg-stone-200 rounded-lg" />}>
+                <ManufacturerLogoScroller />
+              </Suspense>
             </div>
           </div>
         </div>
@@ -565,14 +571,16 @@ const Home: React.FC = () => {
 
           {/* Swiper Carousel Implementation */}
           <div className="scroll-animate">
-            <FeaturedCarousel
-              items={featuredHomes}
-              renderCard={(home, index) => (
-                <div className="h-full">
-                  <HomeCard home={home} />
-                </div>
-              )}
-            />
+            <Suspense fallback={<div className="h-64 animate-pulse bg-stone-200 rounded-lg" />}>
+              <FeaturedCarousel
+                items={featuredHomes}
+                renderCard={(home, index) => (
+                  <div className="h-full">
+                    <HomeCard home={home} />
+                  </div>
+                )}
+              />
+            </Suspense>
           </div>
 
           <div className="mt-10 text-center scroll-animate">
@@ -593,6 +601,7 @@ const Home: React.FC = () => {
           loop
           playsInline
           preload="metadata"
+          poster="/assets/images/restore louisiana page/restorelouisiana-poster.jpg"
           className="absolute inset-0 w-full h-full object-cover"
           aria-label="Background video showcasing Restore Louisiana program"
         >
@@ -966,7 +975,7 @@ const Home: React.FC = () => {
             <div className="reviews-widget-container">
               <iframe
                 className='lc_reviews_widget'
-                src='https://crm.zeromotionmarketing.com/reputation/widgets/review_widget/9Ax53jRuv9z4JsRTJ60V?widgetId=6950a4721d475e5e12657795'
+                src='https://crm.gshforms.com/reputation/widgets/review_widget/TQf8w75HUD6SFkH9Ebla'
                 frameBorder='0'
                 scrolling='no'
                 style={{

@@ -1,10 +1,9 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, A11y, Keyboard } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Import Swiper styles
+// Import Swiper styles (these are small CSS files)
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -19,6 +18,37 @@ interface FeaturedCarouselProps {
   renderCard: (item: Item, index: number) => React.ReactNode;
   className?: string;
 }
+
+// Wrapper component for lazy-loaded Swiper
+const SwiperWrapper: React.FC<any> = ({ items, renderCard, ...swiperProps }) => {
+  const [SwiperComponent, setSwiperComponent] = useState<any>(null);
+  const [SwiperSlideComponent, setSwiperSlideComponent] = useState<any>(null);
+
+  useEffect(() => {
+    import('swiper/react').then((module) => {
+      setSwiperComponent(() => module.Swiper);
+      setSwiperSlideComponent(() => module.SwiperSlide);
+    });
+  }, []);
+
+  if (!SwiperComponent || !SwiperSlideComponent) {
+    return (
+      <div className="h-64 animate-pulse bg-stone-200 rounded-lg flex items-center justify-center">
+        <div className="text-stone-500 text-sm">Loading carousel...</div>
+      </div>
+    );
+  }
+
+  return (
+    <SwiperComponent {...swiperProps}>
+      {items.map((item, index) => (
+        <SwiperSlideComponent key={item.id} className="!h-auto pb-2">
+          {renderCard(item, index)}
+        </SwiperSlideComponent>
+      ))}
+    </SwiperComponent>
+  );
+};
 
 const FeaturedCarousel: React.FC<FeaturedCarouselProps> = ({ 
   items, 
@@ -72,63 +102,59 @@ const FeaturedCarousel: React.FC<FeaturedCarouselProps> = ({
           <ChevronRight size={22} />
         </button>
 
-        {/* Swiper Carousel */}
-        <Swiper
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-          onSlideChange={handleSlideChange}
-          modules={[Navigation, Pagination, A11y, Keyboard]}
-          spaceBetween={16}
-          slidesPerView={1.15}
-          centeredSlides={false}
-          loop={items.length > 3}
-          speed={prefersReducedMotion ? 0 : 500}
-          keyboard={{
-            enabled: true,
-            onlyInViewport: true,
-          }}
-          a11y={{
-            prevSlideMessage: 'Previous item',
-            nextSlideMessage: 'Next item',
-            firstSlideMessage: 'This is the first item',
-            lastSlideMessage: 'This is the last item',
-            paginationBulletMessage: 'Go to item {{index}}',
-          }}
-          breakpoints={{
-            0: {
-              slidesPerView: 1.08,
-              spaceBetween: 12,
-            },
-            480: {
-              slidesPerView: 1.4,
-              spaceBetween: 16,
-            },
-            640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
-            },
-            900: {
-              slidesPerView: 2.5,
-              spaceBetween: 24,
-            },
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 24,
-            },
-            1280: {
-              slidesPerView: 3,
-              spaceBetween: 28,
-            },
-          }}
-          className="!overflow-visible !pb-2"
-        >
-          {items.map((item, index) => (
-            <SwiperSlide key={item.id} className="!h-auto pb-2">
-              {renderCard(item, index)}
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {/* Swiper Carousel - Lazy loaded to reduce initial bundle */}
+        <SwiperWrapper
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+            onSlideChange={handleSlideChange}
+            modules={[Navigation, Pagination, A11y, Keyboard]}
+            spaceBetween={16}
+            slidesPerView={1.15}
+            centeredSlides={false}
+            loop={items.length > 3}
+            speed={prefersReducedMotion ? 0 : 500}
+            keyboard={{
+              enabled: true,
+              onlyInViewport: true,
+            }}
+            a11y={{
+              prevSlideMessage: 'Previous item',
+              nextSlideMessage: 'Next item',
+              firstSlideMessage: 'This is the first item',
+              lastSlideMessage: 'This is the last item',
+              paginationBulletMessage: 'Go to item {{index}}',
+            }}
+            breakpoints={{
+              0: {
+                slidesPerView: 1.08,
+                spaceBetween: 12,
+              },
+              480: {
+                slidesPerView: 1.4,
+                spaceBetween: 16,
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              900: {
+                slidesPerView: 2.5,
+                spaceBetween: 24,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 24,
+              },
+              1280: {
+                slidesPerView: 3,
+                spaceBetween: 28,
+              },
+            }}
+            className="!overflow-visible !pb-2"
+            items={items}
+            renderCard={renderCard}
+          />
       </div>
 
       {/* Slide Counter - Desktop */}

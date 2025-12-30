@@ -61,38 +61,58 @@
     <link rel="preload" href="/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/index.css"></noscript>
     
-    <!-- Modern Font Stack: Outfit (headlines) + Plus Jakarta Sans (body) + Dancing Script (elegant cursive) -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <!-- Preload critical assets -->
+    <link rel="preload" as="image" href="/assets/images/single wide homes/large logo for nav bar.png" fetchpriority="high">
+    <link rel="preload" as="video" href="/assets/images/homepage/landingpageheroheader.mp4" type="video/mp4">
+    
+    <!-- Prefetch likely next pages -->
+    <link rel="prefetch" href="/homes-for-sale">
+    <link rel="prefetch" href="/mobile-home-financing">
+    <link rel="prefetch" href="/contact-gulf-south-homes">
+
+    <!-- Load critical fonts (Outfit + Plus Jakarta Sans) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     </noscript>
-    <script type="importmap">
-{
-  "imports": {
-    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.10.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.1/",
-    "react": "https://aistudiocdn.com/react@^19.2.1"
-  }
-}
+
+    <!-- Lazy load decorative font (Dancing Script) -->
+    <script>
+      window.addEventListener('load', function() {
+        const link = document.createElement('link');
+        link.href = 'https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap';
+        link.rel = 'stylesheet';
+        document.head.appendChild(link);
+      });
     </script>
   </head>
   <body class="bg-stone-50 text-stone-800 antialiased">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
 
-    <!-- GoHighLevel Chat Widget -->
-    <script
-      src="https://beta.leadconnectorhq.com/loader.js"
-      data-resources-url="https://beta.leadconnectorhq.com/chat-widget/loader.js"
-      data-widget-id="6940899ff258cf30de629683"
-    ></script>
+    <!-- Defer non-critical third-party scripts until after page load -->
+    <script>
+      window.addEventListener('load', function() {
+        // GoHighLevel Chat Widget
+        const chatScript = document.createElement('script');
+        chatScript.src = 'https://beta.leadconnectorhq.com/loader.js';
+        chatScript.setAttribute('data-resources-url', 'https://beta.leadconnectorhq.com/chat-widget/loader.js');
+        chatScript.setAttribute('data-widget-id', '6940899ff258cf30de629683');
+        chatScript.defer = true;
+        document.body.appendChild(chatScript);
 
-    <!-- GoHighLevel Form Embed Script -->
-    <script src="https://crm.gshforms.com/js/form_embed.js"></script>
+        // GoHighLevel Form Embed Script
+        const formScript = document.createElement('script');
+        formScript.src = 'https://crm.gshforms.com/js/form_embed.js';
+        formScript.defer = true;
+        document.body.appendChild(formScript);
 
-    <!-- Reviews Widget Script -->
-    <script type='text/javascript' src='https://crm.zeromotionmarketing.com/reputation/assets/review-widget.js'></script>
+        // Reviews Widget Script
+        const reviewScript = document.createElement('script');
+        reviewScript.src = 'https://crm.gshforms.com/reputation/assets/review-widget.js';
+        reviewScript.defer = true;
+        document.body.appendChild(reviewScript);
+      });
+    </script>
   </body>
 </html>

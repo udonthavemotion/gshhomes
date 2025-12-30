@@ -83,25 +83,31 @@ const ThumbnailGrid: React.FC<ThumbnailGridProps> = ({
           aria-label={`View ${homeName} image ${idx + 1} of ${images.length} in gallery`}
           role="listitem"
         >
-          {/* Image with explicit dimensions for CLS prevention */}
-          <img
-            src={img}
-            alt={`${homeName} - Image ${idx + 1}`}
-            width={600}
-            height={450}
-            decoding="async"
-            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-            loading={idx < eagerLoadCount ? 'eager' : 'lazy'}
-            onError={(e) => {
-              // Hide broken images gracefully
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-              // Also hide the parent button
-              if (target.parentElement) {
-                target.parentElement.style.display = 'none';
-              }
-            }}
-          />
+          {/* Image with WebP support and explicit dimensions for CLS prevention */}
+          <picture>
+            <source 
+              srcSet={img.replace(/\.(jpg|jpeg|png)$/i, '.webp')} 
+              type="image/webp" 
+            />
+            <img
+              src={img}
+              alt={`${homeName} - Image ${idx + 1}`}
+              width={600}
+              height={450}
+              decoding="async"
+              className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+              loading={idx < eagerLoadCount ? 'eager' : 'lazy'}
+              onError={(e) => {
+                // Hide broken images gracefully
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+                // Also hide the parent button
+                if (target.parentElement) {
+                  target.parentElement.style.display = 'none';
+                }
+              }}
+            />
+          </picture>
 
           {/* Hover overlay */}
           <div 
