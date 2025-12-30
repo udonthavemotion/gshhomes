@@ -163,7 +163,7 @@ const Home: React.FC = () => {
 
           {/* Serving Location - Below CTA - Mobile Optimized */}
           <div className="hero-subtext flex justify-center mt-3 md:mt-3 lg:mt-4 mb-3 md:mb-3 md:mb-4 lg:mb-6 px-2" style={{ animationDelay: '0.6s' }}>
-            <span className="text-primary-light hero-subtitle-fluid font-bold tracking-wide text-center break-words leading-tight" style={{ textShadow: '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.5), 0 3px 10px rgba(255,255,255,0.3)' }}>
+            <span className="text-primary-light hero-subtitle-fluid font-bold tracking-wide text-center break-words leading-tight" style={{ color: 'rgba(255, 255, 255, 1)', fontFamily: '"Dancing Script"', textShadow: '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.5), 0 3px 10px rgba(255,255,255,0.3)' }}>
               Serving Southeast Louisiana
             </span>
           </div>
