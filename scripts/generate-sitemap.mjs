@@ -43,25 +43,39 @@ const staticPages = [
 ]
 
 /**
- * Extract homes from TypeScript data file
+ * Extract homes from all TypeScript data files
  */
 function extractHomes() {
-  const dataPath = path.resolve(__dirname, '../data/homes.ts')
-  const dataContent = fs.readFileSync(dataPath, 'utf-8')
   const homes = []
+  const dataFiles = [
+    { path: path.resolve(__dirname, '../data/homes.ts'), type: 'Single Wide' },
+    { path: path.resolve(__dirname, '../data/double-wide-homes.ts'), type: 'Double Wide' },
+    { path: path.resolve(__dirname, '../data/modular-homes.ts'), type: 'Modular' },
+  ]
 
-  // Find all home objects: { id: 'xxx', name: 'yyy', manufacturer: 'zzz', type: 'aaa'
+  // Pattern to find home objects: { id: 'xxx', name: 'yyy', manufacturer: 'zzz', type: 'aaa'
   const homePattern = /{\s*id:\s*['"]([^'"]+)['"]\s*,[\s\S]*?name:\s*['"]([^'"]+)['"]\s*,[\s\S]*?manufacturer:\s*['"]([^'"]+)['"]\s*,[\s\S]*?type:\s*['"]([^'"]+)['"]/g
 
-  let match
-  while ((match = homePattern.exec(dataContent)) !== null) {
-    homes.push({
-      id: match[1],
-      name: match[2],
-      manufacturer: match[3],
-      type: match[4],
-    })
-  }
+  dataFiles.forEach(({ path: filePath, type: defaultType }) => {
+    try {
+      const dataContent = fs.readFileSync(filePath, 'utf-8')
+      let match
+
+      while ((match = homePattern.exec(dataContent)) !== null) {
+        homes.push({
+          id: match[1],
+          name: match[2],
+          manufacturer: match[3],
+          type: match[4],
+        })
+      }
+
+      // Reset regex state for next file
+      homePattern.lastIndex = 0
+    } catch (err) {
+      console.warn(`⚠️  Could not read ${filePath}`)
+    }
+  })
 
   return homes
 }
