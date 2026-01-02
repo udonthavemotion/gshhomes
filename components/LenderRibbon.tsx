@@ -27,7 +27,7 @@ const LenderRibbon: React.FC<LenderRibbonProps> = ({ partners, className = '' })
       <div 
         className="relative py-4 sm:py-3 lender-ribbon-container"
         style={{
-          backgroundColor: 'rgba(30, 58, 95, 0.55)',
+          backgroundColor: 'rgba(74, 144, 226, 0.55)',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
           borderTop: '1px solid rgba(255, 255, 255, 0.15)',

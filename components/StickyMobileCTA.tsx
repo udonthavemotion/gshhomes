@@ -31,7 +31,7 @@ const StickyMobileCTA: React.FC<StickyMobileCTAProps> = ({
       {/* Mobile CTA Bar - hidden on desktop/tablet */}
       <div
         className={`${hideOnDesktop ? 'md:hidden' : ''} fixed bottom-0 left-0 right-0 z-40 bg-white border-t-2 shadow-2xl`}
-        style={{ borderTopColor: 'var(--color-primary, #1E3A5F)' }}
+        style={{ borderTopColor: 'var(--color-primary, #4A90E2)' }}
       >
         <div className="flex items-center justify-between gap-2 p-3 safe-area-inset-bottom">
           {/* Call Button - Primary CTA */}

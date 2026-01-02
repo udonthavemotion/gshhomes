@@ -336,9 +336,9 @@ const Navbar: React.FC = () => {
             <a
               href={`tel:${COMPANY_INFO.phone}`}
               className="flex items-center gap-2 mb-3 text-lg font-bold transition-colors"
-              style={{ color: 'var(--color-primary, #1E3A5F)' }}
+              style={{ color: 'var(--color-primary, #4A90E2)' }}
               onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-accent, #4A90E2)'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary, #1E3A5F)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary, #4A90E2)'}
             >
               <Phone size={20} style={{ color: 'var(--color-primary, #1E3A5F)' }} />
               {COMPANY_INFO.phone}
@@ -353,9 +353,9 @@ const Navbar: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 transition-colors"
-                style={{ color: 'var(--color-primary, #1E3A5F)' }}
+                style={{ color: 'var(--color-primary, #4A90E2)' }}
                 onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-accent, #4A90E2)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary, #1E3A5F)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary, #4A90E2)'}
                 aria-label="Visit Gulf South Homes on Facebook"
               >
                 <Facebook size={20} />
@@ -366,9 +366,9 @@ const Navbar: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 transition-colors"
-                style={{ color: 'var(--color-primary, #1E3A5F)' }}
+                style={{ color: 'var(--color-primary, #4A90E2)' }}
                 onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-accent, #4A90E2)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary, #1E3A5F)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary, #4A90E2)'}
                 aria-label="Visit Gulf South Homes on Instagram"
               >
                 <Instagram size={20} />
@@ -379,9 +379,9 @@ const Navbar: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 transition-colors"
-                style={{ color: 'var(--color-primary, #1E3A5F)' }}
+                style={{ color: 'var(--color-primary, #4A90E2)' }}
                 onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-accent, #4A90E2)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary, #1E3A5F)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary, #4A90E2)'}
                 aria-label="Visit Gulf South Homes on TikTok"
               >
                 <TikTokIcon size={20} />
@@ -405,7 +405,7 @@ const Navbar: React.FC = () => {
                       : 'hover:bg-stone-50'
                   } ${isOpen ? 'animate-fade-in-up' : ''}`}
                   style={{
-                    color: isActive(link.path) ? 'var(--color-accent, #4A90E2)' : 'var(--color-primary, #1E3A5F)',
+                    color: isActive(link.path) ? 'var(--color-accent, #4A90E2)' : 'var(--color-primary, #4A90E2)',
                     animationDelay: `${idx * 50}ms`
                   }}
                 >
@@ -456,7 +456,7 @@ const Navbar: React.FC = () => {
                   : 'hover:bg-stone-50'
               } ${isOpen ? 'animate-fade-in-up' : ''}`}
               style={{
-                color: isActive('/contact-gulf-south-homes') ? 'var(--color-accent, #4A90E2)' : 'var(--color-primary, #1E3A5F)',
+                color: isActive('/contact-gulf-south-homes') ? 'var(--color-accent, #4A90E2)' : 'var(--color-primary, #4A90E2)',
                 animationDelay: `${navLinks.length * 50}ms`
               }}
             >
