@@ -12,9 +12,9 @@
 /* CSS Custom Properties - Theme System */
 :root {
   /* Default Theme: Gulf Coast Modern Blue */
-  --color-primary: #1E3A5F;
-  --color-primary-dark: #142840;
-  --color-primary-light: #2D5380;
+  --color-primary: #4A90E2;
+  --color-primary-dark: #3578C4;
+  --color-primary-light: #5FA3F0;
   --color-accent: #4A90E2;
   --color-accent-dark: #3A7BC8;
   --color-cta: #D32F2F;
@@ -22,22 +22,22 @@
   --color-cta-light: #E05656;
   
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #1E3A5F 0%, #142840 50%, #0D1A2B 100%);
+  --gradient-primary: linear-gradient(135deg, #4A90E2 0%, #3578C4 50%, #2A5FA0 100%);
   --gradient-hero: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.85) 100%);
   --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
   --gradient-text: linear-gradient(135deg, #ffffff 0%, #F8F9FA 100%);
-  --gradient-glow: radial-gradient(ellipse at top, rgba(30,58,95,0.15) 0%, transparent 50%);
+  --gradient-glow: radial-gradient(ellipse at top, rgba(74,144,226,0.15) 0%, transparent 50%);
   
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
   --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
   --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
-  --shadow-glow: 0 0 40px rgba(30, 58, 95, 0.3);
+  --shadow-glow: 0 0 40px rgba(74, 144, 226, 0.3);
   --shadow-card: 0 4px 20px rgba(0,0,0,0.08);
   --shadow-card-hover: 0 20px 40px rgba(0,0,0,0.15);
-  --shadow-primary-sm: 0 4px 14px rgba(30, 58, 95, 0.4);
-  --shadow-primary-lg: 0 6px 20px rgba(30, 58, 95, 0.5);
+  --shadow-primary-sm: 0 4px 14px rgba(74, 144, 226, 0.4);
+  --shadow-primary-lg: 0 6px 20px rgba(74, 144, 226, 0.5);
   
   /* Animation timing */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -67,22 +67,22 @@
 
 /* Theme 2: Gulf Coast Modern */
 [data-theme="blue-gulf"] {
-  --color-primary: #1E3A5F;
-  --color-primary-dark: #142840;
-  --color-primary-light: #2D5380;
+  --color-primary: #4A90E2;
+  --color-primary-dark: #3578C4;
+  --color-primary-light: #5FA3F0;
   --color-accent: #4A90E2;
   --color-accent-dark: #3A7BC8;
   --color-cta: #D32F2F;
   --color-cta-dark: #B02626;
   --color-cta-light: #E05656;
   
-  --gradient-primary: linear-gradient(135deg, #1E3A5F 0%, #142840 50%, #0D1A2B 100%);
+  --gradient-primary: linear-gradient(135deg, #4A90E2 0%, #3578C4 50%, #2A5FA0 100%);
   --gradient-text: linear-gradient(135deg, #ffffff 0%, #F8F9FA 100%);
-  --gradient-glow: radial-gradient(ellipse at top, rgba(30,58,95,0.15) 0%, transparent 50%);
+  --gradient-glow: radial-gradient(ellipse at top, rgba(74,144,226,0.15) 0%, transparent 50%);
   
-  --shadow-glow: 0 0 40px rgba(30, 58, 95, 0.3);
-  --shadow-primary-sm: 0 4px 14px rgba(30, 58, 95, 0.4);
-  --shadow-primary-lg: 0 6px 20px rgba(30, 58, 95, 0.5);
+  --shadow-glow: 0 0 40px rgba(74, 144, 226, 0.3);
+  --shadow-primary-sm: 0 4px 14px rgba(74, 144, 226, 0.4);
+  --shadow-primary-lg: 0 6px 20px rgba(74, 144, 226, 0.5);
 }
 
 /* Theme 3: American Classic */
@@ -219,10 +219,10 @@
 /* Logo glow pulse - Subtle ongoing animation */
 @keyframes logoGlow {
   0%, 100% {
-    filter: drop-shadow(0 0 20px rgba(30, 58, 95, 0.3)) drop-shadow(0 0 40px rgba(30, 58, 95, 0.2));
+    filter: drop-shadow(0 0 20px rgba(74, 144, 226, 0.3)) drop-shadow(0 0 40px rgba(74, 144, 226, 0.2));
   }
   50% {
-    filter: drop-shadow(0 0 30px rgba(30, 58, 95, 0.5)) drop-shadow(0 0 60px rgba(30, 58, 95, 0.3));
+    filter: drop-shadow(0 0 30px rgba(74, 144, 226, 0.5)) drop-shadow(0 0 60px rgba(74, 144, 226, 0.3));
   }
 }
 
@@ -237,7 +237,7 @@
 @media (prefers-reduced-motion: reduce) {
   .logo-entrance {
     animation: none !important;
-    filter: drop-shadow(0 0 20px rgba(30, 58, 95, 0.3)) !important;
+    filter: drop-shadow(0 0 20px rgba(74, 144, 226, 0.3)) !important;
   }
   
   [class*="animate-pulse"] {
@@ -520,7 +520,7 @@
 }
 
 .top-bar-nav a {
-  color: var(--color-primary, #1E3A5F) !important;
+  color: var(--color-primary, #4A90E2) !important;
 }
 
 .top-bar-nav a:hover {
@@ -688,7 +688,7 @@
 .navbar-dropdown-item.text-primary-dark:hover,
 .navbar-dropdown-item.text-primary:hover {
   color: var(--color-primary-dark) !important;
-  background-color: rgba(30, 58, 95, 0.2) !important;
+  background-color: rgba(74, 144, 226, 0.2) !important;
 }
 
 .navbar-dropdown-item:hover::before {
@@ -700,7 +700,7 @@
 .navbar-dropdown-item.text-primary-dark:hover::before,
 .navbar-dropdown-item.text-primary:hover::before {
   background: var(--color-primary) !important;
-  box-shadow: 0 0 8px rgba(30, 58, 95, 0.4) !important;
+  box-shadow: 0 0 8px rgba(74, 144, 226, 0.4) !important;
 }
 
 /* Mobile menu - white background with blue accents */
@@ -739,7 +739,7 @@
   .navbar-link-glow.text-primary-dark:hover,
   .navbar-link-glow.text-primary:hover {
     color: var(--color-primary-dark) !important;
-    background-color: rgba(30, 58, 95, 0.2) !important;
+    background-color: rgba(74, 144, 226, 0.2) !important;
     animation: none;
   }
 }
@@ -1216,7 +1216,7 @@
 .manufacturer-carousel-wrapper {
   width: 100vw;
   padding: 2.5rem 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(30, 58, 95, 0.02) 50%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(74, 144, 226, 0.02) 50%, rgba(255, 255, 255, 0) 100%);
   position: relative;
   overflow: hidden;
   margin-left: calc(50% - 50vw);
@@ -1284,7 +1284,7 @@
 }
 
 .scroller__img--manufacturers:focus-visible {
-  outline: 2px solid rgba(30, 58, 95, 0.5);
+  outline: 2px solid rgba(74, 144, 226, 0.5);
   outline-offset: 4px;
   border-radius: 4px;
 }
@@ -2285,7 +2285,7 @@ chat-widget[data-widget-id="6940899ff258cf30de629683"] button[class*="chat"] {
 .group\/carousel [data-carousel-previous]:hover:not(:disabled),
 .group\/carousel [data-carousel-next]:hover:not(:disabled) {
   transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 8px 24px rgba(30, 58, 95, 0.25);
+  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.25);
 }
 
 .group\/carousel [data-carousel-previous]:active:not(:disabled),
