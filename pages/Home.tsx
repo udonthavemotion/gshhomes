@@ -125,9 +125,18 @@ const Home: React.FC = () => {
 
         {/* Content */}
         <div className="relative z-10 w-full max-w-6xl mx-auto px-2 sm:px-0 flex flex-col justify-center min-h-[80vh] md:min-h-0">
-          {/* Main Headline */}
+          {/* Main Headline - With Rotating Product Categories */}
           <h1 className="font-display font-black text-white leading-[1.15] sm:leading-[1.1] hero-headline-fluid max-w-[1000px] mx-auto mb-4 md:mb-6 lg:mb-8 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-            <span className="block hero-word">Manufactured & Modular Homes in Southeast Louisiana</span>
+            <span className="block hero-word">New</span>
+            <span className="block text-rotate-container hero-word" style={{ animationDelay: '0.2s' }}>
+              <span className="text-rotate">
+                <span>Single-Wide</span>
+                <span>Double-Wide</span>
+                <span>Modular</span>
+                <span>Manufactured</span>
+              </span>
+            </span>
+            <span className="block hero-word" style={{ animationDelay: '0.4s' }}>Homes For Sale</span>
           </h1>
 
           {/* CTA Buttons - Pop-in Animation - Mobile Optimized */}
@@ -152,10 +161,10 @@ const Home: React.FC = () => {
             </Button>
           </div>
 
-          {/* Hero Subheadline - Below CTA - Mobile Optimized */}
+          {/* Serving Location - Below CTA - Mobile Optimized */}
           <div className="hero-subtext flex justify-center mt-3 md:mt-3 lg:mt-4 mb-3 md:mb-3 md:mb-4 lg:mb-6 px-2" style={{ animationDelay: '0.6s' }}>
             <span className="text-primary-light hero-subtitle-fluid font-bold tracking-wide text-center break-words leading-tight" style={{ color: 'rgba(255, 255, 255, 1)', fontFamily: '"Dancing Script"', textShadow: '0 0 20px rgba(255,255,255,0.8), 0 0 40px rgba(255,255,255,0.5), 0 3px 10px rgba(255,255,255,0.3)' }}>
-              Fast Delivery • Full Setup • In-House Financing & Insurance
+              Serving Southeast Louisiana
             </span>
           </div>
 
