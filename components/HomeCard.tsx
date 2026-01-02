@@ -10,6 +10,87 @@ interface HomeCardProps {
 
 const HomeCard: React.FC<HomeCardProps> = ({ home }) => {
   const [galleryOpen, setGalleryOpen] = useState(false);
+  const isPlaceholder = home.isPlaceholder || false;
+
+  // For placeholder cards, make them non-interactive
+  if (isPlaceholder) {
+    return (
+      <div className="relative bg-white rounded-2xl overflow-hidden transition-all duration-500 ease-out">
+        {/* Image Container */}
+        <div className="relative aspect-[4/3] overflow-hidden">
+          <img
+            src={home.imageUrl}
+            alt={home.name}
+            width={800}
+            height={600}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover opacity-50"
+          />
+
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-900/90 via-stone-900/30 to-transparent opacity-70"></div>
+
+          {/* Waiting for Inventory Badge */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-3 backdrop-blur-sm">
+                <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-white font-bold text-lg mb-1">Coming Soon</h3>
+              <p className="text-white/80 text-sm">Waiting for Inventory</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Card Body */}
+        <div className="p-5">
+          {/* Stats Row */}
+          <div className="flex justify-between items-center py-4 px-2 bg-stone-50 rounded-lg mb-4">
+            <div className="flex flex-col items-center flex-1">
+              <div className="flex items-center gap-1.5 text-primary mb-0.5">
+                <Bed size={16} />
+                <span className="text-lg font-bold text-stone-900">{home.beds}</span>
+              </div>
+              <span className="text-xs text-stone-500 font-medium">Beds</span>
+            </div>
+            <div className="w-px h-8 bg-stone-200"></div>
+            <div className="flex flex-col items-center flex-1">
+              <div className="flex items-center gap-1.5 text-primary mb-0.5">
+                <Bath size={16} />
+                <span className="text-lg font-bold text-stone-900">{home.baths}</span>
+              </div>
+              <span className="text-xs text-stone-500 font-medium">Baths</span>
+            </div>
+            <div className="w-px h-8 bg-stone-200"></div>
+            <div className="flex flex-col items-center flex-1">
+              <div className="flex items-center gap-1.5 text-primary mb-0.5">
+                <Maximize size={16} />
+                <span className="text-lg font-bold text-stone-900">{home.sqft.toLocaleString()}</span>
+              </div>
+              <span className="text-xs text-stone-500 font-medium">Sq Ft</span>
+            </div>
+          </div>
+
+          {/* Description */}
+          <p className="text-stone-600 text-sm leading-relaxed line-clamp-2 mb-5">
+            {home.description}
+          </p>
+
+          {/* CTA Button - Disabled for placeholder */}
+          <button
+            disabled
+            className="flex items-center justify-center gap-2 w-full py-3 bg-stone-200 text-stone-500 rounded-md text-sm font-semibold cursor-not-allowed"
+          >
+            Contact for Availability
+            <ArrowRight size={16} />
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

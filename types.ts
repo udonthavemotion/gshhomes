@@ -14,6 +14,7 @@ export interface HomeModel {
   imageUrl: string;
   gallery?: string[]; // Array of image URLs for photo gallery
   isFeatured?: boolean;
+  isPlaceholder?: boolean; // Placeholder home for manufacturer without inventory
 }
 
 export interface Service {

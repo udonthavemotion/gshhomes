@@ -14,7 +14,7 @@ export const DOUBLE_WIDE_HOMES: HomeModel[] = [
   {
     id: 'boujee',
     name: 'The Boujee',
-    manufacturer: 'Champion',
+    manufacturer: 'Champion Homes',
     type: 'Double Wide',
     beds: 4,
     baths: 2,
@@ -28,7 +28,7 @@ export const DOUBLE_WIDE_HOMES: HomeModel[] = [
   {
     id: 'burton',
     name: 'The Burton',
-    manufacturer: 'Sunshine',
+    manufacturer: 'Sunshine Homes',
     type: 'Double Wide',
     beds: 3,
     baths: 2,
@@ -41,7 +41,7 @@ export const DOUBLE_WIDE_HOMES: HomeModel[] = [
   {
     id: 'washington',
     name: 'The Washington',
-    manufacturer: 'Franklin',
+    manufacturer: 'Franklin Homes',
     type: 'Double Wide',
     beds: 5,
     baths: 3,

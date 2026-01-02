@@ -164,7 +164,7 @@ const TrustRibbon: React.FC<TrustRibbonProps> = ({
           {showYear && (
             <div className="group relative">
               {/* Card with layered glassmorphism */}
-              <div className="relative h-full p-6 rounded-2xl bg-white/70 backdrop-blur-md border border-stone-200/50 shadow-[0_8px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_48px_rgba(74,144,226,0.15)] transition-all duration-500 hover:-translate-y-1">
+              <div className="relative h-full p-6 rounded-2xl bg-white/70 backdrop-blur-md border border-stone-200/50 shadow-[0_8px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_48px_rgba(30,58,95,0.15)] transition-all duration-500 hover:-translate-y-1">
                 {/* Inner gradient glow */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-yellow-500/5 to-amber-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
@@ -225,11 +225,11 @@ const TrustRibbon: React.FC<TrustRibbonProps> = ({
           )}
 
           <div className="group relative">
-            <div className="relative h-full p-6 rounded-2xl bg-white/70 backdrop-blur-md border border-stone-200/50 shadow-[0_8px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_48px_rgba(74,144,226,0.15)] transition-all duration-500 hover:-translate-y-1">
+            <div className="relative h-full p-6 rounded-2xl bg-white/70 backdrop-blur-md border border-stone-200/50 shadow-[0_8px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_16px_48px_rgba(30,58,95,0.15)] transition-all duration-500 hover:-translate-y-1">
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-stone-500/5 to-slate-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
               <div className="relative flex flex-col items-center gap-3">
-                <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-stone-200 to-stone-300 group-hover:from-stone-300 group-hover:to-stone-400 shadow-[0_4px_16px_rgba(74,144,226,0.25)] group-hover:shadow-[0_6px_24px_rgba(74,144,226,0.4)] transition-all duration-500 group-hover:scale-110">
+                <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-stone-200 to-stone-300 group-hover:from-stone-300 group-hover:to-stone-400 shadow-[0_4px_16px_rgba(30,58,95,0.25)] group-hover:shadow-[0_6px_24px_rgba(30,58,95,0.4)] transition-all duration-500 group-hover:scale-110">
                   <Clock size={26} className="text-[var(--color-primary)]" strokeWidth={2.5} />
                 </div>
 

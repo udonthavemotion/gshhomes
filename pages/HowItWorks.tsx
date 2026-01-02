@@ -219,13 +219,15 @@ const HowItWorks: React.FC = () => {
                   <div className="bg-white rounded-2xl shadow-xl border border-stone-200 overflow-hidden">
                     <div className="aspect-[4/3] relative">
                       <img
-                        src={`/assets/images/buyingprocess/step_${step.number}_${
-                          step.number === 1 ? 'choose_your_home' :
-                          step.number === 2 ? 'financing_and_budget' :
-                          step.number === 3 ? 'land_and_permits' :
-                          step.number === 4 ? 'delivery_and_setup' :
-                          'move_in'
-                        }.jpg`}
+                        src={
+                          step.number === 1 ? '/assets/images/buyingprocess/1.jpg' :
+                          step.number === 4 ? '/assets/images/Meet the team/PGallery Photos/gulf-south-homes-gallery-03-600h.jpg' :
+                          `/assets/images/buyingprocess/step_${step.number}_${
+                            step.number === 2 ? 'financing_and_budget' :
+                            step.number === 3 ? 'land_and_permits' :
+                            'move_in'
+                          }.jpg`
+                        }
                         alt={`${step.title} - Gulf South Homes buying process`}
                         loading="lazy"
                         className="w-full h-full object-cover"

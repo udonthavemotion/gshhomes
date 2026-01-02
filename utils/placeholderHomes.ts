@@ -57,15 +57,15 @@ export function getManufacturersWithPlaceholders(
   // Define manufacturer priority order based on page type
   const getManufacturerOrder = (type: string): string[] => {
     if (type === 'Single Wide') {
-      return ['Sunshine', 'Franklin', 'Champion', 'BG Manufacturing'];
+      return ['Sunshine Homes', 'Franklin Homes', 'Champion Homes', 'BG Manufacturing'];
     }
     if (type === 'Double Wide') {
-      return ['Franklin', 'Champion', 'Sunshine', 'BG Manufacturing'];
+      return ['Franklin Homes', 'Champion Homes', 'Sunshine Homes', 'BG Manufacturing'];
     }
     if (type === 'Modular') {
-      return ['BG Manufacturing', 'Champion', 'Franklin', 'Sunshine'];
+      return ['BG Manufacturing', 'Champion Homes', 'Franklin Homes', 'Sunshine Homes'];
     }
-    return ['Sunshine', 'Franklin', 'Champion', 'BG Manufacturing'];
+    return ['Sunshine Homes', 'Franklin Homes', 'Champion Homes', 'BG Manufacturing'];
   };
 
   const priorityOrder = getManufacturerOrder(pageType);

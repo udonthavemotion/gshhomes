@@ -314,34 +314,6 @@ export const HOMES: HomeModel[] = [
     ],
     isFeatured: false
   },
-
-  // DOUBLE-WIDE MODELS (using mock data for now - will be updated with real photos)
-  {
-    id: 'the-eden',
-    name: "The Eden",
-    manufacturer: "Champion",
-    type: "Double Wide",
-    beds: 3,
-    baths: 2,
-    sqft: 1800,
-    description: "A spacious open-concept living area perfect for families. Features a modern kitchen island and a luxurious master suite.",
-    features: ["Open Floorplan", "Kitchen Island", "Soaker Tub", "Energy Efficient Windows", "Fireplace Ready"],
-    imageUrl: "/assets/images/homepage/gulf_south_homes_home_hero-1920w.jpg",
-    isFeatured: false
-  },
-  {
-    id: 'king-david-64',
-    name: "King David 64",
-    manufacturer: "Franklin",
-    type: "Modular",
-    beds: 4,
-    baths: 3,
-    sqft: 2200,
-    description: "Our premium modular model offering unparalleled construction quality and high-end finishes throughout. Fully customizable.",
-    features: ["Granite Countertops", "Farmhouse Sink", "Walk-in Pantry", "Bonus Room", "Premium Appliances", "Custom Options"],
-    imageUrl: "/assets/images/homepage/gulf_south_homes_testimonials-1920w.jpg",
-    isFeatured: false
-  },
 ];
 
 export default HOMES;

@@ -4,8 +4,11 @@ import { useHomeFilters } from '../hooks/useHomeFilters';
 import { SlidersHorizontal, X, Phone, MapPin, Home as HomeIcon } from 'lucide-react';
 import Button from '../components/Button';
 import HomeCard from '../components/HomeCard';
+import ManufacturerSection from '../components/ManufacturerSection';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
+import { groupHomesByManufacturer } from '../utils/manufacturerGrouping';
+import { getManufacturersWithPlaceholders } from '../utils/placeholderHomes';
 
 const SingleWide: React.FC = () => {
   const [showFilters, setShowFilters] = useState(false);
@@ -35,6 +38,16 @@ const SingleWide: React.FC = () => {
     () => ['all', ...Array.from(new Set(singleWideHomes.map(h => h.manufacturer)))],
     [singleWideHomes]
   );
+
+  // Group homes by manufacturer (only if no manufacturer filter active)
+  const groupedHomes = useMemo(() => {
+    if (filters.manufacturer && filters.manufacturer !== 'all') {
+      // If manufacturer filter is active, return single section
+      return [[filters.manufacturer, filteredHomes] as [string, typeof filteredHomes]];
+    }
+    // Otherwise, group by manufacturer and include placeholders
+    return getManufacturersWithPlaceholders(filteredHomes, 'Single Wide');
+  }, [filteredHomes, filters.manufacturer]);
 
   return (
     <>
@@ -171,11 +184,16 @@ const SingleWide: React.FC = () => {
           </div>
         )}
 
-        {/* Homes Grid - Full Width */}
-        {filteredHomes.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredHomes.map(home => (
-              <HomeCard key={home.id} home={home} />
+        {/* Homes Grid - Grouped by Manufacturer */}
+        {groupedHomes.length > 0 ? (
+          <div className="space-y-0">
+            {groupedHomes.map(([manufacturerName, homes], index) => (
+              <ManufacturerSection
+                key={manufacturerName}
+                manufacturerName={manufacturerName}
+                homes={homes}
+                index={index}
+              />
             ))}
           </div>
         ) : (

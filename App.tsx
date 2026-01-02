@@ -104,9 +104,9 @@ const App: React.FC = () => {
                 <a
                   href={`tel:${COMPANY_INFO.phone}`}
                   className="flex items-center gap-2 text-xl font-bold transition-colors duration-200"
-                  style={{ color: 'var(--color-primary, #4A90E2)' }}
+                  style={{ color: 'var(--color-primary, #1E3A5F)' }}
                   onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-cta, #D32F2F)'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary, #4A90E2)'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary, #1E3A5F)'}
                 >
                   <Phone size={18} style={{ color: 'var(--color-primary, #1E3A5F)' }} />
                   <span>{COMPANY_INFO.phone}</span>

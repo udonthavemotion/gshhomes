@@ -47,7 +47,7 @@ const GlassmorphicMapCard: React.FC<GlassmorphicMapCardProps> = ({
                     ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}
                     hover:shadow-3xl hover:bg-white/95 hover:border-white/30 hover:scale-[1.01]`}
         style={{
-          boxShadow: '0 20px 40px rgba(74, 144, 226, 0.2), 0 0 40px rgba(74, 144, 226, 0.15)'
+          boxShadow: '0 20px 40px rgba(30, 58, 95, 0.2), 0 0 40px rgba(30, 58, 95, 0.15)'
         }}
       >
 

@@ -207,7 +207,7 @@ const About: React.FC = () => {
           preload="metadata"
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/assets/images/awards/about page.mp4" type="video/mp4" />
+          <source src="/assets/images/Meet the team/aboutpage.mp4" type="video/mp4" />
         </video>
 
         {/* Background Overlay */}

@@ -12,9 +12,9 @@ export default {
       colors: {
         // Gulf Coast Modern Blue - Default Primary Color
         primary: {
-          DEFAULT: '#4A90E2', // Bright Blue
-          dark: '#3578C4',
-          light: '#5FA3F0',
+          DEFAULT: '#1E3A5F', // Gulf Coast Modern Blue
+          dark: '#142840',
+          light: '#2D5380',
         },
         brand: {
           navy: '#475569',    // Muted navy (slate-600)

@@ -2,11 +2,14 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { UNIFIED_INVENTORY } from '../data/unified-inventory';
 import { useHomeFilters } from '../hooks/useHomeFilters';
 import HomeCard from '../components/HomeCard';
+import ManufacturerSection from '../components/ManufacturerSection';
 import Button from '../components/Button';
 import { COMPANY_INFO } from '../constants';
 import { SlidersHorizontal, X, ArrowRight, MapPin, Phone, Clock, Home, Hammer, Users } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
+import { groupHomesByManufacturer } from '../utils/manufacturerGrouping';
+import { getManufacturersWithPlaceholders } from '../utils/placeholderHomes';
 
 const Modular: React.FC = () => {
   const [showFilters, setShowFilters] = useState(false);
@@ -30,6 +33,16 @@ const Modular: React.FC = () => {
   );
   const bedOptions = useMemo(() => ['all', '2', '3', '4'], []);
   const bathOptions = useMemo(() => ['all', '2', '2.5', '3'], []);
+
+  // Group homes by manufacturer (only if no manufacturer filter active)
+  const groupedHomes = useMemo(() => {
+    if (filters.manufacturer && filters.manufacturer !== 'all') {
+      // If manufacturer filter is active, return single section
+      return [[filters.manufacturer, filteredHomes] as [string, typeof filteredHomes]];
+    }
+    // Otherwise, group by manufacturer and include placeholders
+    return getManufacturersWithPlaceholders(filteredHomes, 'Modular');
+  }, [filteredHomes, filters.manufacturer]);
 
   // Scroll animations
   useEffect(() => {
@@ -232,17 +245,16 @@ const Modular: React.FC = () => {
           </div>
         )}
 
-        {/* Homes Grid or Empty State */}
-        {filteredHomes.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-            {filteredHomes.map((home, idx) => (
-              <div
-                key={home.id}
-                className="scroll-animate"
-                style={{ animationDelay: `${idx * 100}ms` }}
-              >
-                <HomeCard home={home} />
-              </div>
+        {/* Homes Grid - Grouped by Manufacturer */}
+        {groupedHomes.length > 0 ? (
+          <div className="space-y-0">
+            {groupedHomes.map(([manufacturerName, homes], index) => (
+              <ManufacturerSection
+                key={manufacturerName}
+                manufacturerName={manufacturerName}
+                homes={homes}
+                index={index}
+              />
             ))}
           </div>
         ) : (

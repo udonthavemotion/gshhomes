@@ -120,7 +120,7 @@ const Home: React.FC = () => {
             e.currentTarget.style.display = 'none';
           }}
         >
-          <source src="/assets/images/homepage/landingpageheroheader.mp4" type="video/mp4" />
+          <source src="/assets/images/homepage/homepage1080p.mp4" type="video/mp4" />
         </video>
 
         {/* Content */}
