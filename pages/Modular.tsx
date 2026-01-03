@@ -107,9 +107,9 @@ const Modular: React.FC = () => {
         <div className="relative z-10 w-full max-w-5xl mx-auto">
           {/* Gulf South Homes Logo - Prominent Branding with Animation */}
           <div className="mb-6 sm:mb-8 flex justify-center">
-            <img 
-              src="/assets/images/logo/gsh-logo-2025.svg" 
-              alt="Gulf South Homes - 2025 Bayou's Best Choice" 
+            <img
+              src="/assets/images/logo/Untitled design - 2026-01-02T185515.627 for nav bar.png"
+              alt="Gulf South Homes - 2025 Bayou's Best Choice"
               className="w-[300px] h-[120px] sm:w-[500px] sm:h-[200px] object-contain drop-shadow-2xl logo-entrance"
               width="500"
               height="200"
