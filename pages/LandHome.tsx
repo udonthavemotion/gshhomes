@@ -175,7 +175,7 @@ const LandHome: React.FC = () => {
                 className="scroll-animate group bg-white p-6 sm:p-8 rounded-xl border border-stone-100 hover:border-stone-200 hover:shadow-xl transition-all duration-500 hover:-translate-y-1 touch-manipulation"
                 style={{ transitionDelay: `${idx * 75}ms` }}
               >
-                <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-primary/10 to-primary/20 text-primary p-3 sm:p-4 rounded-xl flex items-center justify-center mb-4 sm:mb-5 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent text-white p-3 sm:p-4 rounded-3xl flex items-center justify-center mb-4 sm:mb-5 shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                   {benefit.icon}
                 </div>
                 <h3 className="font-display font-bold text-stone-900 text-lg sm:text-xl mb-2 sm:mb-3">{benefit.title}</h3>

@@ -106,7 +106,7 @@ const Deals: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Deal 1: Free Slab or Utilities */}
             <div className="scroll-animate group bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl border-2 border-emerald-200 hover:border-emerald-300 p-8 hover:shadow-2xl transition-all duration-300">
-              <div className="w-16 h-16 bg-emerald-600 rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-3xl flex items-center justify-center text-white mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                 <DollarSign size={32} />
               </div>
               <h2 className="text-2xl font-bold text-stone-900 mb-4">Free Slab or Free Utilities</h2>
@@ -135,7 +135,7 @@ const Deals: React.FC = () => {
 
             {/* Deal 2: Free Site Prep on Franklin Homes */}
             <div className="scroll-animate group bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl border-2 border-blue-200 hover:border-blue-300 p-8 hover:shadow-2xl transition-all duration-300" style={{ transitionDelay: '100ms' }}>
-              <div className="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-3xl flex items-center justify-center text-white mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                 <Truck size={32} />
               </div>
               <h2 className="text-2xl font-bold text-stone-900 mb-4">Free Site Prep on In-Stock Franklin Homes</h2>
@@ -164,7 +164,7 @@ const Deals: React.FC = () => {
 
             {/* Deal 3: Restore Louisiana */}
             <div className="scroll-animate group bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl border-2 border-amber-200 hover:border-amber-300 p-8 hover:shadow-2xl transition-all duration-300" style={{ transitionDelay: '200ms' }}>
-              <div className="w-16 h-16 bg-amber-600 rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-3xl flex items-center justify-center text-white mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                 <ShieldCheck size={32} />
               </div>
               <h2 className="text-2xl font-bold text-stone-900 mb-4">Restore Louisiana Grants Accepted</h2>

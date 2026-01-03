@@ -197,7 +197,7 @@ const Financing: React.FC = () => {
                 className="scroll-animate group p-8 bg-white rounded-2xl border border-stone-200 hover:border-primary/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                 style={{ transitionDelay: `${idx * 100}ms` }}
               >
-                <div className={`w-16 h-16 mx-auto mb-6 rounded-xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center text-white group-hover:scale-110 transition-transform`}>
+                <div className="w-20 h-20 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                   {benefit.icon}
                 </div>
                 <h3 className="text-xl font-bold text-stone-900 text-center mb-2">

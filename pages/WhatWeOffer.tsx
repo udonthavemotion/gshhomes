@@ -185,7 +185,7 @@ const WhatWeOffer: React.FC = () => {
                 {/* Header */}
                 <div className={`bg-gradient-to-r ${offering.bgGradient} p-8 border-b border-stone-200`}>
                   <div className="flex items-start gap-4">
-                    <div className={`w-16 h-16 bg-gradient-to-br ${offering.gradient} rounded-xl flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                    <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-3xl flex items-center justify-center text-white flex-shrink-0 shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                       {offering.icon}
                     </div>
                     <div>
@@ -253,8 +253,8 @@ const WhatWeOffer: React.FC = () => {
                 }
               ].map((benefit, idx) => (
                 <div key={idx} className="text-center">
-                  <div className="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-xl flex items-center justify-center">
-                    <CheckCircle className="text-primary" size={28} />
+                  <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-primary to-accent rounded-3xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                    <CheckCircle className="text-white" size={32} />
                   </div>
                   <h3 className="text-xl font-bold text-stone-900 mb-2">
                     {benefit.title}

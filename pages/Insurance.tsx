@@ -157,7 +157,7 @@ const Insurance: React.FC = () => {
                     key={idx}
                     className="group p-6 bg-stone-50 rounded-xl border border-stone-200 hover:border-primary hover:shadow-lg transition-all duration-300"
                   >
-                    <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
+                    <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-3xl flex items-center justify-center text-white mb-4 shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                       {item.icon}
                     </div>
                     <h4 className="font-bold text-lg text-stone-900 mb-2">{item.title}</h4>
@@ -177,23 +177,23 @@ const Insurance: React.FC = () => {
                   <h4 className="font-bold text-lg text-stone-900 mb-3">Standard Coverage:</h4>
                   <ul className="space-y-2 text-stone-700">
                     <li className="flex items-start gap-2">
-                      <CheckCircle size={20} className="text-indigo-600 flex-shrink-0 mt-0.5" />
+                      <CheckCircle size={20} className="text-primary flex-shrink-0 mt-0.5" />
                       <span>Fire and smoke damage</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle size={20} className="text-indigo-600 flex-shrink-0 mt-0.5" />
+                      <CheckCircle size={20} className="text-primary flex-shrink-0 mt-0.5" />
                       <span>Wind and hail damage</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle size={20} className="text-indigo-600 flex-shrink-0 mt-0.5" />
+                      <CheckCircle size={20} className="text-primary flex-shrink-0 mt-0.5" />
                       <span>Lightning strikes</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle size={20} className="text-indigo-600 flex-shrink-0 mt-0.5" />
+                      <CheckCircle size={20} className="text-primary flex-shrink-0 mt-0.5" />
                       <span>Vandalism and theft</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle size={20} className="text-indigo-600 flex-shrink-0 mt-0.5" />
+                      <CheckCircle size={20} className="text-primary flex-shrink-0 mt-0.5" />
                       <span>Personal liability protection</span>
                     </li>
                   </ul>
@@ -202,23 +202,23 @@ const Insurance: React.FC = () => {
                   <h4 className="font-bold text-lg text-stone-900 mb-3">Optional Add-Ons:</h4>
                   <ul className="space-y-2 text-stone-700">
                     <li className="flex items-start gap-2">
-                      <CheckCircle size={20} className="text-indigo-600 flex-shrink-0 mt-0.5" />
+                      <CheckCircle size={20} className="text-primary flex-shrink-0 mt-0.5" />
                       <span>Flood insurance</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle size={20} className="text-indigo-600 flex-shrink-0 mt-0.5" />
+                      <CheckCircle size={20} className="text-primary flex-shrink-0 mt-0.5" />
                       <span>Extended replacement cost</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle size={20} className="text-indigo-600 flex-shrink-0 mt-0.5" />
+                      <CheckCircle size={20} className="text-primary flex-shrink-0 mt-0.5" />
                       <span>Personal property coverage</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle size={20} className="text-indigo-600 flex-shrink-0 mt-0.5" />
+                      <CheckCircle size={20} className="text-primary flex-shrink-0 mt-0.5" />
                       <span>Loss of use coverage</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle size={20} className="text-indigo-600 flex-shrink-0 mt-0.5" />
+                      <CheckCircle size={20} className="text-primary flex-shrink-0 mt-0.5" />
                       <span>Additional structures</span>
                     </li>
                   </ul>
