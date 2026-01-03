@@ -148,9 +148,9 @@ const Navbar: React.FC = () => {
           <div className="flex justify-between items-center h-16 lg:hidden">
             {/* Mobile Logo */}
             <Link to="/" className="flex items-center group" onClick={handleLogoClick}>
-              <img 
-                src="/menu nav logo.png" 
-                alt="Gulf South Homes" 
+              <img
+                src="/assets/images/logo/inverted white.png"
+                alt="Gulf South Homes"
                 className="h-12 w-auto object-contain"
               />
             </Link>
@@ -184,12 +184,12 @@ const Navbar: React.FC = () => {
           {/* Desktop: Grid layout for stable centering */}
           <div className="hidden lg:grid lg:grid-cols-[auto_1fr_auto] items-center h-16">
             {/* Desktop Logo - Shows when scrolled */}
-            <div className={`transition-all duration-300 ${scrolled ? 'opacity-100 w-auto mr-6' : 'opacity-0 w-0 mr-0 overflow-hidden'}`}>
+            <div className={`transition-all duration-300 ${scrolled ? 'opacity-100 w-auto mr-4' : 'opacity-0 w-0 mr-0 overflow-hidden'}`}>
               <Link to="/" className="flex items-center group" onClick={handleLogoClick}>
-                <img 
-                  src="/menu nav logo.png" 
-                  alt="Gulf South Homes" 
-                  className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                <img
+                  src="/assets/images/logo/inverted white.png"
+                  alt="Gulf South Homes"
+                  className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 />
               </Link>
             </div>
@@ -321,12 +321,12 @@ const Navbar: React.FC = () => {
             </button>
           </div>
 
-          {/* Mobile Menu Logo - Using blue roof logo like desktop */}
+          {/* Mobile Menu Logo - Using new logo for white background */}
           <div className="flex justify-center mb-6 pt-16 lg:pt-2">
             <Link to="/" onClick={handleLogoClick} className="flex items-center group">
-              <img 
-                src="/assets/images/single wide homes/large logo for nav bar.png" 
-                alt="Gulf South Homes" 
+              <img
+                src="/assets/images/logo/GULF SOUTH HOMES INC. (2).png"
+                alt="Gulf South Homes"
                 className="h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105 lg:h-24"
               />
             </Link>

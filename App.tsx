@@ -83,14 +83,14 @@ const App: React.FC = () => {
             <div className="flex items-center justify-between h-full gap-8">
               {/* Left: Logo */}
               <div className="flex-shrink-0">
-                <Link 
-                  to="/" 
+                <Link
+                  to="/"
                   onClick={scrollToTop}
                   className="block"
                 >
-                  <img 
-                    src="/assets/images/single wide homes/large logo for nav bar.png" 
-                    alt="Gulf South Homes" 
+                  <img
+                    src="/assets/images/logo/new-logo-color.png"
+                    alt="Gulf South Homes"
                     className="object-contain transition-transform duration-300 hover:scale-105"
                     style={{ width: '200px', height: '200px' }}
                   />

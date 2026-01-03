@@ -662,13 +662,6 @@ const Home: React.FC = () => {
                     Check Your Eligibility
                     <ArrowRight size={20} className="ml-2" />
                   </Button>
-                  <a
-                    href="tel:985-876-0222"
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-8 sm:py-4 bg-white text-stone-900 border-2 border-stone-300 rounded-xl font-bold text-base hover:border-primary hover:text-primary hover:shadow-md transition-all duration-300"
-                  >
-                    <Phone size={20} />
-                    Call Now: (985) 876-0222
-                  </a>
                 </div>
               </div>
             </div>
@@ -737,13 +730,6 @@ const Home: React.FC = () => {
                     Check Your Eligibility
                     <ArrowRight size={20} className="ml-2" />
                   </Button>
-                  <a
-                    href="tel:985-876-0222"
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-stone-900 border-2 border-stone-300 rounded-xl font-bold text-base hover:border-primary hover:text-primary hover:shadow-md transition-all duration-300"
-                  >
-                    <Phone size={20} />
-                    Call Now: (985) 876-0222
-                  </a>
                 </div>
               </div>
             </div>
@@ -944,29 +930,111 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 8. Customer Reviews Section - Moved from About page (premium placement) */}
-      <section className="py-24 md:py-32 bg-white scroll-animate relative overflow-hidden">
-        <div className="container mx-auto px-4">
-          {/* Section Header */}
-          <div className="text-center mb-16 max-w-3xl mx-auto">
+      {/* 8. Unified Trust & Heritage Section - Reviews + Family-Owned Story */}
+      <section className="py-24 md:py-32 bg-gradient-to-b from-white via-white to-stone-50 scroll-animate relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-[150px] pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Premium Section Header */}
+          <div className="text-center mb-20 max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-wider mb-6">
-              <Star size={14} className="fill-primary" />
-              <span>Trusted by Our Community</span>
+              <Heart size={14} className="fill-primary" />
+              <span>Trusted & Family-Owned</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-stone-900 mb-4 leading-[1.1]">
-              Real Customers, Real Results
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-stone-900 mb-6 leading-[1.1]">
+              30 Years of Excellence <span className="text-accent">Since 1995</span>
             </h2>
-            <p className="text-lg sm:text-xl text-stone-600 leading-relaxed">
-              See why families throughout Southeast Louisiana trust Gulf South Homes for quality homes and exceptional service.
+            <p className="text-lg sm:text-xl text-stone-700 leading-relaxed max-w-2xl mx-auto font-medium">
+              From family to yours—three decades of trusted service, exceptional homes, and community commitment in Southeast Louisiana.
             </p>
           </div>
 
-          {/* Video + Reviews Grid */}
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
-            {/* Left: Happy Customers Video */}
-            <div className="scroll-animate order-2 lg:order-1">
-              <div className="relative overflow-hidden rounded-3xl shadow-xl border border-stone-200 hover:shadow-2xl transition-shadow duration-500 h-full flex items-center justify-center bg-stone-100">
-                {/* Video Container - Portrait orientation */}
+          {/* Three-Column Grid: Heritage + Reviews + Stats */}
+          <div className="grid lg:grid-cols-3 gap-8 lg:gap-6 mb-16">
+            {/* Left: Heritage Story */}
+            <div className="scroll-animate lg:col-span-1 flex flex-col">
+              <div className="bg-white rounded-2xl p-8 lg:p-6 shadow-lg border border-stone-200 hover:shadow-xl transition-all duration-500 h-full flex flex-col">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Heart size={24} className="text-primary" />
+                  </div>
+                  <h3 className="text-xl font-display font-bold text-stone-900">Our Heritage</h3>
+                </div>
+
+                <p className="text-stone-700 leading-relaxed mb-6 flex-grow">
+                  Gulf South Homes has been serving Southeast Louisiana families for over 30 years. As a family-owned business, we understand what families need. Quality, trust, and service—passed from our family to yours, every single day.
+                </p>
+
+                <Button to="/about-gulf-south-homes" variant="outline" size="md" className="w-full">
+                  Learn Our Story
+                  <ArrowRight size={16} className="ml-2" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Center: Google Reviews Widget (Integrated) */}
+            <div className="scroll-animate lg:col-span-1 flex flex-col" style={{ transitionDelay: '50ms' }}>
+              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-stone-200 hover:shadow-xl transition-all duration-500 bg-white h-full flex flex-col min-h-[520px]">
+                {/* Reviews Widget Container */}
+                <div className="flex-1 overflow-y-auto">
+                  <iframe
+                    src="https://crm.gshforms.com/reputation/widgets/review_widget/TQf8w75HUD6SFkH9Ebla"
+                    className="w-full h-full border-none"
+                    title="Google Reviews - Gulf South Homes"
+                    style={{
+                      minHeight: '520px',
+                      background: 'transparent',
+                    }}
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Top accent line */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent pointer-events-none"></div>
+              </div>
+
+              {/* CTA Below Widget */}
+              <div className="mt-4 text-center">
+                <a
+                  href="https://www.google.com/search?q=gulf+south+homes+houma"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors duration-300 text-sm"
+                >
+                  View all reviews on Google
+                  <ArrowRight size={14} />
+                </a>
+              </div>
+            </div>
+
+            {/* Right: Trust Stats + Video */}
+            <div className="scroll-animate lg:col-span-1 flex flex-col gap-6" style={{ transitionDelay: '100ms' }}>
+              {/* Stats Box */}
+              <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8 border border-primary/10">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="text-center">
+                    <div className="text-4xl font-display font-bold text-primary mb-1">30+</div>
+                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">Years Serving</p>
+                  </div>
+                  <div className="text-center border-l border-stone-300">
+                    <div className="text-4xl font-display font-bold text-accent mb-1">4.9★</div>
+                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">Google Rating</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-4xl font-display font-bold text-primary mb-1">500+</div>
+                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">Happy Families</p>
+                  </div>
+                  <div className="text-center border-l border-stone-300">
+                    <div className="text-3xl font-display font-bold text-accent mb-1">✓</div>
+                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">BBB Accredited</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Happy Customers Video */}
+              <div className="relative overflow-hidden rounded-2xl shadow-lg border border-stone-200 hover:shadow-xl transition-shadow duration-500 h-64 flex items-center justify-center bg-stone-100">
                 <video
                   autoPlay
                   muted
@@ -974,104 +1042,26 @@ const Home: React.FC = () => {
                   playsInline
                   preload="metadata"
                   className="w-full h-full object-cover"
-                  title="Gulf South Homes happy customers with sold sign"
+                  title="Gulf South Homes happy customers"
                 >
                   <source src="/assets/images/Meet the team/aboutpage.mp4" type="video/mp4" />
                 </video>
-
-                {/* Subtle overlay gradient for visual interest */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
-              </div>
-
-              {/* Trust Badge Below Video */}
-              <div className="mt-6 flex items-center justify-center gap-3 text-sm text-stone-600">
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={16} className="fill-amber-400 text-amber-400" />
-                  ))}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border-2 border-white/40">
+                    <Heart size={32} className="text-white fill-white" />
+                  </div>
                 </div>
-                <span className="font-semibold">Rated 4.9/5 on Google</span>
-              </div>
-            </div>
-
-            {/* Right: Google Reviews Widget */}
-            <div className="scroll-animate order-1 lg:order-2">
-              <div className="relative h-full min-h-[600px] lg:min-h-[700px] rounded-3xl overflow-hidden shadow-xl border border-stone-200 hover:shadow-2xl transition-shadow duration-500 bg-white">
-                {/* Google Reviews Widget - GoHighLevel */}
-                <div className="w-full h-full overflow-y-auto">
-                  <iframe
-                    src="https://crm.gshforms.com/reputation/widgets/review_widget/TQf8w75HUD6SFkH9Ebla"
-                    className="w-full h-full border-none"
-                    title="Google Reviews - Gulf South Homes"
-                    style={{
-                      minHeight: '600px',
-                      background: 'transparent',
-                    }}
-                    loading="lazy"
-                  />
-                </div>
-
-                {/* Subtle gradient overlay at top for polish */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent pointer-events-none"></div>
-              </div>
-
-              {/* CTA Below Widget */}
-              <div className="mt-6 text-center">
-                <a
-                  href="https://www.google.com/search?q=gulf+south+homes+houma"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors duration-300 text-sm md:text-base"
-                >
-                  View all reviews on Google
-                  <ArrowRight size={16} />
-                </a>
               </div>
             </div>
           </div>
 
-          {/* Trust Stats - Optional Enhancement */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 pt-20 border-t border-stone-200">
-            <div className="text-center scroll-animate">
-              <div className="text-3xl md:text-4xl font-display font-bold text-primary mb-2">30+</div>
-              <p className="text-sm md:text-base text-stone-600">Years Serving LA</p>
-            </div>
-            <div className="text-center scroll-animate" style={{ transitionDelay: '50ms' }}>
-              <div className="text-3xl md:text-4xl font-display font-bold text-primary mb-2">4.9★</div>
-              <p className="text-sm md:text-base text-stone-600">Google Rating</p>
-            </div>
-            <div className="text-center scroll-animate" style={{ transitionDelay: '100ms' }}>
-              <div className="text-3xl md:text-4xl font-display font-bold text-primary mb-2">500+</div>
-              <p className="text-sm md:text-base text-stone-600">Happy Families</p>
-            </div>
-            <div className="text-center scroll-animate" style={{ transitionDelay: '150ms' }}>
-              <div className="text-3xl md:text-4xl font-display font-bold text-primary mb-2">✓</div>
-              <p className="text-sm md:text-base text-stone-600">BBB Accredited</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 9. About Preview */}
-      <section className="py-20 sm:py-28 bg-white">
-        <div className="container">
-          <div className="max-w-4xl mx-auto text-center scroll-animate">
-            <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-semibold rounded-md mb-4">
-              Our Story
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-stone-900 mb-6">
-              Family-Owned Since 1995
-            </h2>
-            <p className="text-stone-600 text-lg leading-relaxed mb-8">
-              Gulf South Homes has been serving Southeast Louisiana families for over 30 years.
-              As a family-owned business, we understand the importance of finding the perfect home for your loved ones.
-              Our commitment to quality, service, and community has made us one of the most trusted manufactured and modular home dealers in the region.
-              From our family to yours, we're here to help you every step of the way.
-            </p>
-
+          {/* CTA Section */}
+          <div className="text-center pt-8 border-t border-stone-200">
+            <p className="text-stone-700 mb-6 font-medium">Ready to find your perfect home?</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button to="/about-gulf-south-homes" size="lg">
-                About Us
+              <Button to="/homes-for-sale" size="lg">
+                Browse Homes
                 <ArrowRight size={18} className="ml-2" />
               </Button>
               <Button to="/about-gulf-south-homes#team" variant="outline" size="lg">

@@ -72,18 +72,10 @@ const Footer: React.FC = () => {
           <div className="lg:col-span-4">
             <Link to="/" onClick={scrollToTop} className="inline-flex items-center gap-2.5 mb-4 sm:mb-5 lg:mb-6 group touch-manipulation min-h-[44px]">
               <img
-                src="/assets/images/logo/gsh-logo-2025.svg"
-                alt="Gulf South Homes - 2025 Bayou's Best Choice"
-                className="h-9 sm:h-10 lg:h-12 w-auto object-contain opacity-90"
+                src="/assets/images/logo/new-logo-color.png"
+                alt="Gulf South Homes"
+                className="h-12 sm:h-14 lg:h-16 w-auto object-contain"
               />
-              <div className="flex flex-col">
-                <span className="text-lg sm:text-xl lg:text-2xl font-bold text-white leading-none font-display tracking-tight drop-shadow-lg">
-                  GULF SOUTH
-                </span>
-                <span className="text-[10px] sm:text-[11px] lg:text-xs font-semibold text-red-600 leading-none tracking-[0.2em] mt-1 drop-shadow-md">
-                  HOMES INC
-                </span>
-              </div>
             </Link>
 
             <p className="text-white/95 mb-4 sm:mb-5 lg:mb-6 text-sm sm:text-base leading-relaxed max-w-sm font-medium drop-shadow-md">

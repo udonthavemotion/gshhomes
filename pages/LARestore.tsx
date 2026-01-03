@@ -60,8 +60,8 @@ const LARestore: React.FC = () => {
         {/* Content */}
         <div className="relative z-10 w-full max-w-4xl mx-auto">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium mb-6">
-            <ShieldCheck size={16} />
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-xs font-bold tracking-wider rounded-full mb-6 uppercase shadow-md">
+            <ShieldCheck size={18} />
             Restore Louisiana • Manufactured Home Replacement Help
           </div>
 
@@ -102,25 +102,6 @@ const LARestore: React.FC = () => {
         </div>
       </section>
 
-      {/* Mobile Sticky CTA Bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t-2 border-stone-200 shadow-2xl safe-area-inset-bottom">
-        <div className="flex gap-2 p-3">
-          <a
-            href={`tel:${COMPANY_INFO.phone.replace(/\D/g, '')}`}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-primary text-white rounded-lg font-bold text-base shadow-md active:scale-95 transition-transform"
-          >
-            <Phone size={18} />
-            Call Now
-          </a>
-          <Button
-            to="/contact-gulf-south-homes"
-            variant="outline"
-            className="flex-1 border-2 border-primary text-primary font-bold py-3"
-          >
-            Schedule Visit
-          </Button>
-        </div>
-      </div>
 
       {/* Quick Check Section */}
       <section className="py-20 sm:py-28 bg-white">

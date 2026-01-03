@@ -217,13 +217,6 @@ const Parts: React.FC = () => {
               >
                 Service Request Form
               </Button>
-              <a
-                href={`tel:${COMPANY_INFO.phone}`}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-primary rounded-xl font-bold text-lg hover:bg-stone-50 hover:shadow-xl transition-all duration-300 min-h-[48px]"
-              >
-                <Phone size={20} />
-                Call Now
-              </a>
             </div>
           </div>
         </div>
@@ -400,15 +393,6 @@ const Parts: React.FC = () => {
         </div>
       </section>
 
-      {/* Mobile Sticky Phone CTA */}
-      <a
-        href={`tel:${COMPANY_INFO.phone}`}
-        className="lg:hidden fixed bottom-6 right-6 z-50 flex items-center gap-3 px-6 py-4 bg-primary text-white rounded-full font-bold shadow-2xl hover:bg-primary-dark hover:shadow-glow-lg transition-all duration-300 animate-float"
-        aria-label="Call Gulf South Homes"
-      >
-        <Phone size={20} />
-        <span>Call Now</span>
-      </a>
     </div>
     </>
   );
