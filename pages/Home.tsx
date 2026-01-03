@@ -867,28 +867,28 @@ const Home: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-12">
             {[
-              { 
-                num: "01", 
-                icon: <HomeIcon size={28} />, 
-                title: "Choose Your Home", 
+              {
+                num: "01",
+                icon: <HomeIcon size={32} />,
+                title: "Choose Your Home",
                 desc: "Browse our inventory and select the perfect floor plan"
               },
-              { 
-                num: "02", 
-                icon: <DollarSign size={28} />, 
-                title: "Purchase Options", 
+              {
+                num: "02",
+                icon: <DollarSign size={32} />,
+                title: "Purchase Options",
                 desc: "Get pre-approved with our financing partners"
               },
-              { 
-                num: "03", 
-                icon: <LandPlot size={28} />, 
-                title: "Land & Permits", 
+              {
+                num: "03",
+                icon: <LandPlot size={32} />,
+                title: "Land & Permits",
                 desc: "We handle site prep, permits, and all paperwork"
               },
-              { 
-                num: "04", 
-                icon: <Truck size={28} />, 
-                title: "Delivery & Setup", 
+              {
+                num: "04",
+                icon: <Truck size={32} />,
+                title: "Delivery & Setup",
                 desc: "Professional delivery and complete installation"
               },
             ].map((step, idx) => (
@@ -907,9 +907,9 @@ const Home: React.FC = () => {
                     {step.num}
                   </div>
                   
-                  {/* Icon Container - Refined */}
+                  {/* Icon Container - Unified Modern Style */}
                   <div className="mb-6 pt-4">
-                    <div className="w-16 h-16 mx-auto bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-gradient-to-br group-hover:from-primary/10 group-hover:to-primary/15 transition-all duration-300">
+                    <div className="w-20 h-20 mx-auto bg-gradient-to-br from-primary to-accent rounded-3xl flex items-center justify-center text-white shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                       {step.icon}
                     </div>
                   </div>

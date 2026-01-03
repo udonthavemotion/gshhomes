@@ -192,17 +192,12 @@ const About: React.FC = () => {
 
       {/* Hero Section - Universal Responsive Pattern */}
       <section className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-stone-900">
-        {/* Background Video */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
+        {/* Background Image */}
+        <img
+          src="/assets/images/awards/Multicolor Vivid Summer Photo Collage A4 Document.png"
+          alt="Gulf South Homes Awards and Recognition"
           className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/assets/images/Meet the team/aboutpage.mp4" type="video/mp4" />
-        </video>
+        />
 
         {/* Background Overlay */}
         {/* Light Background Overlay - Crisp and Bright */}
