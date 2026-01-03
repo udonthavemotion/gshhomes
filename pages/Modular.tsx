@@ -108,7 +108,7 @@ const Modular: React.FC = () => {
           {/* Gulf South Homes Logo - Prominent Branding with Animation */}
           <div className="mb-6 sm:mb-8 flex justify-center">
             <img
-              src="/assets/images/logo/Untitled design - 2026-01-02T185515.627 for nav bar.png"
+              src="/assets/images/logo/new-logo-color.png"
               alt="Gulf South Homes - 2025 Bayou's Best Choice"
               className="w-[300px] h-[120px] sm:w-[500px] sm:h-[200px] object-contain drop-shadow-2xl logo-entrance"
               width="500"
