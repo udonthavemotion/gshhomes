@@ -355,7 +355,7 @@ const Parts: React.FC = () => {
                 className="scroll-animate group p-8 bg-white rounded-2xl border border-stone-100 hover:border-stone-200 hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
                 style={{ transitionDelay: `${idx * 50}ms` }}
               >
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                   {category.icon}
                 </div>
                 <h3 className="font-display font-bold text-stone-900 text-xl mb-3">{category.title}</h3>
