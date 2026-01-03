@@ -109,7 +109,7 @@ const WhatWeOffer: React.FC = () => {
         'Preventive maintenance programs',
         'Same-day service for emergencies'
       ],
-      link: '/services',
+      link: '/mobile-home-parts-store',
       buttonText: 'Service & Parts',
       gradient: 'from-cyan-500 to-cyan-600',
       bgGradient: 'from-cyan-50 to-cyan-100'

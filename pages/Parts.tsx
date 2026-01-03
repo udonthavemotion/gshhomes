@@ -199,6 +199,36 @@ const Parts: React.FC = () => {
         </div>
       </section>
 
+      {/* Service Inquiry CTA - Above the Fold */}
+      <div className="bg-gradient-to-r from-primary to-primary-dark py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Request Service</h2>
+              <p className="text-blue-100 text-lg mb-6">
+                Need warranty repairs, AC service, or professional installation? Our licensed technicians are ready to help with any service request.
+              </p>
+            </div>
+            <div className="flex gap-4 flex-col sm:flex-row">
+              <Button
+                variant="white"
+                to="/contact-gulf-south-homes"
+                className="min-h-[48px] text-base font-semibold bg-white text-primary border-white hover:bg-stone-100"
+              >
+                Service Request Form
+              </Button>
+              <a
+                href={`tel:${COMPANY_INFO.phone}`}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-primary rounded-xl font-bold text-lg hover:bg-stone-50 hover:shadow-xl transition-all duration-300 min-h-[48px]"
+              >
+                <Phone size={20} />
+                Call Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Store Overview - 2 Column */}
       <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-stone-50 to-transparent pointer-events-none"></div>

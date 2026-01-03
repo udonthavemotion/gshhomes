@@ -120,13 +120,14 @@ const Navbar: React.FC = () => {
     { name: 'What We Offer', path: '/what-we-offer', sublinks: [
       { name: 'Current Deals & Specials', path: '/mobile-home-deals' },
       { name: 'Financing Options', path: '/mobile-home-financing' },
-      { name: 'Land & Home Packages', path: '/land-and-home-packages' },
       { name: 'LA Restore Program', path: '/la-restore-grants' },
       { name: 'Insurance Assistance', path: '/mobile-home-insurance' },
+    ]},
+    { name: 'Service & Parts', path: '/warranty-service-department', sublinks: [
       { name: 'Service Department', path: '/warranty-service-department' },
+      { name: 'Parts Store', path: '/mobile-home-parts-store' },
     ]},
     { name: 'Buying Process', path: '/buying-process' },
-    { name: 'Parts Store', path: '/mobile-home-parts-store' },
     { name: 'About', path: '/about-gulf-south-homes' },
   ];
 

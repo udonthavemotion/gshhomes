@@ -317,50 +317,6 @@ const Modular: React.FC = () => {
         </div>
       </section>
 
-      {/* Visit Us Section - RELOCATED */}
-      <section className="py-20 sm:py-28 bg-stone-900 text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12 scroll-animate">
-              <span className="inline-block px-4 py-1.5 bg-primary/20 text-white text-sm font-semibold rounded-md mb-4">
-                Visit Our Showroom
-              </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-4">
-                Proudly Serving Southeast Louisiana
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 mb-10">
-              <div className="scroll-animate text-center">
-                <MapPin className="text-primary mx-auto mb-4" size={32} />
-                <h3 className="font-bold text-lg mb-2">Address</h3>
-                <p className="text-stone-300">{COMPANY_INFO.address}</p>
-              </div>
-              <div className="scroll-animate text-center">
-                <Phone className="text-primary mx-auto mb-4" size={32} />
-                <h3 className="font-bold text-lg mb-2">Phone</h3>
-                <a href={`tel:${COMPANY_INFO.phone}`} className="text-stone-300 hover:text-primary transition-colors">
-                  {COMPANY_INFO.phone}
-                </a>
-              </div>
-              <div className="scroll-animate text-center">
-                <Clock className="text-primary mx-auto mb-4" size={32} />
-                <h3 className="font-bold text-lg mb-2">Business Hours</h3>
-                <p className="text-stone-300">{COMPANY_INFO.hours.weekdays}</p>
-                <p className="text-stone-300">{COMPANY_INFO.hours.saturday}</p>
-                <p className="text-stone-300">{COMPANY_INFO.hours.sunday}</p>
-              </div>
-            </div>
-
-            <div className="text-center scroll-animate">
-              <Button to="/contact-gulf-south-homes" variant="white" size="lg">
-                Contact Us
-                <ArrowRight size={18} className="ml-2" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Filter Drawer - Backdrop */}
       <div

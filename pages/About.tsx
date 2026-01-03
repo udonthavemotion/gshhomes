@@ -67,12 +67,6 @@ const About: React.FC = () => {
       since: '2023',
     },
     {
-      name: 'Amber Verdin',
-      role: 'Parts Manager',
-      image: '/assets/images/Meet the team/Amber Verdin.jpg',
-      since: '2025',
-    },
-    {
       name: 'Makayla Dehart',
       role: 'Sales',
       image: '/assets/images/Meet the team/Makayla Dehart.webp',

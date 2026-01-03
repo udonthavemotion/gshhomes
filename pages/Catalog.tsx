@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { UNIFIED_INVENTORY } from '../data/unified-inventory';
 import { useHomeFilters } from '../hooks/useHomeFilters';
 import HomeCard from '../components/HomeCard';
-import { SlidersHorizontal, X, Home as HomeIcon } from 'lucide-react';
+import ManufacturerSection from '../components/ManufacturerSection';
+import { SlidersHorizontal, X, ArrowRight, Home as HomeIcon } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import { SEO_CONFIG } from '../seo-config';
+import { getManufacturersWithPlaceholders } from '../utils/placeholderHomes';
+import { groupHomesByType } from '../utils/groupHomesByType';
 
 const Catalog: React.FC = () => {
   const [showFilters, setShowFilters] = useState(false);
@@ -17,16 +20,52 @@ const Catalog: React.FC = () => {
 
   // Extract unique values for filter options
   const types = ['all', 'Single Wide', 'Double Wide', 'Modular'];
-  const manufacturers = [
-    'all',
-    ...Array.from(
-      new Set(
-        UNIFIED_INVENTORY.map(h =>
-          h.type === 'Modular' && h.manufacturer === 'BG' ? 'BG Manufacturing' : h.manufacturer
-        )
-      )
-    ).sort()
-  ];
+  const manufacturers = useMemo(
+    () => ['all', ...Array.from(new Set(UNIFIED_INVENTORY.map(h => h.manufacturer)))],
+    []
+  );
+
+  // Group homes by manufacturer or type
+  const groupedHomes = useMemo(() => {
+    if (filters.manufacturer && filters.manufacturer !== 'all') {
+      // If manufacturer filter active, group by type instead
+      return groupHomesByType(filteredHomes);
+    }
+    // Otherwise, group by manufacturer (including placeholders)
+    return getManufacturersWithPlaceholders(filteredHomes, 'all');
+  }, [filteredHomes, filters.manufacturer]);
+
+  // Scroll to grid
+  const scrollToGrid = () => {
+    const grid = document.getElementById('homes-grid');
+    if (grid) {
+      grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Scroll animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in-up');
+          entry.target.classList.remove('opacity-0', 'translate-y-8');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-animate').forEach(el => {
+      el.classList.add('opacity-0', 'translate-y-8');
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -87,19 +126,32 @@ const Catalog: React.FC = () => {
           </h1>
 
           {/* Subheading */}
-          <p className="text-white/90 text-base sm:text-lg lg:text-xl max-w-[700px] mx-auto mt-4">
+          <p className="text-white/90 text-base sm:text-lg lg:text-xl max-w-[700px] mx-auto mt-4 mb-8">
             Browse our collection of quality manufactured and modular homes. From cozy single-wides to spacious family models.
           </p>
+
+          {/* CTA Button */}
+          <button
+            onClick={scrollToGrid}
+            className="inline-flex items-center gap-2 px-8 py-4 bg-primary hover:bg-primary-dark text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 group"
+          >
+            View All Homes
+            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
+          </button>
         </div>
       </section>
 
       {/* Catalog Content */}
-      <div className="container py-12">
+      <div id="homes-grid" className="container mx-auto py-12 px-4 sm:px-6 lg:px-8 scroll-animate">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
           <div>
-            <h2 className="text-2xl font-bold text-stone-900">Available Models</h2>
-            <p className="text-stone-600 mt-1">Browsing {filteredHomes.length} of {UNIFIED_INVENTORY.length} homes</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-stone-900 font-display mb-2">
+              Available Models
+            </h2>
+            <p className="text-stone-600 text-lg">
+              Browsing <span className="font-semibold text-primary">{filteredHomes.length}</span> of {UNIFIED_INVENTORY.length} homes
+            </p>
           </div>
 
           <div className="flex items-center gap-3">
@@ -113,14 +165,14 @@ const Catalog: React.FC = () => {
               </button>
             )}
             <button
-              className="flex items-center gap-2 px-4 py-2.5 bg-white border border-stone-300 rounded-lg text-stone-700 hover:bg-stone-50 hover:border-stone-400 transition-colors shadow-sm"
+              className="flex items-center gap-2 px-5 py-3 bg-white border-2 border-stone-300 rounded-xl text-stone-700 hover:bg-stone-50 hover:border-primary/50 transition-all shadow-sm hover:shadow-md font-semibold"
               onClick={() => setShowFilters(true)}
               aria-label={`Open filters${activeFilterCount > 0 ? ` (${activeFilterCount} active)` : ''}`}
             >
-              <SlidersHorizontal size={18} aria-hidden="true" />
+              <SlidersHorizontal size={20} aria-hidden="true" />
               <span>Filters</span>
               {activeFilterCount > 0 && (
-                <span className="bg-primary text-white text-xs font-bold px-2 py-0.5 rounded-full" aria-label={`${activeFilterCount} active filter${activeFilterCount !== 1 ? 's' : ''}`}>
+                <span className="bg-primary text-white text-xs font-bold px-2.5 py-1 rounded-full min-w-[24px] text-center" aria-label={`${activeFilterCount} active filter${activeFilterCount !== 1 ? 's' : ''}`}>
                   {activeFilterCount}
                 </span>
               )}
@@ -130,19 +182,19 @@ const Catalog: React.FC = () => {
 
         {/* Active Filter Pills */}
         {activeFilterCount > 0 && (
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-2 mb-8">
             {filters.type && filters.type !== 'all' && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full">
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full border border-primary/20">
                 {filters.type}
-                <button onClick={() => setFilter('type', 'all')} className="hover:bg-primary/20 rounded-full p-0.5">
+                <button onClick={() => setFilter('type', 'all')} className="hover:bg-primary/20 rounded-full p-0.5 transition-colors">
                   <X size={14} />
                 </button>
               </span>
             )}
             {filters.manufacturer && filters.manufacturer !== 'all' && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full">
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full border border-primary/20">
                 {filters.manufacturer}
-                <button onClick={() => setFilter('manufacturer', 'all')} className="hover:bg-primary/20 rounded-full p-0.5">
+                <button onClick={() => setFilter('manufacturer', 'all')} className="hover:bg-primary/20 rounded-full p-0.5 transition-colors">
                   <X size={14} />
                 </button>
               </span>
@@ -150,23 +202,34 @@ const Catalog: React.FC = () => {
           </div>
         )}
 
-        {/* Homes Grid - Full Width */}
-        {filteredHomes.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredHomes.map(home => (
-              <HomeCard key={home.id} home={home} />
+        {/* Homes Grid - Grouped by Manufacturer */}
+        {groupedHomes.length > 0 ? (
+          <div className="space-y-0">
+            {groupedHomes.map(([manufacturerName, homes], index) => (
+              <ManufacturerSection
+                key={manufacturerName}
+                manufacturerName={manufacturerName}
+                homes={homes}
+                index={index}
+              />
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-white rounded-xl border border-stone-200 border-dashed">
-            <p className="text-stone-500 text-lg">No homes found matching your criteria.</p>
-            <button
-              onClick={() => clearFilters({ type: 'all' })}
-              className="mt-4 text-primary font-medium hover:underline"
-              aria-label="Clear all filters"
-            >
-              Clear Filters
-            </button>
+          <div className="text-center py-20 bg-white rounded-2xl border-2 border-stone-200 border-dashed">
+            <div className="max-w-md mx-auto px-4">
+              <div className="w-16 h-16 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <SlidersHorizontal size={32} className="text-stone-400" />
+              </div>
+              <h3 className="text-xl font-bold text-stone-900 mb-2">No homes match your filters</h3>
+              <p className="text-stone-600 mb-6">Try adjusting your filter selections to see more results.</p>
+              <button
+                onClick={() => clearFilters({ type: 'all' })}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-dark transition-colors"
+                aria-label="Clear all filters"
+              >
+                Clear All Filters
+              </button>
+            </div>
           </div>
         )}
       </div>

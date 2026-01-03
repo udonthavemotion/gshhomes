@@ -403,50 +403,6 @@ const Financing: React.FC = () => {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary via-primary-dark to-stone-900 relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-            backgroundSize: '32px 32px'
-          }}></div>
-        </div>
-
-        <div className="container relative z-10">
-          <div className="max-w-3xl mx-auto text-center text-white">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold mb-6">
-              Ready to Start Your Journey?
-            </h2>
-            <p className="text-lg sm:text-xl text-white/90 mb-8 leading-relaxed">
-              Our financing experts are here to guide you through every step of the process.
-              Let's find the perfect financing solution for your new home.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button
-                onClick={handleCTAClick}
-                variant="secondary"
-                size="lg"
-                className="bg-white text-stone-900 hover:bg-stone-100 shadow-xl"
-              >
-                Apply Now
-                <ArrowRight size={20} className="ml-2" />
-              </Button>
-              <span className="text-white/80">or</span>
-              <a
-                href={`tel:${COMPANY_INFO.phone}`}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-stone-900 text-white rounded-xl font-bold text-lg hover:bg-stone-800 transition-colors shadow-xl"
-              >
-                <Phone size={20} />
-                {COMPANY_INFO.phone}
-              </a>
-            </div>
-            <p className="mt-8 text-white/70 text-sm">
-              Have questions? <Link to="/contact-gulf-south-homes" className="underline hover:text-white">Contact our team</Link> for personalized assistance.
-            </p>
-          </div>
-        </div>
-      </section>
     </div>
     </>
   );

@@ -283,20 +283,6 @@ const Insurance: React.FC = () => {
         </div>
       </section>
 
-      {/* Bottom Banner */}
-      <section className="py-16 bg-gradient-to-br from-indigo-600 to-violet-700">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center scroll-animate">
-            <Shield size={48} className="text-white/90 mx-auto mb-4" />
-            <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-4">
-              Protect Your Investment with Confidence
-            </h3>
-            <p className="text-indigo-100 text-lg">
-              Let our experienced in-house insurance team help you find the right coverage for your new manufactured home.
-            </p>
-          </div>
-        </div>
-      </section>
     </div>
     </>
   );

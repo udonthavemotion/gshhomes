@@ -96,7 +96,7 @@ const HowItWorks: React.FC = () => {
         'Utility connections and testing',
         'Final walkthrough and inspection'
       ],
-      cta: { text: 'Our Services', link: '/services' }
+      cta: { text: 'Our Services', link: '/mobile-home-parts-store' }
     },
     {
       number: 5,
@@ -124,10 +124,10 @@ const HowItWorks: React.FC = () => {
       />
       <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section 
+      <section
         className="relative w-full h-screen sm:min-h-[80vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('/assets/images/howitworks/IMG_3500 (1).JPG')`
+          backgroundImage: `url('/assets/images/buyingprocess/COVERPHOTO.webp')`
         }}
       >
         {/* Overlay for text readability */}

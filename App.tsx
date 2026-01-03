@@ -13,7 +13,6 @@ const Home = lazy(() => import('./pages/Home'));
 const Catalog = lazy(() => import('./pages/Catalog'));
 const HomeDetails = lazy(() => import('./pages/HomeDetails'));
 const About = lazy(() => import('./pages/About'));
-const Services = lazy(() => import('./pages/Services'));
 const Contact = lazy(() => import('./pages/Contact'));
 const SingleWide = lazy(() => import('./pages/SingleWide'));
 const LandHome = lazy(() => import('./pages/LandHome'));
@@ -196,7 +195,7 @@ const App: React.FC = () => {
                 <Route path="/modular-homes-for-sale" element={<Modular />} />
                 <Route path="/modular-homes-for-sale/:id" element={<ModularDetail />} />
                 <Route path="/about-gulf-south-homes" element={<About />} />
-                <Route path="/warranty-service-department" element={<Services />} />
+                <Route path="/warranty-service-department" element={<Parts />} />
                 <Route path="/mobile-home-parts-store" element={<Parts />} />
                 <Route path="/mobile-home-financing" element={<Financing />} />
                 <Route path="/land-and-home-packages" element={<LandHome />} />

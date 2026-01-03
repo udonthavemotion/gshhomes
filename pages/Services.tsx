@@ -25,6 +25,36 @@ const Services: React.FC = () => {
         </div>
       </div>
 
+      {/* Service Inquiry CTA - Above the Fold */}
+      <div className="bg-gradient-to-r from-primary to-primary-dark py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Need Service or Parts?</h2>
+              <p className="text-blue-100 text-lg mb-6">
+                Our dedicated service team is ready to help. Request service, schedule maintenance, or browse our parts inventory.
+              </p>
+            </div>
+            <div className="flex gap-4 flex-col sm:flex-row">
+              <Button
+                variant="secondary"
+                to="/contact-gulf-south-homes"
+                className="min-h-[48px] text-base font-semibold"
+              >
+                Request Service
+              </Button>
+              <Button
+                variant="outline"
+                to="/mobile-home-parts-store"
+                className="min-h-[48px] text-base font-semibold bg-white text-primary border-white hover:bg-stone-100"
+              >
+                Browse Parts
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="container mx-auto px-4 py-16 space-y-20">
 
         {/* Land & Home */}
