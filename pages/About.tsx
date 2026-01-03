@@ -257,14 +257,14 @@ const About: React.FC = () => {
           {/* Trust indicators */}
           <div className="flex flex-wrap justify-center gap-6 text-sm mt-8">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                <Shield size={16} className="text-primary" />
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-white to-white/80 flex items-center justify-center">
+                <Shield size={18} className="text-primary" />
               </div>
               <span className="text-white/80">BBB Accredited</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                <HomeIcon size={16} className="text-primary" />
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-white to-white/80 flex items-center justify-center">
+                <HomeIcon size={18} className="text-primary" />
               </div>
               <span className="text-white/80">Local Experts</span>
             </div>
@@ -316,8 +316,8 @@ const About: React.FC = () => {
                 <div className="group relative overflow-hidden p-5 bg-white rounded-2xl border border-stone-200 hover:border-primary/30 hover:shadow-xl transition-all duration-300">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="relative flex items-start gap-4">
-                    <div className="bg-gradient-to-br from-primary to-emerald-600 p-3 rounded-xl shadow-lg">
-                      <Heart size={20} className="text-white" />
+                    <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-3xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 flex-shrink-0">
+                      <Heart size={24} className="text-white" />
                     </div>
                     <div>
                       <h4 className="font-bold text-stone-900 mb-1.5">Family Values</h4>
@@ -328,8 +328,8 @@ const About: React.FC = () => {
                 <div className="group relative overflow-hidden p-5 bg-white rounded-2xl border border-stone-200 hover:border-primary/30 hover:shadow-xl transition-all duration-300">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div className="relative flex items-start gap-4">
-                    <div className="bg-gradient-to-br from-primary to-emerald-600 p-3 rounded-xl shadow-lg">
-                      <MapPin size={20} className="text-white" />
+                    <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-3xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 flex-shrink-0">
+                      <MapPin size={24} className="text-white" />
                     </div>
                     <div>
                       <h4 className="font-bold text-stone-900 mb-1.5">Local Roots</h4>
@@ -414,8 +414,8 @@ const About: React.FC = () => {
                 key={idx}
                 className="group text-center p-6 bg-white rounded-2xl border border-stone-200 hover:border-primary/30 hover:shadow-xl transition-all duration-300"
               >
-                <div className={`w-16 h-16 rounded-2xl bg-${badge.color}-100 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <badge.icon size={32} className={badge.color === 'emerald' ? 'text-primary' : badge.color === 'amber' ? 'text-accent' : badge.color === 'blue' ? 'text-blue-600' : 'text-stone-700'} />
+                <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                  <badge.icon size={32} className="text-white" />
                 </div>
                 <h4 className="font-bold text-stone-900 mb-2 group-hover:text-primary transition-colors">{badge.title}</h4>
                 <p className="text-sm text-stone-600 leading-snug">{badge.desc}</p>

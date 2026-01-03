@@ -60,8 +60,8 @@ const Services: React.FC = () => {
         {/* Land & Home */}
         <div id="land-home" className="grid md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1">
-                <div className="bg-emerald-100 inline-flex p-3 rounded-full text-primary mb-4">
-                    <TreePine size={32} />
+                <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-3xl inline-flex items-center justify-center mb-4 shadow-lg">
+                    <TreePine size={32} className="text-white" />
                 </div>
                 <h2 className="text-3xl font-bold text-stone-900 mb-4">Land & Home Packages</h2>
                 <p className="text-stone-600 mb-6 leading-relaxed">
@@ -89,8 +89,8 @@ const Services: React.FC = () => {
                 <img src="/Modular Homes Page/Financing made simple/gulf-south-homes-content-01-901h.webp" alt="Financing made simple" className="w-full h-full object-cover" />
             </div>
             <div>
-                <div className="bg-amber-100 inline-flex p-3 rounded-full text-amber-600 mb-4">
-                    <Banknote size={32} />
+                <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-3xl inline-flex items-center justify-center mb-4 shadow-lg">
+                    <Banknote size={32} className="text-white" />
                 </div>
                 <h2 className="text-3xl font-bold text-stone-900 mb-4">Financing Made Simple</h2>
                 <p className="text-stone-600 mb-6 leading-relaxed">
@@ -113,8 +113,8 @@ const Services: React.FC = () => {
         {/* Parts & Service */}
         <div id="service" className="grid md:grid-cols-2 gap-12 items-center">
             <div className="order-2 md:order-1">
-                <div className="bg-stone-200 inline-flex p-3 rounded-full text-stone-700 mb-4">
-                    <Wrench size={32} />
+                <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-3xl inline-flex items-center justify-center mb-4 shadow-lg">
+                    <Wrench size={32} className="text-white" />
                 </div>
                 <h2 className="text-3xl font-bold text-stone-900 mb-4">Parts & Service Department</h2>
                 <p className="text-stone-600 mb-6 leading-relaxed">
