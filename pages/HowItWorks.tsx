@@ -140,12 +140,10 @@ const HowItWorks: React.FC = () => {
               <CheckCircle size={16} className="fill-white/80" />
               Proven 5-Step Process
             </div>
-            {/* Headline with gradient text - Like About page */}
+            {/* Headline - Consistent styling */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-6 text-white leading-[1.1]">
-              How It Works
-              <span className="block mt-3 bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent">
-                From Dream to Move-In
-              </span>
+              How It Works<br />
+              From Dream to Move-In
             </h1>
             <p className="text-lg sm:text-xl text-white/90 leading-relaxed max-w-2xl mx-auto">
               From choosing your home to moving in, we guide you through every step.
@@ -162,22 +160,7 @@ const HowItWorks: React.FC = () => {
       </section>
 
       {/* Steps Section - Enhanced with About page styling */}
-      <section className="py-24 md:py-32 relative overflow-hidden scroll-animate">
-        {/* Background gradient - Like About page */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-stone-50 to-white pointer-events-none"></div>
-
-        {/* Background Video - VERY SUBTLE */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover opacity-10"
-        >
-          <source src="/assets/video/videosworking/land.mp4" type="video/mp4" />
-        </video>
-
+      <section className="py-24 md:py-32 relative overflow-hidden scroll-animate bg-gradient-to-b from-white via-stone-50 to-white">
         <div className="container relative z-10">
           <div className="space-y-20 lg:space-y-28">
             {steps.map((step, idx) => (
