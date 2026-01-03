@@ -144,8 +144,8 @@ const Footer: React.FC = () => {
                   href={`tel:${COMPANY_INFO.phone}`}
                   className="flex items-start gap-3 sm:gap-3.5 group touch-manipulation min-h-[52px] active:opacity-80"
                 >
-                  <div className="w-12 h-12 sm:w-11 sm:h-11 lg:w-10 lg:h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors">
-                    <Phone size={20} className="sm:w-5 sm:h-5 text-primary group-hover:text-white transition-colors" />
+                  <div className="w-14 h-14 sm:w-12 sm:h-12 lg:w-12 lg:h-12 bg-gradient-to-br from-primary/30 to-accent/20 rounded-3xl flex items-center justify-center flex-shrink-0 group-hover:from-primary group-hover:to-accent transition-all">
+                    <Phone size={24} className="sm:w-6 sm:h-6 text-white group-hover:text-white transition-colors" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <span className="text-sm sm:text-base text-white/90 block font-medium drop-shadow-md">Call Us</span>
@@ -156,7 +156,7 @@ const Footer: React.FC = () => {
               <li>
                 <div className="flex items-start gap-3 sm:gap-3.5 min-h-[52px]">
                   <div className="w-12 h-12 sm:w-11 sm:h-11 lg:w-10 lg:h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin size={20} className="sm:w-5 sm:h-5 text-primary" />
+                    <MapPin size={24} className="sm:w-6 sm:h-6 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <span className="text-sm sm:text-base text-white/90 block font-medium drop-shadow-md">Visit Us</span>
@@ -167,7 +167,7 @@ const Footer: React.FC = () => {
               <li>
                 <div className="flex items-start gap-3 sm:gap-3.5 min-h-[52px]">
                   <div className="w-12 h-12 sm:w-11 sm:h-11 lg:w-10 lg:h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Clock size={20} className="sm:w-5 sm:h-5 text-primary" />
+                    <Clock size={24} className="sm:w-6 sm:h-6 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <span className="text-sm sm:text-base text-white/90 block font-medium drop-shadow-md">Business Hours</span>

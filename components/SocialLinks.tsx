@@ -29,14 +29,14 @@ const SocialLinks: React.FC<SocialLinksProps> = ({
   size = 'md'
 }) => {
   // Mobile-optimized sizes (48px minimum for touch targets)
-  const iconSize = size === 'sm' ? 18 : 20;
-  const containerSize = size === 'sm' ? 'w-11 h-11' : 'w-12 h-12';
+  const iconSize = size === 'sm' ? 18 : 24;
+  const containerSize = size === 'sm' ? 'w-11 h-11' : 'w-14 h-14';
 
-  const baseClasses = `${containerSize} rounded-xl flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 touch-manipulation active:scale-95`;
+  const baseClasses = `${containerSize} rounded-3xl flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 touch-manipulation active:scale-95 hover:scale-110 hover:shadow-lg`;
 
   const variantClasses = variant === 'light'
-    ? 'bg-stone-100 hover:bg-primary text-stone-600 hover:text-white focus:ring-offset-white'
-    : 'bg-white/10 hover:bg-primary text-stone-200 hover:text-white focus:ring-offset-stone-900';
+    ? 'bg-gradient-to-br from-primary to-accent text-white hover:from-accent hover:to-primary focus:ring-offset-white'
+    : 'bg-gradient-to-br from-white/20 to-white/10 hover:from-primary hover:to-accent text-white hover:text-white backdrop-blur-sm focus:ring-offset-stone-900';
 
   const socialLinks = [
     {

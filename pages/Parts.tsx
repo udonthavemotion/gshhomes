@@ -223,7 +223,7 @@ const Parts: React.FC = () => {
       </div>
 
       {/* Store Overview - 2 Column */}
-      <section className="py-20 sm:py-28 bg-white relative overflow-hidden">
+      <section className="py-24 md:py-32 bg-white relative overflow-hidden scroll-animate">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-stone-50 to-transparent pointer-events-none"></div>
 
         <div className="container relative">
@@ -327,7 +327,7 @@ const Parts: React.FC = () => {
       </section>
 
       {/* Parts & Services Grid */}
-      <section className="py-20 sm:py-28 bg-stone-50 relative overflow-hidden">
+      <section className="py-24 md:py-32 bg-stone-50 relative overflow-hidden scroll-animate">
         <div className="container">
           <div className="text-center mb-16 scroll-animate">
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-semibold rounded-full mb-4">

@@ -275,7 +275,7 @@ const Home: React.FC = () => {
               Explore Our Inventory
             </span>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-stone-900 mb-4 tracking-tight">
-              Find Your Style
+              Find Your <span className="bg-gradient-to-r from-primary to-emerald-600 bg-clip-text text-transparent">Style</span>
             </h2>
           </div>
 
@@ -951,11 +951,11 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          {/* Three-Column Grid: Heritage + Reviews + Stats */}
-          <div className="grid lg:grid-cols-3 gap-8 lg:gap-6 mb-16">
-            {/* Left: Heritage Story */}
+          {/* Desktop: Review Widget as Centerpiece */}
+          <div className="hidden lg:grid lg:grid-cols-5 gap-8 mb-16 items-stretch">
+            {/* Left Column: Heritage Story */}
             <div className="scroll-animate lg:col-span-1 flex flex-col">
-              <div className="bg-white rounded-2xl p-8 lg:p-6 shadow-lg border border-stone-200 hover:shadow-xl transition-all duration-500 h-full flex flex-col">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-stone-200 hover:shadow-xl transition-all duration-500 h-full flex flex-col">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                     <Heart size={24} className="text-primary" />
@@ -974,9 +974,9 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            {/* Center: Google Reviews Widget (Integrated) */}
-            <div className="scroll-animate lg:col-span-1 flex flex-col" style={{ transitionDelay: '50ms' }}>
-              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-stone-200 hover:shadow-xl transition-all duration-500 bg-white h-full flex flex-col min-h-[520px]">
+            {/* Center (3 columns): Google Reviews Widget - Centerpiece */}
+            <div className="scroll-animate lg:col-span-3 flex flex-col" style={{ transitionDelay: '50ms' }}>
+              <div className="relative rounded-2xl overflow-hidden shadow-xl border border-stone-200 hover:shadow-2xl transition-all duration-500 bg-white h-full flex flex-col min-h-[600px]">
                 {/* Reviews Widget Container */}
                 <div className="flex-1 overflow-y-auto">
                   <iframe
@@ -984,7 +984,7 @@ const Home: React.FC = () => {
                     className="w-full h-full border-none"
                     title="Google Reviews - Gulf South Homes"
                     style={{
-                      minHeight: '520px',
+                      minHeight: '600px',
                       background: 'transparent',
                     }}
                     loading="lazy"
@@ -996,45 +996,45 @@ const Home: React.FC = () => {
               </div>
 
               {/* CTA Below Widget */}
-              <div className="mt-4 text-center">
+              <div className="mt-6 text-center">
                 <a
                   href="https://www.google.com/search?q=gulf+south+homes+houma"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors duration-300 text-sm"
+                  className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors duration-300"
                 >
                   View all reviews on Google
-                  <ArrowRight size={14} />
+                  <ArrowRight size={16} />
                 </a>
               </div>
             </div>
 
-            {/* Right: Trust Stats + Video */}
+            {/* Right Column: Trust Stats + Video */}
             <div className="scroll-animate lg:col-span-1 flex flex-col gap-6" style={{ transitionDelay: '100ms' }}>
               {/* Stats Box */}
-              <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-8 border border-primary/10">
-                <div className="grid grid-cols-2 gap-6">
+              <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-6 border border-primary/10 flex-shrink-0">
+                <div className="grid grid-cols-2 gap-4">
                   <div className="text-center">
-                    <div className="text-4xl font-display font-bold text-primary mb-1">30+</div>
-                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">Years Serving</p>
+                    <div className="text-3xl font-display font-bold text-primary mb-1">30+</div>
+                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">Years</p>
                   </div>
                   <div className="text-center border-l border-stone-300">
-                    <div className="text-4xl font-display font-bold text-accent mb-1">4.9★</div>
-                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">Google Rating</p>
+                    <div className="text-3xl font-display font-bold text-accent mb-1">4.9★</div>
+                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">Rating</p>
                   </div>
                   <div className="text-center">
-                    <div className="text-4xl font-display font-bold text-primary mb-1">500+</div>
-                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">Happy Families</p>
+                    <div className="text-3xl font-display font-bold text-primary mb-1">500+</div>
+                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">Families</p>
                   </div>
                   <div className="text-center border-l border-stone-300">
-                    <div className="text-3xl font-display font-bold text-accent mb-1">✓</div>
-                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">BBB Accredited</p>
+                    <div className="text-2xl font-display font-bold text-accent mb-1">✓</div>
+                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">BBB</p>
                   </div>
                 </div>
               </div>
 
               {/* Happy Customers Video */}
-              <div className="relative overflow-hidden rounded-2xl shadow-lg border border-stone-200 hover:shadow-xl transition-shadow duration-500 h-64 flex items-center justify-center bg-stone-100">
+              <div className="relative overflow-hidden rounded-2xl shadow-lg border border-stone-200 hover:shadow-xl transition-shadow duration-500 flex-grow flex items-center justify-center bg-stone-100 min-h-[200px]">
                 <video
                   autoPlay
                   muted
@@ -1047,11 +1047,98 @@ const Home: React.FC = () => {
                   <source src="/assets/images/Meet the team/aboutpage.mp4" type="video/mp4" />
                 </video>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border-2 border-white/40">
-                    <Heart size={32} className="text-white fill-white" />
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile: Original Three-Column Layout */}
+          <div className="lg:hidden grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 mb-16">
+            {/* Left: Heritage Story */}
+            <div className="scroll-animate sm:col-span-1 flex flex-col">
+              <div className="bg-white rounded-2xl p-6 shadow-lg border border-stone-200 hover:shadow-xl transition-all duration-500 h-full flex flex-col">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Heart size={20} className="text-primary" />
+                  </div>
+                  <h3 className="text-lg font-display font-bold text-stone-900">Our Heritage</h3>
+                </div>
+
+                <p className="text-stone-700 leading-relaxed mb-4 text-sm flex-grow">
+                  Gulf South Homes has been serving Southeast Louisiana families for over 30 years. Quality, trust, and service.
+                </p>
+
+                <Button to="/about-gulf-south-homes" variant="outline" size="sm" className="w-full text-xs">
+                  Learn Our Story
+                </Button>
+              </div>
+            </div>
+
+            {/* Center: Google Reviews Widget */}
+            <div className="scroll-animate sm:col-span-1 flex flex-col" style={{ transitionDelay: '50ms' }}>
+              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-stone-200 hover:shadow-xl transition-all duration-500 bg-white h-full flex flex-col min-h-[400px]">
+                <div className="flex-1 overflow-y-auto">
+                  <iframe
+                    src="https://crm.gshforms.com/reputation/widgets/review_widget/TQf8w75HUD6SFkH9Ebla"
+                    className="w-full h-full border-none"
+                    title="Google Reviews - Gulf South Homes"
+                    style={{
+                      minHeight: '400px',
+                      background: 'transparent',
+                    }}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent pointer-events-none"></div>
+              </div>
+              <div className="mt-3 text-center">
+                <a
+                  href="https://www.google.com/search?q=gulf+south+homes+houma"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-primary font-semibold hover:text-accent transition-colors duration-300 text-xs"
+                >
+                  View all
+                  <ArrowRight size={12} />
+                </a>
+              </div>
+            </div>
+
+            {/* Right: Trust Stats + Video */}
+            <div className="scroll-animate sm:col-span-1 flex flex-col gap-4" style={{ transitionDelay: '100ms' }}>
+              <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-2xl p-4 border border-primary/10 flex-shrink-0">
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="text-center">
+                    <div className="text-2xl font-display font-bold text-primary mb-0.5">30+</div>
+                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">Years</p>
+                  </div>
+                  <div className="text-center border-l border-stone-300">
+                    <div className="text-2xl font-display font-bold text-accent mb-0.5">4.9★</div>
+                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">Rating</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-display font-bold text-primary mb-0.5">500+</div>
+                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">Families</p>
+                  </div>
+                  <div className="text-center border-l border-stone-300">
+                    <div className="text-xl font-display font-bold text-accent mb-0.5">✓</div>
+                    <p className="text-xs font-semibold text-stone-600 uppercase tracking-wider">BBB</p>
                   </div>
                 </div>
+              </div>
+
+              <div className="relative overflow-hidden rounded-2xl shadow-lg border border-stone-200 hover:shadow-xl transition-shadow duration-500 h-32 flex items-center justify-center bg-stone-100">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-cover"
+                  title="Gulf South Homes happy customers"
+                >
+                  <source src="/assets/images/Meet the team/aboutpage.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
               </div>
             </div>
           </div>

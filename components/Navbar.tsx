@@ -149,7 +149,7 @@ const Navbar: React.FC = () => {
             {/* Mobile Logo */}
             <Link to="/" className="flex items-center group" onClick={handleLogoClick}>
               <img
-                src="/assets/images/logo/inverted white.png"
+                src="/assets/images/logo/new-logo-color.png"
                 alt="Gulf South Homes"
                 className="h-12 w-auto object-contain"
               />
@@ -181,15 +181,15 @@ const Navbar: React.FC = () => {
             </div>
           </div>
 
-          {/* Desktop: Grid layout for stable centering */}
-          <div className="hidden lg:grid lg:grid-cols-[auto_1fr_auto] items-center h-16">
-            {/* Desktop Logo - Shows when scrolled */}
-            <div className={`transition-all duration-300 ${scrolled ? 'opacity-100 w-auto mr-4' : 'opacity-0 w-0 mr-0 overflow-hidden'}`}>
+          {/* Desktop: Centered layout with logo on left when scrolled */}
+          <div className={`hidden lg:grid lg:grid-cols-[auto_1fr_auto] items-center transition-all duration-300 ${scrolled ? 'h-20' : 'h-16'}`}>
+            {/* Desktop Logo - Shows when scrolled on left */}
+            <div className={`transition-all duration-300 flex-shrink-0 ${scrolled ? 'opacity-100 w-auto mr-6' : 'opacity-0 w-0 mr-0 overflow-hidden'}`}>
               <Link to="/" className="flex items-center group" onClick={handleLogoClick}>
                 <img
-                  src="/assets/images/logo/inverted white.png"
+                  src="/assets/images/logo/logo-white-rectangular.png"
                   alt="Gulf South Homes"
-                  className="h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  className={`w-auto object-contain transition-all duration-300 group-hover:scale-105 ${scrolled ? 'h-14' : 'h-12'}`}
                 />
               </Link>
             </div>
@@ -266,7 +266,7 @@ const Navbar: React.FC = () => {
                 )}
               </Link>
             </div>
-            
+
             {/* Empty third column for grid symmetry */}
             <div></div>
           </div>

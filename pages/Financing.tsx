@@ -128,7 +128,7 @@ const Financing: React.FC = () => {
             Flexible Payment Solutions
           </div>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white mb-6 leading-tight">
-            Financing Made <span className="text-white">Simple</span>
+            Financing Made <span className="bg-gradient-to-r from-primary to-emerald-600 bg-clip-text text-transparent">Simple</span>
           </h1>
           <p className="text-lg sm:text-xl text-white/90 leading-relaxed mb-8 max-w-2xl mx-auto">
             We work with a wide network of trusted lenders to help make homeownership possible for more families, even if you've been turned down elsewhere.
@@ -151,7 +151,7 @@ const Financing: React.FC = () => {
       </section>
 
       {/* Why Financing with Us Section */}
-      <section className="py-20 sm:py-28 bg-gradient-to-b from-emerald-50 to-white">
+      <section className="py-24 md:py-32 bg-gradient-to-b from-emerald-50 to-white scroll-animate">
         <div className="container">
           <div className="text-center mb-12 scroll-animate">
             <span className="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-semibold rounded-md mb-4">

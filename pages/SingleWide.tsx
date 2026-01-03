@@ -120,11 +120,11 @@ const SingleWide: React.FC = () => {
       </section>
 
       {/* Catalog Content */}
-      <div className="container py-12">
+      <div className="container py-24 md:py-32 scroll-animate">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
           <div>
-            <h2 className="text-2xl font-bold text-stone-900">Available Models</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-stone-900">Available <span className="bg-gradient-to-r from-primary to-emerald-600 bg-clip-text text-transparent">Models</span></h2>
             <p className="text-stone-600 mt-1">Browsing {filteredHomes.length} of {singleWideHomes.length} homes</p>
           </div>
 

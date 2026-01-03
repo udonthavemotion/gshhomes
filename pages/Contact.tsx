@@ -75,15 +75,15 @@ const Contact: React.FC = () => {
       </section>
 
       {/* Glassmorphic Map Section */}
-      <div className="py-16 px-4 md:px-6 lg:px-8">
+      <div className="py-24 md:py-32 px-4 md:px-6 lg:px-8 scroll-animate">
         <GlassmorphicMapCard containerHeight="min-h-[600px] md:min-h-[700px]" />
       </div>
 
       {/* Contact Form Section */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-24 md:py-32 scroll-animate">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-4">Send us a Message</h2>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-stone-900 mb-4">Send us a <span className="block mt-2 bg-gradient-to-r from-primary to-emerald-600 bg-clip-text text-transparent">Message</span></h2>
             <p className="text-stone-600 text-lg">Fill out the form below and we will get back to you within 24 hours.</p>
           </div>
 
