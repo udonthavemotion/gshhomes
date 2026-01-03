@@ -110,14 +110,15 @@ const Modular: React.FC = () => {
             <img
               src="/assets/images/logo/new-logo-color.png"
               alt="Gulf South Homes - 2025 Bayou's Best Choice"
-              className="w-[300px] h-[120px] sm:w-[500px] sm:h-[200px] object-contain drop-shadow-2xl logo-entrance"
-              width="500"
-              height="200"
+              className="w-[400px] h-[160px] sm:w-[700px] sm:h-[280px] object-contain logo-entrance"
+              width="700"
+              height="280"
               loading="eager"
               fetchPriority="high"
               style={{
                 animation: 'logoEntrance 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards, logoGlow 3s ease-in-out 1.2s infinite',
-                willChange: 'transform, opacity, filter'
+                willChange: 'transform, opacity, filter',
+                filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.4))'
               }}
               onError={(e) => {
                 // Fallback if logo fails to load
