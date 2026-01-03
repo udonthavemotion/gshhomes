@@ -603,6 +603,117 @@ const About: React.FC = () => {
         </div>
       </section>
 
+      {/* Customer Reviews Section - Video + Google Widget */}
+      <section className="py-24 md:py-32 bg-white scroll-animate relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          {/* Section Header */}
+          <div className="text-center mb-16 max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-wider mb-6">
+              <Star size={14} className="fill-primary" />
+              <span>Trusted by Our Community</span>
+            </div>
+            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-stone-900 mb-6 leading-[1.1]">
+              Real Customers,
+              <span className="block mt-2 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                Real Results
+              </span>
+            </h2>
+            <p className="text-lg md:text-xl text-stone-600 leading-relaxed">
+              See why families throughout Southeast Louisiana trust Gulf South Homes for quality homes and exceptional service.
+            </p>
+          </div>
+
+          {/* Video + Reviews Grid */}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+            {/* Left: Happy Customers Video */}
+            <div className="scroll-animate order-2 lg:order-1">
+              <div className="relative overflow-hidden rounded-3xl shadow-xl border border-stone-200 hover:shadow-2xl transition-shadow duration-500 h-full flex items-center justify-center bg-stone-100">
+                {/* Video Container - Portrait orientation */}
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  className="w-full h-full object-cover"
+                  title="Gulf South Homes happy customers with sold sign"
+                >
+                  <source src="/assets/images/Meet the team/aboutpage.mp4" type="video/mp4" />
+                </video>
+
+                {/* Subtle overlay gradient for visual interest */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none"></div>
+              </div>
+
+              {/* Trust Badge Below Video */}
+              <div className="mt-6 flex items-center justify-center gap-3 text-sm text-stone-600">
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={16} className="fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <span className="font-semibold">Rated 4.9/5 on Google</span>
+              </div>
+            </div>
+
+            {/* Right: Google Reviews Widget */}
+            <div className="scroll-animate order-1 lg:order-2">
+              <div className="relative h-full min-h-[600px] lg:min-h-[700px] rounded-3xl overflow-hidden shadow-xl border border-stone-200 hover:shadow-2xl transition-shadow duration-500 bg-white">
+                {/* Google Reviews Widget - GoHighLevel */}
+                <div className="w-full h-full overflow-y-auto">
+                  <iframe
+                    src="https://crm.gshforms.com/reputation/widgets/review_widget/TQf8w75HUD6SFkH9Ebla"
+                    className="w-full h-full border-none"
+                    title="Google Reviews - Gulf South Homes"
+                    style={{
+                      minHeight: '600px',
+                      background: 'transparent',
+                    }}
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Subtle gradient overlay at top for polish */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent pointer-events-none"></div>
+              </div>
+
+              {/* CTA Below Widget */}
+              <div className="mt-6 text-center">
+                <a
+                  href="https://www.google.com/search?q=gulf+south+homes+houma&rlz=1C1CHBF_enUS1005US1005&oq=gulf+south+homes&gs_lcrp=CgZjaHJvbWUqBggAEEUY9QMyBggAEEUY9QMyBggBEEUY9gMyBggCEEUY9gMyBggDEEUY9gMyBggEEEUY9gMyBggFEEUY9gPKAQgzMjAxajBqNDSoAgiwAgE&sourceid=chrome&ie=UTF-8#lrd=0x862e7e89b21c1e39:0xf1f1f1f1f1f1f1f1,1,,,,"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors duration-300 text-sm md:text-base"
+                >
+                  View all reviews on Google
+                  <ArrowRight size={16} />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Trust Stats - Optional Enhancement */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 pt-20 border-t border-stone-200">
+            <div className="text-center scroll-animate">
+              <div className="text-3xl md:text-4xl font-display font-bold text-primary mb-2">30+</div>
+              <p className="text-sm md:text-base text-stone-600">Years Serving LA</p>
+            </div>
+            <div className="text-center scroll-animate" style={{ transitionDelay: '50ms' }}>
+              <div className="text-3xl md:text-4xl font-display font-bold text-primary mb-2">4.9★</div>
+              <p className="text-sm md:text-base text-stone-600">Google Rating</p>
+            </div>
+            <div className="text-center scroll-animate" style={{ transitionDelay: '100ms' }}>
+              <div className="text-3xl md:text-4xl font-display font-bold text-primary mb-2">500+</div>
+              <p className="text-sm md:text-base text-stone-600">Happy Families</p>
+            </div>
+            <div className="text-center scroll-animate" style={{ transitionDelay: '150ms' }}>
+              <div className="text-3xl md:text-4xl font-display font-bold text-primary mb-2">✓</div>
+              <p className="text-sm md:text-base text-stone-600">BBB Accredited</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA Section - Enhanced */}
       <section 
         className="py-24 text-white scroll-animate relative overflow-hidden bg-cover bg-center bg-no-repeat"
