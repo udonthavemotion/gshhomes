@@ -135,24 +135,37 @@ const HowItWorks: React.FC = () => {
 
         <div className="container relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium mb-6">
-              <CheckCircle size={16} />
-              The Process
+            {/* Badge - Enhanced styling */}
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-xs font-bold uppercase tracking-wider mb-8 border border-white/20 hover:border-white/40 transition-colors duration-300">
+              <CheckCircle size={16} className="fill-white/80" />
+              Proven 5-Step Process
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-6 text-white">
+            {/* Headline with gradient text - Like About page */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mb-6 text-white leading-[1.1]">
               How It Works
+              <span className="block mt-3 bg-gradient-to-r from-white via-blue-200 to-white bg-clip-text text-transparent">
+                From Dream to Move-In
+              </span>
             </h1>
-            <p className="text-lg sm:text-xl text-white/90 leading-relaxed">
+            <p className="text-lg sm:text-xl text-white/90 leading-relaxed max-w-2xl mx-auto">
               From choosing your home to moving in, we guide you through every step.
               Our streamlined process makes homeownership simple and stress-free.
             </p>
+
+            {/* Trust stat below headline - Like About page floating badge */}
+            <div className="mt-10 inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md rounded-full text-white/90 text-sm font-medium border border-white/20">
+              <Clock size={18} />
+              <span>Average timeline: <strong>4-8 weeks</strong></span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Steps Section - With Subtle Video Context */}
-      <section className="py-20 sm:py-28 relative overflow-hidden">
+      {/* Steps Section - Enhanced with About page styling */}
+      <section className="py-24 md:py-32 relative overflow-hidden scroll-animate">
+        {/* Background gradient - Like About page */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-stone-50 to-white pointer-events-none"></div>
+
         {/* Background Video - VERY SUBTLE */}
         <video
           autoPlay
@@ -160,38 +173,45 @@ const HowItWorks: React.FC = () => {
           loop
           playsInline
           preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover opacity-15"
+          className="absolute inset-0 w-full h-full object-cover opacity-10"
         >
           <source src="/assets/video/videosworking/land.mp4" type="video/mp4" />
         </video>
 
-        {/* White Overlay - Maintains Readability */}
-        <div className="absolute inset-0 bg-white/90"></div>
-
         <div className="container relative z-10">
-          <div className="space-y-16 lg:space-y-24">
+          <div className="space-y-20 lg:space-y-28">
             {steps.map((step, idx) => (
               <div
                 key={step.number}
                 id={`step-${step.number}`}
-                className={`flex flex-col lg:flex-row gap-8 lg:gap-12 items-start ${
+                className={`scroll-animate flex flex-col lg:flex-row gap-10 lg:gap-16 items-start ${
                   idx % 2 === 1 ? 'lg:flex-row-reverse' : ''
                 }`}
               >
                 {/* Content Side */}
                 <div className="flex-1">
-                  <div className="flex items-start gap-4 mb-6">
+                  {/* Step badge - Like About page */}
+                  <div className="inline-flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-wider mb-4 px-3 py-1.5 bg-primary/5 rounded-full border border-primary/10">
+                    <span>Step {step.number} of 5</span>
+                  </div>
+
+                  <div className="flex items-start gap-5 mb-8">
                     <div className="relative flex-shrink-0">
-                      <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                      {/* Enhanced gradient icon background - Like About page */}
+                      <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-3xl flex items-center justify-center text-white shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                         {step.icon}
                       </div>
-                      <div className="absolute -top-2 -right-2 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
+                      {/* Step number badge */}
+                      <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-accent to-primary text-white rounded-full flex items-center justify-center font-bold text-xl shadow-xl">
                         {step.number}
                       </div>
                     </div>
                     <div>
-                      <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 mb-2">
-                        {step.title}
+                      {/* Title with gradient text - Like About page */}
+                      <h2 className="text-3xl sm:text-4xl font-display font-bold text-stone-900 mb-3 leading-[1.1]">
+                        <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                          {step.title}
+                        </span>
                       </h2>
                       <p className="text-lg text-stone-600 leading-relaxed">
                         {step.description}
@@ -214,10 +234,10 @@ const HowItWorks: React.FC = () => {
                   </Button>
                 </div>
 
-                {/* Visual Side */}
-                <div className="flex-1 lg:sticky lg:top-24">
-                  <div className="bg-white rounded-2xl shadow-xl border border-stone-200 overflow-hidden">
-                    <div className="aspect-[4/3] relative">
+                {/* Visual Side - Enhanced with About page styling */}
+                <div className="flex-1 lg:sticky lg:top-32">
+                  <div className="group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl border border-stone-200 hover:border-primary/20 overflow-hidden transition-all duration-500">
+                    <div className="aspect-[4/3] relative overflow-hidden">
                       <img
                         src={
                           step.number === 1 ? '/assets/images/buyingprocess/1.jpg' :
@@ -230,10 +250,10 @@ const HowItWorks: React.FC = () => {
                         }
                         alt={`${step.title} - Gulf South Homes buying process`}
                         loading="lazy"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       />
-                      {/* Subtle overlay for visual consistency */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                      {/* Enhanced gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent group-hover:from-black/20 transition-all duration-300"></div>
                     </div>
                   </div>
                 </div>
